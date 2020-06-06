@@ -13,6 +13,10 @@ export (float) var speed = 1
 export (float) var idleTime = 0.5
 export (float) var smoothing = 0.05
 
+# Variable para el raycast y piedra
+export (float) var rayLength = 300
+var hasRock = true
+
 # Posicion en la que empieza el kinematicbody2d
 var positionToFollow = Vector2.ZERO
 
@@ -28,8 +32,19 @@ func _ready():
 
 func _physics_process(_delta):
 	# No entiendo completamente como funciona, pero esto hace que se mueva de manera lisa ya que
-	# en realidad, la posicion de lebipi sigue a "positionToFollow", y cuando se acerca mas, se mueve mas lento
+	# en realidad la posicion de lebipi sigue a "positionToFollow", y cuando se acerca mas, se mueve mas lento
 	lebipi.position = lebipi.position.linear_interpolate(positionToFollow, smoothing)
+	
+	# Raycast para soltar la piedra
+	# Obtiene informacion del espacio y colisiones
+	var spaceState = get_world_2d().direct_space_state
+	# Crea el raycast
+	var result = spaceState.intersect_ray(lebipi.global_position, lebipi.global_position + Vector2(0, rayLength), [self], lebipi.collision_mask)
+	# Suelta la piedra si el raycast intercepta al jugador y si todavia la tiene
+	if result:
+		if result.collider.is_in_group("Player") and hasRock:
+			$KinematicBody2D/LebipiRock.Drop()
+			hasRock = false
 	
 	# Debug stuff
 	debugPos.position = position
