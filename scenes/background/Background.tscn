@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/background/bg2.png" type="Texture" id=1]
+[ext_resource path="res://sprites/background/bg1.png" type="Texture" id=2]
+[ext_resource path="res://sprites/background/bg0.png" type="Texture" id=3]
+
+[node name="Background" type="ParallaxBackground"]
+
+[node name="Far" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 1024, 0 )
+
+[node name="Sprite" type="Sprite" parent="Far"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Mid" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.2, 0.2 )
+motion_mirroring = Vector2( 1024, 0 )
+
+[node name="Sprite" type="Sprite" parent="Mid"]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Near" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.4, 0.4 )
+motion_mirroring = Vector2( 1024, 0 )
+
+[node name="Sprite" type="Sprite" parent="Near"]
+texture = ExtResource( 3 )
+centered = false
