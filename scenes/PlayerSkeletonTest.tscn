@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://sprites/character/test_character_sheet.png" type="Texture" id=1]
 [ext_resource path="res://scenes/PlayerController.gd" type="Script" id=2]
@@ -163,9 +163,98 @@ tracks/12/keys = {
 "values": [ Vector2( 1.189, -5 ), Vector2( 1.18913, -8.14044 ), Vector2( -0.237823, -7.90262 ), Vector2( 1.18913, -8.14044 ), Vector2( 1.189, -5 ) ]
 }
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 14.0
-height = 76.0
+[sub_resource type="Animation" id=2]
+resource_name = "PlayerWalk"
+length = 1.5
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton2D/Hip/LegRU:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 93.8954, 113.993, 75.3092 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton2D/Hip/LegLU:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 90.0, 66.1833, 118.386 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Skeleton2D/Hip/LegRU/LegRL:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.68091, 33.5148, -14.5241 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Skeleton2D/Hip/LegLU/LegLL:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.51, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 3.67675, 9.37069, 33.8679, 2.33568 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Skeleton2D/Hip/Chest:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5, 0.727035, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -0.270946, -5.87597 ), Vector2( 1.59061, -4.30639 ), Vector2( 0.313031, -5.29199 ), Vector2( -3.10507, -4.62225 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Skeleton2D/Hip/Chest/ArmLU:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 110.537, 136.062, 76.4171 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Skeleton2D/Hip/Chest/ArmRU:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.51, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 75.4073, 48.6416, 109.29 ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 20, 50 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
@@ -305,7 +394,7 @@ position = Vector2( 94, 106 )
 rest = Transform2D( 1, 0, 0, 1, 94, 106 )
 
 [node name="Chest" type="Bone2D" parent="Graphics/Skeleton2D/Hip"]
-position = Vector2( 1.1891, -7.30438 )
+position = Vector2( -0.270946, -5.87597 )
 rest = Transform2D( 1, 0, 0, 1, 0, -6 )
 
 [node name="Head" type="Bone2D" parent="Graphics/Skeleton2D/Hip/Chest"]
@@ -316,7 +405,7 @@ default_length = 5.0
 
 [node name="ArmRU" type="Bone2D" parent="Graphics/Skeleton2D/Hip/Chest"]
 position = Vector2( 6, -24 )
-rotation = 0.785398
+rotation = 1.31611
 rest = Transform2D( 0.707107, 0.707107, -0.707107, 0.707107, 6, -24 )
 
 [node name="ArmRL" type="Bone2D" parent="Graphics/Skeleton2D/Hip/Chest/ArmRU"]
@@ -330,7 +419,7 @@ default_length = 8.0
 
 [node name="ArmLU" type="Bone2D" parent="Graphics/Skeleton2D/Hip/Chest"]
 position = Vector2( -8, -24 )
-rotation = 2.35619
+rotation = 1.92923
 rest = Transform2D( -0.707107, 0.707107, -0.707107, -0.707107, -8, -24 )
 
 [node name="ArmLL" type="Bone2D" parent="Graphics/Skeleton2D/Hip/Chest/ArmLU"]
@@ -344,42 +433,43 @@ default_length = 8.0
 
 [node name="LegRU" type="Bone2D" parent="Graphics/Skeleton2D/Hip"]
 position = Vector2( 4, 0 )
-rotation = 1.46387
+rotation = 1.63878
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 4, 0 )
 
 [node name="LegRL" type="Bone2D" parent="Graphics/Skeleton2D/Hip/LegRU"]
 position = Vector2( 22, -2 )
-rotation = 0.301015
+rotation = 0.0293375
 rest = Transform2D( 1, 0, 0, 1, 22, -2 )
 
 [node name="FootR" type="Bone2D" parent="Graphics/Skeleton2D/Hip/LegRU/LegRL"]
 position = Vector2( 24, 0 )
-rotation = -1.75948
+rotation = -1.5708
 rest = Transform2D( -4.37114e-08, -1, 1, -4.37114e-08, 24, 0 )
 default_length = 7.0
 
 [node name="LegLU" type="Bone2D" parent="Graphics/Skeleton2D/Hip"]
 position = Vector2( -6, 0 )
-rotation = 1.46387
+rotation = 1.5708
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, -6, 0 )
 
 [node name="LegLL" type="Bone2D" parent="Graphics/Skeleton2D/Hip/LegLU"]
 position = Vector2( 22, -2 )
-rotation = 0.301015
+rotation = 0.0641714
 rest = Transform2D( 1, 0, 0, 1, 22, -2 )
 
 [node name="FootL" type="Bone2D" parent="Graphics/Skeleton2D/Hip/LegLU/LegLL"]
 position = Vector2( 24, 0 )
-rotation = -1.75948
+rotation = -1.5708
 rest = Transform2D( -4.37114e-08, -1, 1, -4.37114e-08, 24, 0 )
 default_length = 7.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
 anims/PlayerIdle = SubResource( 1 )
+anims/PlayerWalk = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 2, 10 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
