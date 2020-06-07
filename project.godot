@@ -16,7 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Sillarium"
-config/icon="res://sprites/sillarium_s.png"
+run/main_scene="res://scenes/TestScene.tscn"
+config/icon="res://sprites/lebipi/lebipi_full.png"
 
 [autoload]
 
