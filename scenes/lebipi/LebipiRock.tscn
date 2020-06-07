@@ -10,13 +10,9 @@ region = Rect2( 17, 169, 43, 37 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 14, 12 )
 
-[node name="LebipiRock" type="Area2D"]
-gravity = 0.0
+[node name="LebipiRock" type="KinematicBody2D"]
 collision_layer = 8
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = SubResource( 1 )

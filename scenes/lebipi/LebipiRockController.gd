@@ -1,4 +1,4 @@
-extends "res://scenes/KillArea.gd"
+extends KinematicBody2D
 
 # Variables para velocidad de la caida
 export (float) var acceleration = 40
@@ -14,7 +14,7 @@ func _ready():
 
 func _physics_process(delta):
 	# Mueve la piedra
-	position += velocity * delta
+	velocity = move_and_slide(velocity)
 	
 	# si puede caer, acelera la piedra hasta la velocidad maxima
 	if canDrop:
