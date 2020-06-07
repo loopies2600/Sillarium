@@ -22,6 +22,16 @@ animations = [ {
 "loop": true,
 "name": "Running",
 "speed": 15.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Falling",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Jumping",
+"speed": 1.0
 } ]
 
 [sub_resource type="Animation" id=2]
@@ -128,8 +138,8 @@ tracks/3/keys = {
 "values": [ 0.0, 0.0, 0.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=4]
-height = 38.0
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 9, 29 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
@@ -160,7 +170,7 @@ anims/Idle = SubResource( 2 )
 anims/Running = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1, 0 )
+position = Vector2( 0, 2 )
 shape = SubResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]

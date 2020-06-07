@@ -29,39 +29,39 @@ animations = [ {
 "speed": 30.0
 } ]
 
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 33, 42, 33 )
+
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 33, 42, 33 )
+region = Rect2( 0, 99, 42, 33 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 99, 42, 33 )
 
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 99, 42, 33 )
-
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
-"frames": [ SubResource( 6 ), SubResource( 8 ), SubResource( 10 ) ],
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
 "loop": true,
 "name": "Looking",
 "speed": 1.0
 } ]
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 33, 42, 33 )
 
-[sub_resource type="SpriteFrames" id=14]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
-"frames": [ SubResource( 10 ), SubResource( 10 ), SubResource( 12 ) ],
+"frames": [ SubResource( 7 ), SubResource( 7 ), SubResource( 9 ) ],
 "loop": true,
 "name": "Looking",
 "speed": 1.0
 } ]
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=11]
 resource_name = "lebipi_jittering"
 length = 0.8
 loop = true
@@ -126,10 +126,11 @@ tracks/4/keys = {
 "values": [ Vector2( -16, 0 ), Vector2( -16, -3 ), Vector2( -16, -8 ), Vector2( -16, -2 ), Vector2( -16, 0 ), Vector2( -16, 3 ), Vector2( -16, 6 ), Vector2( -16, 2 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 32, 16 )
 
 [node name="Lebipi" type="Node2D"]
+z_index = 2
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_group_": true
@@ -162,11 +163,12 @@ position = Vector2( 0, -32 )
 z_index = 1
 frames = SubResource( 4 )
 animation = "Flying"
+frame = 1
 playing = true
 
 [node name="EyeR" type="AnimatedSprite" parent="KinematicBody2D/Graphics/Body"]
 position = Vector2( 16, 0 )
-frames = SubResource( 9 )
+frames = SubResource( 8 )
 animation = "Looking"
 frame = 1
 playing = true
@@ -174,13 +176,13 @@ flip_h = true
 
 [node name="EyeL" type="AnimatedSprite" parent="KinematicBody2D/Graphics/Body"]
 position = Vector2( -16, 0 )
-frames = SubResource( 14 )
+frames = SubResource( 10 )
 animation = "Looking"
 frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D/Graphics"]
-anims/lebipi_jittering = SubResource( 15 )
+anims/lebipi_jittering = SubResource( 11 )
 
 [node name="DebugPosition" type="Sprite" parent="KinematicBody2D/Graphics"]
 visible = false
@@ -194,7 +196,7 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 position = Vector2( 0, 8 )
-shape = SubResource( 16 )
+shape = SubResource( 12 )
 
 [node name="LebipiRock" parent="KinematicBody2D" instance=ExtResource( 8 )]
 position = Vector2( 0, 38 )

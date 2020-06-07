@@ -67,15 +67,12 @@ func InitializeTween():
 	
 
 # AI, tirar piedra al destruirse
-func _input(event):
-	if event is InputEventMouseButton:
-		if has_node("KinematicBody2D/LebipiRock"):
-			if  (!rock_child.canDrop):
-				rock_child.Drop()
-				hasRock = false
-				renderer.visible = false
+func DropRockAndDestroySelf():
+	if hasRock:
+		rock_child.Drop()
+		get_parent().add_child(rock_child)
+		queue_free()
 
-func freeLebipi():
-	print("lebipi destruido")
+func FreeLebipi():
 	queue_free()
 	

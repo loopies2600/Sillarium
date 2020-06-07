@@ -1,4 +1,4 @@
-extends Area2D
+extends "res://scenes/KillArea.gd"
 
 # Variables para velocidad de la caida
 export (float) var acceleration = 40
@@ -7,8 +7,6 @@ export (float) var maxSpeed = 600
 # Variable de velocidad y si puede caer
 var velocity = Vector2()
 var canDrop = false
-
-onready var parent = load("res://scenes/lebipi/LebipiController.gd").new()
 
 func _ready():
 	# Cuando sale de la pantalla, OnScreenExited() es llamado
@@ -30,4 +28,3 @@ func OnScreenExited():
 	# Si la piedra esta cayendo y esta fuera de la pantalla, se borra
 	if canDrop:
 		queue_free()
-		parent.freeLebipi()
