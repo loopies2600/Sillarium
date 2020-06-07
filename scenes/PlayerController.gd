@@ -6,13 +6,13 @@ onready var arms = $Graphics/Body/Arms
 onready var head = $Graphics/Body/Head
 
 export (float) var acceleration = 20
-export (float) var maxSpeed = 200
+export (float) var maxSpeed = 400
 export (float) var horDrag = 0.2
 
-export (float) var jumpBoost = 200
-export (float) var maxFallSpeed = 400
+export (float) var jumpBoost = 500
+export (float) var maxFallSpeed = 800
 export (float) var verDrag = 0.1
-export (float) var gravity = 200
+export (float) var gravity = 800
 
 var velocity = Vector2()
 
@@ -25,17 +25,22 @@ func _physics_process(delta):
 	var friction = false
 	if Input.is_action_pressed("move_right"):
 		velocity.x = min(velocity.x + acceleration, maxSpeed)
-		PlayRunAnimation()
+		if is_on_floor():
+			PlayRunAnimation()
 		UnflipGraphics()
 	elif Input.is_action_pressed("move_left"):
 		velocity.x = max(velocity.x - acceleration, -maxSpeed)
+		if is_on_floor():
+			PlayRunAnimation()
 		FlipGraphics()
-		PlayRunAnimation()
 	else:
 		friction = true
 		PlayIdleAnimation()
 	
 	if is_on_floor():
+		if Input.is_action_just_pressed("ui_up"):
+			velocity.y -= jumpBoost
+			PlayIdleAnimation()
 		if friction:
 			velocity.x = lerp(velocity.x, 0, horDrag)
 	else:

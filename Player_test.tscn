@@ -13,18 +13,18 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "Running",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 1.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Running",
+"speed": 15.0
 } ]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "Idle"
 loop = true
 tracks/0/type = "value"
@@ -76,7 +76,7 @@ tracks/3/keys = {
 "values": [ 0.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -128,7 +128,7 @@ tracks/3/keys = {
 "values": [ 0.0, 0.0, 0.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="CapsuleShape2D" id=4]
 height = 38.0
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -156,12 +156,12 @@ offset = Vector2( 0, -6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
 playback_process_mode = 0
-anims/Idle = SubResource( 4 )
-anims/Running = SubResource( 5 )
+anims/Idle = SubResource( 2 )
+anims/Running = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
