@@ -1,32 +1,63 @@
 extends KinematicBody2D
 
 onready var animPlayer = $Graphics/AnimationPlayer
-var speed = 400
-var smoothing = 25
+onready var bodyAnim = $Graphics/Body
+onready var arms = $Graphics/Body/Arms
+onready var head = $Graphics/Body/Head
+
+export (float) var acceleration = 20
+export (float) var maxSpeed = 200
+export (float) var horDrag = 0.2
+
+export (float) var jumpBoost = 200
+export (float) var maxFallSpeed = 400
+export (float) var verDrag = 0.1
+export (float) var gravity = 200
 
 var velocity = Vector2()
-var jump_magnitude = 600
 
 func _ready():
-	animPlayer.play("PlayerIdle")
+	pass
 
 func _physics_process(delta):
+	velocity.y = min(velocity.y + gravity * delta, maxFallSpeed)
 	
-	if Input.is_action_pressed("ui_right"):
-		velocity.x = speed
-
-	elif Input.is_action_pressed("ui_left"):
-		velocity.x = -speed
-		
-	if velocity.x > 0:
-			velocity.x -= smoothing
-	elif velocity.x < 0:
-			velocity.x += smoothing
+	var friction = false
+	if Input.is_action_pressed("move_right"):
+		velocity.x = min(velocity.x + acceleration, maxSpeed)
+		PlayRunAnimation()
+		UnflipGraphics()
+	elif Input.is_action_pressed("move_left"):
+		velocity.x = max(velocity.x - acceleration, -maxSpeed)
+		FlipGraphics()
+		PlayRunAnimation()
+	else:
+		friction = true
+		PlayIdleAnimation()
 	
 	if is_on_floor():
-		if Input.is_action_just_pressed("ui_up"):
-			velocity.y = -jump_magnitude
-		
-	velocity = move_and_slide(velocity, Globals.UP)
-	velocity.y += Globals.gravity
+		if friction:
+			velocity.x = lerp(velocity.x, 0, horDrag)
+	else:
+		if friction:
+			velocity.x = lerp(velocity.x, 0, verDrag)
 	
+	velocity = move_and_slide(velocity, Globals.UP)
+
+func PlayIdleAnimation():
+	animPlayer.play("Idle")
+	bodyAnim.animation = "Idle"
+
+func PlayRunAnimation():
+	animPlayer.play("Running")
+	bodyAnim.animation = "Running"
+
+func FlipGraphics():
+	bodyAnim.flip_h = true
+	arms.flip_h = true
+	head.flip_h = true
+
+func UnflipGraphics():
+	bodyAnim.flip_h = false
+	arms.flip_h = false
+	head.flip_h = false
