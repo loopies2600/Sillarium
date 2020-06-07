@@ -27,5 +27,4 @@ func Drop():
 func OnScreenExited():
 	# Si la piedra esta cayendo y esta fuera de la pantalla, se borra
 	if canDrop:
-		print("bye")
 		queue_free()
