@@ -31,6 +31,7 @@ func _physics_process(delta):
 	# horizontalmente
 	var friction = false
 	
+	# Recibe input para movimiento horizontal
 	if Input.is_action_pressed("move_right"):
 		velocity.x = min(velocity.x + acceleration, maxSpeed)
 		UnflipGraphics()
@@ -41,20 +42,23 @@ func _physics_process(delta):
 		friction = true
 	
 	if is_on_floor():
+		# Salta
 		if Input.is_action_just_pressed("jump"):
 			velocity.y -= jumpBoost
 			
 		if friction:
+			# Quita velocidad x en el aire
 			velocity.x = lerp(velocity.x, 0, horDrag)
 			PlayIdleAnimation()
 		else:
 			PlayRunAnimation()
 	else:
+		# Pone la animacion dependiendo de si esta subiendo o cayendo
 		if velocity.y < 0:
 			PlayJumpAnimation()
 		else:
 			PlayFallAnimation()
-			
+		# Quita velocidad x en el aire
 		if friction:
 			velocity.x = lerp(velocity.x, 0, verDrag)
 	
@@ -62,6 +66,8 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Globals.UP)
 
 func Respawn():
+	# Pone al jugador en la posicion original
+	# WIP
 	position = startPos
 
 func PlayIdleAnimation():

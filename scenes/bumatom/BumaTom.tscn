@@ -1,0 +1,133 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://sprites/bumatom/bumatom_head_idle_2.png" type="Texture" id=1]
+[ext_resource path="res://sprites/bumatom/bumatom_handL_hold.png" type="Texture" id=2]
+[ext_resource path="res://sprites/bumatom/buma_tom_sheet.png" type="Texture" id=3]
+[ext_resource path="res://sprites/bumatom/bumatom_head_idle_1.png" type="Texture" id=4]
+[ext_resource path="res://sprites/bumatom/bumatom_handL.png" type="Texture" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 9, 168, 68, 38 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 111, 47, 38, 48 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 0.5
+}, {
+"frames": [  ],
+"loop": true,
+"name": "Death",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 420, 78, 20, 27 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "NotHolding",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Holding",
+"speed": 1.0
+} ]
+
+[sub_resource type="Animation" id=6]
+resource_name = "Idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -4, -38 ), Vector2( -4, -36 ), Vector2( -4, -38 ), Vector2( -4, -40 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:rotation_degrees")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body/Head:position")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -28 ), Vector2( 0, -26 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body/Head:rotation_degrees")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
+
+[node name="BumaTom" type="KinematicBody2D"]
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Legs" type="Sprite" parent="Graphics"]
+position = Vector2( 4, 38 )
+z_index = -1
+texture = SubResource( 1 )
+
+[node name="Body" type="Sprite" parent="Graphics/Legs"]
+position = Vector2( -4, -38 )
+texture = SubResource( 2 )
+
+[node name="Head" type="AnimatedSprite" parent="Graphics/Legs/Body"]
+position = Vector2( 0, -28 )
+z_index = 1
+frames = SubResource( 3 )
+animation = "Idle"
+playing = true
+
+[node name="HandR" type="Sprite" parent="Graphics/Legs/Body"]
+position = Vector2( 28, 14 )
+rotation = -0.523599
+z_index = -1
+texture = SubResource( 4 )
+
+[node name="HandL" type="AnimatedSprite" parent="Graphics/Legs/Body"]
+position = Vector2( -16, 20 )
+z_index = 1
+frames = SubResource( 5 )
+animation = "Holding"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics/Legs"]
+anims/Idle = SubResource( 6 )
