@@ -4,8 +4,10 @@ extends Node2D
 onready var animationPlayer = $KinematicBody2D/Graphics/AnimationPlayer
 onready var tween = $Tween
 onready var lebipi = $KinematicBody2D
+onready var rock_child = $KinematicBody2D/LebipiRock
 onready var debugPos = $KinematicBody2D/Graphics/DebugPosition
 onready var debugFollow = $KinematicBody2D/Graphics/DebugFollow
+onready var renderer = $KinematicBody2D/Graphics/Body
 
 # Variables para el movimiento
 export (Vector2) var endPoint = Vector2(320, 0)
@@ -43,7 +45,7 @@ func _physics_process(_delta):
 	# Suelta la piedra si el raycast intercepta al jugador y si todavia la tiene
 	if result:
 		if result.collider.is_in_group("Player") and hasRock:
-			$KinematicBody2D/LebipiRock.Drop()
+			rock_child.Drop()
 			hasRock = false
 	
 	# Debug stuff
@@ -62,3 +64,18 @@ func InitializeTween():
 	# (note que lo unico que cambia es poner poner la posicion del empezar y el final al reves, y alargar el tiempo que dura en empezar)
 	tween.interpolate_property(self, "positionToFollow", endPoint, Vector2.ZERO, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, duration + idleTime * 2)
 	tween.start()
+	
+
+# AI, tirar piedra al destruirse
+func _input(event):
+	if event is InputEventMouseButton:
+		if has_node("KinematicBody2D/LebipiRock"):
+			if  (!rock_child.canDrop):
+				rock_child.Drop()
+				hasRock = false
+				renderer.visible = false
+
+func freeLebipi():
+	print("lebipi destruido")
+	queue_free()
+	

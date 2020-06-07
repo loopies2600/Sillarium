@@ -8,6 +8,8 @@ export (float) var maxSpeed = 600
 var velocity = Vector2()
 var canDrop = false
 
+onready var parent = load("res://scenes/lebipi/LebipiController.gd").new()
+
 func _ready():
 	# Cuando sale de la pantalla, OnScreenExited() es llamado
 	$VisibilityNotifier2D.connect("screen_exited", self, "OnScreenExited")
@@ -29,3 +31,4 @@ func OnScreenExited():
 	if canDrop:
 		print("bye")
 		queue_free()
+		parent.freeLebipi()
