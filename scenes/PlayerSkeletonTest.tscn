@@ -3,7 +3,7 @@
 [ext_resource path="res://sprites/character/test_character_sheet.png" type="Texture" id=1]
 [ext_resource path="res://scenes/PlayerController.gd" type="Script" id=2]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "PlayerIdle"
 loop = true
 tracks/0/type = "value"
@@ -151,8 +151,9 @@ tracks/11/keys = {
 "values": [ -90.0, -104.733, -90.0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 76, 68 )
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 14.0
+height = 76.0
 
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
@@ -228,7 +229,6 @@ bones = [ NodePath("Hip"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Hip/Chest"), P
 [node name="HandL" type="Polygon2D" parent="Graphics"]
 position = Vector2( 228, 42 )
 rotation = 2.35619
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 skeleton = NodePath("../Skeleton2D")
 polygon = PoolVector2Array( 150.607, 71.3416, 159.514, 71.2066, 159.784, 80.7883, 150.067, 80.5184 )
@@ -304,7 +304,6 @@ default_length = 5.0
 [node name="ArmRU" type="Bone2D" parent="Graphics/Skeleton2D/Hip/Chest"]
 position = Vector2( 6, -24 )
 rotation = 0.785398
-scale = Vector2( 1, 1 )
 rest = Transform2D( 0.707107, 0.707107, -0.707107, 0.707107, 6, -24 )
 
 [node name="ArmRL" type="Bone2D" parent="Graphics/Skeleton2D/Hip/Chest/ArmRU"]
@@ -319,7 +318,6 @@ default_length = 8.0
 [node name="ArmLU" type="Bone2D" parent="Graphics/Skeleton2D/Hip/Chest"]
 position = Vector2( -8, -24 )
 rotation = 2.35619
-scale = Vector2( 1, 1 )
 rest = Transform2D( -0.707107, 0.707107, -0.707107, -0.707107, -8, -24 )
 
 [node name="ArmLL" type="Bone2D" parent="Graphics/Skeleton2D/Hip/Chest/ArmLU"]
@@ -364,12 +362,11 @@ rest = Transform2D( -4.37114e-08, -1, 1, -4.37114e-08, 24, 0 )
 default_length = 7.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
-anims/PlayerIdle = SubResource( 2 )
+anims/PlayerIdle = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource( 1 )
-disabled = true
+position = Vector2( 2, 10 )
+shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
