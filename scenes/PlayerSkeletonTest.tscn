@@ -150,6 +150,18 @@ tracks/11/keys = {
 "update": 0,
 "values": [ -90.0, -104.733, -90.0 ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("Skeleton2D/Hip/Chest:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 0.5, 0.501, 0.502, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.189, -5 ), Vector2( 1.18913, -8.14044 ), Vector2( -0.237823, -7.90262 ), Vector2( 1.18913, -8.14044 ), Vector2( 1.189, -5 ) ]
+}
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 14.0
@@ -165,6 +177,7 @@ script = ExtResource( 2 )
 position = Vector2( -94, -92 )
 
 [node name="Body" type="Polygon2D" parent="Graphics"]
+position = Vector2( 0.2, 0 )
 texture = ExtResource( 1 )
 skeleton = NodePath("../Skeleton2D")
 polygon = PoolVector2Array( 88.5826, 73.1343, 91.0432, 71.2643, 96.3582, 71.4611, 99.6062, 77.0714, 100.984, 103.154, 95.6692, 109.65, 90.9448, 109.945, 84.744, 103.941, 84.3503, 92.1304 )
@@ -292,7 +305,7 @@ position = Vector2( 94, 106 )
 rest = Transform2D( 1, 0, 0, 1, 94, 106 )
 
 [node name="Chest" type="Bone2D" parent="Graphics/Skeleton2D/Hip"]
-position = Vector2( 0, -6 )
+position = Vector2( 1.1891, -7.30438 )
 rest = Transform2D( 1, 0, 0, 1, 0, -6 )
 
 [node name="Head" type="Bone2D" parent="Graphics/Skeleton2D/Hip/Chest"]
@@ -331,33 +344,33 @@ default_length = 8.0
 
 [node name="LegRU" type="Bone2D" parent="Graphics/Skeleton2D/Hip"]
 position = Vector2( 4, 0 )
-rotation = 1.53774
+rotation = 1.46387
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 4, 0 )
 
 [node name="LegRL" type="Bone2D" parent="Graphics/Skeleton2D/Hip/LegRU"]
 position = Vector2( 22, -2 )
-rotation = 0.0930649
+rotation = 0.301015
 rest = Transform2D( 1, 0, 0, 1, 22, -2 )
 
 [node name="FootR" type="Bone2D" parent="Graphics/Skeleton2D/Hip/LegRU/LegRL"]
 position = Vector2( 24, 0 )
-rotation = -1.62913
+rotation = -1.75948
 rest = Transform2D( -4.37114e-08, -1, 1, -4.37114e-08, 24, 0 )
 default_length = 7.0
 
 [node name="LegLU" type="Bone2D" parent="Graphics/Skeleton2D/Hip"]
 position = Vector2( -6, 0 )
-rotation = 1.53774
+rotation = 1.46387
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, -6, 0 )
 
 [node name="LegLL" type="Bone2D" parent="Graphics/Skeleton2D/Hip/LegLU"]
 position = Vector2( 22, -2 )
-rotation = 0.0930649
+rotation = 0.301015
 rest = Transform2D( 1, 0, 0, 1, 22, -2 )
 
 [node name="FootL" type="Bone2D" parent="Graphics/Skeleton2D/Hip/LegLU/LegLL"]
 position = Vector2( 24, 0 )
-rotation = -1.62913
+rotation = -1.75948
 rest = Transform2D( -4.37114e-08, -1, 1, -4.37114e-08, 24, 0 )
 default_length = 7.0
 

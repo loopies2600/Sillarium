@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 onready var animPlayer = $Graphics/AnimationPlayer
 
-export (float) var gravity = 50
+export (float) var gravity = 200
 
 var velocity = Vector2()
 
