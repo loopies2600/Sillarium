@@ -42,12 +42,17 @@ func _physics_process(delta):
 		friction = true
 	
 	if is_on_floor():
+		
+		# Mata al jugador si esta siendo aplastado
+		if is_on_ceiling():
+			Respawn()
+		
 		# Salta
 		if Input.is_action_just_pressed("jump"):
 			velocity.y -= jumpBoost
-			
+		
+		# Quita velocidad x en el suelo
 		if friction:
-			# Quita velocidad x en el suelo
 			velocity.x = lerp(velocity.x, 0, horDrag)
 			PlayIdleAnimation()
 		else:

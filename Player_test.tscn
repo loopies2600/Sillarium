@@ -18,20 +18,20 @@ animations = [ {
 "name": "Idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "Jumping",
-"speed": 1.0
+"name": "Running",
+"speed": 15.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Falling",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "Running",
-"speed": 15.0
+"name": "Jumping",
+"speed": 1.0
 } ]
 
 [sub_resource type="Animation" id=2]
@@ -51,11 +51,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Body/Head:rotation_degrees")
-<<<<<<< HEAD
-tracks/1/interp = 1
-=======
 tracks/1/interp = 2
->>>>>>> 45a3a6af35d3b6f7f9a806f70fb6bd2a5a01547b
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true

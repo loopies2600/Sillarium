@@ -22,4 +22,4 @@ texture = SubResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 scale = Vector2( 2, 2 )
-polygon = PoolVector2Array( -8, -14, 8, -14, 19, 3, 19, 11, 13, 16, -13, 16, -19, 11, -19, 3 )
+polygon = PoolVector2Array( -8, -14, 8, -14, 19, 3, 19, 16, -19, 16, -19, 3 )
