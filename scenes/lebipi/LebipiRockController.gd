@@ -3,25 +3,30 @@ extends KinematicBody2D
 # Variables para velocidad de la caida
 export (float) var acceleration = 40
 export (float) var maxSpeed = 600
+export (float) var horDrag = 0.5
+export (float) var pushSpeed = 3
 
 # Variable de velocidad y si puede caer
 var velocity = Vector2()
 var canDrop = false
 
 func _ready():
-	# Cuando sale de la pantalla, OnScreenExited() es llamado
-	$VisibilityNotifier2D.connect("screen_exited", self, "OnScreenExited")
+	pass
 
-func _physics_process(delta):
-	# Mueve la piedra
-	
+func _physics_process(_delta):
+	# Detiene a la piedra horizontalmente
+	velocity.x = lerp(velocity.x, 0, horDrag)
 	
 	# si puede caer, acelera la piedra hasta la velocidad maxima
-	if is_on_floor():
-		velocity = Vector2.ZERO
-	elif canDrop:
+	if canDrop:
 		velocity.y = min(velocity.y + acceleration, maxSpeed)
-		velocity = move_and_slide(velocity)
+	
+	# Mueve la piedra
+	velocity = move_and_slide(velocity)
+
+func Push(xVelocity):
+	# Cambia la velocidad horizontal de la piedra
+	velocity.x = xVelocity * pushSpeed
 
 func Drop():
 	# Deja que la piedra caiga

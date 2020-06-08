@@ -40,7 +40,9 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 position = Vector2( 160, 336 )
 endPoint = Vector2( 500, 0 )
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=[
+"Environment",
+]]
 tile_set = SubResource( 2 )
 collision_layer = 32
 format = 1

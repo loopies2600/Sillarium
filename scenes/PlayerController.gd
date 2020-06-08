@@ -47,11 +47,15 @@ func _physics_process(delta):
 			velocity.y -= jumpBoost
 			
 		if friction:
-			# Quita velocidad x en el aire
+			# Quita velocidad x en el suelo
 			velocity.x = lerp(velocity.x, 0, horDrag)
 			PlayIdleAnimation()
 		else:
 			PlayRunAnimation()
+		
+		# Checkea si el jugador esta en colision con algo
+		if get_slide_count() > 0:
+			CheckForPushable()
 	else:
 		# Pone la animacion dependiendo de si esta subiendo o cayendo
 		if velocity.y < 0:
@@ -65,9 +69,26 @@ func _physics_process(delta):
 	# Mueve al jugador
 	velocity = move_and_slide(velocity, Globals.UP)
 
+func CheckForPushable():
+	# Variables para verificar que el jugador este en contacto con el suelo
+	var isOnEnvironment = false
+	var pushable
+	
+	# Revisa cada objeto con el que esta en contacto
+	for currentBody in get_slide_count():
+		var body = get_slide_collision(currentBody).collider
+		if body.is_in_group("Pushable"):
+			pushable = body
+		elif body.is_in_group("Environment"):
+			isOnEnvironment = true
+	
+	# Empuja el pushable si tambien esta en contacto con el suelo
+	if isOnEnvironment and pushable != null:
+		pushable.Push(velocity.x)
+
 func Respawn():
 	# Pone al jugador en la posicion original
-	# WIP
+	# WIP (anadir animacion y varas asi)
 	position = startPos
 
 func PlayIdleAnimation():

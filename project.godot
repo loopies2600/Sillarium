@@ -23,6 +23,10 @@ config/icon="res://sprites/sillarium_s.png"
 
 Globals="*res://Globals.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [input]
 
 move_right={

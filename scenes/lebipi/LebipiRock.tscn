@@ -7,20 +7,19 @@
 atlas = ExtResource( 1 )
 region = Rect2( 17, 169, 43, 37 )
 
-[node name="LebipiRock" type="KinematicBody2D"]
-scale = Vector2( 2, 2 )
+[node name="LebipiRock" type="KinematicBody2D" groups=[
+"Pushable",
+]]
 z_index = 1
 z_as_relative = false
 collision_layer = 8
-collision_mask = 32
+collision_mask = 48
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
 texture = SubResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2( 2, 2 )
 polygon = PoolVector2Array( -8, -14, 8, -14, 19, 3, 19, 11, 13, 16, -13, 16, -19, 11, -19, 3 )
-
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( -1.19209e-07, 1 )
-scale = Vector2( 2.2, 1.9 )
