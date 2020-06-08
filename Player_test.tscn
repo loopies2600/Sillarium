@@ -39,7 +39,7 @@ resource_name = "Idle"
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Head:position")
-tracks/0/interp = 0
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -51,7 +51,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Body/Head:rotation_degrees")
-tracks/1/interp = 0
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -63,7 +63,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Body/Arms:position")
-tracks/2/interp = 0
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -75,7 +75,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Body/Arms:rotation_degrees")
-tracks/3/interp = 0
+tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
@@ -91,7 +91,7 @@ length = 0.5
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Head:position")
-tracks/0/interp = 0
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -103,7 +103,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Body/Head:rotation_degrees")
-tracks/1/interp = 0
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -115,7 +115,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Body/Arms:position")
-tracks/2/interp = 0
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -127,7 +127,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Body/Arms:rotation_degrees")
-tracks/3/interp = 0
+tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
@@ -157,11 +157,11 @@ playing = true
 offset = Vector2( 0, 6 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
-position = Vector2( 0, -22 )
+position = Vector2( 0, -22.0694 )
 texture = ExtResource( 10 )
 
 [node name="Arms" type="Sprite" parent="Graphics/Body"]
-position = Vector2( 0, -4 )
+position = Vector2( 0, -4.06942 )
 texture = ExtResource( 6 )
 offset = Vector2( 0, -6 )
 
