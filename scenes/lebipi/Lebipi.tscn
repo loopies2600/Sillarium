@@ -170,6 +170,7 @@ playing = true
 position = Vector2( 16, -4 )
 frames = SubResource( 8 )
 animation = "Looking"
+frame = 2
 playing = true
 flip_h = true
 
@@ -177,6 +178,7 @@ flip_h = true
 position = Vector2( -16, 6 )
 frames = SubResource( 10 )
 animation = "Looking"
+frame = 2
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D/Graphics"]
@@ -197,11 +199,9 @@ position = Vector2( 0, 8 )
 shape = SubResource( 12 )
 
 [node name="LebipiRock" parent="KinematicBody2D" instance=ExtResource( 8 )]
-position = Vector2( 0, 38 )
+position = Vector2( 0, 54 )
 
 [node name="Tween" type="Tween" parent="."]
 repeat = true
 playback_process_mode = 0
 playback/repeat = true
-
-[node name="RockAlone" type="Node" parent="."]

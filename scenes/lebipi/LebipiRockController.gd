@@ -14,11 +14,14 @@ func _ready():
 
 func _physics_process(delta):
 	# Mueve la piedra
-	velocity = move_and_slide(velocity)
+	
 	
 	# si puede caer, acelera la piedra hasta la velocidad maxima
-	if canDrop:
+	if is_on_floor():
+		velocity = Vector2.ZERO
+	elif canDrop:
 		velocity.y = min(velocity.y + acceleration, maxSpeed)
+		velocity = move_and_slide(velocity)
 
 func Drop():
 	# Deja que la piedra caiga

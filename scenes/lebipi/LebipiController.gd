@@ -45,8 +45,7 @@ func _physics_process(_delta):
 	# Suelta la piedra si el raycast intercepta al jugador y si todavia la tiene
 	if result:
 		if result.collider.is_in_group("Player") and hasRock:
-			rock_child.Drop()
-			hasRock = false
+			DropRock()
 	
 	# Debug stuff
 	debugPos.position = position
@@ -69,10 +68,14 @@ func InitializeTween():
 # AI, tirar piedra al destruirse
 func DropRockAndDestroySelf():
 	if hasRock:
-		rock_child.Drop()
-		get_parent().add_child(rock_child)
+		DropRock()
 		queue_free()
 
-func FreeLebipi():
-	queue_free()
-	
+func DropRock():
+	# Deja la piedra caer
+	var globalPos = rock_child.global_position
+	rock_child.get_parent().remove_child(rock_child)
+	get_parent().add_child(rock_child)
+	rock_child.position = globalPos
+	rock_child.Drop()
+	hasRock = false
