@@ -33,14 +33,14 @@ region = Rect2( 420, 78, 20, 27 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "NotHolding",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "Holding",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "NotHolding",
 "speed": 1.0
 } ]
 
@@ -50,7 +50,7 @@ length = 0.8
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:position")
-tracks/0/interp = 0
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -62,7 +62,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Body:rotation_degrees")
-tracks/1/interp = 0
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -74,7 +74,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Body/Head:position")
-tracks/2/interp = 0
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -86,7 +86,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Body/Head:rotation_degrees")
-tracks/3/interp = 0
+tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
