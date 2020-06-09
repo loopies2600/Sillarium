@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bumatom_boomerang.png-cd887c19d9acba2d451de528b6fdcbb2.stex"
+path="res://.import/buma_tom_sheet.png-7a74508849c3ad5fa3b949ec87c4f965.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/bumatom/bumatom_boomerang.png"
-dest_files=[ "res://.import/bumatom_boomerang.png-cd887c19d9acba2d451de528b6fdcbb2.stex" ]
+source_file="res://sprites/buma/buma_tom_sheet.png"
+dest_files=[ "res://.import/buma_tom_sheet.png-7a74508849c3ad5fa3b949ec87c4f965.stex" ]
 
 [params]
 

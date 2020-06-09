@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bumatom_handL_hold.png-aebfc2d18b7f690143705375d13eacd8.stex"
+path="res://.import/bumatom_handL_hold.png-ff4ec9130d036bad2843800e33516600.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/bumatom/bumatom_handL_hold.png"
-dest_files=[ "res://.import/bumatom_handL_hold.png-aebfc2d18b7f690143705375d13eacd8.stex" ]
+source_file="res://sprites/buma/bumatom_handL_hold.png"
+dest_files=[ "res://.import/bumatom_handL_hold.png-ff4ec9130d036bad2843800e33516600.stex" ]
 
 [params]
 

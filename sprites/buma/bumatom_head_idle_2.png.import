@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bumatom_head_idle_2.png-e01cc292eb75795b5447afa600b7dc25.stex"
+path="res://.import/bumatom_head_idle_2.png-e7341dbe4db05eaf87428376b20a95d7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/bumatom/bumatom_head_idle_2.png"
-dest_files=[ "res://.import/bumatom_head_idle_2.png-e01cc292eb75795b5447afa600b7dc25.stex" ]
+source_file="res://sprites/buma/bumatom_head_idle_2.png"
+dest_files=[ "res://.import/bumatom_head_idle_2.png-e7341dbe4db05eaf87428376b20a95d7.stex" ]
 
 [params]
 
