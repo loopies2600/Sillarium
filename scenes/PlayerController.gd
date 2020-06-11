@@ -21,6 +21,9 @@ export (float) var gravity = 800
 var velocity = Vector2()
 
 func _ready():
+	# Aqui hay un bug, si la escena no tiene
+	# World/StartPosition, crashea, pero no encontre
+	# manera de checkear si este node tiene un parent
 	startPos = $"/root/World/StartPosition".position
 
 func _physics_process(delta):
