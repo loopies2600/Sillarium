@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/buma/Buma.tscn" type="PackedScene" id=1]
+
+[node name="BumaSquare" type="Node2D"]
+
+[node name="Buma" parent="." instance=ExtResource( 1 )]
+position = Vector2( 70, 166 )
+
+[node name="Buma2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 372, 182 )
+rotation = 1.5708
+
+[node name="Buma3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 360, 442 )
+rotation = 3.14159
+
+[node name="Buma4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 64, 434 )
+rotation = -1.5708
+
+[node name="Buma5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 532, 306 )

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/lebipi/Lebipi.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/background/Background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Player_test.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sprites/platform_test.png" type="Texture" id=4]
 [ext_resource path="res://scenes/PitKillArea.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/buma/Buma.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -36,10 +37,6 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
 [node name="Background" parent="." instance=ExtResource( 2 )]
 
-[node name="Lebipi" parent="." instance=ExtResource( 1 )]
-position = Vector2( -10, 254 )
-endPoint = Vector2( 300, 0 )
-
 [node name="TileMap" type="TileMap" parent="." groups=[
 "Environment",
 ]]
@@ -56,3 +53,13 @@ position = Vector2( 348, 514 )
 
 [node name="PitKillArea" parent="." instance=ExtResource( 5 )]
 position = Vector2( 426, 808 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Lebipi" parent="Enemies" instance=ExtResource( 1 )]
+position = Vector2( -10, 254 )
+endPoint = Vector2( 250, 0 )
+
+[node name="Buma" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 732, 328 )
+scale = Vector2( -1, 1 )

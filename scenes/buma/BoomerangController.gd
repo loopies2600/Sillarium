@@ -14,13 +14,14 @@ export (float) var gravity = 20
 
 # Velocidad
 var velocity = Vector2()
-var velocityDecrease
+var velocityDecrease = Vector2()
 var falling = false
-var xPosition
+var distanceToStartPoint
 
 func _ready():
 	# Conectando funciones
 	visibility.connect("screen_exited", self, "OnScreenExited")
+	hitbox.connect("body_entered", self, "OnBodyEntered")
 
 func _physics_process(delta):
 	# Gira la sprite
@@ -30,8 +31,8 @@ func _physics_process(delta):
 	if !falling:
 		velocity += velocityDecrease
 	
-	xPosition = hitbox.position.rotated(-rotation).x
-	print(xPosition)
+	# Obtiene la distancia del inicio al bumerang
+	distanceToStartPoint = hitbox.position.rotated(-rotation).x - startPos.rotated(-rotation).x
 	
 	# Chequea que si ha llegado a la posicion inicial
 	CheckPosition()
@@ -41,19 +42,25 @@ func _physics_process(delta):
 	hitbox.position += velocity * delta
 
 func CheckPosition():
-	# Si ha llegado a la posicion inicial se borra
-	if xPosition < startPos.x:
+	# Si ha llegado a la posicion empieza a caer
+	if distanceToStartPoint < 0 and !falling:
 		falling = true
+		# Desactiva la hitbox
 		hitbox.monitoring = false
 		hitbox.monitorable = false
 		rotationSpeed = 0
-		velocity = Vector2(lerp(velocity.x, 0, 0.1), velocity.y + gravity)
+		global_rotation = 0
+		velocity = Vector2()
+	
+	# Cae
+	if falling:
+		velocity = Vector2(0, velocity.y + gravity)
 
 func OnScreenExited():
 	# Si esta cayendo y sale de la pantalla es borrado
 	if falling:
-		print("AAA")
 		queue_free()
 
 func OnBodyEntered(body):
-	pass
+	if body.is_in_group("Player"):
+		body.Respawn()

@@ -114,6 +114,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Vector2( -2, -28 ) ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath("../..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "PlayIdleAnimation"
+} ]
+}
 
 [sub_resource type="Animation" id=7]
 length = 0.8
@@ -277,6 +291,20 @@ tracks/5/keys = {
 "update": 1,
 "values": [ "Holding", "Holding", "NotHolding" ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath("../..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "CreateBoomerang"
+} ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "WaitingForCatch"
@@ -333,11 +361,10 @@ tracks/3/keys = {
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 12, 46 )
 
-[node name="BumaTom" type="Area2D" groups=[
+[node name="Buma" type="Area2D" groups=[
 "Buma",
 "Enemy",
 ]]
-position = Vector2( 50, 98 )
 script = ExtResource( 6 )
 boomerang = ExtResource( 7 )
 
@@ -353,7 +380,7 @@ position = Vector2( -4, -38 )
 texture = SubResource( 2 )
 
 [node name="Head" type="AnimatedSprite" parent="Graphics/Legs/Body"]
-position = Vector2( 0, -28 )
+position = Vector2( -2, -28 )
 z_index = 1
 frames = SubResource( 3 )
 animation = "Idle"
@@ -383,3 +410,6 @@ shape = SubResource( 10 )
 
 [node name="BoomerangStartPosition" type="Position2D" parent="."]
 position = Vector2( 30, 0 )
+
+[node name="ThrowTimer" type="Timer" parent="."]
+one_shot = true

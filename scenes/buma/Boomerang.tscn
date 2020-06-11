@@ -6,7 +6,6 @@
 [sub_resource type="CircleShape2D" id=1]
 
 [node name="Boomerang" type="Node2D"]
-rotation = 1.5708
 script = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="." groups=[
@@ -24,3 +23,4 @@ position = Vector2( 1.90735e-06, -1.19209e-07 )
 scale = Vector2( 2, 2.2 )
 
 [node name="StartPosition" type="Position2D" parent="."]
+position = Vector2( -24, 0 )
