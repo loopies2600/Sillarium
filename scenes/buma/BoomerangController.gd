@@ -11,6 +11,7 @@ export (float) var initialSpeed = 500
 export (float) var speedDecrease = 5
 export (float) var rotationSpeed = 0.3
 export (float) var gravity = 20
+export (PackedScene) var particle
 
 # Velocidad
 var velocity = Vector2()
@@ -22,6 +23,7 @@ func _ready():
 	# Conectando funciones
 	visibility.connect("screen_exited", self, "OnScreenExited")
 	hitbox.connect("body_entered", self, "OnBodyEntered")
+	$ParticleTimer.connect("timeout", self, "CreateParticle")
 
 func _physics_process(delta):
 	# Gira la sprite
@@ -64,3 +66,10 @@ func OnScreenExited():
 func OnBodyEntered(body):
 	if body.is_in_group("Player"):
 		body.Respawn()
+
+func CreateParticle():
+	var newParticle = particle.instance()
+	get_tree().get_root().add_child(newParticle)
+	newParticle.global_position = hitbox.global_position
+	newParticle.global_rotation = sprite.global_rotation
+	newParticle.z_index = z_as_relative

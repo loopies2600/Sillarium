@@ -13,7 +13,7 @@ var canDrop = false
 func _ready():
 	pass
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	# Detiene a la piedra horizontalmente
 	velocity.x = lerp(velocity.x, 0, horDrag)
 	
