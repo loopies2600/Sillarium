@@ -36,7 +36,7 @@ func CreateBoomerang():
 	# Cambia a la velocidad y rotacion correcta
 	newBoomerang.position = boomerangStartPos
 	newBoomerang.velocity = Vector2(initialSpeed, 0)
-	newBoomerang.velocityDecrease = Vector2(-speedDecrease, 0)
+	newBoomerang.velocityDecrease = Vector2(-speedDecrease, -0.25)
 
 func OnThrowTimerTimeout():
 	# La animacion automaticamente llama "CreateBoomerang()"

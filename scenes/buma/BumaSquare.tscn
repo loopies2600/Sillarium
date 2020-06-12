@@ -21,3 +21,5 @@ rotation = -1.5708
 
 [node name="Buma5" parent="." instance=ExtResource( 1 )]
 position = Vector2( 532, 306 )
+speedDecrease = 10.0
+throwTime = 0.6

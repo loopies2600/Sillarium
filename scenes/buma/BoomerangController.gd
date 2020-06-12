@@ -9,7 +9,7 @@ onready var visibility = $Area2D/VisibilityNotifier2D
 # Movimiento
 export (float) var initialSpeed = 500
 export (float) var speedDecrease = 5
-export (float) var rotationSpeed = 0.3
+export (float) var rotationSpeed = 1
 export (float) var gravity = 20
 export (PackedScene) var particle
 
