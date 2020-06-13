@@ -380,7 +380,7 @@ position = Vector2( -4, -38 )
 texture = SubResource( 2 )
 
 [node name="Head" type="AnimatedSprite" parent="Graphics/Legs/Body"]
-position = Vector2( 0, -28 )
+position = Vector2( -2, -28 )
 z_index = 1
 frames = SubResource( 3 )
 animation = "Idle"
@@ -393,7 +393,8 @@ z_index = -1
 texture = SubResource( 4 )
 
 [node name="HandL" type="AnimatedSprite" parent="Graphics/Legs/Body"]
-position = Vector2( -16, 20 )
+position = Vector2( 26, 0 )
+rotation = 0.566604
 z_index = 1
 frames = SubResource( 5 )
 animation = "Holding"

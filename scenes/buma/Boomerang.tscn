@@ -8,6 +8,7 @@
 
 [node name="Boomerang" type="Node2D"]
 script = ExtResource( 2 )
+rotationSpeed = 1.0
 particle = ExtResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="." groups=[

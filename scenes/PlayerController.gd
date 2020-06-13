@@ -37,15 +37,14 @@ func _physics_process(delta):
 	# Recibe input para movimiento horizontal
 	if Input.is_action_pressed("move_right"):
 		velocity.x = min(velocity.x + acceleration, maxSpeed)
-		UnflipGraphics()
+		FlipBodyGraphics(false)
 	elif Input.is_action_pressed("move_left"):
 		velocity.x = max(velocity.x - acceleration, -maxSpeed)
-		FlipGraphics()
+		FlipBodyGraphics(true)
 	else:
 		friction = true
 	
 	if is_on_floor():
-		
 		# Mata al jugador si esta siendo aplastado
 		if is_on_ceiling():
 			Respawn()
@@ -76,6 +75,34 @@ func _physics_process(delta):
 	
 	# Mueve al jugador
 	velocity = move_and_slide(velocity, Globals.UP)
+	
+	# Obtiene input de ocho direcciones
+	GetLookInput()
+
+func GetLookInput():
+	var lookDirection = Vector2()
+	var fireAngle
+	
+	# Obtiene input del jugador
+	if Input.is_action_pressed("look_right"):
+		lookDirection.x = 1
+	elif Input.is_action_pressed("look_left"):
+		lookDirection.x = -1
+	
+	if Input.is_action_pressed("look_up"):
+		lookDirection.y = -1
+	elif Input.is_action_pressed("look_down"):
+		lookDirection.y = 1
+	
+	# Pone la direccion correcta
+	match lookDirection:
+		Vector2(0, 0):
+			RotateAH(0, 0)
+		Vector2(0, -1):
+			RotateAH(-80, -60)
+		Vector2(1, -1):
+			RotateAH(-45, -30)
+	
 
 func CheckForPushable():
 	# Variables para verificar que el jugador este en contacto con el suelo
@@ -117,14 +144,15 @@ func PlayFallAnimation():
 	#Obvio
 	bodyAnim.animation = "Falling"
 
-func FlipGraphics():
+func FlipBodyGraphics(cond):
 	# Obvio
-	bodyAnim.flip_h = true
-	arms.flip_h = true
-	head.flip_h = true
+	bodyAnim.flip_h = cond
 
-func UnflipGraphics():
+func FlipHAGraphics(cond):
 	# Obvio
-	bodyAnim.flip_h = false
-	arms.flip_h = false
-	head.flip_h = false
+	head.flip_h = cond
+	arms.flip_h = cond
+
+func RotateAH(deg1, deg2):
+	arms.rotation = deg2rad(deg1)
+	head.rotation = deg2rad(deg2)
