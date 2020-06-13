@@ -28,6 +28,7 @@ func _ready():
 func _physics_process(delta):
 	# Gira la sprite
 	sprite.rotation += rotationSpeed
+	global_rotation += 0.0001
 	
 	# Cambia la velocidad
 	if !falling:

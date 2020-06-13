@@ -9,7 +9,8 @@ onready var throwTimer = $ThrowTimer
 export (PackedScene) var boomerang
 export (float) var initialSpeed = 500
 export (float) var speedDecrease = 5
-export (float) var throwTime = 3
+export (float) var throwTime = 1
+export (float) var direction = 0
 
 var hasBoomerang = true
 
@@ -33,10 +34,12 @@ func CreateBoomerang():
 	add_child(newBoomerang)
 	hasBoomerang = false
 	
-	# Cambia a la velocidad y rotacion correcta
+	# Cambia a la velocidad y rotacion 
+	newBoomerang.global_rotation = direction
 	newBoomerang.position = boomerangStartPos
 	newBoomerang.velocity = Vector2(initialSpeed, 0)
-	newBoomerang.velocityDecrease = Vector2(-speedDecrease, -0.25)
+	newBoomerang.velocityDecrease = Vector2(-speedDecrease, 0)
+	
 
 func OnThrowTimerTimeout():
 	# La animacion automaticamente llama "CreateBoomerang()"
