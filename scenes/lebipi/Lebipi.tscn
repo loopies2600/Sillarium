@@ -9,6 +9,8 @@
 [ext_resource path="res://sprites/debug/debug_pointer.png" type="Texture" id=7]
 [ext_resource path="res://scenes/lebipi/LebipiRock.tscn" type="PackedScene" id=8]
 
+
+
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
 region = Rect2( 2, 51, 82, 75 )

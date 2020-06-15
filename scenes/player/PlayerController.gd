@@ -6,6 +6,7 @@ onready var bodyAnim = $Graphics/Body
 onready var arms = $Graphics/Body/Arms
 onready var head = $Graphics/Body/Head
 onready var startPos
+onready var debugDirection = $Graphics/Body/direction
 
 export (PackedScene) var bullet
 
@@ -104,32 +105,43 @@ func GetLookInput():
 			if bodyAnim.flip_h:
 				FlipHAGraphics(true)
 				fireAngle = 180
+				debugDirection.rotation_degrees = fireAngle
 			else:
 				FlipHAGraphics(false)
+				fireAngle = 0
+				debugDirection.rotation_degrees = fireAngle
 		# UP
 		Vector2(0, -1):
 			fireAngle = -90
+			debugDirection.rotation_degrees = fireAngle
 		# UP RIGHT
 		Vector2(1, -1):
 			fireAngle = -45
+			debugDirection.rotation_degrees = fireAngle
 		# RIGHT
 		Vector2(1, 0):
 			fireAngle = 0
+			debugDirection.rotation_degrees = fireAngle
 		# DOWN RIGHT
 		Vector2(1, 1):
 			fireAngle = 45
+			debugDirection.rotation_degrees = fireAngle
 		# DOWN
 		Vector2(0, 1):
 			fireAngle = 90
+			debugDirection.rotation_degrees = fireAngle
 		# DOWN LEFT
 		Vector2(-1, 1):
 			fireAngle = 135
+			debugDirection.rotation_degrees = fireAngle
 		# LEFT
 		Vector2(-1, 0):
 			fireAngle = 180
+			debugDirection.rotation_degrees = fireAngle
 		# UP LEFT
 		Vector2(-1, -1):
 			fireAngle = -135
+			debugDirection.rotation_degrees = fireAngle
 	
 	if Input.is_action_just_pressed("shoot"):
 		var newBullet = bullet.instance()
