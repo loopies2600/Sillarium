@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://sprites/character/prota_test/prota_run_3.png" type="Texture" id=1]
 [ext_resource path="res://sprites/character/prota_test/prota_run_4.png" type="Texture" id=2]
@@ -8,19 +8,15 @@
 [ext_resource path="res://sprites/character/prota_test/prota_arms.png" type="Texture" id=6]
 [ext_resource path="res://sprites/character/prota_test/prota_run_1.png" type="Texture" id=7]
 [ext_resource path="res://sprites/character/prota_test/prota_idle.png" type="Texture" id=8]
-[ext_resource path="res://scenes/PlayerController.gd" type="Script" id=9]
+[ext_resource path="res://scenes/player/PlayerController.gd" type="Script" id=9]
 [ext_resource path="res://sprites/character/prota_test/prota_heads.png" type="Texture" id=10]
+[ext_resource path="res://scenes/player/Bullet.tscn" type="PackedScene" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "Idle",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "Jumping",
 "speed": 1.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
@@ -31,6 +27,11 @@ animations = [ {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Falling",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Jumping",
 "speed": 1.0
 } ]
 
@@ -99,6 +100,7 @@ extents = Vector2( 8, 29 )
 scale = Vector2( 2, 2 )
 collision_mask = 60
 script = ExtResource( 9 )
+bullet = ExtResource( 11 )
 
 [node name="Graphics" type="Node2D" parent="."]
 
@@ -115,6 +117,8 @@ offset = Vector2( 0, -10 )
 
 [node name="Arms" type="Sprite" parent="Graphics/Body"]
 position = Vector2( -5, -7.57599 )
+z_index = 1
+z_as_relative = false
 texture = ExtResource( 6 )
 offset = Vector2( 5, -2 )
 

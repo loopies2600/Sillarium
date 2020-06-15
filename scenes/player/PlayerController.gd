@@ -7,6 +7,8 @@ onready var arms = $Graphics/Body/Arms
 onready var head = $Graphics/Body/Head
 onready var startPos
 
+export (PackedScene) var bullet
+
 # Variables para movimiento horizontal
 export (float) var acceleration = 50
 export (float) var maxSpeed = 400
@@ -81,7 +83,7 @@ func _physics_process(delta):
 
 func GetLookInput():
 	var lookDirection = Vector2()
-	var fireAngle
+	var fireAngle = 0
 	
 	# Obtiene input del jugador
 	if Input.is_action_pressed("look_right"):
@@ -96,13 +98,45 @@ func GetLookInput():
 	
 	# Pone la direccion correcta
 	match lookDirection:
+		# NO INPUT
 		Vector2(0, 0):
 			RotateAH(0, 0)
+			if bodyAnim.flip_h:
+				FlipHAGraphics(true)
+				fireAngle = 180
+			else:
+				FlipHAGraphics(false)
+		# UP
 		Vector2(0, -1):
-			RotateAH(-80, -60)
+			fireAngle = -90
+		# UP RIGHT
 		Vector2(1, -1):
-			RotateAH(-45, -30)
+			fireAngle = -45
+		# RIGHT
+		Vector2(1, 0):
+			fireAngle = 0
+		# DOWN RIGHT
+		Vector2(1, 1):
+			fireAngle = 45
+		# DOWN
+		Vector2(0, 1):
+			fireAngle = 90
+		# DOWN LEFT
+		Vector2(-1, 1):
+			fireAngle = 135
+		# LEFT
+		Vector2(-1, 0):
+			fireAngle = 180
+		# UP LEFT
+		Vector2(-1, -1):
+			fireAngle = -135
 	
+	if Input.is_action_just_pressed("shoot"):
+		var newBullet = bullet.instance()
+		newBullet.global_position = global_position
+		newBullet.rotation = deg2rad(fireAngle)
+		newBullet.z_index = arms.z_index - 1
+		get_tree().get_root().add_child(newBullet)
 
 func CheckForPushable():
 	# Variables para verificar que el jugador este en contacto con el suelo
