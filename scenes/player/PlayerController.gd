@@ -7,8 +7,10 @@ onready var arms = $Graphics/Body/Arms
 onready var head = $Graphics/Body/Head
 onready var startPos
 onready var debugDirection = $Graphics/Body/direction
+onready var cooldownTimer = $CooldownTimer
 
 export (PackedScene) var bullet
+export (float) var cooldown = 0.3
 
 # Variables para movimiento horizontal
 export (float) var acceleration = 50
@@ -22,12 +24,15 @@ export (float) var verDrag = 0.2
 export (float) var gravity = 800
 
 var velocity = Vector2()
+var cooldownIsOver = true
 
 func _ready():
 	# Aqui hay un bug, si la escena no tiene
 	# World/StartPosition, crashea, pero no encontre
 	# manera de checkear si este node tiene un parent
 	startPos = $"/root/World/StartPosition".position
+	cooldownTimer.wait_time = cooldown
+	cooldownTimer.connect("timeout", self, "OnCooldown")
 
 func _physics_process(delta):
 	# Gravedad
@@ -53,7 +58,7 @@ func _physics_process(delta):
 			Respawn()
 		
 		# Salta
-		if Input.is_action_just_pressed("jump"):
+		if Input.is_action_pressed("jump"):
 			velocity.y -= jumpBoost
 		
 		# Quita velocidad x en el suelo
@@ -84,6 +89,7 @@ func _physics_process(delta):
 
 func GetLookInput():
 	var lookDirection = Vector2()
+	var gotInput = true
 	var fireAngle = 0
 	
 	# Obtiene input del jugador
@@ -99,56 +105,66 @@ func GetLookInput():
 	
 	# Pone la direccion correcta
 	match lookDirection:
+		# UP
+		Vector2(0, -1):
+			fireAngle = -90
+			arms.animation = "Up"
+		# UP RIGHT
+		Vector2(1, -1):
+			fireAngle = -45
+			arms.animation = "Upside"
+		# RIGHT
+		Vector2(1, 0):
+			fireAngle = 0
+			arms.animation = "Side"
+		# DOWN RIGHT
+		Vector2(1, 1):
+			fireAngle = 45
+		# DOWN
+		Vector2(0, 1):
+			fireAngle = 90
+		# DOWN LEFT
+		Vector2(-1, 1):
+			fireAngle = 135
+		# LEFT
+		Vector2(-1, 0):
+			fireAngle = 180
+			arms.animation = "Side"
+		# UP LEFT
+		Vector2(-1, -1):
+			fireAngle = -135
+			arms.animation = "Upside"
 		# NO INPUT
 		Vector2(0, 0):
+			arms.animation = "Side"
+			gotInput = false
 			RotateAH(0, 0)
 			if bodyAnim.flip_h:
 				FlipHAGraphics(true)
 				fireAngle = 180
-				debugDirection.rotation_degrees = fireAngle
 			else:
 				FlipHAGraphics(false)
 				fireAngle = 0
-				debugDirection.rotation_degrees = fireAngle
-		# UP
-		Vector2(0, -1):
-			fireAngle = -90
-			debugDirection.rotation_degrees = fireAngle
-		# UP RIGHT
-		Vector2(1, -1):
-			fireAngle = -45
-			debugDirection.rotation_degrees = fireAngle
-		# RIGHT
-		Vector2(1, 0):
-			fireAngle = 0
-			debugDirection.rotation_degrees = fireAngle
-		# DOWN RIGHT
-		Vector2(1, 1):
-			fireAngle = 45
-			debugDirection.rotation_degrees = fireAngle
-		# DOWN
-		Vector2(0, 1):
-			fireAngle = 90
-			debugDirection.rotation_degrees = fireAngle
-		# DOWN LEFT
-		Vector2(-1, 1):
-			fireAngle = 135
-			debugDirection.rotation_degrees = fireAngle
-		# LEFT
-		Vector2(-1, 0):
-			fireAngle = 180
-			debugDirection.rotation_degrees = fireAngle
-		# UP LEFT
-		Vector2(-1, -1):
-			fireAngle = -135
-			debugDirection.rotation_degrees = fireAngle
 	
-	if Input.is_action_just_pressed("shoot"):
+	if lookDirection.x > 0:
+		FlipHAGraphics(false)
+	elif lookDirection.x < 0:
+		FlipHAGraphics(true)
+	
+	if gotInput and cooldownIsOver:
+		cooldownIsOver = false
 		var newBullet = bullet.instance()
 		newBullet.global_position = global_position
 		newBullet.rotation = deg2rad(fireAngle)
 		newBullet.z_index = arms.z_index - 1
 		get_tree().get_root().add_child(newBullet)
+		cooldownTimer.start()
+	
+	# Cambia direccion de la flecha
+	debugDirection.rotation_degrees = fireAngle
+
+func OnCooldown():
+	cooldownIsOver = true
 
 func CheckForPushable():
 	# Variables para verificar que el jugador este en contacto con el suelo

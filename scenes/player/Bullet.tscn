@@ -12,7 +12,7 @@ script = ExtResource( 1 )
 speed = Vector2( 1250, 0 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1, 0, 0, 1 )
+modulate = Color( 1, 1, 0, 1 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
