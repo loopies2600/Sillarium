@@ -16,7 +16,7 @@
 [ext_resource path="res://sprites/character/prota_test/prota_arms_upside.png" type="Texture" id=14]
 [ext_resource path="res://sprites/debug/debug_hold.png" type="Texture" id=15]
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 15 ), null ],
 "loop": true,
@@ -24,48 +24,48 @@ animations = [ {
 "speed": 30.0
 } ]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "Running",
-"speed": 15.0
+"name": "Jumping",
+"speed": 1.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Falling",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "Jumping",
-"speed": 1.0
+"name": "Running",
+"speed": 15.0
 } ]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 6 ) ],
 "loop": false,
 "name": "Side",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 13 ) ],
-"loop": false,
-"name": "Up",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 14 ) ],
 "loop": false,
 "name": "Upside",
 "speed": 1.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "Up",
+"speed": 1.0
 } ]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Head:position")
@@ -92,7 +92,7 @@ tracks/1/keys = {
 "values": [ Vector2( -5, -8 ), Vector2( -5, -7 ), Vector2( -5, -8 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -120,7 +120,7 @@ tracks/1/keys = {
 "values": [ Vector2( -5, -8 ), Vector2( -5, -7 ), Vector2( -4, -7 ), Vector2( -5, -7 ), Vector2( -5, -8 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 8, 29 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -130,6 +130,7 @@ scale = Vector2( 2, 2 )
 collision_mask = 60
 script = ExtResource( 9 )
 bullet = ExtResource( 11 )
+cooldown = 0.3
 
 [node name="Graphics" type="Node2D" parent="."]
 
@@ -141,13 +142,12 @@ offset = Vector2( 48, 0 )
 
 [node name="debug_hold" type="AnimatedSprite" parent="Graphics/Debug"]
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 6 )
-frame = 1
+frames = SubResource( 1 )
 playing = true
 offset = Vector2( 0, -96 )
 
 [node name="Body" type="AnimatedSprite" parent="Graphics"]
-frames = SubResource( 1 )
+frames = SubResource( 2 )
 animation = "Idle"
 playing = true
 offset = Vector2( 0, 6 )
@@ -161,19 +161,19 @@ offset = Vector2( 0, -10 )
 position = Vector2( -5, -8 )
 z_index = 1
 z_as_relative = false
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "Side"
 offset = Vector2( 5, -2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
 playback_process_mode = 0
-anims/Idle = SubResource( 3 )
-anims/Running = SubResource( 4 )
+anims/Idle = SubResource( 4 )
+anims/Running = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 2 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

@@ -48,9 +48,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("input_hold") and is_on_floor():
 		inputHold = true
-	else:
-		inputHold = false
-		
+	
 	debugHold.visible = inputHold
 	
 	# Recibe input para movimiento horizontal
@@ -183,10 +181,11 @@ func CheckForPushable():
 	# Revisa cada objeto con el que esta en contacto
 	for currentBody in get_slide_count():
 		var body = get_slide_collision(currentBody).collider
-		if body.is_in_group("Pushable"):
-			pushable = body
-		elif body.is_in_group("Environment"):
-			isOnEnvironment = true
+		if body != null:
+			if body.is_in_group("Pushable"):
+				pushable = body
+			elif body.is_in_group("Environment"):
+				isOnEnvironment = true
 	
 	# Empuja el pushable si tambien esta en contacto con el suelo
 	if isOnEnvironment and pushable != null:

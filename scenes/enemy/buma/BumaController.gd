@@ -1,8 +1,8 @@
-extends Area2D
+extends "res://scenes/enemy/BasicEnemyController.gd"
 
 # Child nodes
 onready var animPlayer = $Graphics/Legs/AnimationPlayer
-onready var boomerangStartPos = $BoomerangStartPosition.position
+onready var boomerangStartPos = $BoomerangStartPosition.global_position
 onready var throwTimer = $ThrowTimer
 
 # Variables para el bumerang
@@ -16,7 +16,8 @@ var hasBoomerang = true
 func _ready():
 	# Conecta funciones
 	throwTimer.connect("timeout", self, "OnThrowTimerTimeout")
-	connect("area_entered", self, "OnAreaEntered")
+	connect("area_entered", self, "OnHitboxEntered")
+	connect("DestroySelf", self, "OnDestruction")
 	
 	# Empieza el timer
 	throwTimer.wait_time = throwTime
@@ -30,20 +31,20 @@ func CreateBoomerang():
 	
 	# Crea el bumerang
 	var newBoomerang = boomerang.instance()
-	add_child(newBoomerang)
+	get_tree().get_root().add_child(newBoomerang)
 	hasBoomerang = false
 	
-	# Cambia a la velocidad y rotacion 
-	newBoomerang.position = boomerangStartPos
+	# Cambia a la velocidad y rotacion
+	newBoomerang.scale = scale
+	newBoomerang.global_position = boomerangStartPos
 	newBoomerang.velocity = Vector2(initialSpeed, 0)
 	newBoomerang.velocityDecrease = Vector2(-speedDecrease, 0)
-	
 
 func OnThrowTimerTimeout():
 	# La animacion automaticamente llama "CreateBoomerang()"
 	animPlayer.play("Throw")
 
-func OnAreaEntered(area):
+func OnHitboxEntered(area):
 	# Si un bumerang entra, lo borra
 	if area.is_in_group("Boomerang") and !hasBoomerang:
 		area.get_parent().queue_free()
@@ -55,3 +56,6 @@ func OnAreaEntered(area):
 
 func PlayIdleAnimation():
 	animPlayer.play("Idle")
+
+func OnDestruction():
+	queue_free()

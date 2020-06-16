@@ -83,6 +83,7 @@ input_hold={
 2d_physics/layer_4="EnemyProjectile"
 2d_physics/layer_5="Harmless"
 2d_physics/layer_6="Environment"
+2d_physics/layer_7="PlayerOnly"
 
 [rendering]
 

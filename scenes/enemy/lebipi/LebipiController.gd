@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://scenes/enemy/BasicEnemyController.gd"
 
 # Variables de otros objetos
 onready var animationPlayer = $KinematicBody2D/Graphics/AnimationPlayer
@@ -8,6 +8,7 @@ onready var rock_child = $KinematicBody2D/LebipiRock
 onready var debugPos = $KinematicBody2D/Graphics/DebugPosition
 onready var debugFollow = $KinematicBody2D/Graphics/DebugFollow
 onready var renderer = $KinematicBody2D/Graphics/Body
+onready var hitbox = $Hitbox
 
 # Variables para el movimiento
 export (Vector2) var endPoint = Vector2(320, 0)
@@ -26,6 +27,8 @@ func _ready():
 	# Pone la animacion y el tween para que se mueva
 	animationPlayer.play("lebipi_jittering")
 	InitializeTween()
+	
+	connect("DestroySelf", self, "OnDestruction")
 	
 	# Debug stuff
 	if Globals.debug:
@@ -46,6 +49,7 @@ func _physics_process(_delta):
 	if result:
 		if result.collider.is_in_group("Player") and hasRock:
 			DropRock()
+	hitbox.position = lebipi.position
 	
 	# Debug stuff
 	debugPos.position = position
@@ -63,7 +67,6 @@ func InitializeTween():
 	# (note que lo unico que cambia es poner poner la posicion del empezar y el final al reves, y alargar el tiempo que dura en empezar)
 	tween.interpolate_property(self, "positionToFollow", endPoint, Vector2.ZERO, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, duration + idleTime * 2)
 	tween.start()
-	
 
 # AI, tirar piedra al destruirse
 func DropRockAndDestroySelf():
@@ -75,7 +78,14 @@ func DropRock():
 	# Deja la piedra caer
 	var globalPos = rock_child.global_position
 	rock_child.get_parent().remove_child(rock_child)
-	get_parent().add_child(rock_child)
+	call_deferred("RemoveRockChild")
 	rock_child.position = globalPos
 	rock_child.Drop()
 	hasRock = false
+
+func OnDestruction():
+	DropRock()
+	queue_free()
+
+func RemoveRockChild():
+	get_tree().get_root().add_child(rock_child)

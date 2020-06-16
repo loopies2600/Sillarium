@@ -7,11 +7,11 @@
 radius = 16.0
 
 [node name="Bullet" type="Area2D" groups=[
-"Bullet",
+"PlayerProjectile",
 ]]
-scale = Vector2( 0.5, 0.5 )
 z_index = -1
 collision_layer = 2
+collision_mask = 36
 script = ExtResource( 1 )
 speed = Vector2( 1250, 0 )
 

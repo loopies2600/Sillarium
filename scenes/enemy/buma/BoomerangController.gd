@@ -53,6 +53,7 @@ func CheckPosition():
 		rotationSpeed = 0
 		global_rotation = 0
 		velocity = Vector2()
+		$ParticleTimer.stop()
 	
 	# Cae
 	if falling:
