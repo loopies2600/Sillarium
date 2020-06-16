@@ -11,6 +11,7 @@ func _ready():
 
 func _physics_process(delta):
 	position += velocity * delta
+	$Sprite.rotation_degrees += 16
 
 func OnScreenExited():
 	queue_free()

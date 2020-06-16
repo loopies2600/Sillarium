@@ -10,7 +10,7 @@ onready var debugDirection = $Graphics/Body/direction
 onready var cooldownTimer = $CooldownTimer
 
 export (PackedScene) var bullet
-export (float) var cooldown = 0.3
+export (float) var cooldown = 0.85
 
 # Variables para movimiento horizontal
 export (float) var acceleration = 50
@@ -89,7 +89,6 @@ func _physics_process(delta):
 
 func GetLookInput():
 	var lookDirection = Vector2()
-	var gotInput = true
 	var fireAngle = 0
 	
 	# Obtiene input del jugador
@@ -137,7 +136,6 @@ func GetLookInput():
 		# NO INPUT
 		Vector2(0, 0):
 			arms.animation = "Side"
-			gotInput = false
 			RotateAH(0, 0)
 			if bodyAnim.flip_h:
 				FlipHAGraphics(true)
@@ -151,7 +149,7 @@ func GetLookInput():
 	elif lookDirection.x < 0:
 		FlipHAGraphics(true)
 	
-	if gotInput and cooldownIsOver:
+	if Input.is_action_pressed("shoot") and cooldownIsOver:
 		cooldownIsOver = false
 		var newBullet = bullet.instance()
 		newBullet.global_position = global_position
