@@ -6,11 +6,12 @@ onready var bodyAnim = $Graphics/Body
 onready var arms = $Graphics/Body/Arms
 onready var head = $Graphics/Body/Head
 onready var startPos
-onready var debugDirection = $Graphics/Body/direction
+onready var debugDirection = $Graphics/Debug/direction
+onready var debugHold = $Graphics/Debug/debug_hold
 onready var cooldownTimer = $CooldownTimer
 
 export (PackedScene) var bullet
-export (float) var cooldown = 0.3
+export (float) var cooldown = 0.85
 
 # Variables para movimiento horizontal
 export (float) var acceleration = 50
@@ -41,12 +42,22 @@ func _physics_process(delta):
 	# Variable que comprueba que el jugador no se trato de mover
 	# horizontalmente
 	var friction = false
+
+	# no necesito explicar lo que hace, pero si queres escribirlo
+	var inputHold = false
+	
+	if Input.is_action_pressed("input_hold") and is_on_floor():
+		inputHold = true
+	else:
+		inputHold = false
+		
+	debugHold.visible = inputHold
 	
 	# Recibe input para movimiento horizontal
-	if Input.is_action_pressed("move_right"):
+	if Input.is_action_pressed("move_right") and !inputHold:
 		velocity.x = min(velocity.x + acceleration, maxSpeed)
 		FlipBodyGraphics(false)
-	elif Input.is_action_pressed("move_left"):
+	elif Input.is_action_pressed("move_left") and !inputHold:
 		velocity.x = max(velocity.x - acceleration, -maxSpeed)
 		FlipBodyGraphics(true)
 	else:
@@ -58,7 +69,7 @@ func _physics_process(delta):
 			Respawn()
 		
 		# Salta
-		if Input.is_action_pressed("jump"):
+		if Input.is_action_pressed("jump") and !inputHold:
 			velocity.y -= jumpBoost
 		
 		# Quita velocidad x en el suelo
@@ -89,7 +100,6 @@ func _physics_process(delta):
 
 func GetLookInput():
 	var lookDirection = Vector2()
-	var gotInput = true
 	var fireAngle = 0
 	
 	# Obtiene input del jugador
@@ -137,7 +147,6 @@ func GetLookInput():
 		# NO INPUT
 		Vector2(0, 0):
 			arms.animation = "Side"
-			gotInput = false
 			RotateAH(0, 0)
 			if bodyAnim.flip_h:
 				FlipHAGraphics(true)
@@ -151,7 +160,7 @@ func GetLookInput():
 	elif lookDirection.x < 0:
 		FlipHAGraphics(true)
 	
-	if gotInput and cooldownIsOver:
+	if Input.is_action_pressed("shoot") and cooldownIsOver:
 		cooldownIsOver = false
 		var newBullet = bullet.instance()
 		newBullet.global_position = global_position
