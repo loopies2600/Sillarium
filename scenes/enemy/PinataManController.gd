@@ -26,7 +26,8 @@ func DisableHitbox():
 	hitbox.disabled = true
 
 func OnScreenExited():
-	queue_free()
+	if falling:
+		queue_free()
 
 func OnDestruction():
 	animPlayer.play("Exploding")

@@ -23,9 +23,9 @@ config/icon="res://sprites/sillarium_s.png"
 
 Globals="*res://Globals.gd"
 
-[debug]
+[display]
 
-settings/stdout/print_fps=true
+window/size/resizable=false
 
 [input]
 
