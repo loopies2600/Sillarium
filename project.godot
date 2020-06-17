@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Sillarium"
-run/main_scene="res://scenes/TestScene.tscn"
+run/main_scene="res://scenes/Levels/Test/TestTutorial.tscn"
 config/icon="res://sprites/sillarium_s.png"
 
 [autoload]

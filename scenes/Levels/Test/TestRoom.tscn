@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sprites/TestTileset.tres" type="TileSet" id=3]
+[ext_resource path="res://sprites/debug/puto.png" type="Texture" id=4]
+
+[node name="World" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_quadrant_size = 64
+collision_layer = 32
+format = 1
+tile_data = PoolIntArray( -262146, 0, 0, -262145, 0, 0, -327680, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 0, 0, -327674, 0, 0, -327673, 0, 0, -327672, 0, 0, -327671, 0, 0, -327670, 0, 0, -327669, 0, 0, -196610, 0, 0, -262133, 0, 0, -131074, 0, 0, -196597, 0, 0, -65538, 0, 0, -131061, 0, 0, -2, 0, 0, -65525, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Gord" type="Label" parent="."]
+margin_left = 160.0
+margin_top = -256.0
+margin_right = 697.0
+margin_bottom = -145.0
+custom_fonts/font = ExtResource( 1 )
+text = "puto gordo homosexual
+ XDDDDDDDDDDDD"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pablo" type="Sprite" parent="."]
+position = Vector2( 584, -80 )
+texture = ExtResource( 4 )
+
+[node name="StartPosition" type="Position2D" parent="."]
+position = Vector2( 0, -64 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -64 )

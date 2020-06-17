@@ -1,0 +1,111 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sprites/TestTileset.tres" type="TileSet" id=3]
+[ext_resource path="res://sprites/tutorial/tutorial_controls.png" type="Texture" id=4]
+[ext_resource path="res://scenes/BasicEntryway.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/enemy/PinataMan.tscn" type="PackedScene" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 4 )
+region = Rect2( 201, 201, 198, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 198, 131 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 4 )
+region = Rect2( 201, 67, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 268, 67, 64, 64 )
+
+[node name="World" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_quadrant_size = 64
+collision_layer = 32
+format = 1
+tile_data = PoolIntArray( -655363, 0, 0, -655362, 0, 0, -655361, 0, 0, -720896, 0, 0, -720895, 0, 0, -720894, 0, 0, -720893, 0, 0, -720892, 0, 0, -720891, 0, 0, -720890, 0, 0, -720889, 0, 0, -720888, 0, 0, -720887, 0, 0, -720886, 0, 0, -720885, 0, 0, -720884, 0, 0, -720883, 0, 0, -720882, 0, 0, -720881, 0, 0, -720880, 0, 0, -720879, 0, 0, -720878, 0, 0, -720877, 0, 0, -589827, 0, 0, -655341, 0, 0, -524291, 0, 0, -589805, 0, 0, -458755, 0, 0, -524269, 0, 0, -393219, 0, 0, -458733, 0, 0, -327683, 0, 0, -393197, 0, 0, -262147, 0, 0, -327661, 0, 0, -196611, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 0, 0, -262125, 0, 0, -131075, 0, 0, -196600, 0, 0, -196598, 0, 0, -196589, 0, 0, -65539, 0, 0, -131070, 0, 0, -131069, 0, 0, -131068, 0, 0, -131064, 0, 0, -131062, 0, 0, -131061, 0, 0, -131060, 0, 0, -131053, 0, 0, -3, 0, 0, -65534, 0, 0, -65532, 0, 0, -65528, 0, 0, -65526, 0, 0, -65524, 0, 0, -65517, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="BasicEntryway" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1088, 0 )
+levelToLoad = "TestLevel"
+
+[node name="Tutorial" type="Node2D" parent="."]
+
+[node name="Move" type="Sprite" parent="Tutorial"]
+position = Vector2( 0, -256 )
+texture = SubResource( 1 )
+
+[node name="Look" type="Sprite" parent="Tutorial"]
+position = Vector2( 224, -288 )
+texture = SubResource( 2 )
+
+[node name="MoveLabel" type="Label" parent="Tutorial"]
+margin_left = -70.0
+margin_top = -224.0
+margin_right = 69.0
+margin_bottom = -170.0
+custom_fonts/font = ExtResource( 1 )
+text = "MOVE       LOOK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hold" type="Sprite" parent="Tutorial"]
+position = Vector2( 608, -576 )
+texture = SubResource( 3 )
+
+[node name="HoldLabel" type="Label" parent="Tutorial"]
+margin_left = 544.0
+margin_top = -544.0
+margin_right = 676.0
+margin_bottom = -490.0
+custom_fonts/font = ExtResource( 1 )
+text = "HOLD"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shoot" type="Sprite" parent="Tutorial"]
+position = Vector2( 608, -448 )
+texture = SubResource( 4 )
+
+[node name="ShootLabel" type="Label" parent="Tutorial"]
+margin_left = 528.0
+margin_top = -416.0
+margin_right = 687.0
+margin_bottom = -362.0
+custom_fonts/font = ExtResource( 1 )
+text = "SHOOT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartPosition" type="Position2D" parent="."]
+position = Vector2( -6, -62 )
+scale = Vector2( 2, 2 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( -6, -62 )
+
+[node name="Pinatas" type="Node2D" parent="."]
+
+[node name="PinataMan" parent="Pinatas" instance=ExtResource( 6 )]
+position = Vector2( 1096, -352 )
+killsPlayer = false
+
+[node name="PinataMan2" parent="Pinatas" instance=ExtResource( 6 )]
+position = Vector2( 976, -480 )
+killsPlayer = false
+
+[node name="PinataMan3" parent="Pinatas" instance=ExtResource( 6 )]
+position = Vector2( 840, -608 )
