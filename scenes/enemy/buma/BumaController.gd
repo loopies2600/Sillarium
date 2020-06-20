@@ -11,19 +11,33 @@ export (float) var initialSpeed = 500
 export (float) var speedDecrease = 5
 export (float) var throwTime = 1
 
+# Variables para la muerte
+export (Vector2) var initialDeathBump = Vector2(0, -350)
+export (Vector2) var deathFallSpeed = Vector2(0, 40)
+
 var hasBoomerang = true
+var killed = false
+var velocity = Vector2()
 
 func _ready():
 	# Conecta funciones
 	throwTimer.connect("timeout", self, "OnThrowTimerTimeout")
 	connect("area_entered", self, "OnHitboxEntered")
 	connect("DestroySelf", self, "OnDestruction")
+	$VisibilityNotifier2D.connect("screen_exited", self, "OnScreenExited")
 	
 	# Empieza el timer
 	throwTimer.wait_time = throwTime
 	throwTimer.start()
 	
+	velocity = initialDeathBump
+	
 	PlayIdleAnimation()
+
+func _process(delta):
+	if killed:
+		position += velocity * delta
+		velocity += deathFallSpeed
 
 func CreateBoomerang():
 	# Pone la animacion correcta
@@ -57,5 +71,14 @@ func OnHitboxEntered(area):
 func PlayIdleAnimation():
 	animPlayer.play("Idle")
 
-func OnDestruction():
+func DisableHitbox():
+	$CollisionShape2D.disabled = true
+
+func OnScreenExited():
 	queue_free()
+
+func OnDestruction():
+	killed = true
+	throwTimer.stop()
+	call_deferred("DisableHitbox")
+	animPlayer.play("Killed")
