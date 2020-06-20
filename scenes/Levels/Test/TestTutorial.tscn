@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/enemy/PinataMan.tscn" type="PackedScene" id=6]
 [ext_resource path="res://font/sillariumfont.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://sprites/background/tutorial_test_background.png" type="Texture" id=8]
+[ext_resource path="res://scenes/Levels/Test/testScroll.gd" type="Script" id=9]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
@@ -129,9 +130,25 @@ killsPlayer = false
 [node name="PinataMan3" parent="Pinatas" instance=ExtResource( 6 )]
 position = Vector2( 840, -608 )
 
-[node name="Background" type="CanvasLayer" parent="."]
-layer = -1
+[node name="Background" type="ParallaxBackground" parent="."]
+layer = -128
+scroll_base_scale = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = true
+script = ExtResource( 9 )
 
-[node name="Sprite" type="Sprite" parent="Background"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2( 0, 0 )
+
+[node name="BG" type="TextureRect" parent="Background/ParallaxLayer"]
+modulate = Color( 0.501961, 0.501961, 0.501961, 1 )
+margin_left = -512.0
+margin_top = -900.0
+margin_right = 512.0
+margin_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource( 8 )
-centered = false
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
