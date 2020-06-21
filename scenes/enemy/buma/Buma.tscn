@@ -17,32 +17,32 @@ region = Rect2( 9, 168, 68, 38 )
 atlas = ExtResource( 4 )
 region = Rect2( 111, 47, 38, 48 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 8 )
 region = Rect2( 114, 38, 57, 38 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 8 )
 region = Rect2( 57, 38, 57, 38 )
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 2.0
 }, {
-"frames": [ SubResource( 11 ), SubResource( 12 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "Death",
 "speed": 2.0
 } ]
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 4 )
 region = Rect2( 420, 78, 20, 27 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
@@ -55,8 +55,7 @@ animations = [ {
 "speed": 1.0
 } ]
 
-[sub_resource type="Animation" id=6]
-resource_name = "Catching"
+[sub_resource type="Animation" id=8]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/HandL:animation")
@@ -133,7 +132,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=9]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -233,7 +232,7 @@ tracks/7/keys = {
 "values": [ Vector2( 25.4913, 21.1081 ), Vector2( 22.9825, 24.8712 ), Vector2( 14.1423, 40.2222 ), Vector2( 11.0163, 39.5452 ), Vector2( 14.3294, 31.2585 ), Vector2( 18.7924, 21.1947 ), Vector2( 23.9522, 27.8557 ), Vector2( 21.3768, 29.9175 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=10]
 resource_name = "Killed"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Head:animation")
@@ -344,7 +343,7 @@ tracks/8/keys = {
 "values": [ Vector2( 30, -28 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=11]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:position")
@@ -433,8 +432,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "WaitingForCatch"
+[sub_resource type="Animation" id=12]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Head:position")
@@ -485,7 +483,7 @@ tracks/3/keys = {
 "values": [ Vector2( -4, -38 ), Vector2( -4, -36 ), Vector2( -4, -36 ), Vector2( -4, -38 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 12, 46 )
 
 [node name="Buma" type="Area2D" groups=[
@@ -512,33 +510,32 @@ texture = SubResource( 2 )
 [node name="Head" type="AnimatedSprite" parent="Graphics/Legs/Body"]
 position = Vector2( 0, -28 )
 z_index = 1
-frames = SubResource( 3 )
+frames = SubResource( 5 )
 animation = "Idle"
-frame = 4
 playing = true
 
 [node name="HandR" type="Sprite" parent="Graphics/Legs/Body"]
 position = Vector2( 21.3768, 29.9175 )
 rotation = -0.311064
 z_index = -1
-texture = SubResource( 4 )
+texture = SubResource( 6 )
 
 [node name="HandL" type="AnimatedSprite" parent="Graphics/Legs/Body"]
 position = Vector2( -16, 20 )
 z_index = 1
-frames = SubResource( 5 )
+frames = SubResource( 7 )
 animation = "Holding"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics/Legs"]
-anims/Catching = SubResource( 6 )
-anims/Idle = SubResource( 7 )
-anims/Killed = SubResource( 13 )
-anims/Throw = SubResource( 8 )
-anims/WaitingForCatch = SubResource( 9 )
+anims/Catching = SubResource( 8 )
+anims/Idle = SubResource( 9 )
+anims/Killed = SubResource( 10 )
+anims/Throw = SubResource( 11 )
+anims/WaitingForCatch = SubResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -4, 10 )
-shape = SubResource( 10 )
+shape = SubResource( 13 )
 
 [node name="BoomerangStartPosition" type="Position2D" parent="."]
 position = Vector2( 30, 0 )

@@ -45,3 +45,4 @@ endPoint = Vector2( 250, 0 )
 [node name="Buma" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 676, 328 )
 scale = Vector2( -1, 1 )
+initialDeathBump = Vector2( 100, -350 )

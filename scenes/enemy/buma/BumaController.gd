@@ -18,6 +18,7 @@ export (Vector2) var deathFallSpeed = Vector2(0, 40)
 var hasBoomerang = true
 var killed = false
 var velocity = Vector2()
+var dir = 1
 
 func _ready():
 	# Conecta funciones
@@ -33,12 +34,23 @@ func _ready():
 	velocity = initialDeathBump
 	
 	PlayIdleAnimation()
+	
+	match scale.x:
+			1.0:
+				dir = 1
+			-1.0:
+				dir = -1
+				
 
 func _process(delta):
 	if killed:
 		position += velocity * delta
 		velocity += deathFallSpeed
-
+		
+		scale.y += 0.05
+		scale.x += 0.05 * dir
+		modulate -= Color(-0.1, 0.05, 0.05, 0.05)
+			
 func CreateBoomerang():
 	# Pone la animacion correcta
 	animPlayer.play("WaitingForCatch")
