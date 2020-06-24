@@ -145,13 +145,53 @@ tracks/8/keys = {
 "update": 1,
 "values": [ Rect2( 6, 38, 12, 6 ), Rect2( 22, 38, 11, 3 ), Rect2( 6, 38, 12, 6 ) ]
 }
+tracks/9/type = "bezier"
+tracks/9/path = NodePath(".:position:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"points": PoolRealArray( -30, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.5 )
+}
+tracks/10/type = "bezier"
+tracks/10/path = NodePath(".:position:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"points": PoolRealArray( -21, -0.25, 0, 0.25, 0, -17.5, -0.25, 0, 0.25, 0, -25, -0.25, 0, 0.25, 0, -21, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.5 )
+}
+tracks/11/type = "bezier"
+tracks/11/path = NodePath(".:scale:x")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 0.8, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.5 )
+}
+tracks/12/type = "bezier"
+tracks/12/path = NodePath(".:scale:y")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.8, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.5 )
+}
 
 [sub_resource type="Animation" id=10]
 resource_name = "Slithering"
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shell:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -163,7 +203,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Shell:rotation_degrees")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -175,7 +215,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Shell/Head:position")
-tracks/2/interp = 1
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -187,7 +227,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Shell/Head:rotation_degrees")
-tracks/3/interp = 1
+tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
@@ -199,7 +239,7 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Shell/Head/Eyes:position")
-tracks/4/interp = 1
+tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
@@ -211,7 +251,7 @@ tracks/4/keys = {
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Shell/Head/Eyes:rotation_degrees")
-tracks/5/interp = 1
+tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
@@ -223,7 +263,7 @@ tracks/5/keys = {
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Shell/Head/Cannon:position")
-tracks/6/interp = 1
+tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
@@ -235,7 +275,7 @@ tracks/6/keys = {
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("Shell/Head/Cannon:rotation_degrees")
-tracks/7/interp = 1
+tracks/7/interp = 2
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
@@ -245,6 +285,46 @@ tracks/7/keys = {
 "update": 0,
 "values": [ 0.0, 0.0 ]
 }
+tracks/8/type = "bezier"
+tracks/8/path = NodePath(".:position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( -30, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/9/type = "bezier"
+tracks/9/path = NodePath(".:position:y")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"points": PoolRealArray( -19, -0.25, 0, 0.25, 0, -21, -0.25, 0, 0.25, 0, -19, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/10/type = "bezier"
+tracks/10/path = NodePath(".:scale:x")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"points": PoolRealArray( 1.1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/11/type = "bezier"
+tracks/11/path = NodePath(".:scale:y")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"points": PoolRealArray( 0.9, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0.9, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 29, 20 )
@@ -252,18 +332,20 @@ extents = Vector2( 29, 20 )
 [node name="Caranon" type="Area2D"]
 
 [node name="Graphics" type="Node2D" parent="."]
-position = Vector2( -30, -21 )
+position = Vector2( -30, -20.9209 )
+scale = Vector2( 1.00395, 0.996045 )
 
 [node name="Shell" type="Sprite" parent="Graphics"]
+position = Vector2( 1.88462, 0 )
 texture = SubResource( 1 )
 
 [node name="Head" type="Sprite" parent="Graphics/Shell"]
-position = Vector2( 26, -2 )
+position = Vector2( 23.1731, -2 )
 z_index = -1
 texture = SubResource( 2 )
 
 [node name="Eyes" type="Sprite" parent="Graphics/Shell/Head"]
-position = Vector2( 5, -16 )
+position = Vector2( 5, -17.8632 )
 scale = Vector2( 0.8, 0.9 )
 z_index = 1
 texture = SubResource( 3 )
@@ -282,7 +364,7 @@ texture = SubResource( 6 )
 flip_h = true
 
 [node name="Cannon" type="Sprite" parent="Graphics/Shell/Head"]
-position = Vector2( 4, -33 )
+position = Vector2( 4, -32.0684 )
 texture = SubResource( 7 )
 
 [node name="Mouth" type="Sprite" parent="Graphics/Shell/Head"]
