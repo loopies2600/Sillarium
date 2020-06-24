@@ -1,0 +1,302 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://sprites/enemy/shellshocker/shell_shocker_sheet.png" type="Texture" id=1]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 11, 49, 45, 43 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 71, 47, 34, 47 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 68, 4, 41, 36 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 25, 16, 21, 11 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 3, 1, 7, 11 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 3, 1, 7, 10 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 90, 98, 19, 22 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 6, 38, 12, 6 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "Firing"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Shell/Head/Eyes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 5, -16 ), Vector2( 5, -13 ), Vector2( 5, -16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shell/Head/Eyes:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Shell/Head/Mouth:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 5, 7 ), Vector2( 5, 9 ), Vector2( 5, 7 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Shell/Head/Mouth:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Shell/Head/Cannon:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4, -33 ), Vector2( 4, -29 ), Vector2( 4, -33 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Shell/Head/Cannon:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Shell/Head/Eyes/PupilL:texture:region")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 3, 1, 7, 11 ), Rect2( 13, 3, 8, 9 ), Rect2( 3, 1, 7, 11 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Shell/Head/Eyes/PupilR:texture:region")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 3, 1, 7, 11 ), Rect2( 13, 2, 8, 10 ), Rect2( 3, 1, 7, 10 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Shell/Head/Mouth:texture:region")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 6, 38, 12, 6 ), Rect2( 22, 38, 11, 3 ), Rect2( 6, 38, 12, 6 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Slithering"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Shell:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 2, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shell:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Shell/Head:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 26, -2 ), Vector2( 23, -2 ), Vector2( 26, -2 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Shell/Head:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Shell/Head/Eyes:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 5, -16 ), Vector2( 5, -18 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Shell/Head/Eyes:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Shell/Head/Cannon:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4, -33 ), Vector2( 4, -32 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Shell/Head/Cannon:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 29, 20 )
+
+[node name="Caranon" type="Area2D"]
+
+[node name="Graphics" type="Node2D" parent="."]
+position = Vector2( -30, -21 )
+
+[node name="Shell" type="Sprite" parent="Graphics"]
+texture = SubResource( 1 )
+
+[node name="Head" type="Sprite" parent="Graphics/Shell"]
+position = Vector2( 26, -2 )
+z_index = -1
+texture = SubResource( 2 )
+
+[node name="Eyes" type="Sprite" parent="Graphics/Shell/Head"]
+position = Vector2( 5, -16 )
+scale = Vector2( 0.8, 0.9 )
+z_index = 1
+texture = SubResource( 3 )
+
+[node name="Eyebrows" type="Sprite" parent="Graphics/Shell/Head/Eyes"]
+position = Vector2( -1, -16 )
+texture = SubResource( 4 )
+
+[node name="PupilL" type="Sprite" parent="Graphics/Shell/Head/Eyes"]
+position = Vector2( -9, 0 )
+texture = SubResource( 5 )
+
+[node name="PupilR" type="Sprite" parent="Graphics/Shell/Head/Eyes"]
+position = Vector2( 9, -1 )
+texture = SubResource( 6 )
+flip_h = true
+
+[node name="Cannon" type="Sprite" parent="Graphics/Shell/Head"]
+position = Vector2( 4, -33 )
+texture = SubResource( 7 )
+
+[node name="Mouth" type="Sprite" parent="Graphics/Shell/Head"]
+position = Vector2( 5, 7 )
+texture = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
+anims/Firing = SubResource( 9 )
+anims/Slithering = SubResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -18, -20 )
+shape = SubResource( 11 )
+
+[node name="BulletStartPosition" type="Position2D" parent="."]
+position = Vector2( 0, -65 )

@@ -25,7 +25,6 @@ func _ready():
 	throwTimer.connect("timeout", self, "OnThrowTimerTimeout")
 	connect("area_entered", self, "OnHitboxEntered")
 	connect("DestroySelf", self, "OnDestruction")
-	$VisibilityNotifier2D.connect("screen_exited", self, "OnScreenExited")
 	
 	# Empieza el timer
 	throwTimer.wait_time = throwTime
@@ -86,7 +85,7 @@ func PlayIdleAnimation():
 func DisableHitbox():
 	$CollisionShape2D.disabled = true
 
-func OnScreenExited():
+func DeleteSelf():
 	queue_free()
 
 func OnDestruction():

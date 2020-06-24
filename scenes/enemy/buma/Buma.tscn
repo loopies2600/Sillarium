@@ -1,13 +1,13 @@
 [gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/enemy/buma/Boomerang.tscn" type="PackedScene" id=1]
-[ext_resource path="res://sprites/buma/bumatom_head_idle_2.png" type="Texture" id=2]
-[ext_resource path="res://sprites/buma/bumatom_handL.png" type="Texture" id=3]
-[ext_resource path="res://sprites/buma/buma_tom_sheet.png" type="Texture" id=4]
-[ext_resource path="res://sprites/buma/bumatom_handL_hold.png" type="Texture" id=5]
-[ext_resource path="res://sprites/buma/bumatom_head_idle_1.png" type="Texture" id=6]
+[ext_resource path="res://sprites/enemy/buma/bumatom_head_idle_2.png" type="Texture" id=2]
+[ext_resource path="res://sprites/enemy/buma/bumatom_handL.png" type="Texture" id=3]
+[ext_resource path="res://sprites/enemy/buma/buma_tom_sheet.png" type="Texture" id=4]
+[ext_resource path="res://sprites/enemy/buma/bumatom_handL_hold.png" type="Texture" id=5]
+[ext_resource path="res://sprites/enemy/buma/bumatom_head_idle_1.png" type="Texture" id=6]
 [ext_resource path="res://scenes/enemy/buma/BumaController.gd" type="Script" id=7]
-[ext_resource path="res://sprites/buma/buma_head_sheet.png" type="Texture" id=8]
+[ext_resource path="res://sprites/enemy/buma/buma_head_sheet.png" type="Texture" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
@@ -44,14 +44,14 @@ region = Rect2( 420, 78, 20, 27 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "Holding",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "NotHolding",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Holding",
 "speed": 1.0
 } ]
 
@@ -342,6 +342,20 @@ tracks/8/keys = {
 "update": 0,
 "values": [ Vector2( 30, -28 ) ]
 }
+tracks/9/type = "method"
+tracks/9/path = NodePath("../..")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "DeleteSelf"
+} ]
+}
 
 [sub_resource type="Animation" id=11]
 length = 1.5
@@ -508,15 +522,16 @@ position = Vector2( -4, -38 )
 texture = SubResource( 2 )
 
 [node name="Head" type="AnimatedSprite" parent="Graphics/Legs/Body"]
-position = Vector2( 0, -28 )
+position = Vector2( 1.19209e-07, -28 )
 z_index = 1
 frames = SubResource( 5 )
 animation = "Idle"
+frame = 4
 playing = true
 
 [node name="HandR" type="Sprite" parent="Graphics/Legs/Body"]
 position = Vector2( 21.3768, 29.9175 )
-rotation = -0.311064
+rotation = -0.24541
 z_index = -1
 texture = SubResource( 6 )
 
@@ -542,7 +557,3 @@ position = Vector2( 30, 0 )
 
 [node name="ThrowTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 2, 4.99999 )
-scale = Vector2( 3.8, 5.3 )
