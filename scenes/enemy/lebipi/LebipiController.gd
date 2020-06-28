@@ -9,6 +9,7 @@ onready var debugPos = $KinematicBody2D/Graphics/DebugPosition
 onready var debugFollow = $KinematicBody2D/Graphics/DebugFollow
 onready var renderer = $KinematicBody2D/Graphics/Body
 onready var hitbox = $Hitbox
+onready var toPoint = [0, 320]
 
 # Variables para el movimiento
 export (Vector2) var endPoint = Vector2(320, 0)
@@ -21,12 +22,14 @@ export (float) var rayLength = 300
 var hasRock = true
 
 # Posicion en la que empieza el kinematicbody2d
-var positionToFollow = Vector2.ZERO
+var positionToFollow = 0
+var duration = 2
 
 func _ready():
 	# Pone la animacion y el tween para que se mueva
 	animationPlayer.play("lebipi_jittering")
-	InitializeTween()
+	tween.connect("tween_completed", self, "onTweenCompletion")
+	doTween()
 	
 	connect("DestroySelf", self, "OnDestruction")
 	
@@ -38,7 +41,7 @@ func _ready():
 func _physics_process(_delta):
 	# No entiendo completamente como funciona, pero esto hace que se mueva de manera lisa ya que
 	# en realidad la posicion de lebipi sigue a "positionToFollow", y cuando se acerca mas, se mueve mas lento
-	lebipi.position = lebipi.position.linear_interpolate(positionToFollow, smoothing)
+	lebipi.position.x = positionToFollow
 	
 	# Raycast para soltar la piedra
 	# Obtiene informacion del espacio y colisiones
@@ -53,9 +56,9 @@ func _physics_process(_delta):
 	
 	# Debug stuff
 	debugPos.position = position
-	debugFollow.position = positionToFollow
+	debugFollow.position.x = positionToFollow
 
-func InitializeTween():
+func InitializeTweenLegacy():
 	# El tiempo que toma ir del empezar a la posicion final
 	var duration = endPoint.length() / float(speed * 64)
 	
@@ -67,6 +70,15 @@ func InitializeTween():
 	# (note que lo unico que cambia es poner poner la posicion del empezar y el final al reves, y alargar el tiempo que dura en empezar)
 	tween.interpolate_property(self, "positionToFollow", endPoint, Vector2.ZERO, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, duration + idleTime * 2)
 	tween.start()
+	
+func doTween():
+	tween.interpolate_property(self, "positionToFollow", toPoint[0], toPoint[1], duration, Tween.TRANS_SINE, Tween.EASE_IN_OUT, idleTime)
+	tween.start()
+	
+func onTweenCompletion(object, key):
+	toPoint.invert()
+	renderer.flip_h = !renderer.flip_h
+	doTween()
 
 # AI, tirar piedra al destruirse
 func DropRockAndDestroySelf():

@@ -9,7 +9,6 @@
 [ext_resource path="res://sprites/debug/debug_pointer.png" type="Texture" id=7]
 [ext_resource path="res://scenes/enemy/lebipi/LebipiRock.tscn" type="PackedScene" id=8]
 
-
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
 region = Rect2( 2, 51, 82, 75 )
@@ -169,7 +168,7 @@ playing = true
 position = Vector2( 16, 0 )
 frames = SubResource( 7 )
 animation = "Looking"
-frame = 2
+frame = 1
 playing = true
 flip_h = true
 
@@ -177,7 +176,7 @@ flip_h = true
 position = Vector2( -14, 0 )
 frames = SubResource( 9 )
 animation = "Looking"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D/Graphics"]
@@ -204,6 +203,4 @@ position = Vector2( 0, 54 )
 shape = SubResource( 12 )
 
 [node name="Tween" type="Tween" parent="."]
-repeat = true
 playback_process_mode = 0
-playback/repeat = true
