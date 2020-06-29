@@ -4,7 +4,7 @@ extends Node
 
 const UP = Vector2.UP
 const UNIT_SIZE = 96
-var debug = false
+var debug = true
 
 func loadLevel(levelName):
 	match levelName:

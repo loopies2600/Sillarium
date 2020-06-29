@@ -12,7 +12,7 @@ export (float) var speedDecrease = 5
 export (float) var throwTime = 1
 
 # Variables para la muerte
-export (Vector2) var initialDeathBump = Vector2(0, -350)
+export (Vector2) var initialDeathBump = Vector2(250, -500)
 export (Vector2) var deathFallSpeed = Vector2(0, 40)
 
 var hasBoomerang = true
@@ -41,14 +41,15 @@ func _ready():
 				dir = -1
 				
 
-func _process(delta):
+func _physics_process(delta):
 	if killed:
 		position += velocity * delta
 		velocity += deathFallSpeed
 		
-		scale.y += 0.05
-		scale.x += 0.05 * dir
-		modulate -= Color(-0.1, 0.05, 0.05, 0.05)
+		scale.y += 0.1
+		scale.x += 0.1 * dir
+		# modulate -= Color(-0.05, 0.05, 0.05, 0)
+		rotation_degrees += 25
 			
 func CreateBoomerang():
 	# Pone la animacion correcta
