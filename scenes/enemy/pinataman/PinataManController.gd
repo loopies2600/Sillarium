@@ -4,6 +4,7 @@ onready var animPlayer = $AnimationPlayer
 onready var hitbox = $CollisionShape2D
 
 export (float) var fallSpeed = 20
+export (PackedScene) var particle
 
 var velocity = Vector2()
 var falling
@@ -31,3 +32,9 @@ func OnScreenExited():
 
 func OnDestruction():
 	animPlayer.play("Exploding")
+
+func EmitParticles():
+	var newParticles = particle.instance()
+	newParticles.emitting = true
+	get_tree().get_root().add_child(newParticles)
+	newParticles.global_position = global_position
