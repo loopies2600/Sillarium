@@ -188,7 +188,7 @@ tracks/12/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.5 )
 }
 tracks/13/type = "method"
-tracks/13/path = NodePath("..")
+tracks/13/path = NodePath("../..")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
@@ -351,72 +351,73 @@ tracks/11/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=13]
-extents = Vector2( 29, 20 )
+extents = Vector2( 12, 31 )
 
-[sub_resource type="Curve2D" id=14]
-_data = {
-"points": PoolVector2Array(  )
-}
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 18, 21 )
 
-[node name="Caranon" type="Area2D"]
-position = Vector2( 288, 480 )
+[node name="Caranon" type="KinematicBody2D"]
+position = Vector2( 292, 484 )
 script = ExtResource( 2 )
 projectile = ExtResource( 3 )
 
-[node name="Graphics" type="Node2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 30, 21 )
+collision_layer = 4
+collision_mask = 33
+
+[node name="Graphics" type="Node2D" parent="Area2D"]
 position = Vector2( -30, -21 )
 
-[node name="Shell" type="Sprite" parent="Graphics"]
+[node name="Shell" type="Sprite" parent="Area2D/Graphics"]
 texture = SubResource( 1 )
 
-[node name="Head" type="Sprite" parent="Graphics/Shell"]
+[node name="Head" type="Sprite" parent="Area2D/Graphics/Shell"]
 position = Vector2( 26, -2 )
 z_index = -1
 texture = SubResource( 2 )
 
-[node name="Eyes" type="Sprite" parent="Graphics/Shell/Head"]
+[node name="Eyes" type="Sprite" parent="Area2D/Graphics/Shell/Head"]
 position = Vector2( 5, -16 )
 scale = Vector2( 0.8, 0.9 )
 z_index = 1
 texture = SubResource( 3 )
 
-[node name="Eyebrows" type="Sprite" parent="Graphics/Shell/Head/Eyes"]
+[node name="Eyebrows" type="Sprite" parent="Area2D/Graphics/Shell/Head/Eyes"]
 position = Vector2( -1, -16 )
 texture = SubResource( 4 )
 
-[node name="PupilL" type="Sprite" parent="Graphics/Shell/Head/Eyes"]
+[node name="PupilL" type="Sprite" parent="Area2D/Graphics/Shell/Head/Eyes"]
 position = Vector2( -9, 0 )
 texture = SubResource( 5 )
 
-[node name="PupilR" type="Sprite" parent="Graphics/Shell/Head/Eyes"]
+[node name="PupilR" type="Sprite" parent="Area2D/Graphics/Shell/Head/Eyes"]
 position = Vector2( 9, -1 )
 texture = SubResource( 6 )
 flip_h = true
 
-[node name="Cannon" type="Sprite" parent="Graphics/Shell/Head"]
+[node name="Cannon" type="Sprite" parent="Area2D/Graphics/Shell/Head"]
 position = Vector2( 4, -33 )
 texture = SubResource( 7 )
 
-[node name="Mouth" type="Sprite" parent="Graphics/Shell/Head"]
+[node name="Mouth" type="Sprite" parent="Area2D/Graphics/Shell/Head"]
 position = Vector2( 5, 7 )
 texture = SubResource( 8 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D/Graphics"]
 anims/Firing = SubResource( 9 )
 anims/Hiding = SubResource( 10 )
 anims/Showing = SubResource( 11 )
 anims/Slithering = SubResource( 12 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -18, -20 )
+[node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1, -31 )
 shape = SubResource( 13 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 14 )
+
 [node name="BulletStartPosition" type="Position2D" parent="."]
-position = Vector2( 0, -65 )
+position = Vector2( 30, -44 )
 
 [node name="ShootTimer" type="Timer" parent="."]
-
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource( 14 )
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]

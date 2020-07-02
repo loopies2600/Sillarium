@@ -168,7 +168,6 @@ playing = true
 position = Vector2( 16, 0 )
 frames = SubResource( 7 )
 animation = "Looking"
-frame = 1
 playing = true
 flip_h = true
 
@@ -176,7 +175,6 @@ flip_h = true
 position = Vector2( -14, 0 )
 frames = SubResource( 9 )
 animation = "Looking"
-frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D/Graphics"]
