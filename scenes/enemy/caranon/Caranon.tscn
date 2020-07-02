@@ -1,6 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://sprites/enemy/shellshocker/shell_shocker_sheet.png" type="Texture" id=1]
+[ext_resource path="res://scenes/enemy/caranon/CaranonController.gd" type="Script" id=2]
+[ext_resource path="res://scenes/enemy/caranon/CaranonShot.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -185,9 +187,31 @@ tracks/12/keys = {
 "points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.8, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.1, 0.2, 0.5 )
 }
+tracks/13/type = "method"
+tracks/13/path = NodePath("..")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "Fire"
+}, {
+"args": [  ],
+"method": "PlaySlitherAnim"
+} ]
+}
 
 [sub_resource type="Animation" id=10]
-resource_name = "Slithering"
+resource_name = "Hiding"
+
+[sub_resource type="Animation" id=11]
+resource_name = "Showing"
+
+[sub_resource type="Animation" id=12]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shell:position")
@@ -326,26 +350,32 @@ tracks/11/keys = {
 "times": PoolRealArray( 0, 0.5, 1 )
 }
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 29, 20 )
 
+[sub_resource type="Curve2D" id=14]
+_data = {
+"points": PoolVector2Array(  )
+}
+
 [node name="Caranon" type="Area2D"]
+position = Vector2( 288, 480 )
+script = ExtResource( 2 )
+projectile = ExtResource( 3 )
 
 [node name="Graphics" type="Node2D" parent="."]
-position = Vector2( -30, -20.9209 )
-scale = Vector2( 1.00395, 0.996045 )
+position = Vector2( -30, -21 )
 
 [node name="Shell" type="Sprite" parent="Graphics"]
-position = Vector2( 1.88462, 0 )
 texture = SubResource( 1 )
 
 [node name="Head" type="Sprite" parent="Graphics/Shell"]
-position = Vector2( 23.1731, -2 )
+position = Vector2( 26, -2 )
 z_index = -1
 texture = SubResource( 2 )
 
 [node name="Eyes" type="Sprite" parent="Graphics/Shell/Head"]
-position = Vector2( 5, -17.8632 )
+position = Vector2( 5, -16 )
 scale = Vector2( 0.8, 0.9 )
 z_index = 1
 texture = SubResource( 3 )
@@ -364,7 +394,7 @@ texture = SubResource( 6 )
 flip_h = true
 
 [node name="Cannon" type="Sprite" parent="Graphics/Shell/Head"]
-position = Vector2( 4, -32.0684 )
+position = Vector2( 4, -33 )
 texture = SubResource( 7 )
 
 [node name="Mouth" type="Sprite" parent="Graphics/Shell/Head"]
@@ -373,12 +403,20 @@ texture = SubResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
 anims/Firing = SubResource( 9 )
-anims/Slithering = SubResource( 10 )
+anims/Hiding = SubResource( 10 )
+anims/Showing = SubResource( 11 )
+anims/Slithering = SubResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -18, -20 )
-shape = SubResource( 11 )
+shape = SubResource( 13 )
 
 [node name="BulletStartPosition" type="Position2D" parent="."]
 position = Vector2( 0, -65 )
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 14 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]

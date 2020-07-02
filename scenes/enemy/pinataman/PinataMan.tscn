@@ -87,17 +87,13 @@ tracks/1/keys = {
 collision_layer = 4
 collision_mask = 2
 script = ExtResource( 4 )
+killsPlayer = false
 particle = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 0.349066
 texture = ExtResource( 1 )
 offset = Vector2( 0, 30 )
-
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Sprite"]
-position = Vector2( 3.08508, 31.8666 )
-rotation = -0.349066
-scale = Vector2( 4.8, 4.1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 32 )
