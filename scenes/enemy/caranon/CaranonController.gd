@@ -1,21 +1,26 @@
 extends KinematicBody2D
 
+# Node variables
 onready var animPlayer = $Area2D/Graphics/AnimationPlayer
 onready var shotStartPos = $BulletStartPosition
 onready var fireTimer = $ShootTimer
 
+# Exported variables
 export (PackedScene) var projectile
 export (float) var speed = 50
 export (float) var firingTime = 3
 export (float) var gravityStrength = 50
 export (Vector2) var gravityDirection = Vector2.DOWN
 
+# Movement variables
 var velocity = Vector2()
 var moving = true
 
 func _ready():
+	# Connecting nodes
 	fireTimer.connect("timeout", self, "OnFireTimerTimeout")
 	animPlayer.play("Slithering")
+	# Initializing timer
 	fireTimer.wait_time = firingTime
 	fireTimer.start()
 
@@ -23,48 +28,60 @@ func _physics_process(delta):
 	HandleMovement(delta)
 
 func HandleMovement(delta):
-	var touchingSurface = false
+	var touchingSurface = true
 	
+	if is_on_floor():
+		AdjustToFloor()
+		
 	if is_on_wall():
-		rotation = PI * 3 / 2
-		velocity = Vector2(gravityStrength, -speed)
-		touchingSurface = true
-	elif is_on_floor():
-		rotation = 0
-		velocity = Vector2(speed, gravityStrength)
-		touchingSurface = true
+		AdjustToWall()
+		
 	if is_on_ceiling():
-		rotation = PI
-		velocity = Vector2(-speed, -gravityStrength)
-		touchingSurface = true
+		AdjustToCeiling()
 	
 	if !touchingSurface:
 		velocity.y += gravityStrength * delta
 	
 	if moving:
 		velocity = move_and_slide(velocity, Vector2.UP)
+	
 
 func AdjustToFloor():
+	# Floor
 	rotation = 0
 	velocity = Vector2(speed, gravityStrength)
 
 func AdjustToWall():
-	rotation = PI*3/2
-	velocity = Vector2(gravityStrength, -speed)
+	# Get space state
+	var spaceState = get_world_2d().direct_space_state
+	# Check if wall is to right
+	var result = spaceState.intersect_ray(position, position + Vector2(25, 0), [self], collision_mask, true, false)
+	if result:
+		# Wall to the right
+		rotation = PI*3/2
+		velocity = Vector2(gravityStrength, -speed)
+	else:
+		# Wall to the left
+		rotation = PI/2
+		velocity = Vector2(-gravityStrength, speed)
 
 func AdjustToCeiling():
-	rotation = PI * 2
+	# Ceiling
+	rotation = PI
 	velocity = Vector2(-speed, -gravityStrength)
 
 func PlaySlitherAnim():
+	# Plays slither animation
 	moving = true
 	animPlayer.play("Slithering")
 
 func OnFireTimerTimeout():
+	# Plays firing animation
 	moving = false
 	animPlayer.play("Firing")
 
 func Fire():
+	# Creates projectile
 	var newShot = projectile.instance()
 	newShot.position = shotStartPos.global_position
 	newShot.rotation = rotation
