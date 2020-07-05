@@ -8,9 +8,8 @@ onready var fireTimer = $ShootTimer
 # Exported variables
 export (PackedScene) var projectile
 export (float) var speed = 50
-export (float) var firingTime = 0
+export (float) var firingTime = 3
 export (float) var gravityStrength = 50
-export (Vector2) var gravityDirection = Vector2.DOWN
 
 # Movement variables
 var velocity = Vector2()
@@ -19,7 +18,7 @@ var touchingSurface = false
 
 func _ready():
 	# Connecting nodes
-	# fireTimer.connect("timeout", self, "OnFireTimerTimeout")
+	fireTimer.connect("timeout", self, "OnFireTimerTimeout")
 	animPlayer.play("Slithering")
 	# Initializing timer
 	fireTimer.wait_time = firingTime
