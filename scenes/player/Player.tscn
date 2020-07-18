@@ -131,9 +131,7 @@ collision_mask = 60
 script = ExtResource( 9 )
 bullet = ExtResource( 11 )
 cooldown = 0.3
-acceleration = 50.0
 maxSpeed = 500.0
-horDrag = 0.3
 
 [node name="Graphics" type="Node2D" parent="."]
 

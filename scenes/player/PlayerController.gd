@@ -31,7 +31,11 @@ func _ready():
 	# Aqui hay un bug, si la escena no tiene
 	# World/StartPosition, crashea, pero no encontre
 	# manera de checkear si este node tiene un parent
-	startPos = $"/root/World/StartPosition".position
+	# WORKAROUND QUE HICE, JSJSJJSJSJSJSJSJSJSJSJSJJS
+	if get_parent().get_node("StartPosition") == null:
+		position = Vector2.ZERO
+	else:
+		position = $"/root/World/StartPosition".position
 	cooldownTimer.wait_time = cooldown
 	cooldownTimer.connect("timeout", self, "OnCooldown")
 
@@ -168,7 +172,7 @@ func GetLookInput():
 		cooldownTimer.start()
 	
 	# Cambia direccion de la flecha
-	debugDirection.rotation_degrees = fireAngle
+	debugDirection.rotation_degrees = lerp(debugDirection, fireAngle, 0.05)
 
 func OnCooldown():
 	cooldownIsOver = true
