@@ -172,7 +172,7 @@ func GetLookInput():
 		cooldownTimer.start()
 	
 	# Cambia direccion de la flecha
-	debugDirection.rotation_degrees = lerp(debugDirection, fireAngle, 0.05)
+	debugDirection.rotation_degrees = lerp(debugDirection.rotation_degrees, fireAngle, 0.9)
 
 func OnCooldown():
 	cooldownIsOver = true
@@ -198,7 +198,7 @@ func CheckForPushable():
 func Respawn():
 	# Pone al jugador en la posicion original
 	# WIP (anadir animacion y varas asi)
-	position = startPos
+	position = $"/root/World/StartPosition".position
 
 func PlayIdleAnimation():
 	# Obvio
