@@ -78,13 +78,16 @@ func PlaySlitherAnim():
 	animPlayer.play("Slithering")
 
 func OnFireTimerTimeout():
-	# Plays firing animation
-	moving = false
-	animPlayer.play("Firing")
+	# Plays firing animation if it's on a floor
+	
+	if is_on_floor():
+		moving = false
+		animPlayer.play("FiringTwice")
 
-func Fire():
+func Fire(speed_x, speed_y):
 	# Creates projectile
 	var newShot = projectile.instance()
 	newShot.position = shotStartPos.global_position
+	newShot.speed = Vector2(speed_x, speed_y)
 	newShot.rotation = rotation
 	get_tree().get_root().add_child(newShot)

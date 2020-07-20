@@ -2,8 +2,7 @@ extends Area2D
 
 onready var visibility = $VisibilityNotifier2D
 
-export (Vector2) var speed = Vector2(0, -150)
-
+var speed
 var velocity = Vector2()
 
 func _ready():
@@ -13,6 +12,7 @@ func _ready():
 
 func _physics_process(delta):
 	position += velocity * delta
+	velocity.y += 10
 
 func OnBodyEntered(body):
 	if body.is_in_group("Player"):
