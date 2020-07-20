@@ -78,11 +78,13 @@ func PlaySlitherAnim():
 	animPlayer.play("Slithering")
 
 func OnFireTimerTimeout():
-	# Plays firing animation if it's on a floor
-	
+	# Plays firing animation twice if it's on a floor
 	if is_on_floor():
 		moving = false
 		animPlayer.play("FiringTwice")
+	else:
+		moving = false
+		animPlayer.play("Firing")
 
 func Fire(speed_x, speed_y):
 	# Creates projectile

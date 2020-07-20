@@ -12,7 +12,7 @@ func _ready():
 
 func _physics_process(delta):
 	position += velocity * delta
-	velocity.y += 10
+	if speed.y != 0: velocity.y += 10
 
 func OnBodyEntered(body):
 	if body.is_in_group("Player"):
