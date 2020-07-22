@@ -172,7 +172,7 @@ func GetLookInput():
 func Shoot():
 	cooldownIsOver = false
 	var newBullet = bullet.instance()
-	newBullet.global_position = global_position
+	newBullet.global_position = global_position + Vector2(32, -16)
 	newBullet.rotation = deg2rad(fireAngle)
 	newBullet.z_index = arms.z_index - 1
 	get_tree().get_root().add_child(newBullet)
