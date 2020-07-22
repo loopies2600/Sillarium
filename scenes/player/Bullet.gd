@@ -3,7 +3,6 @@ extends Area2D
 onready var sprite = $Sprite
 
 export (Vector2) var speed = Vector2(700, 0)
-export (float) var rotationSpeed = 0.5
 
 var velocity = Vector2()
 
@@ -14,7 +13,6 @@ func _ready():
 
 func _physics_process(delta):
 	position += velocity * delta
-	sprite.rotation += rotationSpeed
 
 func OnBodyEntered(body):
 	queue_free()

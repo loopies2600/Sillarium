@@ -25,7 +25,9 @@ export (float) var verDrag = 0.2
 export (float) var gravity = 800
 
 var velocity = Vector2()
+var fireAngle = 0
 var cooldownIsOver = true
+var isShooting = false
 
 func _ready():
 	# Aqui hay un bug, si la escena no tiene
@@ -102,7 +104,6 @@ func _physics_process(delta):
 
 func GetLookInput():
 	var lookDirection = Vector2()
-	var fireAngle = 0
 	
 	# Obtiene input del jugador
 	if Input.is_action_pressed("look_right"):
@@ -149,7 +150,6 @@ func GetLookInput():
 		# NO INPUT
 		Vector2(0, 0):
 			arms.animation = "Side"
-			RotateAH(0, 0)
 			if bodyAnim.flip_h:
 				FlipHAGraphics(true)
 				fireAngle = 180
@@ -163,16 +163,20 @@ func GetLookInput():
 		FlipHAGraphics(true)
 	
 	if Input.is_action_pressed("shoot") and cooldownIsOver:
-		cooldownIsOver = false
-		var newBullet = bullet.instance()
-		newBullet.global_position = global_position
-		newBullet.rotation = deg2rad(fireAngle)
-		newBullet.z_index = arms.z_index - 1
-		get_tree().get_root().add_child(newBullet)
-		cooldownTimer.start()
+		SetShooting(true)
+		PlayShootAnimation()
 	
 	# Cambia direccion de la flecha
 	debugDirection.rotation_degrees = lerp(debugDirection.rotation_degrees, fireAngle, 0.9)
+
+func Shoot():
+	cooldownIsOver = false
+	var newBullet = bullet.instance()
+	newBullet.global_position = global_position
+	newBullet.rotation = deg2rad(fireAngle)
+	newBullet.z_index = arms.z_index - 1
+	get_tree().get_root().add_child(newBullet)
+	cooldownTimer.start()
 
 func OnCooldown():
 	cooldownIsOver = true
@@ -202,13 +206,21 @@ func Respawn():
 
 func PlayIdleAnimation():
 	# Obvio
-	animPlayer.play("Idle")
+	if !isShooting:
+		animPlayer.play("Idle")
 	bodyAnim.animation = "Idle"
 
 func PlayRunAnimation():
 	# Obvio
-	animPlayer.play("Running")
+	if !isShooting:
+		animPlayer.play("Running")
 	bodyAnim.animation = "Running"
+	
+func PlayShootAnimation():
+	animPlayer.play("Shooting")
+	
+func SetShooting(cond):
+	isShooting = cond
 
 func PlayJumpAnimation():
 	#Obvio
@@ -226,7 +238,3 @@ func FlipHAGraphics(cond):
 	# Obvio
 	head.flip_h = cond
 	arms.flip_h = cond
-
-func RotateAH(deg1, deg2):
-	arms.rotation = deg2rad(deg1)
-	head.rotation = deg2rad(deg2)

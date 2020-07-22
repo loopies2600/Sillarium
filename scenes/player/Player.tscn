@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://sprites/character/prota_test/prota_run_3.png" type="Texture" id=1]
 [ext_resource path="res://sprites/character/prota_test/prota_run_4.png" type="Texture" id=2]
@@ -74,10 +74,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -12 ), Vector2( 0, -11 ), Vector2( 0, -12 ) ]
+"values": [ Vector2( 0, -40 ), Vector2( 0, -35 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Body/Arms:position")
@@ -86,10 +86,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -5, -8 ), Vector2( -5, -7 ), Vector2( -5, -8 ) ]
+"values": [ Vector2( -5, -24 ), Vector2( -6, -22 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -105,7 +105,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -12 ), Vector2( 0, -11 ), Vector2( 0, -10 ), Vector2( 0, -11 ), Vector2( 0, -12 ) ]
+"values": [ Vector2( 0, -40 ), Vector2( 0, -41 ), Vector2( 0, -42 ), Vector2( 0, -40 ), Vector2( 0, -39 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Body/Arms:position")
@@ -117,16 +117,72 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -5, -8 ), Vector2( -5, -7 ), Vector2( -4, -7 ), Vector2( -5, -7 ), Vector2( -5, -8 ) ]
+"values": [ Vector2( -5, -24 ), Vector2( -5, -23 ), Vector2( -5, -22 ), Vector2( -5, -21 ), Vector2( -5, -22 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body/Arms:rotation_degrees")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.0, -5.0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 8, 29 )
+[sub_resource type="Animation" id=6]
+resource_name = "Shooting"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Arms:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 40.0, -40.0, -38.0, 10.0, 0.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "Shoot"
+}, {
+"args": [ false ],
+"method": "SetShooting"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body/Arms:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1.3, 1.3 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 16, 60 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
 ]]
-scale = Vector2( 2, 2 )
 collision_mask = 60
 script = ExtResource( 9 )
 bullet = ExtResource( 11 )
@@ -139,13 +195,14 @@ maxSpeed = 500.0
 
 [node name="direction" type="Sprite" parent="Graphics/Debug"]
 texture = ExtResource( 12 )
-offset = Vector2( 48, 0 )
+offset = Vector2( 96, 0 )
 
 [node name="debug_hold" type="AnimatedSprite" parent="Graphics/Debug"]
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
-offset = Vector2( 0, -96 )
+offset = Vector2( 0, -192 )
 
 [node name="Body" type="AnimatedSprite" parent="Graphics"]
 frames = SubResource( 2 )
@@ -154,12 +211,12 @@ playing = true
 offset = Vector2( 0, 6 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
-position = Vector2( 0, -12 )
+position = Vector2( 0, -38.4763 )
 texture = ExtResource( 10 )
 offset = Vector2( 0, -10 )
 
 [node name="Arms" type="AnimatedSprite" parent="Graphics/Body"]
-position = Vector2( -5, -8 )
+position = Vector2( -5.30474, -23.3905 )
 z_index = 1
 z_as_relative = false
 frames = SubResource( 3 )
@@ -170,11 +227,12 @@ offset = Vector2( 5, -2 )
 playback_process_mode = 0
 anims/Idle = SubResource( 4 )
 anims/Running = SubResource( 5 )
+anims/Shooting = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 0, 2 )
-shape = SubResource( 6 )
+position = Vector2( 0, -4 )
+shape = SubResource( 7 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

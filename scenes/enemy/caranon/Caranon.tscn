@@ -22,11 +22,11 @@ region = Rect2( 25, 16, 21, 11 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
-region = Rect2( 13, 3, 8, 9 )
+region = Rect2( 3, 1, 7, 11 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
-region = Rect2( 13, 2, 8, 10 )
+region = Rect2( 3, 1, 7, 11 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
@@ -34,9 +34,9 @@ region = Rect2( 90, 98, 19, 22 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )
-region = Rect2( 22, 38, 11, 3 )
+region = Rect2( 6, 38, 12, 6 )
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=9]
 resource_name = "Firing"
 length = 0.5
 tracks/0/type = "value"
@@ -205,8 +205,7 @@ tracks/13/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "FiringTwice"
+[sub_resource type="Animation" id=10]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shell/Head/Eyes:position")
@@ -377,13 +376,11 @@ tracks/13/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "Hiding"
-
 [sub_resource type="Animation" id=11]
-resource_name = "Showing"
 
 [sub_resource type="Animation" id=12]
+
+[sub_resource type="Animation" id=13]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shell:position")
@@ -522,10 +519,10 @@ tracks/11/keys = {
 "times": PoolRealArray( 0, 0.5, 1 )
 }
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 12, 31 )
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 18, 21 )
 
 [node name="Caranon" type="KinematicBody2D"]
@@ -541,8 +538,7 @@ collision_layer = 4
 collision_mask = 33
 
 [node name="Graphics" type="Node2D" parent="Area2D"]
-position = Vector2( -30, -25 )
-scale = Vector2( 0.8, 1.2 )
+position = Vector2( -30, -21 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -556,7 +552,7 @@ z_index = -1
 texture = SubResource( 2 )
 
 [node name="Eyes" type="Sprite" parent="Area2D/Graphics/Shell/Head"]
-position = Vector2( 5, -13.75 )
+position = Vector2( 5, -16 )
 scale = Vector2( 0.8, 0.9 )
 z_index = 1
 texture = SubResource( 3 )
@@ -575,26 +571,26 @@ texture = SubResource( 6 )
 flip_h = true
 
 [node name="Cannon" type="Sprite" parent="Area2D/Graphics/Shell/Head"]
-position = Vector2( 4, -30 )
+position = Vector2( 4, -33 )
 texture = SubResource( 7 )
 
 [node name="Mouth" type="Sprite" parent="Area2D/Graphics/Shell/Head"]
-position = Vector2( 5, 8.5 )
+position = Vector2( 5, 7 )
 texture = SubResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D/Graphics"]
-anims/Firing = SubResource( 15 )
-anims/FiringTwice = SubResource( 9 )
-anims/Hiding = SubResource( 10 )
-anims/Showing = SubResource( 11 )
-anims/Slithering = SubResource( 12 )
+anims/Firing = SubResource( 9 )
+anims/FiringTwice = SubResource( 10 )
+anims/Hiding = SubResource( 11 )
+anims/Showing = SubResource( 12 )
+anims/Slithering = SubResource( 13 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 1, -30.2929 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 14 )
+shape = SubResource( 15 )
 
 [node name="BulletStartPosition" type="Position2D" parent="."]
 position = Vector2( 30, -44 )
