@@ -170,6 +170,7 @@ func GetLookInput():
 	debugDirection.rotation_degrees = lerp(debugDirection.rotation_degrees, fireAngle, 0.9)
 
 func Shoot():
+	velocity += Vector2(-200, -100)
 	cooldownIsOver = false
 	var newBullet = bullet.instance()
 	newBullet.global_position = global_position + Vector2(32, -16)
