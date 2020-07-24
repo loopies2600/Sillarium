@@ -25,6 +25,8 @@ export (float) var verDrag = 0.2
 export (float) var gravity = 800
 
 var velocity = Vector2()
+#TODO: usar esta variable
+var bulletOffset = Vector2(32, -20)
 var fireAngle = 0
 var cooldownIsOver = true
 var isShooting = false
@@ -173,7 +175,7 @@ func Shoot():
 	velocity += Vector2(-200, -100)
 	cooldownIsOver = false
 	var newBullet = bullet.instance()
-	newBullet.global_position = global_position + Vector2(32, -16)
+	newBullet.global_position = global_position + bulletOffset
 	newBullet.rotation = deg2rad(fireAngle)
 	newBullet.z_index = arms.z_index - 1
 	get_tree().get_root().add_child(newBullet)

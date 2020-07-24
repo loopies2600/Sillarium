@@ -3,8 +3,8 @@
 [ext_resource path="res://scenes/player/Bullet.gd" type="Script" id=1]
 [ext_resource path="res://sprites/character/prota_test/testBullet.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 16.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 3 )
 
 [node name="Bullet" type="Area2D" groups=[
 "PlayerProjectile",
@@ -25,3 +25,4 @@ shape = SubResource( 1 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 1.43051e-06, 1.43051e-06 )
 scale = Vector2( 1.6, 1.6 )
+rect = Rect2( -10, -2, 20, 4 )
