@@ -44,14 +44,14 @@ region = Rect2( 420, 78, 20, 27 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "NotHolding",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Holding",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "NotHolding",
 "speed": 1.0
 } ]
 
@@ -526,7 +526,7 @@ position = Vector2( 1.19209e-07, -28 )
 z_index = 1
 frames = SubResource( 5 )
 animation = "Idle"
-frame = 4
+frame = 2
 playing = true
 
 [node name="HandR" type="Sprite" parent="Graphics/Legs/Body"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dino_sheet.png-e183c7c8bc6e7c6d3b476c69025a02c9.stex"
+path="res://.import/spring_sheet.png-4378476b38ae7def722f5df7ca7d9f68.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/dino/dino_sheet.png"
-dest_files=[ "res://.import/dino_sheet.png-e183c7c8bc6e7c6d3b476c69025a02c9.stex" ]
+source_file="res://sprites/enemy/spring/spring_sheet.png"
+dest_files=[ "res://.import/spring_sheet.png-4378476b38ae7def722f5df7ca7d9f68.stex" ]
 
 [params]
 
@@ -24,7 +24,7 @@ flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
