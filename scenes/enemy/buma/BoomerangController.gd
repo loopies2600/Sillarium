@@ -11,7 +11,7 @@ export (float) var initialSpeed = 500
 export (float) var speedDecrease = 5
 export (float) var rotationSpeed = 1
 export (float) var gravity = 20
-export (PackedScene) var particle
+export (PackedScene) var trail
 
 # Velocidad
 var velocity = Vector2()
@@ -23,7 +23,6 @@ func _ready():
 	# Conectando funciones
 	visibility.connect("screen_exited", self, "OnScreenExited")
 	hitbox.connect("body_entered", self, "OnBodyEntered")
-	$ParticleTimer.connect("timeout", self, "CreateParticle")
 
 func _physics_process(delta):
 	# Gira la sprite
@@ -31,6 +30,7 @@ func _physics_process(delta):
 	
 	# Cambia la velocidad
 	if !falling:
+		CreateTrail()
 		velocity += velocityDecrease
 	
 	# Obtiene la distancia del inicio al bumerang
@@ -53,7 +53,6 @@ func CheckPosition():
 		rotationSpeed = 0
 		global_rotation = 0
 		velocity = Vector2()
-		$ParticleTimer.stop()
 	
 	# Cae
 	if falling:
@@ -68,9 +67,11 @@ func OnBodyEntered(body):
 	if body.is_in_group("Player"):
 		body.Respawn()
 
-func CreateParticle():
-	var newParticle = particle.instance()
-	get_tree().get_root().add_child(newParticle)
-	newParticle.global_position = hitbox.global_position
-	newParticle.global_rotation = sprite.global_rotation
-	newParticle.z_index = z_as_relative
+func CreateTrail():
+	var newTrail = trail.instance()
+	get_tree().get_root().add_child(newTrail)
+	newTrail.fadeSpeed = 0.05
+	newTrail.texture = sprite.texture
+	newTrail.global_position = hitbox.global_position
+	newTrail.global_rotation = sprite.global_rotation
+	newTrail.z_index = z_as_relative

@@ -161,7 +161,6 @@ position = Vector2( 0, -32 )
 z_index = 1
 frames = SubResource( 4 )
 animation = "Flying"
-frame = 1
 playing = true
 
 [node name="EyeR" type="AnimatedSprite" parent="KinematicBody2D/Graphics/Body"]

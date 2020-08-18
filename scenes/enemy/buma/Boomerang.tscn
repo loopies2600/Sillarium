@@ -2,14 +2,13 @@
 
 [ext_resource path="res://sprites/enemy/buma/bumatom_boomerang.png" type="Texture" id=1]
 [ext_resource path="res://scenes/enemy/buma/BoomerangController.gd" type="Script" id=2]
-[ext_resource path="res://scenes/enemy/buma/BoomerangParticle.tscn" type="PackedScene" id=3]
-
+[ext_resource path="res://scenes/enemy/Trail.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
 [node name="Boomerang" type="Node2D"]
 script = ExtResource( 2 )
-particle = ExtResource( 3 )
+trail = ExtResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="." groups=[
 "Boomerang",
@@ -27,7 +26,3 @@ scale = Vector2( 2, 2.2 )
 
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( -24, 0 )
-
-[node name="ParticleTimer" type="Timer" parent="."]
-wait_time = 0.01
-autostart = true
