@@ -16,7 +16,7 @@
 [ext_resource path="res://sprites/character/prota_test/prota_arms_upside.png" type="Texture" id=14]
 [ext_resource path="res://sprites/debug/debug_hold.png" type="Texture" id=15]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
@@ -39,7 +39,7 @@ animations = [ {
 "speed": 15.0
 } ]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 6 ) ],
 "loop": false,
@@ -57,7 +57,7 @@ animations = [ {
 "speed": 1.0
 } ]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Head:position")
@@ -108,7 +108,7 @@ tracks/3/keys = {
 "values": [ Vector2( 64, -100 ), Vector2( 68, -104 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -148,7 +148,7 @@ tracks/2/keys = {
 "values": [ 0.0, 5.0, -5.0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -205,7 +205,7 @@ tracks/3/keys = {
 "values": [ Vector2( -5, -24 ), Vector2( -5, -24 ), Vector2( -10, -24 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 16, 60 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -233,7 +233,7 @@ texture = ExtResource( 15 )
 offset = Vector2( 64.4815, -100.481 )
 
 [node name="Body" type="AnimatedSprite" parent="Graphics"]
-frames = SubResource( 2 )
+frames = SubResource( 1 )
 animation = "Idle"
 playing = true
 offset = Vector2( 0, 6 )
@@ -249,20 +249,20 @@ rotation = 0.0436335
 scale = Vector2( 0.98125, 0.98125 )
 z_index = 1
 z_as_relative = false
-frames = SubResource( 3 )
+frames = SubResource( 2 )
 animation = "Side"
 offset = Vector2( 5, -2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
 playback_process_mode = 0
-anims/Idle = SubResource( 4 )
-anims/Running = SubResource( 5 )
-anims/Shooting = SubResource( 6 )
+anims/Idle = SubResource( 3 )
+anims/Running = SubResource( 4 )
+anims/Shooting = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, -4 )
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

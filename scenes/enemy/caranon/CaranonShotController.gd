@@ -1,6 +1,7 @@
 extends Area2D
 
 onready var visibility = $VisibilityNotifier2D
+onready var sprite = $Sprite
 
 var speed
 var velocity = Vector2()
@@ -11,6 +12,7 @@ func _ready():
 	velocity = speed.rotated(rotation)
 
 func _physics_process(delta):
+	Globals.CreateTrail(0.1, sprite.texture, sprite.global_position, sprite.global_rotation, z_as_relative)
 	position += velocity * delta
 	if speed.y != 0: velocity.y += 10
 

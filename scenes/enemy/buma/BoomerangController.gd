@@ -11,7 +11,6 @@ export (float) var initialSpeed = 500
 export (float) var speedDecrease = 5
 export (float) var rotationSpeed = 1
 export (float) var gravity = 20
-export (PackedScene) var trail
 
 # Velocidad
 var velocity = Vector2()
@@ -30,7 +29,7 @@ func _physics_process(delta):
 	
 	# Cambia la velocidad
 	if !falling:
-		CreateTrail()
+		Globals.CreateTrail(0.05, sprite.texture, sprite.global_position, sprite.global_rotation, z_as_relative)
 		velocity += velocityDecrease
 	
 	# Obtiene la distancia del inicio al bumerang
@@ -66,12 +65,3 @@ func OnScreenExited():
 func OnBodyEntered(body):
 	if body.is_in_group("Player"):
 		body.Respawn()
-
-func CreateTrail():
-	var newTrail = trail.instance()
-	get_tree().get_root().add_child(newTrail)
-	newTrail.fadeSpeed = 0.05
-	newTrail.texture = sprite.texture
-	newTrail.global_position = hitbox.global_position
-	newTrail.global_rotation = sprite.global_rotation
-	newTrail.z_index = z_as_relative
