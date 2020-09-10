@@ -5,6 +5,7 @@
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
+light_mode = 1
 
 [node name="Trail" type="Sprite"]
 show_behind_parent = true

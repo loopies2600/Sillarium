@@ -13,10 +13,10 @@
 [ext_resource path="res://sprites/enemy/dino/dino_mouth.tres" type="Texture" id=12]
 [ext_resource path="res://sprites/enemy/dino/dino_leg_3.tres" type="Texture" id=14]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 45, 45 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:position")
@@ -259,7 +259,7 @@ tracks/19/keys = {
 "values": [ Vector2( -16, 11 ), Vector2( -15.6873, 13.2301 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "Walking"
 length = 0.5
 loop = true
@@ -508,7 +508,8 @@ position = Vector2( 28, 35 )
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+visible = false
+shape = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -516,5 +517,5 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.5
-anims/Idle = SubResource( 3 )
-anims/Walking = SubResource( 4 )
+anims/Idle = SubResource( 2 )
+anims/Walking = SubResource( 3 )

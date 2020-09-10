@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/background/Debug.png" type="Texture" id=1]
+[ext_resource path="res://scenes/background/WrapBG.gd" type="Script" id=2]
+[ext_resource path="res://sprites/not_found.png" type="Texture" id=3]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 0.501961, 0.501961, 0.501961, 1 )
+margin_right = 2048.0
+margin_bottom = 1200.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+stretch_mode = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Placeholder" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+texture = ExtResource( 3 )

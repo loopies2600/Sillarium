@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pablob.png-b0e6bef5cb8eaae531646bce06392bd8.stex"
+path="res://.import/not_found.png-95e21a8b4e5c6b7e15751b2135de8c59.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/character/prota_test/pablob.png"
-dest_files=[ "res://.import/pablob.png-b0e6bef5cb8eaae531646bce06392bd8.stex" ]
+source_file="res://sprites/not_found.png"
+dest_files=[ "res://.import/not_found.png-95e21a8b4e5c6b7e15751b2135de8c59.stex" ]
 
 [params]
 
