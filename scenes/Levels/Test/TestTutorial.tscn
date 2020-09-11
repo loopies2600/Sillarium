@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/BasicEntryway.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemy/pinataman/PinataMan.tscn" type="PackedScene" id=6]
 [ext_resource path="res://font/sillariumfont.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://scenes/background/Debug.tscn" type="PackedScene" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
@@ -129,6 +130,9 @@ position = Vector2( 920, -480 )
 
 [node name="PinataMan3" parent="Pinatas" instance=ExtResource( 6 )]
 position = Vector2( 840, -608 )
+
+[node name="Error" parent="." instance=ExtResource( 8 )]
+layer = -99
 
 [node name="Background" type="ParallaxBackground" parent="."]
 layer = -128

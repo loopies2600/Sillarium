@@ -33,7 +33,7 @@ tracks/1/keys = {
 "values": [ Color( 0.501961, 0.501961, 0.501961, 1 ), Color( 1, 0, 0, 1 ), Color( 0.501961, 0.501961, 0.501961, 1 ) ]
 }
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="Error" type="ParallaxBackground"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color( 0.501961, 0.501961, 0.501961, 1 )

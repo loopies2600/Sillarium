@@ -1,7 +1,7 @@
 extends TextureRect
 
 var offsetLimit = texture.get_size()
-export var speed = 2;
+export var speed = 6;
 
 func _ready():
 	rect_size = rect_size + (offsetLimit * 2)
