@@ -34,7 +34,7 @@ func _physics_process(delta):
 				change_state(states.JUMP)
 		
 		states.WALK:
-			if (get_slide_count() > 1):
+			if (is_on_wall()):
 				scale.x = -scale.x
 				dir = -dir
 			
@@ -44,9 +44,9 @@ func _physics_process(delta):
 				-1:
 					velocity.x = max(velocity.x - ACCELERATION, -MAX_SPEED)
 			
-			Globals.CreateTrail(0.1, parentSprite.texture, parentSprite.global_position, parentSprite.global_rotation, parentSprite.global_scale, -1)
-			for _i in parentSprite.get_children ():
-				Globals.CreateTrail(0.1, _i.texture, _i.global_position, _i.global_rotation, _i.global_scale, -1)
+			Globals.CreateTrail(0.1, parentSprite.texture, parentSprite.global_position, parentSprite.global_rotation, parentSprite.global_scale, -128)
+			for _i in parentSprite.get_children():
+				Globals.CreateTrail(0.1, _i.texture, _i.global_position, _i.global_rotation, _i.global_scale, -128)
 		
 		states.JUMP:
 			match dir:

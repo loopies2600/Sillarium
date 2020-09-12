@@ -26,8 +26,7 @@ export (float) var verDrag = 0.2
 export (float) var gravity = 800
 
 var velocity = Vector2()
-#TODO: usar esta variable
-var bulletOffset = Vector2(32, -20)
+var bulletOffset = Vector2(64, -24)
 var fireAngle = 0
 var cooldownIsOver = true
 var isShooting = false
@@ -105,6 +104,25 @@ func _physics_process(delta):
 	# Obtiene input de ocho direcciones
 	GetLookInput()
 
+func applyProjectileOffset():
+	match fireAngle:
+		0:
+			bulletOffset = Vector2(64, -24)
+		-45:
+			bulletOffset = Vector2(48, -72)
+		-90: 
+			bulletOffset = Vector2(-4, -95)
+		-135:
+			bulletOffset = Vector2(-48, -72)
+		180: 
+			bulletOffset = Vector2(-64, -24)
+		135:
+			bulletOffset = Vector2(-64, 24)
+		90: 
+			bulletOffset = Vector2(-4, 64)
+		45:
+			bulletOffset = Vector2(48, 24)
+
 func GetLookInput():
 	var lookDirection = Vector2()
 	
@@ -172,11 +190,13 @@ func GetLookInput():
 	debugDirection.rotation_degrees = lerp(debugDirection.rotation_degrees, fireAngle, 0.9)
 
 func Shoot():
+	applyProjectileOffset()
 	cooldownIsOver = false
 	var newBullet = bullet.instance()
 	newBullet.global_position = global_position + bulletOffset + Vector2(randi() % 9, randi() % 9)
 	newBullet.rotation = deg2rad(fireAngle)
 	newBullet.z_index = arms.z_index - 1
+	firingSound.pitch_scale = rand_range(0, 2)
 	firingSound.play()
 	get_tree().get_root().add_child(newBullet)
 	cooldownTimer.start()
