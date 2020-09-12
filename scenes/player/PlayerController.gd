@@ -9,6 +9,7 @@ onready var startPos
 onready var debugDirection = $Graphics/Debug/direction
 onready var debugHold = $Graphics/Debug/debug_hold
 onready var cooldownTimer = $CooldownTimer
+onready var firingSound = $FiringSound
 
 export (PackedScene) var bullet
 export (float) var cooldown = 0.85
@@ -165,19 +166,18 @@ func GetLookInput():
 		FlipHAGraphics(true)
 	
 	if Input.is_action_pressed("shoot") and cooldownIsOver:
-		SetShooting(true)
-		PlayShootAnimation()
+		Shoot()
 	
 	# Cambia direccion de la flecha
 	debugDirection.rotation_degrees = lerp(debugDirection.rotation_degrees, fireAngle, 0.9)
 
 func Shoot():
-	velocity += Vector2(-200, -100)
 	cooldownIsOver = false
 	var newBullet = bullet.instance()
-	newBullet.global_position = global_position + bulletOffset
+	newBullet.global_position = global_position + bulletOffset + Vector2(randi() % 9, randi() % 9)
 	newBullet.rotation = deg2rad(fireAngle)
 	newBullet.z_index = arms.z_index - 1
+	firingSound.play()
 	get_tree().get_root().add_child(newBullet)
 	cooldownTimer.start()
 
@@ -209,21 +209,13 @@ func Respawn():
 
 func PlayIdleAnimation():
 	# Obvio
-	if !isShooting:
-		animPlayer.play("Idle")
+	animPlayer.play("Idle")
 	bodyAnim.animation = "Idle"
 
 func PlayRunAnimation():
 	# Obvio
-	if !isShooting:
-		animPlayer.play("Running")
+	animPlayer.play("Running")
 	bodyAnim.animation = "Running"
-	
-func PlayShootAnimation():
-	animPlayer.play("Shooting")
-	
-func SetShooting(cond):
-	isShooting = cond
 
 func PlayJumpAnimation():
 	#Obvio

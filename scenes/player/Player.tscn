@@ -15,6 +15,7 @@
 [ext_resource path="res://sprites/character/prota_test/prota_arms_up.png" type="Texture" id=13]
 [ext_resource path="res://sprites/character/prota_test/prota_arms_upside.png" type="Texture" id=14]
 [ext_resource path="res://sprites/debug/debug_hold.png" type="Texture" id=15]
+[ext_resource path="res://streams/sfx/player/ASBfire.wav" type="AudioStream" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -23,14 +24,14 @@ animations = [ {
 "name": "Idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "Jumping",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Falling",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Jumping",
 "speed": 1.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
@@ -148,63 +149,6 @@ tracks/2/keys = {
 "values": [ 0.0, 5.0, -5.0 ]
 }
 
-[sub_resource type="Animation" id=5]
-length = 0.5
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Body/Arms:rotation_degrees")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 0.0, -40.0, -38.0, 0.0 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "Shoot"
-}, {
-"args": [ false ],
-"method": "SetShooting"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Body/Arms:scale")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1.3, 1.3 ), Vector2( 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Body/Arms:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( -5, -24 ), Vector2( -5, -24 ), Vector2( -10, -24 ) ]
-}
-
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 16, 60 )
 
@@ -214,7 +158,7 @@ extents = Vector2( 16, 60 )
 collision_mask = 60
 script = ExtResource( 9 )
 bullet = ExtResource( 11 )
-cooldown = 0.3
+cooldown = 0.1
 maxSpeed = 500.0
 
 [node name="Graphics" type="Node2D" parent="."]
@@ -227,10 +171,9 @@ texture = ExtResource( 12 )
 offset = Vector2( 64, 0 )
 
 [node name="debug_hold" type="Sprite" parent="Graphics/Debug"]
-modulate = Color( 1, 1, 1, 0.166674 )
 z_index = 1
 texture = ExtResource( 15 )
-offset = Vector2( 64.4815, -100.481 )
+offset = Vector2( 64, -100 )
 
 [node name="Body" type="AnimatedSprite" parent="Graphics"]
 frames = SubResource( 1 )
@@ -239,14 +182,12 @@ playing = true
 offset = Vector2( 0, 6 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
-position = Vector2( 0, -39.3982 )
+position = Vector2( 0, -40 )
 texture = ExtResource( 10 )
 offset = Vector2( 0, -10 )
 
 [node name="Arms" type="AnimatedSprite" parent="Graphics/Body"]
 position = Vector2( -5, -24 )
-rotation = 0.0436335
-scale = Vector2( 0.98125, 0.98125 )
 z_index = 1
 z_as_relative = false
 frames = SubResource( 2 )
@@ -257,7 +198,6 @@ offset = Vector2( 5, -2 )
 playback_process_mode = 0
 anims/Idle = SubResource( 3 )
 anims/Running = SubResource( 4 )
-anims/Shooting = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -269,5 +209,8 @@ current = true
 smoothing_enabled = true
 
 [node name="CooldownTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 2.0
 one_shot = true
+
+[node name="FiringSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
