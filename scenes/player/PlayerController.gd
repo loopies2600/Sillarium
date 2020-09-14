@@ -117,7 +117,8 @@ func GetLookInput():
 		# Pone la direccion correcta
 		fireDirection = Vector2(int(LRIGHT) - int(LLEFT), int(LDOWN) - int(LUP))
 		
-		fireAngle = fireDirection.angle()
+		if LLEFT || LRIGHT || LUP || LDOWN:
+			fireAngle = lerp_angle(fireAngle, fireDirection.angle(), 0.2)
 	
 		if Input.is_action_pressed("shoot") and cooldownIsOver:
 			Shoot()
