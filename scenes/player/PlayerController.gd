@@ -13,6 +13,7 @@ onready var firingSound = $FiringSound
 
 export (PackedScene) var bullet
 export (float) var cooldown = 0.85
+export (int) var rotationSpeed = 4
 
 # Variables para movimiento horizontal
 export (float) var acceleration = 50
@@ -25,9 +26,11 @@ export (float) var maxFallSpeed = 800
 export (float) var verDrag = 0.2
 export (float) var gravity = 800
 
+var dir = 1
 var velocity = Vector2()
-var bulletOffset = Vector2(64, -24)
 var fireAngle = 0
+var angleDir = 1
+var crosshairOffset = Vector2(180, 0)
 var cooldownIsOver = true
 var isShooting = false
 
@@ -57,15 +60,15 @@ func _physics_process(delta):
 	if Input.is_action_pressed("input_hold") and is_on_floor():
 		inputHold = true
 	
-	debugHold.visible = inputHold
-	
 	# Recibe input para movimiento horizontal
 	if Input.is_action_pressed("move_right") and !inputHold:
 		velocity.x = min(velocity.x + acceleration, maxSpeed)
-		FlipBodyGraphics(false)
+		dir = 1
+		bodyAnim.flip_h = false
 	elif Input.is_action_pressed("move_left") and !inputHold:
 		velocity.x = max(velocity.x - acceleration, -maxSpeed)
-		FlipBodyGraphics(true)
+		dir = -1
+		bodyAnim.flip_h = true
 	else:
 		friction = true
 	
@@ -104,97 +107,30 @@ func _physics_process(delta):
 	# Obtiene input de ocho direcciones
 	GetLookInput()
 
-func applyProjectileOffset():
-	match fireAngle:
-		0:
-			bulletOffset = Vector2(64, -24)
-		-45:
-			bulletOffset = Vector2(48, -72)
-		-90: 
-			bulletOffset = Vector2(-4, -95)
-		-135:
-			bulletOffset = Vector2(-48, -72)
-		180: 
-			bulletOffset = Vector2(-64, -24)
-		135:
-			bulletOffset = Vector2(-64, 24)
-		90: 
-			bulletOffset = Vector2(-4, 64)
-		45:
-			bulletOffset = Vector2(48, 24)
-
 func GetLookInput():
-	var lookDirection = Vector2()
+		var fireDirection = Vector2()
 	
-	# Obtiene input del jugador
-	if Input.is_action_pressed("look_right"):
-		lookDirection.x = 1
-	elif Input.is_action_pressed("look_left"):
-		lookDirection.x = -1
+		var LLEFT = Input.is_action_pressed("look_left")
+		var LRIGHT = Input.is_action_pressed("look_right")
+		var LUP = Input.is_action_pressed("look_up")
+		var LDOWN = Input.is_action_pressed("look_down")
+		# Pone la direccion correcta
+		fireDirection = Vector2(int(LRIGHT) - int(LLEFT), int(LDOWN) - int(LUP))
+		
+		fireAngle = fireDirection.angle()
 	
-	if Input.is_action_pressed("look_up"):
-		lookDirection.y = -1
-	elif Input.is_action_pressed("look_down"):
-		lookDirection.y = 1
+		if Input.is_action_pressed("shoot") and cooldownIsOver:
+			Shoot()
 	
-	# Pone la direccion correcta
-	match lookDirection:
-		# UP
-		Vector2(0, -1):
-			fireAngle = -90
-			arms.animation = "Up"
-		# UP RIGHT
-		Vector2(1, -1):
-			fireAngle = -45
-			arms.animation = "Upside"
-		# RIGHT
-		Vector2(1, 0):
-			fireAngle = 0
-			arms.animation = "Side"
-		# DOWN RIGHT
-		Vector2(1, 1):
-			fireAngle = 45
-		# DOWN
-		Vector2(0, 1):
-			fireAngle = 90
-		# DOWN LEFT
-		Vector2(-1, 1):
-			fireAngle = 135
-		# LEFT
-		Vector2(-1, 0):
-			fireAngle = 180
-			arms.animation = "Side"
-		# UP LEFT
-		Vector2(-1, -1):
-			fireAngle = -135
-			arms.animation = "Upside"
-		# NO INPUT
-		Vector2(0, 0):
-			arms.animation = "Side"
-			if bodyAnim.flip_h:
-				FlipHAGraphics(true)
-				fireAngle = 180
-			else:
-				FlipHAGraphics(false)
-				fireAngle = 0
-	
-	if lookDirection.x > 0:
-		FlipHAGraphics(false)
-	elif lookDirection.x < 0:
-		FlipHAGraphics(true)
-	
-	if Input.is_action_pressed("shoot") and cooldownIsOver:
-		Shoot()
-	
-	# Cambia direccion de la flecha
-	debugDirection.rotation_degrees = lerp(debugDirection.rotation_degrees, fireAngle, 0.9)
+		arms.rotation = fireAngle
+		debugDirection.position = crosshairOffset.rotated(fireAngle)
 
 func Shoot():
-	applyProjectileOffset()
 	cooldownIsOver = false
 	var newBullet = bullet.instance()
-	newBullet.global_position = global_position + bulletOffset + Vector2(randi() % 9, randi() % 9)
-	newBullet.rotation = deg2rad(fireAngle)
+	var bulletOffset = Vector2(64, 0)
+	newBullet.global_position = global_position + bulletOffset.rotated(fireAngle) + Vector2(randi() % 9, randi() % 9 -8)
+	newBullet.rotation = fireAngle
 	newBullet.z_index = arms.z_index - 1
 	firingSound.pitch_scale = rand_range(0, 2)
 	firingSound.play()
@@ -244,12 +180,3 @@ func PlayJumpAnimation():
 func PlayFallAnimation():
 	#Obvio
 	bodyAnim.animation = "Falling"
-
-func FlipBodyGraphics(cond):
-	# Obvio
-	bodyAnim.flip_h = cond
-
-func FlipHAGraphics(cond):
-	# Obvio
-	head.flip_h = cond
-	arms.flip_h = cond
