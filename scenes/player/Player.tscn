@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://sprites/character/prota_test/prota_run_3.png" type="Texture" id=1]
 [ext_resource path="res://sprites/character/prota_test/prota_run_4.png" type="Texture" id=2]
@@ -16,17 +16,40 @@
 [ext_resource path="res://sprites/character/prota_test/prota_arms_upside.png" type="Texture" id=14]
 [ext_resource path="res://streams/sfx/player/ASBfire.wav" type="AudioStream" id=16]
 
+[sub_resource type="Animation" id=6]
+resource_name = "Fire"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("direction:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("direction:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.752941, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 1.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "Running",
-"speed": 15.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
@@ -37,6 +60,11 @@ animations = [ {
 "loop": true,
 "name": "Jumping",
 "speed": 1.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Running",
+"speed": 15.0
 } ]
 
 [sub_resource type="SpriteFrames" id=2]
@@ -138,10 +166,13 @@ maxSpeed = 500.0
 
 [node name="Graphics" type="Node2D" parent="."]
 
-[node name="Debug" type="Node2D" parent="Graphics"]
+[node name="Tools" type="Node2D" parent="Graphics"]
 
-[node name="direction" type="Sprite" parent="Graphics/Debug"]
+[node name="direction" type="Sprite" parent="Graphics/Tools"]
 texture = ExtResource( 12 )
+
+[node name="ToolsAnimator" type="AnimationPlayer" parent="Graphics/Tools"]
+anims/Fire = SubResource( 6 )
 
 [node name="Body" type="AnimatedSprite" parent="Graphics"]
 frames = SubResource( 1 )
@@ -160,7 +191,7 @@ z_as_relative = false
 frames = SubResource( 2 )
 animation = "Side"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
+[node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
 playback_process_mode = 0
 anims/Idle = SubResource( 3 )
 anims/Running = SubResource( 4 )

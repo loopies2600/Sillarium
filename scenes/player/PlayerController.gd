@@ -1,13 +1,13 @@
 extends KinematicBody2D
 
 # Variables de otros objetos
-onready var animPlayer = $Graphics/AnimationPlayer
+onready var animPlayer = $Graphics/PlayerAnimator
+onready var tanimPlayer = $Graphics/Tools/ToolsAnimator
 onready var bodyAnim = $Graphics/Body
 onready var arms = $Graphics/Body/Arms
 onready var head = $Graphics/Body/Head
 onready var startPos
-onready var debugDirection = $Graphics/Debug/direction
-onready var debugHold = $Graphics/Debug/debug_hold
+onready var debugDirection = $Graphics/Tools/direction
 onready var cooldownTimer = $CooldownTimer
 onready var firingSound = $FiringSound
 
@@ -65,10 +65,14 @@ func _physics_process(delta):
 		velocity.x = min(velocity.x + acceleration, maxSpeed)
 		dir = 1
 		bodyAnim.flip_h = false
+		arms.flip_h = false
+		head.flip_h = false
 	elif Input.is_action_pressed("move_left") and !inputHold:
 		velocity.x = max(velocity.x - acceleration, -maxSpeed)
 		dir = -1
 		bodyAnim.flip_h = true
+		arms.flip_h = true
+		head.flip_h = true
 	else:
 		friction = true
 	
@@ -118,16 +122,16 @@ func GetLookInput():
 		fireDirection = Vector2(int(LRIGHT) - int(LLEFT), int(LDOWN) - int(LUP))
 		
 		if LLEFT || LRIGHT || LUP || LDOWN:
-			fireAngle = lerp_angle(fireAngle, fireDirection.angle(), 0.2)
+			fireAngle = lerp_angle(fireAngle, fireDirection.angle(), 0.1)
 	
 		if Input.is_action_pressed("shoot") and cooldownIsOver:
 			Shoot()
-	
-		arms.rotation = fireAngle
+		
 		debugDirection.position = crosshairOffset.rotated(fireAngle)
 
 func Shoot():
 	cooldownIsOver = false
+	tanimPlayer.play("Fire")
 	var newBullet = bullet.instance()
 	var bulletOffset = Vector2(64, 0)
 	newBullet.global_position = global_position + bulletOffset.rotated(fireAngle) + Vector2(randi() % 9, randi() % 9 -8)
