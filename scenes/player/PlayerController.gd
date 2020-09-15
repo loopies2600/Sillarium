@@ -29,10 +29,11 @@ export (float) var gravity = 800
 var dir = 1
 var velocity = Vector2()
 var fireAngle = 0
-var angleDir = 1
+var hitPos = Vector2()
 var crosshairOffset = Vector2(180, 0)
 var cooldownIsOver = true
 var isShooting = false
+var target
 
 func _ready():
 	# Aqui hay un bug, si la escena no tiene
@@ -47,7 +48,7 @@ func _ready():
 	cooldownTimer.connect("timeout", self, "OnCooldown")
 
 func _physics_process(delta):
-	# Gravedad
+	update()
 	velocity.y = min(velocity.y + gravity * delta, maxFallSpeed)
 	
 	# Variable que comprueba que el jugador no se trato de mover
@@ -110,24 +111,37 @@ func _physics_process(delta):
 	
 	# Obtiene input de ocho direcciones
 	GetLookInput()
-
+	
 func GetLookInput():
-		var fireDirection = Vector2()
+	var targetting = debugDirection.global_position.length()
+	var spaceState = get_world_2d().direct_space_state
+	var hitResult = spaceState.intersect_ray(position, debugDirection.global_position, [self], collision_mask, true, true)
 	
-		var LLEFT = Input.is_action_pressed("look_left")
-		var LRIGHT = Input.is_action_pressed("look_right")
-		var LUP = Input.is_action_pressed("look_up")
-		var LDOWN = Input.is_action_pressed("look_down")
-		# Pone la direccion correcta
-		fireDirection = Vector2(int(LRIGHT) - int(LLEFT), int(LDOWN) - int(LUP))
-		
-		if LLEFT || LRIGHT || LUP || LDOWN:
-			fireAngle = lerp_angle(fireAngle, fireDirection.angle(), 0.1)
+	if hitResult:
+		hitPos = hitResult.position
+		target = hitResult
+		debugDirection.visible = false
+	else:
+		hitPos = debugDirection.global_position
+		target = null
+		debugDirection.visible = true
 	
-		if Input.is_action_pressed("shoot") and cooldownIsOver:
-			Shoot()
-		
-		debugDirection.position = crosshairOffset.rotated(fireAngle)
+	var fireDirection = Vector2()
+	
+	var LLEFT = Input.is_action_pressed("look_left")
+	var LRIGHT = Input.is_action_pressed("look_right")
+	var LUP = Input.is_action_pressed("look_up")
+	var LDOWN = Input.is_action_pressed("look_down")
+	# Pone la direccion correcta
+	fireDirection = Vector2(int(LRIGHT) - int(LLEFT), int(LDOWN) - int(LUP))
+	
+	if LLEFT || LRIGHT || LUP || LDOWN:
+		fireAngle = lerp_angle(fireAngle, fireDirection.angle(), 0.1)
+	
+	if Input.is_action_pressed("shoot") and cooldownIsOver:
+		Shoot()
+	
+	debugDirection.position = crosshairOffset.rotated(fireAngle)
 
 func Shoot():
 	cooldownIsOver = false
