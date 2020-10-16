@@ -526,7 +526,7 @@ position = Vector2( 1.19209e-07, -28 )
 z_index = 1
 frames = SubResource( 5 )
 animation = "Idle"
-frame = 2
+frame = 4
 playing = true
 
 [node name="HandR" type="Sprite" parent="Graphics/Legs/Body"]
