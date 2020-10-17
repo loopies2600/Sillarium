@@ -19,10 +19,14 @@ func _applyVelocity(mode):
 			position.x += -speed - wind
 	
 			if (position.x < 0):
-				position.x = limit
+				wind = rand_range(4, 8)
+				position.y = randi() % int(limit.y)
+				position.x = limit.x
 		1:
 			position.x += speed + wind
 	
-			if (position.x > limit):
+			if (position.x > limit.x):
+				wind = rand_range(4, 8)
+				position.y = randi() % int(limit.y)
 				position.x = 0
 

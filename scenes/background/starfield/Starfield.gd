@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 onready var star = preload("res://scenes/background/starfield/Star.tscn")
-export (int) var maxStars = 512
+onready var maxStars = 777
 
 enum modes {LEFT, RIGHT, FORWARDS, BACKWARDS}
 
@@ -21,7 +21,7 @@ func spawnStar(index):
 	stars.append(star.instance())
 	stars[index].movementMode = mode
 	stars[index].startPos = Vector2(randi() % int(screenWidth), randi() % int(screenHeight))
-	stars[index].limit = screenWidth + 16
+	stars[index].limit = Vector2(screenWidth, screenHeight)
 	stars[index].wind = rand_range(4, 8)
 	stars[index].scale = Vector2(randomizedScale, randomizedScale)
 	stars[index].modulate.a = randomizedScale
