@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/background/starfield/Star.gd" type="Script" id=1]
+
+[node name="Node2D" type="Polygon2D"]
+position = Vector2( 0, -2 )
+polygon = PoolVector2Array( -5, -1, -7.125, 2.375, -5.125, 7.125, -0.5, 8.5, 3, 6.5, 5, 3.25, 3.75, -0.5, 1, -2.875, -2.875, -3.125 )
+script = ExtResource( 1 )

@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/test_character_sheet.png-642535b6c70dcdeedd176bf87b13136a.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://sprites/character/test_character_sheet.png"
-dest_files=[ "res://.import/test_character_sheet.png-642535b6c70dcdeedd176bf87b13136a.stex" ]
-
 [params]
 
 compress/mode=0

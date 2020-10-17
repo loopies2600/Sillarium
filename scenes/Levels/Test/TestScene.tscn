@@ -1,16 +1,18 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/hazards/PitKillArea.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/enemy/buma/Buma.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Levels/LevelProperties.gd" type="Script" id=4]
 [ext_resource path="res://scenes/enemy/lebipi/Lebipi.tscn" type="PackedScene" id=5]
 [ext_resource path="res://sprites/TestTileset.tres" type="TileSet" id=6]
 [ext_resource path="res://scenes/BasicEntryway.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemy/caranon/Caranon.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemy/dino/Dino.tscn" type="PackedScene" id=9]
 
-
 [node name="World" type="Node2D"]
+script = ExtResource( 4 )
+backgroundID = 3
 
 [node name="Caranon" parent="." instance=ExtResource( 8 )]
 position = Vector2( -446.404, 219.597 )
