@@ -66,7 +66,7 @@ tracks/2/keys = {
 }
 
 [node name="FireTest" type="Area2D"]
-position = Vector2( 334, 176 )
+position = Vector2( 512, 300 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
