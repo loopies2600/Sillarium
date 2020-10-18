@@ -1,3 +1,6 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://streams/music/DOS.ogg" type="AudioStream" id=1]
 
 [node name="MusicPlayer" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )

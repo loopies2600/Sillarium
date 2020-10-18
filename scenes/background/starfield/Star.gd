@@ -11,7 +11,8 @@ func _ready():
 	position = startPos
 	
 func _physics_process(delta):
-	_applyVelocity(movementMode)
+	if movementMode != null:
+		_applyVelocity(movementMode)
 	
 func _applyVelocity(mode):
 	match mode:
@@ -29,4 +30,3 @@ func _applyVelocity(mode):
 				wind = rand_range(4, 8)
 				position.y = randi() % int(limit.y)
 				position.x = 0
-

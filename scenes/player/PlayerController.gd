@@ -76,6 +76,7 @@ func _physics_process(delta):
 		head.flip_h = true
 	else:
 		friction = true
+		
 	
 	if is_on_floor():
 		# Mata al jugador si esta siendo aplastado
@@ -111,6 +112,8 @@ func _physics_process(delta):
 	
 	# Obtiene input de ocho direcciones
 	GetLookInput()
+	
+	$Graphics.scale.y = AudioServer.get_bus_peak_volume_left_db(0, 0) * -0.25
 	
 func GetLookInput():
 	var targetting = debugDirection.global_position.length()
