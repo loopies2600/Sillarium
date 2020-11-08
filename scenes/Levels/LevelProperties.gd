@@ -37,5 +37,4 @@ func _musicSetup(bgmID):
 func _debugSetup():
 	debugOverlay.add_var("hero position (X, Y)", $Player, "position", false)
 	debugOverlay.add_var("object count", self, "get_child_count", true)
-	debugOverlay.add_var("framerate", Engine, "get_frames_per_second", true, " FPS")
 	add_child(debugOverlay)
