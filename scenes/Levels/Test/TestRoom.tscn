@@ -26,7 +26,7 @@ position = Vector2( 584, -80 )
 texture = ExtResource( 4 )
 
 [node name="StartPosition" type="Position2D" parent="."]
-position = Vector2( 0, -64 )
+position = Vector2( 128, 128 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, -64 )

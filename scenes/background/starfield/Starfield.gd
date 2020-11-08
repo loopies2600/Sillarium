@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 onready var star = preload("res://scenes/background/starfield/Star.tscn")
-onready var maxStars = 777
+onready var maxStars = 512
 
 enum modes {LEFT, RIGHT, FORWARDS, BACKWARDS}
 

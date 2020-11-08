@@ -51,11 +51,6 @@ animations = [ {
 "name": "Idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "Jumping",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Falling",
@@ -65,6 +60,11 @@ animations = [ {
 "loop": true,
 "name": "Running",
 "speed": 15.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Jumping",
+"speed": 1.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -152,8 +152,9 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -50 ), Vector2( 0, -45 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 16, 60 )
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 20.0
+height = 80.0
 
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
@@ -198,6 +199,7 @@ anims/Running = SubResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -4 )
 shape = SubResource( 6 )
+one_way_collision_margin = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

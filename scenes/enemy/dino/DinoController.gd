@@ -21,6 +21,7 @@ func _ready():
 func _physics_process(delta):
 	velocity.y += GRAVITY
 	velocity = move_and_slide(velocity, Vector2.UP)
+	animator.playback_speed = abs(velocity.x / MAX_SPEED)
 	
 	stateTimer = 1
 	

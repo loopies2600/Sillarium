@@ -16,14 +16,14 @@ export (float) var cooldown = 0.85
 export (int) var rotationSpeed = 4
 
 # Variables para movimiento horizontal
-export (float) var acceleration = 50
-export (float) var maxSpeed = 400
-export (float) var horDrag = 0.3
+export (float) var acceleration = 15
+export (float) var maxSpeed = 300
+export (float) var horDrag = 0.13
 
 # Variables para movimiento vertical
 export (float) var jumpBoost = 500
 export (float) var maxFallSpeed = 800
-export (float) var verDrag = 0.2
+export (float) var verDrag = 0.13
 export (float) var gravity = 800
 
 var dir = 1
@@ -108,7 +108,9 @@ func _physics_process(delta):
 			velocity.x = lerp(velocity.x, 0, verDrag)
 	
 	# Mueve al jugador
-	velocity = move_and_slide(velocity, Globals.UP)
+	velocity = move_and_slide(velocity, Globals.UP, true)
+	bodyAnim.speed_scale = abs(velocity.x / maxSpeed)
+	animPlayer.playback_speed = abs(velocity.x / maxSpeed)
 	
 	# Obtiene input de ocho direcciones
 	GetLookInput()
@@ -179,7 +181,10 @@ func CheckForPushable():
 func Respawn():
 	# Pone al jugador en la posicion original
 	# WIP (anadir animacion y varas asi)
-	position = $"/root/World/StartPosition".position
+	if get_parent().get_node("StartPosition") == null:
+		position = Vector2.ZERO
+	else:
+		position = $"/root/World/StartPosition".position
 
 func PlayIdleAnimation():
 	# Obvio
@@ -187,7 +192,6 @@ func PlayIdleAnimation():
 	bodyAnim.animation = "Idle"
 
 func PlayRunAnimation():
-	# Obvio
 	animPlayer.play("Running")
 	bodyAnim.animation = "Running"
 
