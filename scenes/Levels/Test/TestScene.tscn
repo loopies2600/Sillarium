@@ -26,9 +26,7 @@ collision_layer = 32
 format = 1
 tile_data = PoolIntArray( 131060, 0, 0, 131063, 0, 0, 131064, 0, 0, 131065, 0, 0, 131066, 0, 0, 131067, 0, 0, 65555, 0, 0, 196596, 0, 0, 196599, 0, 0, 196603, 0, 0, 131091, 0, 0, 262132, 0, 0, 262135, 0, 0, 262139, 0, 0, 196627, 0, 0, 327668, 0, 0, 327671, 0, 0, 327672, 0, 0, 327673, 0, 0, 327674, 0, 0, 327675, 0, 0, 262163, 0, 0, 393204, 0, 0, 327699, 0, 0, 458740, 0, 0, 458748, 0, 0, 458749, 0, 0, 458750, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393235, 0, 0, 524276, 0, 0, 524282, 0, 0, 524283, 0, 0, 524284, 0, 0, 524286, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458771, 0, 0, 589812, 0, 0, 589818, 0, 0, 589820, 0, 0, 589822, 0, 0, 524294, 0, 0, 524296, 0, 0, 524299, 0, 0, 524301, 0, 0, 524307, 0, 0, 655348, 0, 0, 655349, 0, 0, 655350, 0, 0, 655351, 0, 0, 655352, 0, 0, 655353, 0, 0, 655354, 0, 0, 655355, 0, 0, 655356, 0, 0, 655357, 0, 0, 655358, 0, 0, 655359, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0, 589843, 0, 0 )
 
-[node name="Other" type="Node2D" parent="."]
-
-[node name="BasicEntryway" parent="Other" instance=ExtResource( 7 )]
+[node name="BasicEntryway" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1122, 576 )
 
 [node name="StartPosition" type="Position2D" parent="."]
@@ -40,16 +38,14 @@ position = Vector2( -166.386, 315.674 )
 [node name="PitKillArea" parent="." instance=ExtResource( 2 )]
 position = Vector2( 426, 808 )
 
-[node name="Enemies" type="Node2D" parent="."]
-z_index = 1
-
-[node name="Lebipi" parent="Enemies" instance=ExtResource( 5 )]
+[node name="Lebipi" parent="." instance=ExtResource( 5 )]
 position = Vector2( -10, 254 )
 endPoint = Vector2( 250, 0 )
 
-[node name="Buma" parent="Enemies" instance=ExtResource( 3 )]
+[node name="Buma" parent="." instance=ExtResource( 3 )]
 position = Vector2( 676, 328 )
-scale = Vector2( -1, 1 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
 initialDeathBump = Vector2( 100, -350 )
 
 [node name="Dino" parent="." instance=ExtResource( 9 )]

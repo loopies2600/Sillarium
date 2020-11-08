@@ -113,8 +113,6 @@ func _physics_process(delta):
 	# Obtiene input de ocho direcciones
 	GetLookInput()
 	
-	$Graphics.scale.y = AudioServer.get_bus_peak_volume_left_db(0, 0) * -0.25
-	
 func GetLookInput():
 	var targetting = debugDirection.global_position.length()
 	var spaceState = get_world_2d().direct_space_state
@@ -123,11 +121,9 @@ func GetLookInput():
 	if hitResult:
 		hitPos = hitResult.position
 		target = hitResult
-		debugDirection.visible = false
 	else:
 		hitPos = debugDirection.global_position
 		target = null
-		debugDirection.visible = true
 	
 	var fireDirection = Vector2()
 	

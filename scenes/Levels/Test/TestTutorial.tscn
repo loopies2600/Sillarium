@@ -51,6 +51,7 @@ position = Vector2( 1088, 0 )
 levelToLoad = "TestLevel"
 
 [node name="Tutorial" type="Node2D" parent="."]
+visible = false
 
 [node name="Move" type="Sprite" parent="Tutorial"]
 position = Vector2( 0, -256 )
@@ -115,13 +116,11 @@ __meta__ = {
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, -62 )
 
-[node name="Pinatas" type="Node2D" parent="."]
-
-[node name="PinataMan" parent="Pinatas" instance=ExtResource( 6 )]
+[node name="PinataMan" parent="." instance=ExtResource( 6 )]
 position = Vector2( 976, -352 )
 
-[node name="PinataMan2" parent="Pinatas" instance=ExtResource( 6 )]
+[node name="PinataMan2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 920, -480 )
 
-[node name="PinataMan3" parent="Pinatas" instance=ExtResource( 6 )]
+[node name="PinataMan3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 840, -608 )
