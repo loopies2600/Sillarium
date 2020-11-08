@@ -17,7 +17,7 @@ export (int) var rotationSpeed = 4
 
 # Variables para movimiento horizontal
 export (float) var acceleration = 15
-export (float) var maxSpeed = 300
+export (float) var maxSpeed = 200
 export (float) var horDrag = 0.13
 
 # Variables para movimiento vertical
@@ -65,18 +65,13 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_right") and !inputHold:
 		velocity.x = min(velocity.x + acceleration, maxSpeed)
 		dir = 1
-		bodyAnim.flip_h = false
-		arms.flip_h = false
-		head.flip_h = false
 	elif Input.is_action_pressed("move_left") and !inputHold:
 		velocity.x = max(velocity.x - acceleration, -maxSpeed)
 		dir = -1
-		bodyAnim.flip_h = true
-		arms.flip_h = true
-		head.flip_h = true
 	else:
 		friction = true
-		
+	
+	bodyAnim.scale.x = dir
 	
 	if is_on_floor():
 		# Mata al jugador si esta siendo aplastado
@@ -96,6 +91,11 @@ func _physics_process(delta):
 		
 		# Checkea si el jugador esta en colision con algo
 		if get_slide_count() > 0:
+			var collision = get_slide_collision(0)
+			var normal = collision.get_normal()
+			var angleDelta = normal.angle() - (bodyAnim.rotation - PI * .5)
+			bodyAnim.rotation = lerp(bodyAnim.rotation, angleDelta + bodyAnim.rotation, 0.1)
+			
 			CheckForPushable()
 	else:
 		# Pone la animacion dependiendo de si esta subiendo o cayendo
@@ -108,7 +108,7 @@ func _physics_process(delta):
 			velocity.x = lerp(velocity.x, 0, verDrag)
 	
 	# Mueve al jugador
-	velocity = move_and_slide(velocity, Globals.UP, true)
+	velocity = move_and_slide(velocity, Globals.UP, true, 16, 1)
 	bodyAnim.speed_scale = abs(velocity.x / maxSpeed)
 	animPlayer.playback_speed = abs(velocity.x / maxSpeed)
 	

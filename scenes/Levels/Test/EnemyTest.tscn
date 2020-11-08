@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/tilemaps/TestTiles.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/enemy/dino/Dino.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sprites/debug/semicircle.png" type="Texture" id=3]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=4]
 
@@ -12,13 +11,11 @@ glow_strength = 1.81
 
 [node name="World" type="Node2D"]
 
-[node name="Dino" parent="." instance=ExtResource( 2 )]
-position = Vector2( 529.167, 405.092 )
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 
 [node name="TileMap" parent="." instance=ExtResource( 1 )]
+collision_use_kinematic = true
 tile_data = PoolIntArray( -196612, 0, 0, -131076, 0, 0, -65540, 0, 0, -4, 0, 0, 65532, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 131068, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65551, 0, 0, 131072, 0, 0, 131087, 0, 0, 196608, 0, 0, 196623, 0, 0, 262144, 0, 0, 262159, 0, 0, 327680, 0, 0, 327695, 0, 0, 393216, 0, 0, 393231, 0, 0, 458752, 0, 0, 458767, 0, 0, 524288, 0, 0, 524303, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0 )
 
 [node name="Slopey" type="StaticBody2D" parent="."]
@@ -37,3 +34,4 @@ polygon = PoolVector2Array( 286.424, -148.412, 288.205, -112.776, 277.515, -70.0
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 317.16, 431.195 )
+maxSpeed = 300.0
