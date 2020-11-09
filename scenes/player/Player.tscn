@@ -161,8 +161,6 @@ extents = Vector2( 24, 56 )
 collision_mask = 60
 script = ExtResource( 9 )
 bullet = ExtResource( 11 )
-cooldown = 0.3
-maxSpeed = 500.0
 
 [node name="Graphics" type="Node2D" parent="."]
 

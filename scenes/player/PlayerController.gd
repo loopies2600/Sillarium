@@ -16,15 +16,16 @@ export (float) var cooldown = 0.85
 export (int) var rotationSpeed = 4
 
 # Variables para movimiento horizontal
-export (float) var acceleration = 15
-export (float) var maxSpeed = 200
-export (float) var friction = 15
+export (float) var acceleration = 10
+export (float) var maxSpeed = 400
+export (float) var friction = 10
 
 # Variables para movimiento vertical
+export (int) var maxJumps = 2
 export (float) var jumpBoost = 500
-export (float) var maxFallSpeed = 800
+export (float) var maxFallSpeed = 2000
 export (float) var verDrag = 0.13
-export (float) var gravity = 800
+export (float) var gravity = 1000
 
 var dir = 1
 var velocity = Vector2()
@@ -35,6 +36,7 @@ var cooldownIsOver = true
 var isShooting = false
 var target
 var groundSpeed = 0
+var jumpsLeft = maxJumps
 
 func _ready():
 	# Aqui hay un bug, si la escena no tiene
@@ -50,7 +52,8 @@ func _ready():
 
 func _physics_process(delta):
 	update()
-	velocity.x = groundSpeed*cos(bodyAnim.rotation)
+	
+	velocity.x = groundSpeed*cos(rotation)
 	velocity.y = min(velocity.y + gravity * delta, maxFallSpeed)
 
 	# no necesito explicar lo que hace, pero si queres escribirlo
@@ -68,30 +71,32 @@ func _physics_process(delta):
 		dir = -1
 	else:
 		groundSpeed -= min(abs(groundSpeed), friction) * sign(groundSpeed)
+	if Input.is_action_just_pressed("jump") and !inputHold:
+		jump()
 	
 	bodyAnim.scale.x = dir
 	
 	if is_on_floor():
+		for i in range(get_slide_count()):
+			var collision = get_slide_collision(i)
+			var normal = collision.get_normal()
+			var angleDelta = normal.angle() - (bodyAnim.rotation - PI * .5)
+			bodyAnim.rotation = lerp(bodyAnim.rotation, angleDelta + bodyAnim.rotation, 0.1)
+			
 		# Mata al jugador si esta siendo aplastado
 		if is_on_ceiling():
 			Respawn()
 		
 		# Salta
-		if Input.is_action_pressed("jump") and !inputHold:
-			velocity.y -= jumpBoost
+		jumpsLeft = maxJumps
 		
-		if friction:
+		if !abs(groundSpeed) > 10:
 			PlayIdleAnimation()
 		else:
 			PlayRunAnimation()
 		
 		# Checkea si el jugador esta en colision con algo
 		if get_slide_count() > 0:
-			var collision = get_slide_collision(0)
-			var normal = collision.get_normal()
-			var angleDelta = normal.angle() - (bodyAnim.rotation - PI * .5)
-			bodyAnim.rotation = lerp(bodyAnim.rotation, angleDelta + bodyAnim.rotation, 0.1)
-			
 			CheckForPushable()
 	else:
 		# Pone la animacion dependiendo de si esta subiendo o cayendo
@@ -105,11 +110,25 @@ func _physics_process(delta):
 	
 	# Mueve al jugador
 	velocity = move_and_slide(velocity, Globals.UP, true, 16, 1)
-	bodyAnim.speed_scale = abs(velocity.x / maxSpeed)
-	animPlayer.playback_speed = abs(velocity.x / maxSpeed)
+	bodyAnim.speed_scale = abs(groundSpeed / maxSpeed)
+	animPlayer.playback_speed = abs(groundSpeed / maxSpeed)
 	
 	# Obtiene input de ocho direcciones
 	GetLookInput()
+	
+func is_on_slope(max_floor_angle = Globals.MAX_FLOOR_ANGLE):
+	if is_on_floor():
+		for i in range(get_slide_count()):
+			var collision = get_slide_collision(i)
+			if collision.normal.angle_to(Globals.UP) <= max_floor_angle:
+				return false
+			return true
+		return false
+		
+func jump():
+	if jumpsLeft != 1:
+		velocity.y -= jumpBoost
+		jumpsLeft -= 1
 	
 func GetLookInput():
 	var targetting = debugDirection.global_position.length()

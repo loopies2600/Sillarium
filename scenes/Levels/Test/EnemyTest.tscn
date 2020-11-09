@@ -26,4 +26,3 @@ polygon = PoolVector2Array( 286.424, -148.412, 288.205, -112.776, 277.515, -70.0
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 317.16, 431.195 )
-maxSpeed = 300.0
