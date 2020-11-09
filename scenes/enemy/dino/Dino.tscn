@@ -13,8 +13,8 @@
 [ext_resource path="res://sprites/enemy/dino/dino_mouth.tres" type="Texture" id=12]
 [ext_resource path="res://sprites/enemy/dino/dino_leg_3.tres" type="Texture" id=14]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 45, 45 )
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 32, 32 )
 
 [sub_resource type="Animation" id=2]
 loop = true
@@ -510,8 +510,7 @@ position = Vector2( 28, 35 )
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true

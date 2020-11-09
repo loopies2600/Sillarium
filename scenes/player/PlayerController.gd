@@ -18,7 +18,7 @@ export (int) var rotationSpeed = 4
 # Variables para movimiento horizontal
 export (float) var acceleration = 15
 export (float) var maxSpeed = 200
-export (float) var horDrag = 0.13
+export (float) var friction = 15
 
 # Variables para movimiento vertical
 export (float) var jumpBoost = 500
@@ -34,6 +34,7 @@ var crosshairOffset = Vector2(180, 0)
 var cooldownIsOver = true
 var isShooting = false
 var target
+var groundSpeed = 0
 
 func _ready():
 	# Aqui hay un bug, si la escena no tiene
@@ -49,11 +50,8 @@ func _ready():
 
 func _physics_process(delta):
 	update()
+	velocity.x = groundSpeed*cos(bodyAnim.rotation)
 	velocity.y = min(velocity.y + gravity * delta, maxFallSpeed)
-	
-	# Variable que comprueba que el jugador no se trato de mover
-	# horizontalmente
-	var friction = false
 
 	# no necesito explicar lo que hace, pero si queres escribirlo
 	var inputHold = false
@@ -63,13 +61,13 @@ func _physics_process(delta):
 	
 	# Recibe input para movimiento horizontal
 	if Input.is_action_pressed("move_right") and !inputHold:
-		velocity.x = min(velocity.x + acceleration, maxSpeed)
+		groundSpeed = min(groundSpeed + acceleration, maxSpeed)
 		dir = 1
 	elif Input.is_action_pressed("move_left") and !inputHold:
-		velocity.x = max(velocity.x - acceleration, -maxSpeed)
+		groundSpeed = max(groundSpeed - acceleration, -maxSpeed)
 		dir = -1
 	else:
-		friction = true
+		groundSpeed -= min(abs(groundSpeed), friction) * sign(groundSpeed)
 	
 	bodyAnim.scale.x = dir
 	
@@ -82,9 +80,7 @@ func _physics_process(delta):
 		if Input.is_action_pressed("jump") and !inputHold:
 			velocity.y -= jumpBoost
 		
-		# Quita velocidad x en el suelo
 		if friction:
-			velocity.x = lerp(velocity.x, 0, horDrag)
 			PlayIdleAnimation()
 		else:
 			PlayRunAnimation()

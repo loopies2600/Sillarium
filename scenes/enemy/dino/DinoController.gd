@@ -3,7 +3,7 @@ extends KinematicBody2D
 onready var parentSprite = $Body
 onready var animator = $AnimationPlayer
 
-var MAX_SPEED = 700
+var MAX_SPEED = 600
 var JUMP_MAGNITUDE = 600
 const GRAVITY = 25
 const ACCELERATION = 25
@@ -20,7 +20,7 @@ func _ready():
 	
 func _physics_process(delta):
 	velocity.y += GRAVITY
-	velocity = move_and_slide(velocity, Vector2.UP)
+	velocity = move_and_slide(velocity, Vector2.UP, true, 60, 1)
 	animator.playback_speed = abs(velocity.x / MAX_SPEED)
 	
 	stateTimer = 1
@@ -35,9 +35,15 @@ func _physics_process(delta):
 				change_state(states.JUMP)
 		
 		states.WALK:
-			if (is_on_wall()):
-				scale.x = -scale.x
+			
+			if get_slide_count() > 0:
+				var collision = get_slide_collision(0)
+				var normal = collision.get_normal()
+				var angleDelta = normal.angle() - (parentSprite.rotation - PI * .5)
+				parentSprite.rotation = lerp(parentSprite.rotation, angleDelta + parentSprite.rotation, 0.1)
+			else:
 				dir = -dir
+				parentSprite.scale.x = dir
 			
 			match dir:
 				1:
