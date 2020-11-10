@@ -3,7 +3,7 @@ extends Node
 # Para variables globales
 
 const UP = Vector2.UP
-const MAX_FLOOR_ANGLE = deg2rad(10)
+const MAX_FLOOR_ANGLE = deg2rad(15)
 const UNIT_SIZE = 96
 onready var trail = preload("res://scenes/Trail.tscn")
 var debug = true
@@ -11,9 +11,9 @@ var debug = true
 func loadLevel(levelName):
 	match levelName:
 		"SalaGraciosa":
-			get_tree().change_scene("res://scenes/Levels/Test/TestRoom.tscn")
+			get_tree().change_scene("res://scenes/levels/test/TestRoom.tscn")
 		"TestLevel":
-			get_tree().change_scene("res://scenes/Levels/Test/TestScene.tscn")
+			get_tree().change_scene("res://scenes/levels/test/TestScene.tscn")
 
 func CreateTrail(fds, tex, pos, rot, scl, z = 0):
 	var newTrail = trail.instance()

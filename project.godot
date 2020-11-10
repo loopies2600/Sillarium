@@ -16,12 +16,16 @@ _global_script_class_icons={
 [application]
 
 config/name="Sillarium"
-run/main_scene="res://scenes/Levels/Test/TestTutorial.tscn"
+run/main_scene="res://scenes/levels/test/TestTutorial.tscn"
 config/icon="res://sprites/sillarium_s.png"
 
 [autoload]
 
 Globals="*res://Globals.gd"
+
+[debug]
+
+settings/fps/force_fps=60
 
 [display]
 

@@ -1,43 +1,43 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://sprites/TestTileset.tres" type="TileSet" id=3]
-[ext_resource path="res://sprites/tutorial/tutorial_controls.png" type="Texture" id=4]
-[ext_resource path="res://scenes/BasicEntryway.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sprites/TestTileset.tres" type="TileSet" id=2]
+[ext_resource path="res://sprites/tutorial/tutorial_controls.png" type="Texture" id=3]
+[ext_resource path="res://font/sillariumfont.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemy/pinataman/PinataMan.tscn" type="PackedScene" id=6]
-[ext_resource path="res://font/sillariumfont.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://scenes/Levels/LevelProperties.gd" type="Script" id=9]
+[ext_resource path="res://scenes/levels/LevelProperties.gd" type="Script" id=7]
+[ext_resource path="res://scenes/BasicEntryway.tscn" type="PackedScene" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 3 )
 region = Rect2( 201, 201, 198, 64 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 198, 131 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 3 )
 region = Rect2( 201, 67, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 3 )
 region = Rect2( 268, 67, 64, 64 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 15
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 7 )
+font_data = ExtResource( 4 )
 
 [node name="World" type="Node2D"]
-script = ExtResource( 9 )
+script = ExtResource( 7 )
 backgroundID = 2
 musicID = 1
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource( 3 )
+tile_set = ExtResource( 2 )
 cell_quadrant_size = 64
 collision_layer = 32
 format = 1
@@ -46,7 +46,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="BasicEntryway" parent="." instance=ExtResource( 5 )]
+[node name="BasicEntryway" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1088, 0 )
 levelToLoad = "TestLevel"
 
@@ -113,7 +113,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 0, -62 )
 
 [node name="PinataMan" parent="." instance=ExtResource( 6 )]
