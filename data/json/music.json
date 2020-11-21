@@ -1,11 +1,11 @@
 {
 	"0": {
 		"name": "Astral Caves",
-		"file": "res://streams/music/RandomCave.ogg"
+		"file": "res://streams/music/bgm_caves.ogg"
 		},
 		
 	"1": {
 		"name": "Placeholder Music",
-		"file": "res://streams/music/DOS.ogg"
+		"file": "res://streams/music/bgm_testmusic.ogg"
 		}
 }

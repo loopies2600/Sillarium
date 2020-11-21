@@ -9,23 +9,17 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Area2D",
-"class": "BasicEnemy",
-"language": "GDScript",
-"path": "res://data/enemy/BasicEnemyController.gd"
-}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
-"path": "res://data/state_machine/State.gd"
+"path": "res://data/state_machine/state.gd"
 }, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://data/state_machine/StateMachine.gd"
+"path": "res://data/state_machine/state_machine.gd"
 } ]
 _global_script_class_icons={
-"BasicEnemy": "res://data/enemy/icon.png",
 "State": "res://data/state_machine/state.png",
 "StateMachine": "res://data/state_machine/machine.png"
 }
@@ -33,12 +27,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Sillarium"
-run/main_scene="res://data/levels/test/TestTutorial.tscn"
+run/main_scene="res://data/levels/test/test_tutorial.tscn"
 config/icon="res://sprites/sillarium_s.png"
 
 [autoload]
 
-Globals="*res://Globals.gd"
+Globals="*res://globals.gd"
 
 [debug]
 

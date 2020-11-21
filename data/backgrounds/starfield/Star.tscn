@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://data/backgrounds/starfield/Star.gd" type="Script" id=1]
-
-[node name="Star" type="Polygon2D"]
-polygon = PoolVector2Array( 1.75, 0.625, -1.5, 0.5, -1.375, -3, 1.625, -3 )
-script = ExtResource( 1 )

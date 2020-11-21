@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/asb_fire.wav-76387553b5e0c994659ee6090f4874a7.sample"
+
+[deps]
+
+source_file="res://streams/sfx/player/asb_fire.wav"
+dest_files=[ "res://.import/asb_fire.wav-76387553b5e0c994659ee6090f4874a7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

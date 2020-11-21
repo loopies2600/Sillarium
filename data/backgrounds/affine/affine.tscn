@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sprites/tiles/white.png" type="Texture" id=1]
+[ext_resource path="res://data/backgrounds/affine/affine.gd" type="Script" id=2]
+
+
+
+
+[node name="Affine" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Floor" type="Polygon2D" parent="."]
+texture = ExtResource( 1 )
+texture_scale = Vector2( 32, 32 )
+polygon = PoolVector2Array( 0, 0, 1280, 300, -256, 300 )

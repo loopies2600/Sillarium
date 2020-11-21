@@ -1,21 +1,21 @@
 {
 	"0": {
 			"name": "Cave Background",
-			"file": "res://data/backgrounds/Background.tscn"
+			"file": "res://data/backgrounds/test_background.tscn"
 		     },
 		     
 	"1": {
 			"name": "Debug Background",
-			"file": "res://data/backgrounds/Debug.tscn"
+			"file": "res://data/backgrounds/debug.tscn"
 		     },
 		     
 	"2": {
 			"name": "Gradient Background",
-			"file": "res://data/backgrounds/TestGradient.tscn"
+			"file": "res://data/backgrounds/test_gradient.tscn"
 		     },
 		
 	"3": {
 			"name": "Starfield",
-			"file": "res://data/backgrounds/starfield/Starfield.tscn"
+			"file": "res://data/backgrounds/starfield/starfield.tscn"
 		 }
 }

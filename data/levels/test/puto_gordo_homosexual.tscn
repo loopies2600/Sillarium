@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://data/player/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://data/tilemaps/test_tilemap.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/debug/puto.png" type="Texture" id=4]
+
+[node name="World" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource( 3 )]
+
+[node name="Gord" type="Label" parent="."]
+margin_left = 368.0
+margin_top = 384.0
+margin_right = 905.0
+margin_bottom = 495.0
+custom_fonts/font = ExtResource( 1 )
+text = "puto gordo homosexual
+ XDDDDDDDDDDDD"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pablo" type="Sprite" parent="."]
+position = Vector2( 896, 520 )
+texture = ExtResource( 4 )
+
+[node name="StartPosition" type="Position2D" parent="."]
+position = Vector2( 128, 128 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -64 )
