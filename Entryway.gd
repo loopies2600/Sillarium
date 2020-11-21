@@ -13,4 +13,4 @@ func ChangeHitbox(cond):
 	$CollisionShape2D.disabled = cond
 
 func OnPlayerEnter(body):
-	Globals.loadLevel(levelToLoad)
+	Globals.LoadLevel(levelToLoad)

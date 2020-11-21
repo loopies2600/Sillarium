@@ -1,0 +1,11 @@
+{
+	"0": {
+		"name": "Astral Caves",
+		"file": "res://streams/music/RandomCave.ogg"
+		},
+		
+	"1": {
+		"name": "Placeholder Music",
+		"file": "res://streams/music/DOS.ogg"
+		}
+}
