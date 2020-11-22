@@ -1,7 +1,7 @@
 extends "../basic_enemy_controller.gd"
 
 # Child nodes
-onready var animPlayer = $Graphics/Legs/AnimationPlayer
+onready var animPlayer = $Graphics/AnimationPlayer
 onready var boomerangStartPos = $BoomerangStartPosition.global_position
 onready var throwTimer = $ThrowTimer
 
@@ -68,7 +68,8 @@ func CreateBoomerang():
 
 func OnThrowTimerTimeout():
 	# La animacion automaticamente llama "CreateBoomerang()"
-	animPlayer.play("Throw")
+	#animPlayer.play("Throw")
+	pass
 
 func OnHitboxEntered(area):
 	# Si un bumerang entra, lo borra
