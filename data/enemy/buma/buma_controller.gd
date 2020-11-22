@@ -23,7 +23,7 @@ var dir = 1
 func _ready():
 	# Conecta funciones
 	throwTimer.connect("timeout", self, "OnThrowTimerTimeout")
-	connect("area_entered", self, "OnHitboxEntered")
+	#connect("area_entered", self, "OnHitboxEntered")
 	connect("DestroySelf", self, "OnDestruction")
 	
 	# Empieza el timer
@@ -32,7 +32,7 @@ func _ready():
 	
 	velocity = initialDeathBump
 	
-	PlayIdleAnimation()
+	#PlayIdleAnimation()
 	
 	match scale.x:
 			1.0:
@@ -53,7 +53,7 @@ func _physics_process(delta):
 			
 func CreateBoomerang():
 	# Pone la animacion correcta
-	animPlayer.play("WaitingForCatch")
+	#animPlayer.play("WaitingForCatch")
 	
 	# Crea el bumerang
 	var newBoomerang = boomerang.instance()
@@ -64,7 +64,7 @@ func CreateBoomerang():
 	newBoomerang.scale = scale
 	newBoomerang.global_position = boomerangStartPos
 	newBoomerang.velocity = Vector2(initialSpeed, 0)
-	newBoomerang.velocityDecrease = Vector2(-speedDecrease, 0)
+	newBoomerang.velocityDecrease = Vector2(-speedDecrease, -0.1)
 
 func OnThrowTimerTimeout():
 	# La animacion automaticamente llama "CreateBoomerang()"

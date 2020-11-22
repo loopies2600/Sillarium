@@ -29,14 +29,14 @@ func _physics_process(delta):
 	
 	# Cambia la velocidad
 	if !falling:
-		Globals.CreateTrail(0.05, sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, z_as_relative)
+		Globals.CreateTrail(0.1, sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, z_as_relative)
 		velocity += velocityDecrease
 	
 	# Obtiene la distancia del inicio al bumerang
 	distanceToStartPoint = hitbox.position.rotated(-rotation).x - startPos.rotated(-rotation).x
 	
 	# Chequea que si ha llegado a la posicion inicial
-	CheckPosition()
+	#CheckPosition()
 	
 	# Mueve la posicion (no usa move_and_slide() porque no
 	# es un KB2D)
@@ -58,9 +58,7 @@ func CheckPosition():
 		velocity = Vector2(0, velocity.y + gravity)
 
 func OnScreenExited():
-	# Si esta cayendo y sale de la pantalla es borrado
-	if falling:
-		queue_free()
+	queue_free()
 
 func OnBodyEntered(body):
 	if body.is_in_group("Player"):
