@@ -6,7 +6,7 @@ colors = PoolColorArray( 0.0279083, 0.0315484, 0.121094, 1, 0.34375, 0.0375977, 
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
-width = 600
+width = 720
 
 [node name="Background" type="ParallaxBackground"]
 layer = -128
@@ -14,12 +14,10 @@ scroll_base_scale = Vector2( 0, 0 )
 scroll_ignore_camera_zoom = true
 
 [node name="BG" type="TextureRect" parent="."]
-margin_left = 1024.0
-margin_right = 1624.0
-margin_bottom = 1024.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_rotation = 90.0
 texture = SubResource( 2 )
 stretch_mode = 1
 __meta__ = {

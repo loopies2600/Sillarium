@@ -1,4 +1,4 @@
-extends Polygon2D
+extends Sprite
 
 var speed = 2
 var spread = 2
