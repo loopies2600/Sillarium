@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://data/enemy/buma/boomerang.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites/enemy/buma/buma_legs.png" type="Texture" id=2]
@@ -6,6 +6,118 @@
 [ext_resource path="res://sprites/enemy/buma/buma_hand.png" type="Texture" id=6]
 [ext_resource path="res://data/enemy/buma/buma_controller.gd" type="Script" id=7]
 [ext_resource path="res://sprites/enemy/buma/buma_head.png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=12]
+resource_name = "Catching"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("HandR:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 28, 0 ), Vector2( 28, 0 ), Vector2( 48, -8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HandR:texture:region")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 4, 4, 56, 50 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HandL:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -36, 24 ), Vector2( -32, 0 ), Vector2( -16, 8 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("LegL:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -32, 40 ), Vector2( -28, 32 ), Vector2( -24, 32 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -4, -16 ), Vector2( 0, -20 ), Vector2( -4, -16 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("LegR:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 20, 24 ), Vector2( 24, 20 ), Vector2( 20, 24 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Head:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -60 ), Vector2( 8, -68 ), Vector2( 8, -72 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath(".:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -16, 8 ), Vector2( 0, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Head:texture:region")
+tracks/8/interp = 0
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Rect2( 4, 76, 101, 67 ), Rect2( 112, 4, 101, 67 ), Rect2( 4, 4, 101, 67 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -87,7 +199,6 @@ tracks/5/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "Throw"
 length = 2.0
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Head:position")
 tracks/0/interp = 2
@@ -215,10 +326,10 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0, 0.7, 0.9, 1, 1.6, 1.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.7, 0.9, 1, 1.6, 1.9, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Rect2( 56, 68, 45, 52 ), Rect2( 90, 161, 38, 53 ), Rect2( 64, 4, 46, 59 ), Rect2( 4, 60, 45, 56 ), Rect2( 53, 123, 33, 43 ), Rect2( 56, 68, 45, 52 ) ]
+"values": [ Rect2( 56, 68, 45, 52 ), Rect2( 90, 161, 38, 53 ), Rect2( 64, 4, 46, 59 ), Rect2( 4, 60, 45, 56 ), Rect2( 53, 123, 33, 43 ), Rect2( 44, 171, 40, 42 ), Rect2( 56, 68, 45, 52 ) ]
 }
 tracks/11/type = "value"
 tracks/11/path = NodePath("HandL:rotation_degrees")
@@ -266,7 +377,7 @@ tracks/14/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.2, 1.5, 1.6, 1.8, 1.9, 2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 48, -8 ), Vector2( 56, -12 ), Vector2( 44, -32 ), Vector2( 40, -28 ), Vector2( -28, 24 ), Vector2( -32, 28 ), Vector2( -36, 24 ), Vector2( -60, 0 ), Vector2( 52, -44 ), Vector2( 136, -12 ), Vector2( 112, 28 ), Vector2( 104, 36 ), Vector2( 104, 36 ), Vector2( 28, -32 ), Vector2( 32.6221, -10.1881 ), Vector2( 44, 0 ), Vector2( 40, 0 ) ]
+"values": [ Vector2( 48, -8 ), Vector2( 56, -12 ), Vector2( 15.9401, -12.0795 ), Vector2( -11.9162, 8.12431 ), Vector2( -28, 24 ), Vector2( -32, 28 ), Vector2( -36, 24 ), Vector2( -60, 0 ), Vector2( 52, -44 ), Vector2( 136, -12 ), Vector2( 112, 28 ), Vector2( 104, 36 ), Vector2( 104, 36 ), Vector2( 28, -32 ), Vector2( 32.6221, -10.1881 ), Vector2( 44, 0 ), Vector2( 40, 0 ) ]
 }
 tracks/15/type = "value"
 tracks/15/path = NodePath("HandR:rotation_degrees")
@@ -331,13 +442,101 @@ tracks/19/keys = {
 } ]
 }
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 2 )
-region = Rect2( 4, 60, 46, 46 )
+[sub_resource type="Animation" id=11]
+resource_name = "WaitingForCatch"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("LegR:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 20, 24 ), Vector2( 20, 24 ), Vector2( 24, 28 ), Vector2( 20, 28 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HandL:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -32, 12 ), Vector2( -32, 20 ), Vector2( -28, 20 ), Vector2( -28, 16 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LegL:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -24, 32 ), Vector2( -16, 32 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -4, -16 ), Vector2( 0, -12 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Head:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4, -68 ), Vector2( 16, -64 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("HandR:texture:region")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Rect2( 4, 120, 43, 47 ), Rect2( 64, 4, 46, 59 ), Rect2( 4, 60, 45, 56 ), Rect2( 4, 172, 36, 44 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("HandR:offset")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 10, 0 ) ]
+}
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 6 )
 region = Rect2( 4, 4, 56, 50 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 4, 60, 46, 46 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 4 )
@@ -382,26 +581,31 @@ extents = Vector2( 32, 72 )
 collision_layer = 4
 collision_mask = 3
 script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
 boomerang = ExtResource( 1 )
 throwTime = 3.0
 
 [node name="Graphics" type="Node2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
-autoplay = "Throw"
+autoplay = "Idle"
+anims/Catching = SubResource( 12 )
 anims/Idle = SubResource( 1 )
 anims/Throw = SubResource( 2 )
-
-[node name="LegR" type="Sprite" parent="Graphics"]
-position = Vector2( 20, 24 )
-texture = SubResource( 3 )
+anims/WaitingForCatch = SubResource( 11 )
 
 [node name="HandR" type="Sprite" parent="Graphics"]
 position = Vector2( 48, -8 )
+texture = SubResource( 3 )
+
+[node name="LegR" type="Sprite" parent="Graphics"]
+position = Vector2( 20, 24 )
 texture = SubResource( 4 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
-position = Vector2( -6.5373, -13.7158 )
+position = Vector2( -4, -16 )
 texture = SubResource( 5 )
 region_rect = Rect2( 64, 4, 52, 58 )
 
@@ -421,9 +625,6 @@ region_rect = Rect2( 52, 124, 34, 42 )
 
 [node name="Blinker" type="AnimationPlayer" parent="Graphics"]
 anims/Idle = SubResource( 9 )
-
-[node name="BoomerangStartPosition" type="Position2D" parent="."]
-position = Vector2( 168, -36 )
 
 [node name="ThrowTimer" type="Timer" parent="."]
 one_shot = true

@@ -2,7 +2,7 @@ extends "../basic_enemy_controller.gd"
 
 # Child nodes
 onready var animPlayer = $Graphics/AnimationPlayer
-onready var boomerangStartPos = $BoomerangStartPosition.global_position
+onready var boomerangHand = $Graphics/HandR
 onready var throwTimer = $ThrowTimer
 
 # Variables para el bumerang
@@ -22,8 +22,9 @@ var dir = 1
 
 func _ready():
 	# Conecta funciones
+	connect("area_entered", self, "OnAreaEnter")
 	throwTimer.connect("timeout", self, "OnThrowTimerTimeout")
-	#connect("area_entered", self, "OnHitboxEntered")
+	animPlayer.connect("animation_finished", self, "onAnimFinished")
 	connect("DestroySelf", self, "OnDestruction")
 	
 	# Empieza el timer
@@ -32,7 +33,7 @@ func _ready():
 	
 	velocity = initialDeathBump
 	
-	#PlayIdleAnimation()
+	PlayIdleAnimation()
 	
 	match scale.x:
 			1.0:
@@ -50,12 +51,10 @@ func _physics_process(delta):
 		scale.x += 0.1 * dir
 		# modulate -= Color(-0.05, 0.05, 0.05, 0)
 		rotation_degrees += 25
-			
-func CreateBoomerang():
-	# Pone la animacion correcta
-	#animPlayer.play("WaitingForCatch")
 	
+func CreateBoomerang():
 	# Crea el bumerang
+	var boomerangStartPos = boomerangHand.global_position
 	var newBoomerang = boomerang.instance()
 	get_tree().get_root().add_child(newBoomerang)
 	hasBoomerang = false
@@ -64,14 +63,17 @@ func CreateBoomerang():
 	newBoomerang.scale = scale
 	newBoomerang.global_position = boomerangStartPos
 	newBoomerang.velocity = Vector2(initialSpeed, 0)
-	newBoomerang.velocityDecrease = Vector2(-speedDecrease, -0.1)
+	newBoomerang.velocityDecrease = Vector2(-speedDecrease, 0.1)
+	
+	# Pone la animacion correcta
+	yield(animPlayer, "animation_finished")
+	animPlayer.play("WaitingForCatch")
 
 func OnThrowTimerTimeout():
 	# La animacion automaticamente llama "CreateBoomerang()"
-	#animPlayer.play("Throw")
-	pass
+	animPlayer.play("Throw")
 
-func OnHitboxEntered(area):
+func OnAreaEnter(area):
 	# Si un bumerang entra, lo borra
 	if area.is_in_group("Boomerang") and !hasBoomerang:
 		area.get_parent().queue_free()
@@ -79,6 +81,8 @@ func OnHitboxEntered(area):
 		
 		# Reinicia el buma
 		animPlayer.play("Catching")
+		yield(animPlayer, "animation_finished")
+		animPlayer.play("Idle")
 		throwTimer.start()
 
 func PlayIdleAnimation():
