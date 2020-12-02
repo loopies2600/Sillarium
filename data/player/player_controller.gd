@@ -101,15 +101,7 @@ func _physics_process(delta):
 		# Quita velocidad x en el aire
 		if friction:
 			velocity.x = lerp(velocity.x, 0, verDrag)
-	
-	if is_on_slope():
-		for i in range(get_slide_count()):
-			var collision = get_slide_collision(i)
-			var angleDelta = collision.normal.angle() - (bodyAnim.rotation - PI * .5)
-			bodyAnim.rotation = lerp_angle(bodyAnim.rotation, angleDelta + bodyAnim.rotation, 0.1)
-	else:
-		bodyAnim.rotation = lerp_angle(bodyAnim.rotation, 0, 0.1)
-	
+			
 	# Mueve al jugador
 	velocity = move_and_slide(velocity, Globals.UP, true, 16, 1)
 	bodyAnim.speed_scale = abs(groundSpeed / maxSpeed)
@@ -118,15 +110,6 @@ func _physics_process(delta):
 	# Obtiene input de ocho direcciones
 	GetLookInput()
 	
-func is_on_slope(max_floor_angle = Globals.MAX_FLOOR_ANGLE):
-	if is_on_floor():
-		for i in range(get_slide_count()):
-			var collision = get_slide_collision(i)
-			if abs(collision.normal.angle_to(Globals.UP)) < max_floor_angle:
-				return false
-			return true
-		return false
-		
 func jump():
 	if jumpsLeft != 1:
 		velocity.y -= jumpBoost

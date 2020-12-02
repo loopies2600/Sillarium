@@ -7,7 +7,7 @@
 [ext_resource path="res://data/enemy/buma/buma_controller.gd" type="Script" id=7]
 [ext_resource path="res://sprites/enemy/buma/buma_head.png" type="Texture" id=8]
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=1]
 resource_name = "Catching"
 length = 0.2
 tracks/0/type = "value"
@@ -119,8 +119,7 @@ tracks/8/keys = {
 "values": [ Rect2( 4, 76, 101, 67 ), Rect2( 112, 4, 101, 67 ), Rect2( 4, 4, 101, 67 ) ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "Idle"
+[sub_resource type="Animation" id=2]
 length = 1.2
 loop = true
 tracks/0/type = "value"
@@ -196,8 +195,7 @@ tracks/5/keys = {
 "values": [ Vector2( 20, 24 ), Vector2( 16, 28 ), Vector2( 24, 20 ), Vector2( 32, 28 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Throw"
+[sub_resource type="Animation" id=3]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Head:position")
@@ -442,7 +440,7 @@ tracks/19/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=4]
 resource_name = "WaitingForCatch"
 loop = true
 tracks/0/type = "value"
@@ -530,32 +528,31 @@ tracks/6/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 10, 0 ) ]
 }
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 6 )
 region = Rect2( 4, 4, 56, 50 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
 region = Rect2( 4, 60, 46, 46 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 4 )
 region = Rect2( 4, 68, 45, 64 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
 region = Rect2( 120, 4, 44, 59 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 8 )
 region = Rect2( 4, 4, 101, 67 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 6 )
 region = Rect2( 56, 68, 45, 52 )
 
-[sub_resource type="Animation" id=9]
-resource_name = "Idle"
+[sub_resource type="Animation" id=11]
 length = 3.0
 loop = true
 tracks/0/type = "value"
@@ -571,7 +568,7 @@ tracks/0/keys = {
 "values": [ Rect2( 4, 4, 101, 67 ), Rect2( 112, 4, 101, 67 ), Rect2( 4, 76, 101, 67 ), Rect2( 112, 4, 101, 67 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 32, 72 )
 
 [node name="Buma" type="Area2D" groups=[
@@ -591,40 +588,40 @@ throwTime = 3.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
 autoplay = "Idle"
-anims/Catching = SubResource( 12 )
-anims/Idle = SubResource( 1 )
-anims/Throw = SubResource( 2 )
-anims/WaitingForCatch = SubResource( 11 )
+anims/Catching = SubResource( 1 )
+anims/Idle = SubResource( 2 )
+anims/Throw = SubResource( 3 )
+anims/WaitingForCatch = SubResource( 4 )
 
 [node name="HandR" type="Sprite" parent="Graphics"]
 position = Vector2( 48, -8 )
-texture = SubResource( 3 )
+texture = SubResource( 5 )
 
 [node name="LegR" type="Sprite" parent="Graphics"]
 position = Vector2( 20, 24 )
-texture = SubResource( 4 )
+texture = SubResource( 6 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
 position = Vector2( -4, -16 )
-texture = SubResource( 5 )
+texture = SubResource( 7 )
 region_rect = Rect2( 64, 4, 52, 58 )
 
 [node name="LegL" type="Sprite" parent="Graphics"]
 position = Vector2( -24, 32 )
-texture = SubResource( 6 )
+texture = SubResource( 8 )
 
 [node name="Head" type="Sprite" parent="Graphics"]
 position = Vector2( 8, -72 )
-texture = SubResource( 7 )
+texture = SubResource( 9 )
 region_rect = Rect2( 4, 4, 101, 67 )
 
 [node name="HandL" type="Sprite" parent="Graphics"]
 position = Vector2( -16, 8 )
-texture = SubResource( 8 )
+texture = SubResource( 10 )
 region_rect = Rect2( 52, 124, 34, 42 )
 
 [node name="Blinker" type="AnimationPlayer" parent="Graphics"]
-anims/Idle = SubResource( 9 )
+anims/Idle = SubResource( 11 )
 
 [node name="ThrowTimer" type="Timer" parent="."]
 one_shot = true
@@ -632,4 +629,4 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, -14 )
-shape = SubResource( 10 )
+shape = SubResource( 12 )

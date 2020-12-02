@@ -24,7 +24,6 @@ func _ready():
 	# Conecta funciones
 	connect("area_entered", self, "OnAreaEnter")
 	throwTimer.connect("timeout", self, "OnThrowTimerTimeout")
-	animPlayer.connect("animation_finished", self, "onAnimFinished")
 	connect("DestroySelf", self, "OnDestruction")
 	
 	# Empieza el timer

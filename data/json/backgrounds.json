@@ -1,7 +1,7 @@
 {
 	"0": {
 			"name": "Cave Background",
-			"file": "res://data/backgrounds/test_background.tscn"
+			"file": "res://data/backgrounds/caves/caves.tscn"
 		     },
 		     
 	"1": {

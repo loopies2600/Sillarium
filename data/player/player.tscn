@@ -16,9 +16,6 @@
 [ext_resource path="res://sprites/character/prota_test/prota_arms_upside.png" type="Texture" id=14]
 [ext_resource path="res://streams/sfx/player/asb_fire.wav" type="AudioStream" id=16]
 
-
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "Fire"
 length = 0.1
@@ -54,20 +51,20 @@ animations = [ {
 "name": "Idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "Jumping",
-"speed": 1.0
+"name": "Walking",
+"speed": 15.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Falling",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "Walking",
-"speed": 15.0
+"name": "Jumping",
+"speed": 1.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -197,6 +194,14 @@ playback_process_mode = 0
 anims/Idle = SubResource( 4 )
 anims/Walking = SubResource( 5 )
 
+[node name="StateMachine" type="Node" parent="."]
+
+[node name="Idle" type="Node" parent="StateMachine"]
+
+[node name="Walk" type="Node" parent="StateMachine"]
+
+[node name="Jump" type="Node" parent="StateMachine"]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -4 )
 shape = SubResource( 6 )
@@ -204,7 +209,10 @@ one_way_collision_margin = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+limit_smoothed = true
 smoothing_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="CooldownTimer" type="Timer" parent="."]
 wait_time = 2.0

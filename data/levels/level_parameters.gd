@@ -16,8 +16,9 @@ func _ready():
 func _backgroundSetup(bgID):
 	if (bgID != null):
 		var background = load(Globals.LoadJSON("res://data/json/backgrounds.json", bgID)["file"])
-		add_child(background.instance())
-	
+		var newBackground = background.instance()
+		add_child(newBackground)
+		
 func getMusicPeakVolume():
 	var left = AudioServer.get_bus_peak_volume_left_db(0, 0)
 	var right = AudioServer.get_bus_peak_volume_right_db(0, 0)
