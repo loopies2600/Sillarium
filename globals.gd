@@ -1,5 +1,6 @@
 extends Node
 
+# Hello
 # Para variables globales
 
 const UP = Vector2.UP
