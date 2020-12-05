@@ -2,4 +2,4 @@
 
 intento de run and gun espacial y chistoso
 
-alooo aloooo
+aloooo aloooo
