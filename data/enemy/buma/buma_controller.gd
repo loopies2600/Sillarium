@@ -42,6 +42,10 @@ func _ready():
 				
 
 func _physics_process(delta):
+	for _i in $Graphics.get_children():
+		if _i is Sprite:
+			Globals.CreateTrail(0.1, _i.texture, _i.global_position, _i.global_rotation, _i.global_scale, -128)
+	
 	if killed:
 		position += velocity * delta
 		velocity += deathFallSpeed

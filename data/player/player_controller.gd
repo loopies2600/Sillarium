@@ -84,31 +84,23 @@ func _physics_process(delta):
 		# Salta
 		jumpsLeft = maxJumps
 		
-		if !abs(groundSpeed) > 10:
-			PlayIdleAnimation()
-		else:
-			PlayRunAnimation()
-		
 		# Checkea si el jugador esta en colision con algo
 		if get_slide_count() > 0:
 			CheckForPushable()
 	else:
-		# Pone la animacion dependiendo de si esta subiendo o cayendo
-		if velocity.y < 0:
-			PlayJumpAnimation()
-		else:
-			PlayFallAnimation()
-		# Quita velocidad x en el aire
 		if friction:
 			velocity.x = lerp(velocity.x, 0, verDrag)
 			
 	# Mueve al jugador
 	velocity = move_and_slide(velocity, Globals.UP, true, 16, 1)
-	bodyAnim.speed_scale = abs(groundSpeed / maxSpeed)
 	animPlayer.playback_speed = abs(groundSpeed / maxSpeed)
 	
 	# Obtiene input de ocho direcciones
 	GetLookInput()
+	
+	Globals.CreateTrail(0.1, bodyAnim.texture, bodyAnim.global_position, bodyAnim.global_rotation, bodyAnim.global_scale, -128)
+	for _i in bodyAnim.get_children():
+		Globals.CreateTrail(0.1, _i.texture, _i.global_position, _i.global_rotation, _i.global_scale, -128)
 	
 func jump():
 	if jumpsLeft != 1:
@@ -185,20 +177,3 @@ func Respawn():
 		position = Vector2.ZERO
 	else:
 		position = $"/root/World/StartPosition".position
-
-func PlayIdleAnimation():
-	# Obvio
-	animPlayer.play("Idle")
-	bodyAnim.animation = "Idle"
-
-func PlayRunAnimation():
-	animPlayer.play("Running")
-	bodyAnim.animation = "Running"
-
-func PlayJumpAnimation():
-	#Obvio
-	bodyAnim.animation = "Jumping"
-
-func PlayFallAnimation():
-	#Obvio
-	bodyAnim.animation = "Falling"

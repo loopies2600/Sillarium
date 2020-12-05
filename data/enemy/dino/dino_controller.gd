@@ -35,15 +35,9 @@ func _physics_process(delta):
 				change_state(states.JUMP)
 		
 		states.WALK:
-			
-			if get_slide_count() > 0:
-				var collision = get_slide_collision(0)
-				var normal = collision.get_normal()
-				var angleDelta = normal.angle() - (parentSprite.rotation - PI * .5)
-				parentSprite.rotation = lerp(parentSprite.rotation, angleDelta + parentSprite.rotation, 0.1)
-			else:
+			scale.x = dir
+			if is_on_wall():
 				dir = -dir
-				parentSprite.scale.x = dir
 			
 			match dir:
 				1:

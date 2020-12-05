@@ -57,6 +57,10 @@ func _physics_process(_delta):
 	# Debug stuff
 	debugPos.position = position
 	debugFollow.position.x = positionToFollow
+	
+	Globals.CreateTrail(0.1, renderer.texture, renderer.global_position, renderer.global_rotation, renderer.global_scale, -128)
+	for _i in renderer.get_children():
+		Globals.CreateTrail(0.1, _i.texture, _i.global_position, _i.global_rotation, _i.global_scale, -128)
 
 func InitializeTweenLegacy():
 	# El tiempo que toma ir del empezar a la posicion final

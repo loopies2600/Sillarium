@@ -1,19 +1,11 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://sprites/character/prota_test/prota_run_3.png" type="Texture" id=1]
-[ext_resource path="res://sprites/character/prota_test/prota_run_4.png" type="Texture" id=2]
-[ext_resource path="res://sprites/character/prota_test/prota_run_6.png" type="Texture" id=3]
-[ext_resource path="res://sprites/character/prota_test/prota_run_2.png" type="Texture" id=4]
-[ext_resource path="res://sprites/character/prota_test/prota_run_5.png" type="Texture" id=5]
 [ext_resource path="res://sprites/character/prota_test/prota_arms.png" type="Texture" id=6]
-[ext_resource path="res://sprites/character/prota_test/prota_run_1.png" type="Texture" id=7]
 [ext_resource path="res://sprites/character/prota_test/prota_idle.png" type="Texture" id=8]
 [ext_resource path="res://data/player/player_controller.gd" type="Script" id=9]
 [ext_resource path="res://sprites/character/prota_test/prota_heads.png" type="Texture" id=10]
 [ext_resource path="res://data/player/projectiles/main_bullet.tscn" type="PackedScene" id=11]
 [ext_resource path="res://sprites/debug/direction.png" type="Texture" id=12]
-[ext_resource path="res://sprites/character/prota_test/prota_arms_up.png" type="Texture" id=13]
-[ext_resource path="res://sprites/character/prota_test/prota_arms_upside.png" type="Texture" id=14]
 [ext_resource path="res://streams/sfx/player/asb_fire.wav" type="AudioStream" id=16]
 
 [sub_resource type="Animation" id=1]
@@ -43,47 +35,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 0.752941, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
-
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "Walking",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "Jumping",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "Falling",
-"speed": 1.0
-} ]
-
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ ExtResource( 6 ) ],
-"loop": false,
-"name": "Side",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": false,
-"name": "Up",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 14 ) ],
-"loop": false,
-"name": "Upside",
-"speed": 1.0
-} ]
 
 [sub_resource type="Animation" id=4]
 loop = true
@@ -173,21 +124,18 @@ texture = ExtResource( 12 )
 [node name="ToolsAnimator" type="AnimationPlayer" parent="Graphics/Tools"]
 anims/Fire = SubResource( 1 )
 
-[node name="Body" type="AnimatedSprite" parent="Graphics"]
-frames = SubResource( 2 )
-animation = "Idle"
-playing = true
+[node name="Body" type="Sprite" parent="Graphics"]
+texture = ExtResource( 8 )
 offset = Vector2( 0, 6 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 texture = ExtResource( 10 )
 offset = Vector2( 0, -50 )
 
-[node name="Arms" type="AnimatedSprite" parent="Graphics/Body"]
+[node name="Arms" type="Sprite" parent="Graphics/Body"]
 position = Vector2( -5, -24 )
 z_as_relative = false
-frames = SubResource( 3 )
-animation = "Side"
+texture = ExtResource( 6 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
 playback_process_mode = 0
