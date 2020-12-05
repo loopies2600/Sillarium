@@ -10,17 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "State",
-"language": "GDScript",
-"path": "res://data/state_machine/state.gd"
-}, {
-"base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://data/state_machine/state_machine.gd"
 } ]
 _global_script_class_icons={
-"State": "res://data/state_machine/state.png",
 "StateMachine": "res://data/state_machine/machine.png"
 }
 
@@ -44,6 +38,7 @@ settings/fps/force_fps=60
 window/size/width=1280
 window/size/height=720
 window/size/resizable=false
+window/size/borderless=true
 
 [input]
 
@@ -110,6 +105,11 @@ toggle_debug={
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
+quality/2d/use_pixel_snap=true
+quality/shadows/filter_mode=0
+batching/options/single_rect_fallback=true
 environment/default_clear_color=Color( 0.0745098, 0.027451, 0.215686, 1 )
+quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"

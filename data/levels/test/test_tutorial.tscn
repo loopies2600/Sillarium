@@ -33,8 +33,12 @@ font_data = ExtResource( 2 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
+backgroundID = 2
+musicID = 1
 
-[node name="CaveTutorial" type="TileMap" parent="."]
+[node name="CaveTutorial" type="TileMap" parent="." groups=[
+"Environment",
+]]
 tile_set = ExtResource( 4 )
 cell_quadrant_size = 64
 collision_layer = 32

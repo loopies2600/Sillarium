@@ -7,7 +7,7 @@ onready var bodyAnim = $Graphics/Body
 onready var arms = $Graphics/Body/Arms
 onready var head = $Graphics/Body/Head
 onready var startPos
-onready var debugDirection = $Graphics/Tools/direction
+onready var debugDirection = $Graphics/Tools/Crosshair
 onready var cooldownTimer = $CooldownTimer
 onready var firingSound = $FiringSound
 
@@ -17,7 +17,7 @@ export (int) var rotationSpeed = 4
 
 # Variables para movimiento horizontal
 export (float) var acceleration = 10
-export (float) var maxSpeed = 400
+export (float) var maxSpeed = 1200
 export (float) var friction = 10
 
 # Variables para movimiento vertical
@@ -43,7 +43,7 @@ func _ready():
 	# World/StartPosition, crashea, pero no encontre
 	# manera de checkear si este node tiene un parent
 	# WORKAROUND QUE HICE, JSJSJJSJSJSJSJSJSJSJSJSJJS
-	if get_parent().get_node("StartPosition") == null:
+	if owner.get_node("StartPosition") == null:
 		position = Vector2.ZERO
 	else:
 		position = $"/root/World/StartPosition".position

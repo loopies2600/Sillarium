@@ -20,7 +20,7 @@
 resource_name = "Fire"
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("direction:scale")
+tracks/0/path = NodePath("Crosshair:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -32,7 +32,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("direction:modulate")
+tracks/1/path = NodePath("Crosshair:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -56,14 +56,14 @@ animations = [ {
 "name": "Walking",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "Falling",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "Jumping",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Falling",
 "speed": 1.0
 } ]
 
@@ -154,7 +154,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 24, 56 )
+extents = Vector2( 24, 60 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
@@ -167,7 +167,7 @@ bullet = ExtResource( 11 )
 
 [node name="Tools" type="Node2D" parent="Graphics"]
 
-[node name="direction" type="Sprite" parent="Graphics/Tools"]
+[node name="Crosshair" type="Sprite" parent="Graphics/Tools"]
 texture = ExtResource( 12 )
 
 [node name="ToolsAnimator" type="AnimationPlayer" parent="Graphics/Tools"]
@@ -193,14 +193,6 @@ animation = "Side"
 playback_process_mode = 0
 anims/Idle = SubResource( 4 )
 anims/Walking = SubResource( 5 )
-
-[node name="StateMachine" type="Node" parent="."]
-
-[node name="Idle" type="Node" parent="StateMachine"]
-
-[node name="Walk" type="Node" parent="StateMachine"]
-
-[node name="Jump" type="Node" parent="StateMachine"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -4 )

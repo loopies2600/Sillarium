@@ -2,6 +2,10 @@ extends CanvasLayer
 
 var vars = []
 
+func _ready():
+	$DebugInfo.visible = false
+	$SystemInfo.visible = false
+	
 func add_var(var_name, object, var_ref, is_method, latter_word:String = ""):
 	vars.append([var_name, object, var_ref, is_method, latter_word])
 

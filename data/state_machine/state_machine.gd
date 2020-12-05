@@ -1,63 +1,41 @@
 extends Node
 class_name StateMachine, "machine.png"
 
-signal stateChanged(current_state)
+var states = {}
+var state = null setget setState
+var previousState = null
 
-export (NodePath) var startingState
-var statesMap = {}
+onready var parent = get_parent()
 
-var statesStack = []
-var currentState = null
-var _active = false setget setActive
-
-func _ready():
-	if !startingState:
-		startingState = get_child(0).get_path()
-	for child in get_children():
-		var err = child.connect("finished", self, "_changeState")
-		if err:
-			printerr(err)
-		
-	initialize(startingState)
-	
-func initialize(initial_state):
-	setActive(true)
-	statesStack.push_front(get_node(initial_state))
-	currentState = statesStack[0]
-	currentState.enter()
-	
-func setActive(boolean : bool):
-	_active = boolean
-	set_physics_process(boolean)
-	set_process_input(boolean)
-	
-	if !_active:
-		statesStack = []
-		currentState = null
-	
-func _unhandledInput(event):
-	currentState.handleInput(event)
-	
 func _physics_process(delta):
-	currentState.update(delta)
-	
-func _onAnimationFinished(anim_name):
-	if !_active:
-		return
-	currentState._onAnimationFinished(anim_name)
-	
-func _changeState(state_name):
-	if !_active:
-		return
-	currentState.exit()
-	
-	if state_name == "previous":
-		statesStack.pop_front()
-	else:
-		statesStack[0] = statesMap[state_name]
+	if state != null:
+		_stateLogic(delta)
 		
-	currentState = statesStack[0]
-	emit_signal("stateCjanged", currentState)
+		var transition = _getTransition(delta)
+		
+		if transition != null:
+			setState(transition)
+			
+func _stateLogic(delta):
+	pass
 	
-	if state_name != "previous":
-		currentState.enter()
+func _getTransition(delta):
+	return null
+	
+func _enterState(new_state, old_state):
+	pass
+	
+func _exitState(old_state, new_state):
+	pass
+	
+func setState(new_state):
+	previousState = state
+	state = new_state
+	
+	if previousState != null:
+		_exitState(previousState, new_state)
+	if new_state != null:
+		_enterState(new_state, previousState)
+	
+func addState(state_name):
+	states[state.name] = states.size()

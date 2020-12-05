@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://sprites/tiles/white.png" type="Texture" id=1]
+[ext_resource path="res://data/shaders/mode7.shader" type="Shader" id=2]
+[ext_resource path="res://data/backgrounds/tutorial/tutorial.gd" type="Script" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/POSITION = 0.0
+shader_param/DEPTH = Vector2( -0.011, 0.972 )
+shader_param/REPEAT_X = true
+shader_param/REPEAT_Y = true
+shader_param/FLIP = false
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+width = 360
+
+[node name="Tutorial" type="CanvasLayer"]
+layer = -100
+script = ExtResource( 3 )
+
+[node name="Ceiling" type="Sprite" parent="."]
+material = SubResource( 1 )
+scale = Vector2( 20, 6 )
+texture = ExtResource( 1 )
+centered = false
+flip_v = true
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="Floor" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 0, 384 )
+scale = Vector2( 20, 6 )
+texture = ExtResource( 1 )
+centered = false
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="GradTop" type="TextureRect" parent="."]
+margin_left = 1280.0
+margin_right = 1640.0
+margin_bottom = 1280.0
+rect_rotation = 90.0
+texture = SubResource( 3 )
+stretch_mode = 1
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GradBottom" type="TextureRect" parent="."]
+margin_left = 1280.0
+margin_top = 360.0
+margin_right = 1688.0
+margin_bottom = 1640.0
+rect_rotation = 90.0
+texture = SubResource( 3 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

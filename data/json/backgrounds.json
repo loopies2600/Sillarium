@@ -10,8 +10,8 @@
 		     },
 		     
 	"2": {
-			"name": "Gradient Background",
-			"file": "res://data/backgrounds/test_gradient.tscn"
+			"name": "Tutorial Background",
+			"file": "res://data/backgrounds/tutorial/tutorial.tscn"
 		     },
 		
 	"3": {

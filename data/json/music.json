@@ -5,7 +5,7 @@
 		},
 		
 	"1": {
-		"name": "Placeholder Music",
-		"file": "res://streams/music/bgm_testmusic.ogg"
+		"name": "Tutorial / Data",
+		"file": "res://streams/music/bgm_tutorial.ogg"
 		}
 }
