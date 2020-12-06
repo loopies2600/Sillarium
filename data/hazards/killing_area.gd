@@ -5,4 +5,5 @@ func _ready():
 
 func OnBodyEnter(body):
 	if body.is_in_group("Player"):
-		body.Respawn()
+		#body.Respawn()
+		pass

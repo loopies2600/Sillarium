@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://sprites/tiles/white.png" type="Texture" id=1]
 [ext_resource path="res://data/shaders/mode7.shader" type="Shader" id=2]
-[ext_resource path="res://data/backgrounds/tutorial/tutorial.gd" type="Script" id=3]
+[ext_resource path="res://data/backgrounds/tutorial/mode7.gd" type="Script" id=3]
+[ext_resource path="res://sprites/background/tutorial/floor.png" type="Texture" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -12,8 +12,22 @@ shader_param/REPEAT_X = true
 shader_param/REPEAT_Y = true
 shader_param/FLIP = false
 
+[sub_resource type="OpenSimplexNoise" id=4]
+seed = 3
+octaves = 4
+period = 7.6
+persistence = 0.677
+lacunarity = 3.03
+
+[sub_resource type="NoiseTexture" id=5]
+flags = 0
+width = 64
+height = 64
+seamless = true
+noise = SubResource( 4 )
+
 [sub_resource type="Gradient" id=2]
-colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 0 )
+colors = PoolColorArray( 0, 0.0117647, 0.188235, 1, 0, 0, 0, 0 )
 
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )
@@ -24,9 +38,10 @@ layer = -100
 script = ExtResource( 3 )
 
 [node name="Ceiling" type="Sprite" parent="."]
+modulate = Color( 0.027451, 0.101961, 0.701961, 1 )
 material = SubResource( 1 )
 scale = Vector2( 20, 6 )
-texture = ExtResource( 1 )
+texture = SubResource( 5 )
 centered = false
 flip_v = true
 region_rect = Rect2( 0, 0, 64, 64 )
@@ -35,7 +50,7 @@ region_rect = Rect2( 0, 0, 64, 64 )
 material = SubResource( 1 )
 position = Vector2( 0, 384 )
 scale = Vector2( 20, 6 )
-texture = ExtResource( 1 )
+texture = ExtResource( 4 )
 centered = false
 region_rect = Rect2( 0, 0, 64, 64 )
 

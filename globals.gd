@@ -4,7 +4,7 @@ extends Node
 # Para variables globales
 
 const UP = Vector2.UP
-const MAX_FLOOR_ANGLE = deg2rad(75)
+const MAX_FLOOR_ANGLE = 60
 const UNIT_SIZE = 96
 onready var trail = preload("res://data/trail.tscn")
 var debug = true

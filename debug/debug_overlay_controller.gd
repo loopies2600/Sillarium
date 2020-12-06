@@ -9,7 +9,7 @@ func _ready():
 func add_var(var_name, object, var_ref, is_method, latter_word:String = ""):
 	vars.append([var_name, object, var_ref, is_method, latter_word])
 
-func _process(delta):
+func _process(_delta):
 	var system_text = "SYSTEM VARIABLES\n"
 	var debug_text = "SILLARIUM VARIABLES\n"
 	

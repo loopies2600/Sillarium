@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/machine.png-e17c38782514185eee8d9e90115f32d2.stex"
+path="res://.import/tutorial.png-a52ad2d3894355f2b277d309f2030b7d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/state_machine/machine.png"
-dest_files=[ "res://.import/machine.png-e17c38782514185eee8d9e90115f32d2.stex" ]
+source_file="res://sprites/tiles/tutorial.png"
+dest_files=[ "res://.import/tutorial.png-a52ad2d3894355f2b277d309f2030b7d.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
