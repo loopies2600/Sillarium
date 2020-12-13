@@ -19,5 +19,5 @@ __meta__ = {
 }
 
 [node name="Placeholder" type="Sprite" parent="."]
-position = Vector2( 640, 360 )
+position = Vector2( 512, 300 )
 texture = ExtResource( 1 )

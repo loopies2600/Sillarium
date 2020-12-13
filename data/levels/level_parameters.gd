@@ -7,8 +7,12 @@ export (int) var backgroundID
 export (int) var musicID
 
 func _ready():
-	_backgroundSetup(backgroundID)
-	_musicSetup(musicID)
+	
+	if Globals.backgrounds:
+		_backgroundSetup(backgroundID)
+	
+	if !Globals.mute:
+		_musicSetup(musicID)
 	
 	if Globals.debug:
 		_debugSetup()

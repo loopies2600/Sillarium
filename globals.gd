@@ -7,6 +7,11 @@ const UP = Vector2.UP
 const MAX_FLOOR_ANGLE = 60
 const UNIT_SIZE = 96
 onready var trail = preload("res://data/trail.tscn")
+
+var player
+
+var backgrounds = true
+var mute = true
 var debug = true
 
 func LoadLevel(levelName):

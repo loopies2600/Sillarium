@@ -1,12 +1,14 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://sprites/enemy/lebipi/lebipi_eyes.png" type="Texture" id=1]
 [ext_resource path="res://sprites/enemy/lebipi/lebipi_rotor_1.png" type="Texture" id=2]
+[ext_resource path="res://sprites/enemy/lebipi/lebipi_pupil.png" type="Texture" id=3]
 [ext_resource path="res://sprites/enemy/lebipi/lebipi_sheet.png" type="Texture" id=4]
 [ext_resource path="res://data/enemy/lebipi/lebipi_controller.gd" type="Script" id=5]
 [ext_resource path="res://sprites/debug/debug_target.png" type="Texture" id=6]
 [ext_resource path="res://sprites/debug/debug_pointer.png" type="Texture" id=7]
 [ext_resource path="res://data/enemy/lebipi/rock.tscn" type="PackedScene" id=8]
+[ext_resource path="res://data/enemy/behaviour/pupil_follow_player.gd" type="Script" id=9]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
@@ -20,15 +22,15 @@ region = Rect2( 17, 129, 22, 34 )
 atlas = ExtResource( 4 )
 region = Rect2( 39, 131, 26, 35 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
-region = Rect2( 3, 0, 30, 28 )
+region = Rect2( 6, 135, 29, 28 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
-region = Rect2( 3, 0, 30, 28 )
+region = Rect2( 6, 102, 29, 28 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=6]
 resource_name = "lebipi_jittering"
 length = 0.8
 loop = true
@@ -93,10 +95,10 @@ tracks/4/keys = {
 "values": [ Vector2( -16, 0 ), Vector2( -16, -3 ), Vector2( -16, -8 ), Vector2( -16, -2 ), Vector2( -16, 0 ), Vector2( -16, 3 ), Vector2( -16, 6 ), Vector2( -16, 2 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 24, 4 )
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 30, 16 )
 
 [node name="Lebipi" type="Area2D" groups=[
@@ -136,19 +138,27 @@ texture = ExtResource( 2 )
 
 [node name="EyeR" type="Sprite" parent="KinematicBody2D/Graphics/Body"]
 position = Vector2( 16, 0 )
-texture = SubResource( 13 )
+texture = SubResource( 4 )
 flip_h = true
 region_enabled = true
 region_rect = Rect2( 3, 0, 30, 28 )
 
+[node name="PupilR" type="Sprite" parent="KinematicBody2D/Graphics/Body/EyeR"]
+texture = ExtResource( 3 )
+script = ExtResource( 9 )
+
 [node name="EyeL" type="Sprite" parent="KinematicBody2D/Graphics/Body"]
-position = Vector2( -14, 0 )
-texture = SubResource( 14 )
+position = Vector2( -16, 0 )
+texture = SubResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
 
+[node name="PupilL" type="Sprite" parent="KinematicBody2D/Graphics/Body/EyeL"]
+texture = ExtResource( 3 )
+script = ExtResource( 9 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D/Graphics"]
-anims/lebipi_jittering = SubResource( 10 )
+anims/lebipi_jittering = SubResource( 6 )
 
 [node name="DebugPosition" type="Sprite" parent="KinematicBody2D/Graphics"]
 visible = false
@@ -162,13 +172,14 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 position = Vector2( 0, -6 )
-shape = SubResource( 11 )
+shape = SubResource( 7 )
 
 [node name="LebipiRock" parent="KinematicBody2D" instance=ExtResource( 8 )]
 position = Vector2( 0, 54 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource( 12 )
+visible = false
+shape = SubResource( 8 )
 
 [node name="Tween" type="Tween" parent="."]
 playback_process_mode = 0
