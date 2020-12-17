@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://font/sillariumfont.ttf" type="DynamicFontData" id=2]
@@ -6,8 +6,9 @@
 [ext_resource path="res://data/tilemaps/tutorial.tres" type="TileSet" id=4]
 [ext_resource path="res://sprites/tutorial/tutorial_controls.png" type="Texture" id=5]
 [ext_resource path="res://data/enemy/pinataman/pinata_man.tscn" type="PackedScene" id=6]
-[ext_resource path="res://data/basic_entryway.tscn" type="PackedScene" id=7]
+[ext_resource path="res://data/generic/basic_entryway.tscn" type="PackedScene" id=7]
 [ext_resource path="res://data/player/player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://data/enemy/crab/crab.tscn" type="PackedScene" id=9]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 5 )
@@ -125,3 +126,6 @@ position = Vector2( 920, -480 )
 
 [node name="PinataMan3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 840, -608 )
+
+[node name="Crab" parent="." instance=ExtResource( 9 )]
+position = Vector2( 264, 8 )
