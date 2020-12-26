@@ -14,12 +14,12 @@ script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="Area2D"]
 texture = ExtResource( 1 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PoolVector2Array( -0.125, -4.06779, 9.75, -4.56779, 16.875, -8.06779, 25.75, -10.5678, 26.5, -1.06779, 23.75, 10.4322, 14.125, 16.5572, -0.875, 18.8072, -13.125, 16.6822, -20.125, 11.5572, -26.25, -0.0677891, -27.875, -7.19279, -24.5, -15.8178, -22.375, -18.0678, -13.5, -11.6928, -2.75, -5.56779 )
-
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Area2D"]
 position = Vector2( 1.90735e-06, -1.19209e-07 )
 rect = Rect2( -28, -18, 56, 37 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -0.125, -4.06779, 9.75, -4.56779, 16.875, -8.06779, 25.75, -10.5678, 26.5, -1.06779, 23.75, 10.4322, 14.125, 16.5572, -0.875, 18.8072, -13.125, 16.6822, -20.125, 11.5572, -26.25, -0.0677891, -27.875, -7.19279, -24.5, -15.8178, -22.375, -18.0678, -13.5, -11.6928, -2.75, -5.56779 )
 
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( -24, 0 )

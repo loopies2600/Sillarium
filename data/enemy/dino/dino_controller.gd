@@ -3,25 +3,27 @@ extends KinematicBody2D
 onready var parentSprite = $Body
 onready var animator = $AnimationPlayer
 
+export (PackedScene) var flames
+
 var MAX_SPEED = 600
 var JUMP_MAGNITUDE = 600
 const GRAVITY = 25
 const ACCELERATION = 25
 const FRICTION = 0.15
 var velocity = Vector2()
-var dir = -1
+var dir = 1
 var friction = false
 enum states {IDLE, WALK, JUMP, LAND}
-var state = states.WALK
+var state = states.IDLE
 var stateTimer = 50
 
 func _ready():
-	animator.play("Walking")
+	animator.play("SpitFire")
+	$FlameTimer.connect("timeout", self, "throw_flame")
 	
 func _physics_process(delta):
 	velocity.y += GRAVITY
 	velocity = move_and_slide(velocity, Vector2.UP, true, 60, 1)
-	animator.playback_speed = abs(velocity.x / MAX_SPEED)
 	
 	stateTimer = 1
 	
@@ -76,3 +78,9 @@ func randomize_movement():
 func change_state(new_state):
 	stateTimer = choose_random([8, 16, 32, 64])
 	state = new_state
+
+func throw_flame():
+	var newFlame = flames.instance()
+	newFlame.dir = dir
+	newFlame.position = position
+	get_tree().get_root().add_child(newFlame)

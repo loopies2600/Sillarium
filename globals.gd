@@ -12,7 +12,7 @@ var player
 
 var backgrounds = true
 var mute = true
-var debug = true
+var debug = false
 
 func LoadLevel(levelName):
 	match levelName:
