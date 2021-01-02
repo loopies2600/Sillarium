@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/character/prota_test/prota_arms.png" type="Texture" id=1]
+[ext_resource path="res://data/player/projectiles/main_bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://data/player/weapons/shotgun.gd" type="Script" id=3]
+
+[node name="Shotgun" type="Sprite"]
+texture = ExtResource( 1 )
+script = ExtResource( 3 )
+projectile = ExtResource( 2 )
+projectileOffset = Vector2( 72, 12 )
+cooldown = 0.4
+rotationSpeed = 8

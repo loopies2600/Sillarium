@@ -9,10 +9,11 @@
 [ext_resource path="res://sprites/enemy/dino/dino_leyebrow.tres" type="Texture" id=7]
 [ext_resource path="res://sprites/enemy/dino/dino_reyebrow.tres" type="Texture" id=8]
 [ext_resource path="res://sprites/enemy/dino/dino_tail.tres" type="Texture" id=9]
-[ext_resource path="res://data/enemy/dino/Flame.tscn" type="PackedScene" id=10]
+[ext_resource path="res://data/enemy/dino/flame.tscn" type="PackedScene" id=10]
 [ext_resource path="res://sprites/enemy/dino/dino_leg_0.tres" type="Texture" id=11]
 [ext_resource path="res://sprites/enemy/dino/dino_mouth.tres" type="Texture" id=12]
 [ext_resource path="res://sprites/enemy/dino/dino_leg_3.tres" type="Texture" id=14]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 44 )

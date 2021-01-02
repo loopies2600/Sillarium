@@ -1,0 +1,1 @@
+extends "weapon.gd"
