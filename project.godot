@@ -117,7 +117,6 @@ dash={
 quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
-quality/2d/use_pixel_snap=true
 quality/shadows/filter_mode=0
 batching/options/single_rect_fallback=true
 environment/default_clear_color=Color( 0.0745098, 0.027451, 0.215686, 1 )

@@ -27,7 +27,7 @@ func fire(delta):
 	offset.x = lerp(offset.x, projectileOffset.y, (rotationSpeed * 2) * delta)
 	var newProjectile = projectile.instance()
 	newProjectile.global_position = global_position + projectileOffset.rotated(fireAngle) + Vector2(randi() % 9, randi() % 9 -8)
-	newProjectile.rotation = fireAngle
+	newProjectile.global_rotation = fireAngle
 	newProjectile.z_index = z_index + 1
 	get_tree().get_root().add_child(newProjectile)
 	currentCooldown = cooldown

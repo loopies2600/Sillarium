@@ -1,11 +1,19 @@
 extends Node
 class_name State
 
+signal finished(next_state_name)
+
 func enter():
-	pass
-	
-func update(_delta):
-	pass
-	
+	return
+
 func exit():
-	pass
+	return
+
+func handle_input(event):
+	return
+
+func update(delta):
+	return
+
+func _on_animation_finished(anim_name):
+	return

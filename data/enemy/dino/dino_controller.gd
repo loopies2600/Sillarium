@@ -81,6 +81,5 @@ func change_state(new_state):
 
 func throw_flame():
 	var newFlame = flames.instance()
-	newFlame.dir = dir
 	newFlame.position = position
 	get_tree().get_root().add_child(newFlame)
