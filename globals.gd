@@ -11,7 +11,7 @@ onready var trail = preload("res://data/generic/trail.tscn")
 var player
 
 var backgrounds = true
-var mute = true
+var mute = false
 var debug = false
 
 func LoadLevel(levelName):

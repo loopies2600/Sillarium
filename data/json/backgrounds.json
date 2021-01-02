@@ -4,12 +4,12 @@
 			"file": "res://data/backgrounds/caves/caves.tscn"
 		     },
 		     
-	"1": {
+	"2": {
 			"name": "Debug Background",
 			"file": "res://data/backgrounds/debug.tscn"
 		     },
 		     
-	"2": {
+	"1": {
 			"name": "Tutorial Background",
 			"file": "res://data/backgrounds/tutorial/tutorial.tscn"
 		     },
