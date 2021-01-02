@@ -10,4 +10,5 @@ script = ExtResource( 3 )
 projectile = ExtResource( 2 )
 projectileOffset = Vector2( 56, 12 )
 hasCooldown = false
+velocityReduction = 250.0
 rotationSpeed = 4

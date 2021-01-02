@@ -3,6 +3,7 @@ extends Sprite
 export (PackedScene) var projectile
 export (Vector2) var projectileOffset = Vector2(0, 0)
 export (bool) var hasCooldown = true
+export (float) var velocityReduction = 0.0
 export (float) var cooldown = 0
 export (int) var rotationSpeed = 0
 
@@ -55,8 +56,15 @@ func setFiringDirection(delta):
 		fireAngle = lerp_angle(fireAngle, fireDirection.angle(), rotationSpeed * delta)
 	
 	if Input.is_action_pressed("shoot") and cooldownIsOver:
+		if velocityReduction != 0.0:
+			Globals.get("player").maxSpeed = 300.0 - velocityReduction
+			
 		rotationTimer = 5
 		fire(delta)
+		
+	if Input.is_action_just_released("shoot") and cooldownIsOver:
+		if velocityReduction != 0.0:
+			Globals.get("player").maxSpeed = 300.0
 	
 	if rotationTimer >= 0:
 		rotation = fireAngle

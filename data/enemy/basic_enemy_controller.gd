@@ -11,7 +11,7 @@ func _ready():
 
 func OnAreaEntered(area):
 	if area.is_in_group("PlayerProjectile"):
-		area.queue_free()
+		area.set_process(true)
 		emit_signal("DestroySelf")
 
 func OnBodyEntered(body):
