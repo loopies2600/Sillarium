@@ -5,7 +5,7 @@ onready var dust = preload("res://data/player/projectiles/dust.tscn")
 
 export (Vector2) var speed = Vector2(1500, 0)
 
-var color = Color.yellow
+var color = Color.lightyellow
 var velocity = Vector2()
 var spn = 0
 
