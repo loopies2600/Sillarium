@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://sprites/character/prota_test/prota_arms.png" type="Texture" id=1]
-[ext_resource path="res://data/enemy/dino/flame.tscn" type="PackedScene" id=2]
+[ext_resource path="res://data/projectile/flame.tscn" type="PackedScene" id=2]
 [ext_resource path="res://data/player/weapons/flamethrower.gd" type="Script" id=3]
+
 
 [node name="FlameThrower" type="Sprite"]
 texture = ExtResource( 1 )

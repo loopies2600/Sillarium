@@ -4,6 +4,8 @@ func handle_input(event):
 	if owner.is_on_floor():
 		if event.is_action_pressed("jump"):
 			emit_signal("finished", "jump")
+		if event.is_action_pressed("input_hold"):
+			emit_signal("finished", "hold")
 		
 func getInputDirection() -> int:
 	var inputDirection = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://sprites/character/prota_test/test_bullet.png" type="Texture" id=1]
-[ext_resource path="res://data/generic/projectile.gd" type="Script" id=2]
+[ext_resource path="res://data/projectile/projectile.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 3 )

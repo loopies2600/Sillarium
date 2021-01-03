@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://data/player/weapons/shotgun.tscn" type="PackedScene" id=1]
 [ext_resource path="res://data/player/states/machine.gd" type="Script" id=2]
@@ -11,10 +11,39 @@
 [ext_resource path="res://sprites/character/prota_test/prota_run_2.png" type="Texture" id=9]
 [ext_resource path="res://sprites/character/prota_test/prota_heads.png" type="Texture" id=10]
 [ext_resource path="res://sprites/character/prota_test/prota_run_4.png" type="Texture" id=11]
+[ext_resource path="res://data/player/states/hold.gd" type="Script" id=12]
 [ext_resource path="res://sprites/character/prota_test/prota_run_5.png" type="Texture" id=13]
 [ext_resource path="res://sprites/character/prota_test/prota_run_6.png" type="Texture" id=14]
 [ext_resource path="res://sprites/character/prota_test/prota_idle.png" type="Texture" id=15]
 [ext_resource path="res://streams/sfx/player/asb_fire.wav" type="AudioStream" id=16]
+[ext_resource path="res://sprites/character/prota_test/prota_hold.png" type="Texture" id=17]
+
+[sub_resource type="Animation" id=4]
+resource_name = "Hold"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 17 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/Head:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -45 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 loop = true
@@ -94,6 +123,7 @@ offset = Vector2( 0, -50 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
 playback_process_mode = 0
+anims/Hold = SubResource( 4 )
 anims/Idle = SubResource( 1 )
 anims/Walking = SubResource( 2 )
 
@@ -110,7 +140,8 @@ script = ExtResource( 5 )
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
 
-[node name="Dash" type="Node" parent="StateMachine"]
+[node name="Hold" type="Node" parent="StateMachine"]
+script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )

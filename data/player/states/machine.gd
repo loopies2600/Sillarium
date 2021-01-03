@@ -5,12 +5,12 @@ func _ready():
 		"idle": $Idle,
 		"walk": $Walk,
 		"jump": $Jump,
-		"dash": $Dash
+		"hold": $Hold
 	}
 	
 func _change_state(state_name):
 	if not _active:
 		return
-	if state_name in ["jump", "dash"]:
+	if state_name in ["jump", "hold"]:
 		states_stack.push_front(states_map[state_name])
 	._change_state(state_name)

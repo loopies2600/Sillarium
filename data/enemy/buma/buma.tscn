@@ -1,11 +1,13 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://data/enemy/buma/boomerang.tscn" type="PackedScene" id=1]
+[ext_resource path="res://data/projectile/boomerang.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites/enemy/buma/buma_legs.png" type="Texture" id=2]
 [ext_resource path="res://sprites/enemy/buma/buma_body.png" type="Texture" id=4]
 [ext_resource path="res://sprites/enemy/buma/buma_hand.png" type="Texture" id=6]
 [ext_resource path="res://data/enemy/buma/buma_controller.gd" type="Script" id=7]
 [ext_resource path="res://sprites/enemy/buma/buma_head.png" type="Texture" id=8]
+
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "Catching"
