@@ -1,6 +1,7 @@
 extends Sprite
 
 export (PackedScene) var projectile
+
 export (Vector2) var projectileOffset = Vector2(0, 0)
 export (bool) var hasCooldown = true
 export (float) var velocityReduction = 0.0

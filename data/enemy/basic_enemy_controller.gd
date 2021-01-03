@@ -11,9 +11,10 @@ func _ready():
 
 func OnAreaEntered(area):
 	if area.is_in_group("PlayerProjectile"):
-		area.set_process(true)
+		area.kill()
 		emit_signal("DestroySelf")
 
 func OnBodyEntered(body):
 	if body.is_in_group("Player") and killsPlayer:
-		body.Respawn()
+		#body.kill()
+		pass

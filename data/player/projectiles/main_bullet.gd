@@ -1,10 +1,11 @@
 extends Area2D
 
 onready var sprite = $Sprite
-onready var dust = preload("res://sprites/character/prota_test/test_dust.png")
+onready var dust = preload("res://data/player/projectiles/dust.tscn")
 
 export (Vector2) var speed = Vector2(1500, 0)
 
+var color = Color.yellow
 var velocity = Vector2()
 var spn = 0
 
@@ -18,23 +19,15 @@ func _physics_process(delta):
 	Globals.CreateTrail(0.2, sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, z_as_relative)
 	position += velocity * delta
 
-func _process(delta):
-	deathStuff(delta)
-	
 func OnBodyEntered(body):
-	set_process(true)
+	kill()
 
 func OnScreenExited():
 	queue_free()
 	
-func deathStuff(delta):
-	set_physics_process(false)
-	sprite.texture = dust
-	sprite.region_enabled = true
-	sprite.region_rect = Rect2(32 * floor(spn), 0, 32, 32)
-	sprite.scale += Vector2(delta * 4, delta * 4)
-	spn += 0.5
-	modulate.a -= delta * 4
-	
-	if modulate.a < 0:
-		queue_free()
+func kill():
+	var newDust = dust.instance()
+	get_tree().get_root().add_child(newDust)
+	newDust.modulate = color
+	newDust.position = position
+	queue_free()

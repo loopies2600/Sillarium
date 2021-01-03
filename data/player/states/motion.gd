@@ -7,7 +7,6 @@ func handle_input(event):
 		
 func getInputDirection() -> int:
 	var inputDirection = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	print(inputDirection)
 	return inputDirection
 	
 func move(maxVel, direction):
