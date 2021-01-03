@@ -1,11 +1,11 @@
 extends KinematicBody2D
 
-export (float) var maxSpeed = 300.0
+export (float) var maxSpeed = 400.0
 export (float) var acceleration = 25.0
-export (float) var friction = 20.0
-export (float) var jumpStrength = 500.0
+export (float) var friction = 5.0
+export (float) var jumpStrength = 600.0
 export (float) var dashStrength = 1000.0
-export (float) var gravity = 15.0
+export (float) var gravity = 20.0
 
 var velocity := Vector2()
 var groundAngle = -1
