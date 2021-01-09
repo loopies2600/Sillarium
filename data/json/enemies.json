@@ -1,0 +1,31 @@
+{
+	"0": {
+			"name": "Buma",
+			"file": "res://data/enemy/buma/buma.tscn"
+		     },
+		     
+	"1": {
+			"name": "Lebipi",
+			"file": "res://data/enemy/lebipi/lebipi.tscn"
+		     },
+		     
+	"2": {
+			"name": "Shell-Shock",
+			"file": "res://data/enemy/caranon/caranon.tscn"
+		     },
+		
+	"3": {
+			"name": "Pinata Man",
+			"file": "res://data/enemy/pinataman/pinata_man.tscn"
+			 },
+			 
+	"4": {
+			"name": "Dino",
+			"file": "res://data/enemy/dino/dino.tscn"
+			 },
+			 
+	"5": {
+			"name": "Crab",
+			"file": "res://data/enemy/crab/crab.tscn"
+			 }
+}

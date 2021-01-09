@@ -9,3 +9,5 @@ func handle_input(event):
 		
 func update(delta):
 	cancelVelocity()
+	
+	owner.weapon.setFiringDirection(delta)

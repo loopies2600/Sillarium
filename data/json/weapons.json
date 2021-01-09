@@ -1,0 +1,11 @@
+{
+	"0": {
+			"name": "Shotgun",
+			"file": "res://data/player/weapons/shotgun.tscn"
+		     },
+		     
+	"1": {
+			"name": "Flamethrower",
+			"file": "res://data/player/weapons/flamethrower.tscn"
+		     }
+}

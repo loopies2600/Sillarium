@@ -8,3 +8,5 @@ func update(delta):
 	
 	if not getInputDirection():
 		emit_signal("finished", "idle")
+		
+	owner.weapon.setFiringDirection(delta)

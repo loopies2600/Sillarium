@@ -6,7 +6,6 @@
 [ext_resource path="res://data/projectile/projectile.tscn" type="PackedScene" id=4]
 [ext_resource path="res://sprites/enemy/crab/spike.png" type="Texture" id=6]
 
-
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
 region = Rect2( 121, 18, 81, 73 )

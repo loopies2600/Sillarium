@@ -11,7 +11,7 @@ var sizeLimit = 3
 var timeMultiplier = 0.05
 
 var velocity = Vector2(initialSpeed, 0.0)
-var velocityDecrease = Vector2(speedDecrease, 2.0)
+var velocityDecrease = Vector2(speedDecrease, 1.0)
 
 func _ready():
 	fire.connect("body_entered", self, "OnBodyEntered")

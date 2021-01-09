@@ -1,6 +1,6 @@
 extends AnimatedSprite
 
-var substract = 0.1
+var substract = 0.125
 
 func _ready():
 	play()
@@ -9,7 +9,6 @@ func _ready():
 	
 func _frameChange():
 	modulate.a -= substract
-	scale += Vector2(substract, substract)
 	
 func _animEnd():
 	queue_free()
