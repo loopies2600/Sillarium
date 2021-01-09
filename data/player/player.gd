@@ -54,11 +54,6 @@ func animspeedAsVelocity():
 		getNode("animator").playback_speed = 1
 	
 func moveAndSnap(delta):
-	if is_on_floor():
-		weapon.aimMode = weapon.aimModes.GROUND
-	else:
-		weapon.aimMode = weapon.aimModes.AIR
-		
 	gravity = (2 * jumpStrength) / pow(timeJumpApex, 2)
 	jumpForce = gravity * timeJumpApex
 	

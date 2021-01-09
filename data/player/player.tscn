@@ -219,17 +219,19 @@ collision_mask = 60
 script = ExtResource( 3 )
 
 [node name="Graphics" type="Node2D" parent="."]
+position = Vector2( 0, 14 )
+scale = Vector2( 1.25, 0.75 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
 offset = Vector2( 0, 6 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 texture = ExtResource( 10 )
-offset = Vector2( 0, -50 )
+offset = Vector2( 0, -35 )
 
 [node name="ArmsPosition" type="Position2D" parent="Graphics/Body"]
-position = Vector2( 0, -24 )
+position = Vector2( 0, -8 )
 scale = Vector2( 0.8, 1.33333 )
 __meta__ = {
 "_gizmo_extents_": 32.0

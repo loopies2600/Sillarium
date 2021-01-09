@@ -1,16 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://data/ui/text_box/text_box_controller.gd" type="Script" id=1]
 [ext_resource path="res://sprites/debug/text_box_background.png" type="Texture" id=2]
 [ext_resource path="res://sprites/debug/action_alien.png" type="Texture" id=3]
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=4]
-
-
-
-
-
-
-
+[ext_resource path="res://data/ui/text_box/text.gd" type="Script" id=6]
 
 [node name="TextBox" type="Node2D"]
 script = ExtResource( 1 )
@@ -32,8 +26,10 @@ margin_top = 424.0
 margin_right = 1008.0
 margin_bottom = 592.0
 custom_fonts/normal_font = ExtResource( 4 )
-text = "SERA POSIBLE HACER BUEN TEXTO?"
+visible_characters = 0
+percent_visible = 0.0
 scroll_active = false
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

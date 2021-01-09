@@ -8,8 +8,6 @@ export (float) var velocityReduction = 0.0
 export (float) var cooldown = 0
 
 var armsPos
-enum aimModes {GROUND, AIR}
-var aimMode = aimModes.GROUND
 
 var rotationTimer = 5.0
 var currentCooldown = cooldown
@@ -59,21 +57,17 @@ func setFiringDirection(delta):
 	rotationTimer -= delta
 	var fireDirection = Vector2()
 	
-	var LLEFT = Input.get_action_strength("look_left")
-	var LRIGHT = Input.get_action_strength("look_right")
-	var LUP = Input.get_action_strength("look_up")
-	var LDOWN = Input.get_action_strength("look_down")
+	var ALEFT = Input.get_action_strength("aim_left")
+	var ARIGHT = Input.get_action_strength("aim_right")
+	var AUP = Input.get_action_strength("aim_up")
+	var ADOWN = Input.get_action_strength("aim_down")
 	
-	match aimMode:
-		aimModes.GROUND:
-			fireDirection = Vector2(LRIGHT - LLEFT, -LUP).normalized()
-		aimModes.AIR:
-			fireDirection = Vector2(LRIGHT - LLEFT, LDOWN - LUP).normalized()
+	fireDirection = Vector2(ARIGHT - ALEFT, ADOWN - AUP).normalized()
 	
-	if LLEFT || LRIGHT || LUP || LDOWN:
+	if ALEFT || ARIGHT || AUP || ADOWN:
 		rotationTimer = 5
 		fireAngle = fireDirection.angle()
-	
+		
 	if rotationTimer >= 0:
 		rotation = fireAngle
 	else:
