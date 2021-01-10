@@ -1,22 +1,90 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://sprites/ui/hud_background.png" type="Texture" id=1]
+[ext_resource path="res://data/ui/hud/hud.gd" type="Script" id=2]
+[ext_resource path="res://sprites/ui/player_icon.png" type="Texture" id=3]
+[ext_resource path="res://sprites/ui/lifes_x.png" type="Texture" id=4]
+[ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://sprites/ui/weapon.png" type="Texture" id=6]
 
-[node name="Margin" type="MarginContainer"]
+[node name="HUD" type="Control"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = -520.0
+margin_bottom = 96.0
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Background" type="TextureRect" parent="."]
-modulate = Color( 1, 0.328125, 0, 1 )
+modulate = Color( 1, 0.694118, 0.262745, 1 )
 margin_right = 1024.0
-margin_bottom = 80.0
+margin_bottom = 96.0
 texture = ExtResource( 1 )
 stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 1024.0
-margin_bottom = 80.0
+[node name="HUDContainer" type="MarginContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUDContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 184.0
+margin_bottom = 92.0
+
+[node name="Columns" type="VBoxContainer" parent="HUDContainer/HBoxContainer"]
+margin_right = 88.0
+margin_bottom = 88.0
+
+[node name="Bars" type="HBoxContainer" parent="HUDContainer/HBoxContainer/Columns"]
+margin_right = 88.0
+margin_bottom = 88.0
+
+[node name="BarsContainer" type="MarginContainer" parent="HUDContainer/HBoxContainer/Columns/Bars"]
+margin_right = 88.0
+margin_bottom = 88.0
+
+[node name="PlayerIcon" type="TextureRect" parent="HUDContainer/HBoxContainer/Columns/Bars/BarsContainer"]
+margin_right = 88.0
+margin_bottom = 88.0
+texture = ExtResource( 3 )
+stretch_mode = 4
+
+[node name="LivesX" type="TextureRect" parent="HUDContainer/HBoxContainer/Columns/Bars/BarsContainer/PlayerIcon"]
+margin_right = 88.0
+margin_bottom = 88.0
+texture = ExtResource( 4 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lives" type="Label" parent="HUDContainer/HBoxContainer/Columns/Bars/BarsContainer/PlayerIcon"]
+margin_right = 33.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 5 )
+text = "0"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rows" type="HBoxContainer" parent="HUDContainer/HBoxContainer"]
+margin_left = 92.0
+margin_right = 180.0
+margin_bottom = 88.0
+
+[node name="TextureRect" type="TextureRect" parent="HUDContainer/HBoxContainer/Rows"]
+margin_right = 88.0
+margin_bottom = 88.0
+texture = ExtResource( 6 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/prota.png-4323d5626264d78f9dd3992436cefcd4.stex"
+path="res://.import/lifes_x.png-4889f71b3ed471b651655b71699e7da4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player/prota/prota.png"
-dest_files=[ "res://.import/prota.png-4323d5626264d78f9dd3992436cefcd4.stex" ]
+source_file="res://sprites/ui/lifes_x.png"
+dest_files=[ "res://.import/lifes_x.png-4889f71b3ed471b651655b71699e7da4.stex" ]
 
 [params]
 
