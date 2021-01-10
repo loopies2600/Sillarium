@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://sprites/character/prota_test/player_one.png" type="Texture" id=1]
 [ext_resource path="res://data/player/states/machine.gd" type="Script" id=2]
@@ -6,41 +6,152 @@
 [ext_resource path="res://data/player/states/idle.gd" type="Script" id=4]
 [ext_resource path="res://data/player/states/walk.gd" type="Script" id=5]
 [ext_resource path="res://data/player/states/jump.gd" type="Script" id=6]
-[ext_resource path="res://sprites/player/noah/noah_1s.png" type="Texture" id=10]
+[ext_resource path="res://sprites/player/noah/noah_0s.png" type="Texture" id=7]
+[ext_resource path="res://sprites/player/noah/noah_2s.png" type="Texture" id=8]
 [ext_resource path="res://data/player/states/hold.gd" type="Script" id=12]
 [ext_resource path="res://streams/sfx/player/asb_fire.wav" type="AudioStream" id=16]
 [ext_resource path="res://data/player/player_number.gd" type="Script" id=18]
 
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 10 )
-region = Rect2( 86, 18, 38, 51 )
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 7 )
+region = Rect2( 118, 18, 38, 51 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 10 )
-region = Rect2( 211, 18, 84, 58 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 10 )
-region = Rect2( 143, 16, 21, 32 )
+atlas = ExtResource( 7 )
+region = Rect2( 307, 18, 84, 58 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 10 )
-region = Rect2( 171, 12, 21, 35 )
+atlas = ExtResource( 7 )
+region = Rect2( 79, 16, 21, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 10 )
-region = Rect2( 19, 12, 55, 74 )
+atlas = ExtResource( 7 )
+region = Rect2( 267, 12, 21, 35 )
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 8 )
+region = Rect2( 278, 13, 40, 79 )
+
+[sub_resource type="Animation" id=6]
 resource_name = "Hold"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Legs:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 182, 15, 76, 65 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/Legs:texture:atlas")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 4 ) ]
+}
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=7]
 resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Legs:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 19, 12, 55, 74 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/Legs:texture:atlas")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=8]
 resource_name = "Walking"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Legs:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 278, 13, 40, 79 ), Rect2( 9, 11, 92, 73 ), Rect2( 120, 11, 63, 78 ), Rect2( 204, 18, 60, 73 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/Legs:texture:atlas")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 30, 72 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -50,10 +161,9 @@ collision_mask = 60
 script = ExtResource( 3 )
 
 [node name="Graphics" type="Node2D" parent="."]
-scale = Vector2( 1, 1 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
-texture = SubResource( 10 )
+texture = SubResource( 1 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 4, -44 )
@@ -62,16 +172,16 @@ texture = SubResource( 2 )
 [node name="RightArm" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 16, 4 )
 z_index = -1
-texture = SubResource( 9 )
+texture = SubResource( 3 )
 
 [node name="LeftArm" type="Sprite" parent="Graphics/Body"]
 position = Vector2( -19, 0 )
-texture = SubResource( 3 )
+texture = SubResource( 4 )
 
 [node name="Legs" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 4, 48 )
 z_index = -1
-texture = SubResource( 4 )
+texture = SubResource( 5 )
 
 [node name="ArmsPosition" type="Position2D" parent="Graphics/Body"]
 position = Vector2( 24, 8 )
@@ -87,9 +197,9 @@ script = ExtResource( 18 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
 playback_process_mode = 0
-anims/Hold = SubResource( 11 )
-anims/Idle = SubResource( 12 )
-anims/Walking = SubResource( 13 )
+anims/Hold = SubResource( 6 )
+anims/Idle = SubResource( 7 )
+anims/Walking = SubResource( 8 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -109,7 +219,7 @@ script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 12 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
