@@ -36,7 +36,7 @@ font_data = ExtResource( 2 )
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
 backgroundID = 1
-musicID = 1
+musicID = 2
 
 [node name="TutorialTiles" type="TileMap" parent="." groups=[
 "Environment",

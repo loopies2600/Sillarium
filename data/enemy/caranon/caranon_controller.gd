@@ -8,7 +8,7 @@ onready var graphics = $Area2D/Graphics
 
 # Exported variables
 export (PackedScene) var projectile
-export (float) var speed = 50
+export (float) var speed = 350
 export (float) var firingTime = 3
 export (float) var gravityStrength = 1000
 
@@ -16,6 +16,7 @@ export (float) var gravityStrength = 1000
 var velocity = Vector2()
 var moving = true
 var touchingSurface = false
+var sRotation = 0
 
 func _ready():
 	# Connecting nodes
@@ -29,6 +30,7 @@ func _physics_process(delta):
 	HandleMovement(delta)
 
 func HandleMovement(delta):
+	rotation = lerp_angle(rotation, deg2rad(sRotation), 0.125)
 	
 	if is_on_floor():
 		ClingToFloor()
@@ -39,9 +41,10 @@ func HandleMovement(delta):
 		velocity.y = gravityStrength
 	
 	if moving:
-		velocity = move_and_slide(velocity, Vector2.UP, false, 32, PI)
+		velocity = move_and_slide(velocity, Vector2.UP)
 
 func ClingToFloor():
+	sRotation = 0
 	touchingSurface = true
 	velocity = Vector2(speed, gravityStrength)
 
@@ -50,20 +53,20 @@ func ClingToWall():
 	# Get space state
 	var spaceState = get_world_2d().direct_space_state
 	# Check if wall is to the right
-	var result = spaceState.intersect_ray(position, position + Vector2(25, 0), [self], collision_mask, true, false)
+	var result = spaceState.intersect_ray(position, position + Vector2(48, 0), [self], collision_mask, true, false)
 	if result:
-		# Wall to the right
+		sRotation = 270
 		velocity = Vector2(gravityStrength, -speed)
 		if is_on_ceiling():
 			ClingToCeiling()
 	else:
-		# Wall to the left
-		velocity.y = Vector2(-gravityStrength, speed)
+		sRotation = 90
+		velocity = Vector2(-gravityStrength, speed)
 		if is_on_floor():
 			ClingToFloor()
 
 func ClingToCeiling():
-	# Ceiling
+	sRotation = 180
 	touchingSurface = true
 	velocity = Vector2(-speed, -gravityStrength)
 

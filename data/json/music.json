@@ -7,5 +7,10 @@
 	"1": {
 		"name": "Tutorial / Data",
 		"file": "res://streams/music/bgm_tutorial.ogg"
-		}
+		},
+		
+	"2": {
+		"name": "Character Select / Configuration",
+		"file": "res://streams/music/bgm_select.ogg"
+	}
 }

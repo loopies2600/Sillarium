@@ -3,6 +3,8 @@ extends Sprite
 export (PackedScene) var projectile
 
 export (Vector2) var projectileOffset = Vector2(0, 0)
+export (Vector2) var muzzleOffset = Vector2(0, 0)
+
 export (bool) var hasCooldown = true
 export (float) var velocityReduction = 0.0
 export (float) var cooldown = 0
@@ -14,6 +16,8 @@ var currentCooldown = cooldown
 var cooldownIsOver = false
 var fireAngle = 0
 
+onready var muzzleFlash = preload("res://data/player/projectiles/muzzle_flash.tscn")
+
 func _ready():
 	if !hasCooldown:
 		cooldown = 0
@@ -21,7 +25,7 @@ func _ready():
 	
 func _process(delta):
 	global_position = armsPos.global_position
-	offset.x = lerp(offset.x, 0, delta * 4)
+	offset.x = lerp(offset.x, 0, delta * 8)
 	
 	if Input.is_action_pressed("shoot") and cooldownIsOver:
 		if velocityReduction != 0.0:
@@ -40,11 +44,15 @@ func _process(delta):
 func fire(delta):
 	offset.x = lerp(offset.x, projectileOffset.y, delta * 8)
 	var newProjectile = projectile.instance()
-	newProjectile.global_position = global_position + projectileOffset.rotated(fireAngle) + Vector2(randi() % 9, randi() % 9 -8)
+	newProjectile.global_position = global_position + projectileOffset.rotated(fireAngle)
 	newProjectile.global_rotation = fireAngle
-	newProjectile.z_index = z_index + 1
+	newProjectile.z_index = z_index
 	get_tree().get_root().add_child(newProjectile)
 	currentCooldown = cooldown
+	
+	var newFlash = muzzleFlash.instance()
+	newFlash.global_position = global_position + muzzleOffset.rotated(fireAngle)
+	get_tree().get_root().add_child(newFlash)
 	
 func _checkCooldown(delta):
 	if currentCooldown >= 0:
@@ -71,5 +79,5 @@ func setFiringDirection(delta):
 	if rotationTimer >= 0:
 		rotation = fireAngle
 	else:
-		rotation = lerp_angle(rotation, 0, delta * 4)
+		rotation = lerp_angle(rotation, 0, delta * 8)
 		fireAngle = rotation

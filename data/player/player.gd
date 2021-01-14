@@ -100,6 +100,6 @@ func reinitializeVars():
 	maxSpeed = 400.0
 	acceleration = 25.0
 	friction = acceleration
-	jumpStrength = 600.0
+	jumpStrength = 150.0
 	dashStrength = 1000.0
 	gravity = 20.0

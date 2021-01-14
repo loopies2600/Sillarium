@@ -22,8 +22,8 @@ var _settings = {
 			"aim_right": KEY_RIGHT,
 			"shoot": KEY_SHIFT,
 			"dash": KEY_SHIFT,
-			"input_lock": KEY_C,
-			"debug_screen": KEY_L
+			"input_hold": KEY_C,
+			"toggle_debug": KEY_L
 	},
 	"audio": {
 		"mute_audio": true

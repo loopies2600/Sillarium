@@ -8,6 +8,7 @@
 texture = ExtResource( 1 )
 script = ExtResource( 3 )
 projectile = ExtResource( 2 )
-projectileOffset = Vector2( 56, 12 )
+projectileOffset = Vector2( 56, 6 )
+muzzleOffset = Vector2( 64, 6 )
 hasCooldown = false
 velocityReduction = 250.0

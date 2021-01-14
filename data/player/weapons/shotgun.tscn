@@ -13,5 +13,6 @@ texture = SubResource( 1 )
 region_rect = Rect2( 304, 10, 97, 42 )
 script = ExtResource( 3 )
 projectile = ExtResource( 2 )
-projectileOffset = Vector2( 72, 0 )
+projectileOffset = Vector2( 64, -12 )
+muzzleOffset = Vector2( 48, -12 )
 cooldown = 0.4

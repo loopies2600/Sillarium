@@ -10,5 +10,6 @@ light_mode = 1
 [node name="Trail" type="Sprite"]
 show_behind_parent = true
 material = SubResource( 1 )
+z_index = -4096
 texture = ExtResource( 2 )
 script = ExtResource( 1 )

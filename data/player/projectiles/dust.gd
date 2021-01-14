@@ -8,6 +8,7 @@ func _ready():
 	connect("frame_changed", self, "_frameChange")
 	
 func _frameChange():
+	scale += Vector2(substract, substract)
 	modulate.a -= substract
 	
 func _animEnd():
