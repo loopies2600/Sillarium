@@ -6,8 +6,11 @@ export (Vector2) var projectileOffset = Vector2(0, 0)
 export (Vector2) var muzzleOffset = Vector2(0, 0)
 
 export (bool) var hasCooldown = true
+export (bool) var displayFlash = false
+
 export (float) var velocityReduction = 0.0
-export (float) var cooldown = 0
+export (float) var cooldown = 0.0
+export (float) var recoil = 0.0
 
 var armsPos
 
@@ -42,6 +45,11 @@ func _process(delta):
 		_checkCooldown(delta)
 	
 func fire(delta):
+	if displayFlash:
+		var newFlash = muzzleFlash.instance()
+		newFlash.global_position = global_position + muzzleOffset.rotated(fireAngle)
+		get_tree().get_root().add_child(newFlash)
+		
 	offset.x = lerp(offset.x, projectileOffset.y, delta * 8)
 	var newProjectile = projectile.instance()
 	newProjectile.global_position = global_position + projectileOffset.rotated(fireAngle)
@@ -49,10 +57,9 @@ func fire(delta):
 	newProjectile.z_index = z_index
 	get_tree().get_root().add_child(newProjectile)
 	currentCooldown = cooldown
-	
-	var newFlash = muzzleFlash.instance()
-	newFlash.global_position = global_position + muzzleOffset.rotated(fireAngle)
-	get_tree().get_root().add_child(newFlash)
+		
+	if recoil > 0.0:
+		Globals.player.velocity -= Vector2(recoil, 0.0).rotated(fireAngle)
 	
 func _checkCooldown(delta):
 	if currentCooldown >= 0:

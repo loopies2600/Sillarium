@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export (float) var maxSpeed = 400.0
-export (float) var acceleration = maxSpeed / 5.0
+export (float) var acceleration = maxSpeed / 2.5
 export (float) var friction = acceleration
 export (float) var jumpStrength = 150.0
 export (float) var timeJumpApex = 0.4
@@ -98,7 +98,7 @@ func switchWeapon(dir):
 		
 func reinitializeVars():
 	maxSpeed = 400.0
-	acceleration = 25.0
+	acceleration = maxSpeed / 2.5
 	friction = acceleration
 	jumpStrength = 150.0
 	dashStrength = 1000.0

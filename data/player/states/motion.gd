@@ -1,5 +1,8 @@
 extends State
 
+func emter():
+	connect("recoilPlayer", self, "_doRecoil")
+	
 func handle_input(event):
 	if owner.is_on_floor():
 		if event.is_action_pressed("jump"):
@@ -17,7 +20,7 @@ func move(maxVel, direction):
 			owner.velocity.x = min(owner.velocity.x + owner.acceleration, maxVel)
 		-1.0:
 			owner.velocity.x = max(owner.velocity.x - owner.acceleration, -maxVel)
-	
+			
 func cancelVelocity():
 	match sign(owner.velocity.x):
 		1.0:

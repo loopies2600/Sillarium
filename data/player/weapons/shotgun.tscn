@@ -15,4 +15,6 @@ script = ExtResource( 3 )
 projectile = ExtResource( 2 )
 projectileOffset = Vector2( 64, -12 )
 muzzleOffset = Vector2( 48, -12 )
-cooldown = 0.4
+displayFlash = true
+cooldown = 0.7
+recoil = 800.0
