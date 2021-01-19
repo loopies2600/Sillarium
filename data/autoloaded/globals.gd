@@ -10,15 +10,10 @@ onready var trail = preload("res://data/generic/trail.tscn")
 
 var player
 
-var backgrounds
-var mute
-var debug
+onready var backgrounds = Settings.getSetting("renderer", "display_backgrounds")
+onready var mute = Settings.getSetting("audio", "mute_audio")
+onready var debug = Settings.getSetting("general", "debug_mode")
 
-func _ready():
-	backgrounds = Settings.getSetting("renderer", "display_backgrounds")
-	mute = Settings.getSetting("audio", "mute_audio")
-	debug = Settings.getSetting("general", "debug_mode")
-	
 func LoadLevel(levelName):
 	match levelName:
 		"SalaGraciosa":

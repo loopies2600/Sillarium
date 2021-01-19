@@ -35,7 +35,8 @@ func _process(delta):
 			Globals.get("player").maxSpeed = 300.0 - velocityReduction
 			
 		rotationTimer = 5
-		fire(delta)
+		#fire(delta)
+		objTest()
 		
 	if Input.is_action_just_released("shoot") and cooldownIsOver:
 		if velocityReduction != 0.0:
@@ -43,6 +44,9 @@ func _process(delta):
 		
 	if hasCooldown:
 		_checkCooldown(delta)
+	
+func objTest():
+	Objects.spawn(11, global_position, Vector2(600, 0).rotated(fireAngle))
 	
 func fire(delta):
 	if displayFlash:

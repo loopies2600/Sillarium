@@ -1,0 +1,101 @@
+{
+	"0": {
+			"name": "Buma",
+			"file": "res://data/enemy/buma/buma.tscn"
+		     },
+		     
+	"1": {
+			"name": "Lebipi",
+			"file": "res://data/enemy/lebipi/lebipi.tscn"
+		     },
+		     
+	"2": {
+			"name": "Shell-Shooter",
+			"file": "res://data/enemy/caranon/caranon.tscn"
+		     },
+		
+	"3": {
+			"name": "Pinata Man",
+			"file": "res://data/enemy/pinataman/pinata_man.tscn"
+			 },
+			 
+	"4": {
+			"name": "Dino",
+			"file": "res://data/enemy/dino/dino.tscn"
+			 },
+			 
+	"5": {
+			"name": "Crab",
+			"file": "res://data/enemy/crab/crab.tscn"
+			 },
+
+	"6": {
+			"name": "Basic Entryway",
+			"file": "res://data/generic/basic_entryway.tscn"
+		     },
+		     
+	"7": {
+			"name": "Trail",
+			"file": "res://data/generic/trail.tscn"
+		     },
+		     
+	"8": {
+			"name": "Death Area",
+			"file": "res://data/hazards/killing_area.tscn"
+		     },
+		
+	"9": {
+			"name": "Test Fire",
+			"file": "res://data/hazards/test_fire.tscn"
+			 },
+			 
+	"10": {
+			"name": "Player (Noah)",
+			"file": "res://data/player/player.tscn"
+			 },
+			 
+	"11": {
+			"name": "Boomerang",
+			"file": "res://data/projectile/boomerang.tscn"
+			 },
+	
+	"12": {
+			"name": "Fire",
+			"file": "res://data/projectile/boomerang.tscn"
+			 },
+			 
+	"13": {
+			"name": "Base Projectile",
+			"file": "res://data/projectile/projectile.tscn"
+			 },
+			 
+	"14": {
+			"name": "Dynamic Text Controller",
+			"file": "res://data/ui/hud/dynatext.tscn"
+			 },
+			 
+	"15": {
+			"name": "Dynamic Character",
+			"file": "res://data/ui/hud/dynachar.tscn"
+			 },
+			 
+	"16": {
+			"name": "Main HUD",
+			"file": "res://data/ui/hud/hud.tscn"
+			 },
+			 
+	"17": {
+			"name": "Text Box",
+			"file": "res://data/ui/text_box/text_box.tscn"
+			 },
+			 
+	"18": {
+			"name": "Debug Overlay",
+			"file": "res://debug/debug_overlay.tscn"
+			 },
+			 
+	"19": {
+			"name": "Sound Test",
+			"file": "res://debug/sound_test.tscn"
+			}
+}

@@ -33,8 +33,9 @@ config/icon="res://sprites/sillarium_s.png"
 
 [autoload]
 
-Settings="*res://config/settings.gd"
-Globals="*res://globals.gd"
+Settings="*res://data/autoloaded/settings.gd"
+Globals="*res://data/autoloaded/globals.gd"
+Objects="*res://data/autoloaded/objects.gd"
 
 [debug]
 

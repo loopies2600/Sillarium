@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://data/ui/hud/dynatext_controller.gd" type="Script" id=1]
+
+[node name="DynaText" type="CanvasLayer"]
+script = ExtResource( 1 )
+stringu = "TEST STRING_UNDERSCORE MAKES_NEW LINES_HOLA MAMI_SIRVE PERFECTO_COMO ESTAS"

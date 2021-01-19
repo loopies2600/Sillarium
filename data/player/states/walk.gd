@@ -6,6 +6,7 @@ func enter():
 func update(delta):
 	move(owner.maxSpeed, getInputDirection())
 	
+	
 	if not getInputDirection():
 		emit_signal("finished", "idle")
 		
