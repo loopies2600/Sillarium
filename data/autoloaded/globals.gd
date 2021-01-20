@@ -17,9 +17,9 @@ onready var debug = Settings.getSetting("general", "debug_mode")
 func LoadLevel(levelName):
 	match levelName:
 		"SalaGraciosa":
-			get_tree().change_scene("res://data/levels/test/puto_gordo_homosexual.tscn")
+			var _unused = get_tree().change_scene("res://data/levels/test/puto_gordo_homosexual.tscn")
 		"TestLevel":
-			get_tree().change_scene("res://data/levels/test/test_scene.tscn")
+			var _unused = get_tree().change_scene("res://data/levels/test/test_scene.tscn")
 
 	
 func CreateTrail(fds, tex, pos, rot, scl, z = 0):

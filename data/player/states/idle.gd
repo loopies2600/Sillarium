@@ -3,7 +3,7 @@ extends "motion.gd"
 func enter():
 	owner.animator.play("Idle")
 	
-func update(delta):
+func update(_delta):
 	cancelVelocity()
 	
 	if getInputDirection():

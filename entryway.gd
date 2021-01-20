@@ -4,7 +4,7 @@ export (bool) var enabled = true
 export (String) var levelToLoad = "SalaGraciosa"
 
 func _ready():
-	connect("body_entered", self, "OnPlayerEnter")
+	var _unused = connect("body_entered", self, "OnPlayerEnter")
 
 func ChangeStatus(cond):
 	call_deferred("ChangeHitbox", cond)
@@ -12,5 +12,5 @@ func ChangeStatus(cond):
 func ChangeHitbox(cond):
 	$CollisionShape2D.disabled = cond
 
-func OnPlayerEnter(body):
+func OnPlayerEnter(_body):
 	Globals.LoadLevel(levelToLoad)

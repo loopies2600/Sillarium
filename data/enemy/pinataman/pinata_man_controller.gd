@@ -8,7 +8,7 @@ export (PackedScene) var particle
 var velocity = Vector2()
 
 func _ready():
-	connect("DestroySelf", self, "OnDestruction")
+	var _unused = connect("DestroySelf", self, "OnDestruction")
 	animPlayer.play("Swinging")
 
 func DisableHitbox():

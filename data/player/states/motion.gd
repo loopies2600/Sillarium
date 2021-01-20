@@ -1,7 +1,7 @@
 extends State
 
 func emter():
-	connect("recoilPlayer", self, "_doRecoil")
+	var _unused = connect("recoilPlayer", self, "_doRecoil")
 	
 func handle_input(event):
 	if owner.is_on_floor():

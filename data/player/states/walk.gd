@@ -3,7 +3,7 @@ extends "motion.gd"
 func enter():
 	owner.animator.play("Walking")
 	
-func update(delta):
+func update(_delta):
 	move(owner.maxSpeed, getInputDirection())
 	
 	if not getInputDirection():

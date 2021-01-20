@@ -9,11 +9,11 @@ func enter():
 func exit():
 	return
 
-func handle_input(event):
+func handle_input(_event):
 	return
 
-func update(delta):
+func update(_delta):
 	return
 
-func _on_animation_finished(anim_name):
+func _on_animation_finished(_anim_name):
 	return

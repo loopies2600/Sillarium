@@ -96,7 +96,7 @@ func switchWeapon(dir):
 	loadWeapon(weaponIndex)
 	reinitializeVars()
 		
-func handleWeaponInput(delta):
+func handleWeaponInput(_delta):
 	var weaponDirection = Vector2(
 	int(Input.is_action_pressed("aim_right")) - int(Input.is_action_pressed("aim_left")),
 	int(Input.is_action_pressed("aim_down")) - int(Input.is_action_pressed("aim_up")))
@@ -114,6 +114,7 @@ func handleWeaponInput(delta):
 
 		camera.offset_h = cameraOffset * weaponDirection.x
 		camera.offset_v = cameraOffset * weaponDirection.y
+
 		# Espeja el sprite del jugador para que no dispare hacia atras
 		if weaponDirection.x == -1:
 			FlipGraphics(true)
@@ -143,7 +144,7 @@ func handleWeaponInput(delta):
 	weapon.global_rotation = currentGunSpriteRotation
 	weapon.global_rotation = lerp_angle(currentGunSpriteRotation, weaponRotation, aimWeight)
 	weapon.ChangeSprite(body.flip_h)
-	
+
 func FlipGraphics(flip):
 	head.flip_h = flip
 	body.flip_h = flip

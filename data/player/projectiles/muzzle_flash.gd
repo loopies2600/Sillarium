@@ -4,9 +4,9 @@ var add = 0.4
 
 func _ready():
 	play()
-	connect("animation_finished", self, "_animEnd")
+	var _unused = connect("animation_finished", self, "_animEnd")
 	
-func _process(delta):
+func _process(_delta):
 	scale += Vector2(add, add)
 	
 func _animEnd():

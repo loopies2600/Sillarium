@@ -2,7 +2,7 @@ extends Sprite
 
 var fadeSpeed = 0.1
 
-func _process(delta):
+func _process(_delta):
 	modulate.a -= fadeSpeed
 	modulate.b += fadeSpeed * 4
 	

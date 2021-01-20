@@ -6,8 +6,8 @@ export (float) var health = 50
 export (bool) var killsPlayer = true
 
 func _ready():
-	connect("area_entered", self, "OnAreaEntered")
-	connect("body_entered", self,"OnBodyEntered")
+	var _unused = connect("area_entered", self, "OnAreaEntered")
+	_unused = connect("body_entered", self,"OnBodyEntered")
 
 func OnAreaEntered(area):
 	if area.is_in_group("PlayerProjectile"):

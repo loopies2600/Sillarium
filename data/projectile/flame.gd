@@ -15,7 +15,7 @@ var velocityDecrease = Vector2(speedDecrease, 0.0)
 
 func _ready():
 	fire.connect("body_entered", self, "OnBodyEntered")
-	$Fire/VisibilityNotifier2D.connect("screen_exited", self, "OnScreenExited")
+	var _unused = $Fire/VisibilityNotifier2D.connect("screen_exited", self, "OnScreenExited")
 	fire.rotation -= rotation
 	scale = Vector2.ZERO
 	
@@ -30,7 +30,7 @@ func _physics_process(delta):
 		
 	fire.position += velocity * delta
 	
-func OnBodyEntered(body):
+func OnBodyEntered(_body):
 	kill()
 
 func OnScreenExited():

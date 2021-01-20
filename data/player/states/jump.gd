@@ -5,7 +5,7 @@ func enter():
 	owner.velocity.y = 0.0
 	owner.velocity.y -= owner.jumpForce
 	
-func update(delta):
+func update(_delta):
 	if getInputDirection():
 		move(owner.maxSpeed, getInputDirection())
 	else:
