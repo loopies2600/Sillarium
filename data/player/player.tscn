@@ -12,28 +12,27 @@
 [ext_resource path="res://streams/sfx/player/asb_fire.wav" type="AudioStream" id=16]
 [ext_resource path="res://data/player/player_number.gd" type="Script" id=18]
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 7 )
 region = Rect2( 394, 14, 74, 61 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 7 )
 region = Rect2( 307, 18, 84, 58 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 7 )
 region = Rect2( 474, 20, 76, 60 )
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 7 )
 region = Rect2( 118, 18, 38, 51 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 8 )
 region = Rect2( 278, 13, 40, 79 )
 
-[sub_resource type="Animation" id=4]
-resource_name = "Hold"
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Legs:texture:region")
 tracks/0/interp = 1
@@ -71,8 +70,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 4 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Idle"
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Legs:texture:region")
 tracks/0/interp = 1
@@ -110,8 +108,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Walking"
+[sub_resource type="Animation" id=8]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -151,7 +148,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 30, 72 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -159,12 +156,12 @@ extents = Vector2( 30, 72 )
 ]]
 collision_mask = 60
 script = ExtResource( 3 )
-headTextures = [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ]
+headTextures = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ]
 
 [node name="Graphics" type="Node2D" parent="."]
 
 [node name="Body" type="Sprite" parent="Graphics"]
-texture = SubResource( 1 )
+texture = SubResource( 4 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 4, -44 )
@@ -172,7 +169,7 @@ position = Vector2( 4, -44 )
 [node name="Legs" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 4, 48 )
 z_index = -1
-texture = SubResource( 3 )
+texture = SubResource( 5 )
 
 [node name="ArmsPosition" type="Position2D" parent="Graphics/Body"]
 position = Vector2( 24, 8 )
@@ -188,9 +185,9 @@ script = ExtResource( 18 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
 playback_process_mode = 0
-anims/Hold = SubResource( 4 )
-anims/Idle = SubResource( 5 )
-anims/Walking = SubResource( 6 )
+anims/Hold = SubResource( 6 )
+anims/Idle = SubResource( 7 )
+anims/Walking = SubResource( 8 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -210,7 +207,7 @@ script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 12 )
-shape = SubResource( 7 )
+shape = SubResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

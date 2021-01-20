@@ -1,12 +1,13 @@
 extends KinematicBody2D
 
 export (float) var maxSpeed = 400.0
-export (float) var acceleration = maxSpeed / 2.5
+export (float) var acceleration = maxSpeed / 2
 export (float) var friction = acceleration
 export (float) var jumpStrength = 150.0
 export (float) var timeJumpApex = 0.4
 export (float) var fallMultiplier = 1.5
 export (float) var dashStrength = 1000.0
+export (float) var cameraOffset = 1.5
 export (float, 0, 1) var aimWeight = 0.5
 
 export (Array, AtlasTexture) var headTextures
@@ -111,6 +112,8 @@ func handleWeaponInput(delta):
 		# Gira el arma para que este alineada para disparar
 		weapon.RotateTo(weaponRotation)
 
+		camera.offset_h = cameraOffset * weaponDirection.x
+		camera.offset_v = cameraOffset * weaponDirection.y
 		# Espeja el sprite del jugador para que no dispare hacia atras
 		if weaponDirection.x == -1:
 			FlipGraphics(true)
@@ -125,7 +128,8 @@ func handleWeaponInput(delta):
 				head.texture = headTextures[0]
 				
 	else:
-		# Si no hay input
+		camera.offset_h = lerp(camera.offset_h, 0, 0.0001 * abs(camera.offset_h))
+		camera.offset_v = lerp(camera.offset_v, 0, 0.0001 * abs(camera.offset_v))
 		head.texture = headTextures[1]
 
 		# Gira el arma de acuerdo al sprite
@@ -147,7 +151,7 @@ func FlipGraphics(flip):
 
 func reinitializeVars():
 	maxSpeed = 400.0
-	acceleration = maxSpeed / 2.5
+	acceleration = maxSpeed / 2
 	friction = acceleration
 	jumpStrength = 150.0
 	dashStrength = 1000.0
