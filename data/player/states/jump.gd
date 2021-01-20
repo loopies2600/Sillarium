@@ -12,8 +12,6 @@ func update(delta):
 		cancelVelocity()
 		
 		emit_signal("finished", "idle")
-		
-	owner.weapon.setFiringDirection(delta)
 	
 func exit():
 	owner.snap = true

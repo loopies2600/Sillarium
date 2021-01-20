@@ -7,7 +7,7 @@
 [ext_resource path="res://sprites/tutorial/tutorial_controls.png" type="Texture" id=5]
 [ext_resource path="res://data/enemy/pinataman/pinata_man.tscn" type="PackedScene" id=6]
 [ext_resource path="res://data/generic/basic_entryway.tscn" type="PackedScene" id=7]
-[ext_resource path="res://data/test_other_player/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://data/player/player.tscn" type="PackedScene" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 5 )
@@ -52,9 +52,6 @@ tile_data = PoolIntArray( -2031656, 1, 0, -2031655, 1, 0, -2031654, 1, 0, -20316
 [node name="BasicEntryway" parent="." instance=ExtResource( 7 )]
 position = Vector2( 992, 64 )
 levelToLoad = "TestLevel"
-
-[node name="Player" parent="." instance=ExtResource( 8 )]
-position = Vector2( 0, -27 )
 
 [node name="Tutorial" type="Node2D" parent="."]
 
@@ -126,3 +123,6 @@ position = Vector2( 920, -480 )
 
 [node name="PinataMan3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 840, -608 )
+
+[node name="Player" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0, -23 )

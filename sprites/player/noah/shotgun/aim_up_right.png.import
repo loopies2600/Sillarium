@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/idle.png-398885d17f5e73ff14427e4c3aca7618.stex"
+path="res://.import/aim_up_right.png-71eb37df52da7a33bd1f3309bc7600a0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/test_other_player/sprites/idle.png"
-dest_files=[ "res://.import/idle.png-398885d17f5e73ff14427e4c3aca7618.stex" ]
+source_file="res://sprites/player/noah/shotgun/aim_up_right.png"
+dest_files=[ "res://.import/aim_up_right.png-71eb37df52da7a33bd1f3309bc7600a0.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/head_up.png-c334ffef6a249f1cd11442d71e9b5a77.stex"
+path="res://.import/aim_down_right.png-9d3763c4ea7230433980d8390d899ebd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/test_other_player/sprites/head_up.png"
-dest_files=[ "res://.import/head_up.png-c334ffef6a249f1cd11442d71e9b5a77.stex" ]
+source_file="res://sprites/player/noah/shotgun/aim_down_right.png"
+dest_files=[ "res://.import/aim_down_right.png-9d3763c4ea7230433980d8390d899ebd.stex" ]
 
 [params]
 

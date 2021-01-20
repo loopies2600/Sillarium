@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/walk_3.png-cebedbdd4e67881feea3567fe36da126.stex"
+path="res://.import/aim_up_left.png-5544409ea42b383a936dce2ee12e3809.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/test_other_player/sprites/walk_3.png"
-dest_files=[ "res://.import/walk_3.png-cebedbdd4e67881feea3567fe36da126.stex" ]
+source_file="res://sprites/player/noah/shotgun/aim_up_left.png"
+dest_files=[ "res://.import/aim_up_left.png-5544409ea42b383a936dce2ee12e3809.stex" ]
 
 [params]
 

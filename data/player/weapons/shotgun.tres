@@ -1,15 +1,23 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=11 format=2]
 
 [ext_resource path="res://data/player/weapons/weapon_ranged.gd" type="Script" id=1]
 [ext_resource path="res://data/player/projectiles/main_bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://sprites/player/noah/noah_0s.png" type="Texture" id=3]
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 3 )
-region = Rect2( 560, 10, 97, 42 )
+[ext_resource path="res://sprites/player/noah/shotgun/aim_left.png" type="Texture" id=3]
+[ext_resource path="res://sprites/player/noah/shotgun/aim_up_right.png" type="Texture" id=4]
+[ext_resource path="res://sprites/player/noah/shotgun/aim_right.png" type="Texture" id=5]
+[ext_resource path="res://sprites/player/noah/shotgun/aim_down_left.png" type="Texture" id=6]
+[ext_resource path="res://sprites/player/noah/shotgun/aim_up.png" type="Texture" id=7]
+[ext_resource path="res://sprites/player/noah/shotgun/aim_up_left.png" type="Texture" id=8]
+[ext_resource path="res://sprites/player/noah/shotgun/aim_down.png" type="Texture" id=9]
+[ext_resource path="res://sprites/player/noah/shotgun/aim_down_right.png" type="Texture" id=10]
 
 [resource]
 script = ExtResource( 1 )
 projectile = ExtResource( 2 )
-tex = SubResource( 1 )
+aimTextures = [ ExtResource( 5 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 4 ) ]
+projectileOffset = [ Vector2( 72, -12 ), Vector2( 48, 48 ), Vector2( 16, 86 ), Vector2( -48, 48 ), Vector2( -72, -12 ), Vector2( -56, -72 ), Vector2( 4, -120 ), Vector2( 56, -72 ) ]
+hasCooldown = true
 displayFlash = true
+velocityReduction = 0.0
+cooldown = 0.3
+recoil = 0.0

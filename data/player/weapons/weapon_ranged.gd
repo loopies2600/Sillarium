@@ -2,10 +2,9 @@ extends Resource
 class_name RangedWeapon
 
 export (PackedScene) var projectile
-export (Texture) var texture
+export (Array, StreamTexture) var aimTextures
 
-export (Vector2) var projectileOffset = Vector2(0, 0)
-export (Vector2) var muzzleOffset = Vector2(0, 0)
+export (Array, Vector2) var projectileOffset
 
 export (bool) var hasCooldown = true
 export (bool) var displayFlash = false
