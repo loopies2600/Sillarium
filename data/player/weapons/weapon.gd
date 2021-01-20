@@ -1,69 +1,57 @@
 extends Sprite
 
-export (PackedScene) var projectile
-
-export (Vector2) var projectileOffset = Vector2(0, 0)
-export (Vector2) var muzzleOffset = Vector2(0, 0)
-
-export (bool) var hasCooldown = true
-export (bool) var displayFlash = false
-
-export (float) var velocityReduction = 0.0
-export (float) var cooldown = 0.0
-export (float) var recoil = 0.0
+export(Resource) var type
 
 var armsPos
 
 var rotationTimer = 5.0
-var currentCooldown = cooldown
+onready var currentCooldown = type.cooldown
 var cooldownIsOver = false
 var fireAngle = 0
 
 onready var muzzleFlash = preload("res://data/player/projectiles/muzzle_flash.tscn")
 
 func _ready():
-	if !hasCooldown:
-		cooldown = 0
-		cooldownIsOver = true
+	texture = type.texture
+	
+	if !type.hasCooldown:
+		type.cooldown = 0
+		type.cooldownIsOver = true
 	
 func _process(delta):
 	global_position = armsPos.global_position
 	offset.x = lerp(offset.x, 0, delta * 8)
 	
 	if Input.is_action_pressed("shoot") and cooldownIsOver:
-		if velocityReduction != 0.0:
-			Globals.get("player").maxSpeed = 300.0 - velocityReduction
+		if type.velocityReduction != 0.0:
+			Globals.get("player").maxSpeed = 300.0 - type.velocityReduction
 			
 		rotationTimer = 5
-		#fire(delta)
-		objTest()
+		fire(delta)
 		
 	if Input.is_action_just_released("shoot") and cooldownIsOver:
-		if velocityReduction != 0.0:
+		if type.velocityReduction != 0.0:
 			Globals.get("player").maxSpeed = 300.0
 		
-	if hasCooldown:
+	if type.hasCooldown:
 		_checkCooldown(delta)
-	
-func objTest():
-	Objects.spawn(11, global_position, Vector2(600, 0).rotated(fireAngle))
-	
+		
 func fire(delta):
-	if displayFlash:
+	if type.displayFlash:
 		var newFlash = muzzleFlash.instance()
-		newFlash.global_position = global_position + muzzleOffset.rotated(fireAngle)
+		newFlash.global_position = global_position + type.muzzleOffset.rotated(fireAngle)
 		get_tree().get_root().add_child(newFlash)
 		
-	offset.x = lerp(offset.x, projectileOffset.y, delta * 8)
-	var newProjectile = projectile.instance()
-	newProjectile.global_position = global_position + projectileOffset.rotated(fireAngle)
+	offset.x = lerp(offset.x, type.projectileOffset.y, delta * 8)
+	var newProjectile = type.projectile.instance()
+	newProjectile.global_position = global_position + type.projectileOffset.rotated(fireAngle)
 	newProjectile.global_rotation = fireAngle
 	newProjectile.z_index = z_index
 	get_tree().get_root().add_child(newProjectile)
-	currentCooldown = cooldown
+	currentCooldown = type.cooldown
 		
-	if recoil > 0.0:
-		Globals.player.velocity -= Vector2(recoil, 0.0).rotated(fireAngle)
+	if type.recoil > 0.0:
+		Globals.player.velocity -= Vector2(type.recoil, 0.0).rotated(fireAngle)
 	
 func _checkCooldown(delta):
 	if currentCooldown >= 0:

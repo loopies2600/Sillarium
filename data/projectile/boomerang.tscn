@@ -4,8 +4,6 @@
 [ext_resource path="res://data/projectile/boomerang_controller.gd" type="Script" id=2]
 [ext_resource path="res://streams/sfx/enemy/buma/boomerang.wav" type="AudioStream" id=3]
 
-
-
 [node name="Boomerang" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -28,5 +26,4 @@ position = Vector2( -24, 0 )
 
 [node name="Idle" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-pitch_scale = 2.0
 autoplay = true

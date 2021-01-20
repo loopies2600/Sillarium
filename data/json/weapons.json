@@ -1,11 +1,13 @@
 {
 	"0": {
 			"name": "Shotgun",
-			"file": "res://data/player/weapons/shotgun.tscn"
+			"file": "res://data/player/weapons/shotgun.tres",
+			"type": "res://data/player/weapons/weapon_ranged.tscn"
 		     },
 		     
 	"1": {
 			"name": "Flamethrower",
-			"file": "res://data/player/weapons/flamethrower.tscn"
+			"file": "res://data/player/weapons/flamethrower.tres",
+			"type": "res://data/player/weapons/weapon_ranged.tscn"
 		     }
 }

@@ -84,12 +84,14 @@ func loadWeapon(weaponID):
 		inheritFireAngle = weapon.fireAngle
 		weapon.queue_free()
 		
-	var wps = load(Globals.LoadJSON("res://data/json/weapons.json", weaponID)["file"])
+	var wpsType = load(Globals.LoadJSON("res://data/json/weapons.json", weaponID)["file"])
+	var wps = load(Globals.LoadJSON("res://data/json/weapons.json", weaponID)["type"])
 	currentWeapon = wps
 	weapon = currentWeapon.instance()
-	add_child(weapon)
+	weapon.type = wpsType
 	weapon.fireAngle = inheritFireAngle
 	weapon.armsPos = getNode("arms_position")
+	add_child(weapon)
 	
 func switchWeapon(dir):
 	weaponIndex += 1 * dir
