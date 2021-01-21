@@ -16,15 +16,14 @@ export (Vector2) var initialDeathBump = Vector2(250, -500)
 export (Vector2) var deathFallSpeed = Vector2(0, 40)
 
 var hasBoomerang = true
-var killed = false
 var velocity = Vector2()
 var dir = 1
 
 func _ready():
 	# Conecta funciones
-	connect("area_entered", self, "OnAreaEnter")
-	throwTimer.connect("timeout", self, "OnThrowTimerTimeout")
-	connect("DestroySelf", self, "OnDestruction")
+	var _unused = connect("area_entered", self, "OnAreaEnter")
+	_unused = throwTimer.connect("timeout", self, "OnThrowTimerTimeout")
+	_unused = connect("DestroySelf", self, "OnDestruction")
 	
 	# Empieza el timer
 	throwTimer.wait_time = throwTime
@@ -40,20 +39,6 @@ func _ready():
 			-1.0:
 				dir = -1
 				
-
-func _physics_process(delta):
-	for _i in $Graphics.get_children():
-		if _i is Sprite:
-			Globals.CreateTrail(0.1, _i.texture, _i.global_position, _i.global_rotation, _i.global_scale, -128)
-	
-	if killed:
-		position += velocity * delta
-		velocity += deathFallSpeed
-		
-		scale.y += 0.1
-		scale.x += 0.1 * dir
-		# modulate -= Color(-0.05, 0.05, 0.05, 0)
-		rotation_degrees += 25
 	
 func CreateBoomerang():
 	# Crea el bumerang
@@ -94,11 +79,7 @@ func PlayIdleAnimation():
 func DisableHitbox():
 	$CollisionShape2D.disabled = true
 
-func DeleteSelf():
-	queue_free()
-
 func OnDestruction():
-	killed = true
 	throwTimer.stop()
 	call_deferred("DisableHitbox")
-	animPlayer.play("Killed")
+	animPlayer.play("Death")

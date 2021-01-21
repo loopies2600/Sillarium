@@ -5,7 +5,7 @@ export (String) var levelToLoad = "SalaGraciosa"
 
 func _ready():
 	var _unused = connect("body_entered", self, "OnPlayerEnter")
-
+	
 func ChangeStatus(cond):
 	call_deferred("ChangeHitbox", cond)
 

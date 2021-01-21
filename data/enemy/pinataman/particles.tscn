@@ -1,43 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://clear_particles.gd" type="Script" id=1]
 
-
-[sub_resource type="Gradient" id=1]
-colors = PoolColorArray( 0.00775146, 0.899897, 0.992188, 1, 0.0190735, 0.93168, 0.976562, 0 )
-
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
-
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=1]
 min_value = -500.0
 max_value = 500.0
 _data = [ Vector2( 0.00632912, 476.136 ), 0.0, 0.0, 0, 0, Vector2( 0.183544, -500 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0.00775146, 0.899897, 0.992188, 1, 0.0190735, 0.93168, 0.976562, 0 )
 
-[sub_resource type="ParticlesMaterial" id=5]
-lifetime_randomness = 0.5
-emission_shape = 1
-emission_sphere_radius = 32.0
-flag_disable_z = true
-direction = Vector3( 0, 0, 0 )
-spread = 90.0
-gravity = Vector3( 0, 100, 0 )
-angular_velocity = 360.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-radial_accel = 500.0
-radial_accel_curve = SubResource( 4 )
-damping = 25.0
-scale = 5.0
-scale_random = 1.0
-color_ramp = SubResource( 2 )
-hue_variation = 1.0
-hue_variation_random = 1.0
-
-[node name="PinataParticles" type="Particles2D"]
+[node name="PinataParticles" type="CPUParticles2D"]
 position = Vector2( 0, 15 )
 emitting = false
 amount = 500
@@ -45,6 +18,20 @@ one_shot = true
 speed_scale = 2.0
 explosiveness = 0.75
 randomness = 1.0
+lifetime_randomness = 0.5
 fract_delta = false
-process_material = SubResource( 5 )
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector2( 0, 0 )
+spread = 90.0
+gravity = Vector2( 0, 100 )
+angular_velocity = 360.0
+radial_accel = 500.0
+radial_accel_curve = SubResource( 1 )
+damping = 25.0
+scale_amount = 5.0
+scale_amount_random = 1.0
+color_ramp = SubResource( 2 )
+hue_variation = 1.0
+hue_variation_random = 1.0
 script = ExtResource( 1 )

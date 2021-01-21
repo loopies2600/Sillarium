@@ -10,7 +10,7 @@ var velocity = Vector2()
 func _ready():
 	var _unused = connect("DestroySelf", self, "OnDestruction")
 	animPlayer.play("Swinging")
-
+	
 func DisableHitbox():
 	hitbox.disabled = true
 

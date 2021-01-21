@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
+"class": "PlayerStats",
+"language": "GDScript",
+"path": "res://data/player/parameters/parameters.gd"
+}, {
+"base": "Resource",
 "class": "RangedWeapon",
 "language": "GDScript",
 "path": "res://data/player/weapons/weapon_ranged.gd"
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://data/state_machine/state_machine.gd"
 } ]
 _global_script_class_icons={
+"PlayerStats": "",
 "RangedWeapon": "",
 "State": "",
 "StateMachine": ""

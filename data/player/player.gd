@@ -1,17 +1,19 @@
 extends KinematicBody2D
 
-export (float) var maxSpeed = 400.0
-export (float) var acceleration = maxSpeed / 2
-export (float) var friction = acceleration
-export (float) var jumpStrength = 150.0
-export (float) var timeJumpApex = 0.4
-export (float) var fallMultiplier = 1.5
-export (float) var dashStrength = 1000.0
-export (float) var cameraOffset = 1.5
-export (float, 0, 1) var aimWeight = 0.5
+export(Resource) var character
 
-export (Array, AtlasTexture) var headTextures
-export (Texture) var playerNumberTexture
+onready var maxSpeed = character.maxSpeed
+onready var acceleration = character.acceleration
+onready var friction = character.friction
+onready var jumpStrength = character.jumpStrength
+onready var timeJumpApex = character.timeJumpApex
+onready var fallMultiplier = character.fallMultiplier
+onready var dashStrength = character.dashStrength
+onready var cameraOffset = character.cameraOffset
+onready var aimWeight = character.aimWeight
+
+onready var headTextures = character.headTextures
+onready var playerNumberTexture = character.playerNumberTexture
 
 var velocity := Vector2()
 var groundAngle = -1
@@ -31,7 +33,7 @@ onready var body = $Graphics/Body
 onready var head = $Graphics/Body/Head
 onready var legs = $Graphics/Body/Legs
 onready var hitbox = $CollisionShape2D
-onready var camera = $Camera2D
+onready var camera = $Camera
 
 func _ready():
 	Globals.set("player", self)
@@ -103,7 +105,7 @@ func handleWeaponInput(_delta):
 
 	# Variables para girar el arma
 	var weaponRotation
-	var currentGunSpriteRotation = weapon.global_rotation
+	var currentWeaponSpriteRotation = weapon.global_rotation
 
 	if weaponDirection != Vector2.ZERO:
 		# Encuentra el angulo al que se esta apuntando
@@ -120,14 +122,7 @@ func handleWeaponInput(_delta):
 			FlipGraphics(true)
 		elif weaponDirection.x == 1:
 			FlipGraphics(false)
-		else:
-
-			# Cambia la sprite de la cabeza dependiendo en direccion
-			if weaponDirection.y == 1:
-				head.texture = headTextures[2]
-			elif weaponDirection.y == -1:
-				head.texture = headTextures[0]
-				
+			
 	else:
 		camera.offset_h = lerp(camera.offset_h, 0, 0.0001 * abs(camera.offset_h))
 		camera.offset_v = lerp(camera.offset_v, 0, 0.0001 * abs(camera.offset_v))
@@ -141,8 +136,8 @@ func handleWeaponInput(_delta):
 
 	# Gira el arma y el sprite
 	weapon.RotateTo(weaponRotation)
-	weapon.global_rotation = currentGunSpriteRotation
-	weapon.global_rotation = lerp_angle(currentGunSpriteRotation, weaponRotation, aimWeight)
+	weapon.global_rotation = currentWeaponSpriteRotation
+	weapon.global_rotation = lerp_angle(currentWeaponSpriteRotation, weaponRotation, aimWeight)
 	weapon.ChangeSprite(body.flip_h)
 
 func FlipGraphics(flip):
@@ -151,9 +146,12 @@ func FlipGraphics(flip):
 	legs.flip_h = flip
 
 func reinitializeVars():
-	maxSpeed = 400.0
-	acceleration = maxSpeed / 2
-	friction = acceleration
-	jumpStrength = 150.0
-	dashStrength = 1000.0
-	gravity = 20.0
+	maxSpeed = character.maxSpeed
+	acceleration = character.acceleration
+	friction = character.friction
+	jumpStrength = character.jumpStrength
+	timeJumpApex = character.timeJumpApex
+	fallMultiplier = character.fallMultiplier
+	dashStrength = character.dashStrength
+	cameraOffset = character.cameraOffset
+	aimWeight = character.aimWeight

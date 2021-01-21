@@ -1,13 +1,14 @@
 extends "../basic_enemy_controller.gd"
 
 # Variables de otros objetos
-onready var animationPlayer = $KinematicBody2D/Graphics/AnimationPlayer
+onready var anim = $KinematicBody2D/Graphics/AnimationPlayer
 onready var tween = $Tween
 onready var lebipi = $KinematicBody2D
 onready var rock_child = $KinematicBody2D/LebipiRock
 onready var debugPos = $KinematicBody2D/Graphics/DebugPosition
 onready var debugFollow = $KinematicBody2D/Graphics/DebugFollow
 onready var renderer = $KinematicBody2D/Graphics/Body
+onready var rotor = $KinematicBody2D/Graphics/Body/Rotor
 onready var hitbox = $Hitbox
 onready var toPoint = [0, 320]
 
@@ -27,11 +28,11 @@ var duration = 2
 
 func _ready():
 	# Pone la animacion y el tween para que se mueva
-	animationPlayer.play("lebipi_jittering")
+	anim.play("Jittering")
 	tween.connect("tween_completed", self, "onTweenCompletion")
 	doTween()
 	
-	connect("DestroySelf", self, "OnDestruction")
+	var _unused = connect("DestroySelf", self, "OnDestruction")
 	
 	# Debug stuff
 	if Globals.debug:
@@ -39,8 +40,7 @@ func _ready():
 		debugFollow.show()
 
 func _physics_process(_delta):
-	# No entiendo completamente como funciona, pero esto hace que se mueva de manera lisa ya que
-	# en realidad la posicion de lebipi sigue a "positionToFollow", y cuando se acerca mas, se mueve mas lento
+	rotor.flip_h = !rotor.flip_h
 	lebipi.position.x = positionToFollow
 	
 	# Raycast para soltar la piedra
@@ -60,7 +60,7 @@ func _physics_process(_delta):
 
 func InitializeTweenLegacy():
 	# El tiempo que toma ir del empezar a la posicion final
-	var duration = endPoint.length() / float(speed * 64)
+	duration = endPoint.length() / float(speed * 64)
 	
 	# Crea el tween para que se mueva y lo empieza
 	# En vez de manipular la posicion directamente, cambia "positionToFollow"
@@ -75,7 +75,7 @@ func doTween():
 	tween.interpolate_property(self, "positionToFollow", toPoint[0], toPoint[1], duration, Tween.TRANS_SINE, Tween.EASE_IN_OUT, idleTime)
 	tween.start()
 	
-func onTweenCompletion(object, key):
+func onTweenCompletion(_object, _key):
 	toPoint.invert()
 	renderer.flip_h = !renderer.flip_h
 	doTween()
@@ -96,8 +96,7 @@ func DropRock():
 	hasRock = false
 
 func OnDestruction():
-	DropRock()
-	queue_free()
+	anim.play("Death")
 
 func RemoveRockChild():
 	get_tree().get_root().add_child(rock_child)

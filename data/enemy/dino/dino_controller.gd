@@ -19,9 +19,9 @@ var stateTimer = 50
 
 func _ready():
 	animator.play("SpitFire")
-	$FlameTimer.connect("timeout", self, "throw_flame")
+	var _unused = $FlameTimer.connect("timeout", self, "throw_flame")
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity.y += GRAVITY
 	velocity = move_and_slide(velocity, Vector2.UP, true, 60, 1)
 	

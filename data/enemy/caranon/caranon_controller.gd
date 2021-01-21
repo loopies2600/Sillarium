@@ -29,7 +29,7 @@ func _ready():
 func _physics_process(delta):
 	HandleMovement(delta)
 
-func HandleMovement(delta):
+func HandleMovement(_delta):
 	rotation = lerp_angle(rotation, deg2rad(sRotation), 0.125)
 	
 	if is_on_floor():

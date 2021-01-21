@@ -1,4 +1,4 @@
-extends Particles2D
+extends CPUParticles2D
 
 func _process(_delta):
 	if not emitting:

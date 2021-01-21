@@ -94,7 +94,7 @@ particle = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 0.349066
-texture = ExtResource( 1 )
+texture = ExtResource( 3 )
 offset = Vector2( 0, 30 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

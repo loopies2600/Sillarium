@@ -10,7 +10,7 @@ var movementMode
 func _ready():
 	position = startPos
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if movementMode != null:
 		_applyVelocity(movementMode)
 	

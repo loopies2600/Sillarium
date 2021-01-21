@@ -34,6 +34,7 @@ func ChangeSprite(playerFlipped):
 	angleIndex = int(angleStep / anglePerDirection)
 
 	texture = type.aimTextures[angleIndex]
+	Globals.player.head.texture = Globals.player.headTextures[angleIndex]
 
 	if angleIndex == 2 or angleIndex == 6:
 		if playerFlipped:
@@ -48,12 +49,12 @@ func _process(delta):
 	
 	if Input.is_action_pressed("shoot") and cooldownIsOver:
 		if type.velocityReduction != 0.0:
-			Globals.get("player").maxSpeed = 300.0 - type.velocityReduction
+			Globals.get("player").maxSpeed = Globals.get("player").character.maxSpeed - type.velocityReduction
 		fire(delta)
 		
 	if Input.is_action_just_released("shoot") and cooldownIsOver:
 		if type.velocityReduction != 0.0:
-			Globals.get("player").maxSpeed = 300.0
+			Globals.get("player").maxSpeed = Globals.get("player").character.maxSpeed
 		
 	if type.hasCooldown:
 		_checkCooldown(delta)
