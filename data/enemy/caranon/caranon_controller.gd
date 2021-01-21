@@ -1,10 +1,10 @@
-extends KinematicBody2D
+extends "../behaviour/basic_enemy_controller.gd"
 
 # Node variables
-onready var animPlayer = $Area2D/Graphics/AnimationPlayer
+onready var animPlayer = $Graphics/AnimationPlayer
 onready var shotStartPos = $BulletStartPosition
 onready var fireTimer = $ShootTimer
-onready var graphics = $Area2D/Graphics
+onready var graphics = $Graphics
 
 # Exported variables
 export (PackedScene) var projectile
@@ -19,7 +19,7 @@ var touchingSurface = false
 var sRotation = 0
 
 func _ready():
-	# Connecting nodes
+	hitbox = $Area2D
 	fireTimer.connect("timeout", self, "OnFireTimerTimeout")
 	animPlayer.play("Slithering")
 	# Initializing timer

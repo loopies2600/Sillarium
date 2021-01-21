@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends "../behaviour/basic_enemy_controller.gd"
 
 onready var parentSprite = $Body
 onready var animator = $AnimationPlayer
@@ -18,8 +18,10 @@ var state = states.IDLE
 var stateTimer = 50
 
 func _ready():
+	hitbox = $Area2D
 	animator.play("SpitFire")
 	var _unused = $FlameTimer.connect("timeout", self, "throw_flame")
+	_unused = connect("DestroySelf", self, "OnDestruction")
 	
 func _physics_process(_delta):
 	velocity.y += GRAVITY
@@ -81,5 +83,8 @@ func change_state(new_state):
 
 func throw_flame():
 	var newFlame = flames.instance()
-	newFlame.position = position
+	newFlame.position = position + Vector2(64, 0)
 	get_tree().get_root().add_child(newFlame)
+	
+func OnDestruction():
+	queue_free()

@@ -1,4 +1,4 @@
-extends "../basic_enemy_controller.gd"
+extends "../behaviour/basic_enemy_controller.gd"
 
 # Child nodes
 onready var animPlayer = $Graphics/AnimationPlayer
@@ -20,7 +20,7 @@ var velocity = Vector2()
 var dir = 1
 
 func _ready():
-	# Conecta funciones
+	hitbox = $Area2D
 	var _unused = connect("area_entered", self, "OnAreaEnter")
 	_unused = throwTimer.connect("timeout", self, "OnThrowTimerTimeout")
 	_unused = connect("DestroySelf", self, "OnDestruction")
@@ -76,10 +76,10 @@ func OnAreaEnter(area):
 func PlayIdleAnimation():
 	animPlayer.play("Idle")
 
-func DisableHitbox():
+func disableCollision():
 	$CollisionShape2D.disabled = true
 
 func OnDestruction():
 	throwTimer.stop()
-	call_deferred("DisableHitbox")
+	call_deferred("disableCollision")
 	animPlayer.play("Death")

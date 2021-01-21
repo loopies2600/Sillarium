@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://data/enemy/dino/dino_controller.gd" type="Script" id=1]
 [ext_resource path="res://sprites/enemy/dino/dino_body.tres" type="Texture" id=2]
@@ -14,13 +14,13 @@
 [ext_resource path="res://sprites/enemy/dino/dino_mouth.tres" type="Texture" id=12]
 [ext_resource path="res://sprites/enemy/dino/dino_leg_3.tres" type="Texture" id=14]
 
-
-
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48, 48 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 44 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "SpitFire"
+[sub_resource type="Animation" id=3]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -60,8 +60,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 4 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Walking"
+[sub_resource type="Animation" id=4]
 length = 0.5
 loop = true
 step = 0.05
@@ -313,8 +312,16 @@ texture = ExtResource( 12 )
 position = Vector2( 28, 35 )
 texture = ExtResource( 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color( 0.360784, 1, 0, 1 )
 shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -323,9 +330,9 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "SpitFire"
 playback_speed = 1.5
-anims/Idle = SubResource( 2 )
-anims/SpitFire = SubResource( 2 )
-anims/Walking = SubResource( 3 )
+anims/Idle = SubResource( 3 )
+anims/SpitFire = SubResource( 3 )
+anims/Walking = SubResource( 4 )
 
 [node name="FlameTimer" type="Timer" parent="."]
 wait_time = 0.05

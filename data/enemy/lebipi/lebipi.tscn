@@ -30,7 +30,7 @@ region = Rect2( 6, 135, 29, 28 )
 atlas = ExtResource( 1 )
 region = Rect2( 6, 102, 29, 28 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=6]
 resource_name = "Death"
 length = 0.5
 tracks/0/type = "value"
@@ -70,13 +70,13 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 0 ) ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("../..")
+tracks/3/path = NodePath("..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -84,8 +84,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Jittering"
+[sub_resource type="Animation" id=7]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -149,13 +148,13 @@ tracks/4/keys = {
 "values": [ Vector2( -16, 0 ), Vector2( -16, -3 ), Vector2( -16, -8 ), Vector2( -16, -2 ), Vector2( -16, 0 ), Vector2( -16, 3 ), Vector2( -16, 6 ), Vector2( -16, 2 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 24, 4 )
-
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 30, 16 )
 
-[node name="Lebipi" type="Area2D" groups=[
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 24, 4 )
+
+[node name="Lebipi" type="KinematicBody2D" groups=[
 "Enemy",
 ]]
 z_index = 2
@@ -165,75 +164,74 @@ script = ExtResource( 5 )
 killsPlayer = false
 endPoint = Vector2( 100, 0 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-collision_layer = 64
-motion/sync_to_physics = true
+[node name="Graphics" type="Node2D" parent="."]
 
-[node name="Graphics" type="Node2D" parent="KinematicBody2D"]
-
-[node name="Body" type="Sprite" parent="KinematicBody2D/Graphics"]
+[node name="Body" type="Sprite" parent="Graphics"]
 texture = SubResource( 1 )
 offset = Vector2( 0, -2.06566 )
 
-[node name="ArmL" type="Sprite" parent="KinematicBody2D/Graphics/Body"]
+[node name="ArmL" type="Sprite" parent="Graphics/Body"]
 position = Vector2( -16, 32 )
 z_index = -2
 texture = SubResource( 2 )
 
-[node name="ArmR" type="Sprite" parent="KinematicBody2D/Graphics/Body"]
+[node name="ArmR" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 16, 32 )
 z_index = 1
 texture = SubResource( 3 )
 
-[node name="Rotor" type="Sprite" parent="KinematicBody2D/Graphics/Body"]
+[node name="Rotor" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 0, -32 )
 z_index = 1
 texture = ExtResource( 2 )
 
-[node name="EyeR" type="Sprite" parent="KinematicBody2D/Graphics/Body"]
+[node name="EyeR" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 16, 0 )
 texture = SubResource( 4 )
 flip_h = true
 region_enabled = true
 region_rect = Rect2( 3, 0, 30, 28 )
 
-[node name="PupilR" type="Sprite" parent="KinematicBody2D/Graphics/Body/EyeR"]
+[node name="PupilR" type="Sprite" parent="Graphics/Body/EyeR"]
 texture = ExtResource( 3 )
 script = ExtResource( 9 )
 
-[node name="EyeL" type="Sprite" parent="KinematicBody2D/Graphics/Body"]
+[node name="EyeL" type="Sprite" parent="Graphics/Body"]
 position = Vector2( -16, 0 )
 texture = SubResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
 
-[node name="PupilL" type="Sprite" parent="KinematicBody2D/Graphics/Body/EyeL"]
+[node name="PupilL" type="Sprite" parent="Graphics/Body/EyeL"]
 texture = ExtResource( 3 )
 script = ExtResource( 9 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D/Graphics"]
-anims/Death = SubResource( 9 )
-anims/Jittering = SubResource( 6 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
+anims/Death = SubResource( 6 )
+anims/Jittering = SubResource( 7 )
 
-[node name="DebugPosition" type="Sprite" parent="KinematicBody2D/Graphics"]
+[node name="DebugPosition" type="Sprite" parent="Graphics"]
 visible = false
 z_index = 10
 texture = ExtResource( 7 )
 
-[node name="DebugFollow" type="Sprite" parent="KinematicBody2D/Graphics"]
+[node name="DebugFollow" type="Sprite" parent="Graphics"]
 visible = false
 z_index = 10
 texture = ExtResource( 6 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
-position = Vector2( 0, -6 )
-shape = SubResource( 7 )
-
-[node name="LebipiRock" parent="KinematicBody2D" instance=ExtResource( 8 )]
+[node name="LebipiRock" parent="." instance=ExtResource( 8 )]
 position = Vector2( 0, 54 )
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 9 )
+
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2( 0, -6 )
 shape = SubResource( 8 )
 
 [node name="Tween" type="Tween" parent="."]

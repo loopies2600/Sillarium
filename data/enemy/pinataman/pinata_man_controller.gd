@@ -1,21 +1,22 @@
-extends "../basic_enemy_controller.gd"
+extends "../behaviour/basic_enemy_controller.gd"
 
 onready var animPlayer = $AnimationPlayer
-onready var hitbox = $CollisionShape2D
+onready var collisionBox = $CollisionShape2D
 
 export (PackedScene) var particle
 
 var velocity = Vector2()
 
 func _ready():
+	hitbox = $Area2D
 	var _unused = connect("DestroySelf", self, "OnDestruction")
 	animPlayer.play("Swinging")
 	
-func DisableHitbox():
-	hitbox.disabled = true
+func disableCollision():
+	collisionBox.disabled = true
 
 func OnDestruction():
-	call_deferred("DisableHitbox")
+	call_deferred("disableCollision")
 	animPlayer.play("Exploding")
 
 func EmitParticles():

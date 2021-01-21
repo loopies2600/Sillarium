@@ -1,13 +1,16 @@
-extends Area2D
+extends KinematicBody2D
 
 signal DestroySelf
 
-export (float) var health = 50
+onready var hitbox
+
+export (int) var health = 50
 export (bool) var killsPlayer = true
 
 func _ready():
-	var _unused = connect("area_entered", self, "OnAreaEntered")
-	_unused = connect("body_entered", self,"OnBodyEntered")
+	yield(owner, "ready")
+	hitbox.connect("area_entered", self, "OnAreaEntered")
+	hitbox.connect("body_entered", self, "OnBodyEntered")
 
 func OnAreaEntered(area):
 	if area.is_in_group("PlayerProjectile"):
