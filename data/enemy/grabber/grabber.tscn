@@ -1,0 +1,142 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://sprites/enemy/grabber/grabber.png" type="Texture" id=1]
+[ext_resource path="res://data/enemy/grabber/grabber.gd" type="Script" id=2]
+[ext_resource path="res://data/enemy/grabber/machine.gd" type="Script" id=3]
+[ext_resource path="res://data/enemy/grabber/idle.gd" type="Script" id=4]
+[ext_resource path="res://data/enemy/grabber/attack.gd" type="Script" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 146, 54, 15, 1 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 139, 7, 30, 28 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 15, 14 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 7, 44, 118, 99 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Attack"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 1, 1.9, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 10 ), Vector2( 0, -24 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 10 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 1, 1.9, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 0.8 ), Vector2( 0.5, 1.5 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1.2, 0.8 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Tongue:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 1, 1.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1, 320 ), Vector2( 1, 320 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 13 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.25, 0.75 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 64, 32 )
+
+[node name="Grabber" type="KinematicBody2D"]
+script = ExtResource( 2 )
+killsPlayer = false
+
+[node name="Graphics" type="Node2D" parent="."]
+position = Vector2( 0, -1.90735e-06 )
+
+[node name="Tongue" type="Sprite" parent="Graphics"]
+texture = SubResource( 1 )
+offset = Vector2( 0, -0.5 )
+
+[node name="TipPos" type="Position2D" parent="Graphics/Tongue"]
+__meta__ = {
+"_gizmo_extents_": 32.0
+}
+
+[node name="TongueArea" type="Area2D" parent="Graphics"]
+position = Vector2( 0, -15 )
+
+[node name="TongueTip" type="Sprite" parent="Graphics/TongueArea"]
+texture = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/TongueArea"]
+shape = SubResource( 3 )
+
+[node name="Body" type="Sprite" parent="Graphics"]
+texture = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
+autoplay = "Idle"
+anims/Attack = SubResource( 5 )
+anims/Idle = SubResource( 6 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, 18 )
+shape = SubResource( 7 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 3 )
+START_STATE = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )

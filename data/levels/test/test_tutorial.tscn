@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://data/enemy/grabber/grabber.tscn" type="PackedScene" id=1]
 [ext_resource path="res://data/levels/level_parameters.gd" type="Script" id=3]
 [ext_resource path="res://data/tilemaps/tutorial.tres" type="TileSet" id=4]
 [ext_resource path="res://data/enemy/pinataman/pinata_man.tscn" type="PackedScene" id=6]
@@ -39,3 +40,6 @@ position = Vector2( 840, -608 )
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 0, -23 )
+
+[node name="Grabber" parent="." instance=ExtResource( 1 )]
+position = Vector2( 278, 15 )

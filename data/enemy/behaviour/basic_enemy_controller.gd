@@ -9,7 +9,7 @@ export (int) var damage = 2
 export (bool) var killsPlayer = true
 
 func _ready():
-	yield(owner, "ready")
+	yield(get_parent(), "ready")
 	hitbox.connect("area_entered", self, "OnAreaEntered")
 	hitbox.connect("body_entered", self, "OnBodyEntered")
 
