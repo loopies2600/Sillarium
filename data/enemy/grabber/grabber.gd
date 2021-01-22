@@ -28,12 +28,14 @@ func _grab(body):
 	
 func _drop(_body):
 	if isGrabbing:
-		currentBody = null
 		currentBody.z_index = 0
+		currentBody = null
 		isGrabbing = false
 		
 func OnBodyEntered(body):
-	currentBody.visible = false
+	if currentBody != null:
+		currentBody.visible = false
 	
 func OnBodyExited(body):
-	currentBody.visible = true
+	if currentBody != null:
+		currentBody.visible = true

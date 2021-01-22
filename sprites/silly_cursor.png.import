@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tomato_full.png-4e1fc1c8250b4625c1e87dde3dca0edb.stex"
+path="res://.import/silly_cursor.png-6c34d75d074b428afbc4ac2ee6d0468a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tomato/tomato_full.png"
-dest_files=[ "res://.import/tomato_full.png-4e1fc1c8250b4625c1e87dde3dca0edb.stex" ]
+source_file="res://sprites/silly_cursor.png"
+dest_files=[ "res://.import/silly_cursor.png-6c34d75d074b428afbc4ac2ee6d0468a.stex" ]
 
 [params]
 

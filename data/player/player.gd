@@ -60,6 +60,8 @@ func _physics_process(delta):
 	handleWeaponInput(delta)
 	flashBehaviour()
 	
+	camera.offset = lerp(camera.offset, Vector2(1.0, 1.0), 0.1)
+	
 func animspeedAsVelocity():
 	if velocity.x != 0:
 		animator.playback_speed = velocity.x / maxSpeed
@@ -110,9 +112,7 @@ func switchWeapon(dir):
 func flashBehaviour():
 	if flashing:
 		visible = !visible
-	else:
-		visible = true
-	
+		
 func getInputDirection() -> int:
 	var inputDirection = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	return inputDirection

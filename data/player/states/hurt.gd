@@ -15,5 +15,6 @@ func update(_delta):
 		if owner.health <= 0:
 			owner.queue_free()
 		
+		owner.visible = true
 		owner.flashing = false
 		emit_signal("finished", "idle")
