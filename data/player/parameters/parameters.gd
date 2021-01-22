@@ -1,6 +1,7 @@
 extends Resource
 class_name PlayerStats
 
+export (int) var health = 10
 export (float) var maxSpeed = 400.0
 export (float) var acceleration = 200.0
 export (float) var friction = 200.0

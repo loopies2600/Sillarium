@@ -6,6 +6,9 @@ onready var sprite = $Area2D/Sprite
 onready var startPos = $StartPosition.position
 onready var visibility = $Area2D/VisibilityNotifier2D
 
+onready var dust = preload("res://data/player/projectiles/dust.tscn")
+
+export (int) var damage = 2
 # Movimiento
 export (float) var initialSpeed = 500
 export (float) var speedDecrease = 5
@@ -35,9 +38,6 @@ func _physics_process(delta):
 	# Obtiene la distancia del inicio al bumerang
 	distanceToStartPoint = hitbox.position.rotated(-rotation).x - startPos.rotated(-rotation).x
 	
-	# Chequea que si ha llegado a la posicion inicial
-	#CheckPosition()
-	
 	# Mueve la posicion (no usa move_and_slide() porque no
 	# es un KB2D)
 	hitbox.position += velocity * delta
@@ -62,5 +62,4 @@ func OnScreenExited():
 
 func OnBodyEntered(body):
 	if body.is_in_group("Player"):
-		#body.Respawn()
-		pass
+		body.takeDamage(damage)

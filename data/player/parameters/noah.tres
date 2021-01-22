@@ -38,9 +38,10 @@ region = Rect2( 307, 18, 84, 58 )
 
 [resource]
 script = ExtResource( 1 )
+health = 10
 maxSpeed = 400.0
 acceleration = 200.0
-friction = 200.0
+friction = 50.0
 jumpStrength = 150.0
 timeJumpApex = 0.4
 fallMultiplier = 1.5

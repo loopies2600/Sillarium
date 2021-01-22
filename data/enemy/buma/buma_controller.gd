@@ -21,8 +21,7 @@ var dir = 1
 
 func _ready():
 	hitbox = $Area2D
-	var _unused = connect("area_entered", self, "OnAreaEnter")
-	_unused = throwTimer.connect("timeout", self, "OnThrowTimerTimeout")
+	var _unused = throwTimer.connect("timeout", self, "OnThrowTimerTimeout")
 	_unused = connect("DestroySelf", self, "OnDestruction")
 	
 	# Empieza el timer
@@ -61,8 +60,7 @@ func OnThrowTimerTimeout():
 	# La animacion automaticamente llama "CreateBoomerang()"
 	animPlayer.play("Throw")
 
-func OnAreaEnter(area):
-	# Si un bumerang entra, lo borra
+func OnAreaEntered(area):
 	if area.is_in_group("Boomerang") and !hasBoomerang:
 		area.get_parent().queue_free()
 		hasBoomerang = true

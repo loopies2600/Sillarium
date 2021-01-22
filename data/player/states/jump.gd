@@ -6,8 +6,8 @@ func enter():
 	owner.velocity.y -= owner.jumpForce
 	
 func update(_delta):
-	if getInputDirection():
-		move(owner.maxSpeed, getInputDirection())
+	if owner.getInputDirection():
+		move(owner.maxSpeed, owner.getInputDirection())
 	else:
 		cancelVelocity()
 		

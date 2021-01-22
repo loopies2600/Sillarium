@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export(Resource) var character
 
+onready var health = character.health
 onready var maxSpeed = character.maxSpeed
 onready var acceleration = character.acceleration
 onready var friction = character.friction
@@ -27,6 +28,8 @@ var weapon
 var currentWeapon
 var weaponIndex = 0
 
+var flashing := false
+
 onready var stateMachine = $StateMachine
 onready var animator = $Graphics/PlayerAnimator
 onready var body = $Graphics/Body
@@ -41,7 +44,7 @@ func _ready():
 	
 	loadWeapon(weaponIndex)
 	
-func _physics_process(delta): 
+func _physics_process(delta):
 	if Input.is_action_just_pressed("wps_left"):
 		switchWeapon(-1)
 	if Input.is_action_just_pressed("wps_right"):
@@ -50,6 +53,7 @@ func _physics_process(delta):
 	animspeedAsVelocity()
 	moveAndSnap(delta)
 	handleWeaponInput(delta)
+	flashBehaviour()
 	
 func animspeedAsVelocity():
 	if velocity.x != 0:
@@ -97,7 +101,21 @@ func switchWeapon(dir):
 	weaponIndex += 1 * dir
 	loadWeapon(weaponIndex)
 	reinitializeVars()
+	
+func flashBehaviour():
+	if flashing:
+		visible = !visible
+	else:
+		visible = true
 		
+func _unhandled_key_input(event):
+	if flashing:
+		flashing = false
+		
+func getInputDirection() -> int:
+	var inputDirection = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	return inputDirection
+	
 func handleWeaponInput(_delta):
 	var weaponDirection = Vector2(
 	int(Input.is_action_pressed("aim_right")) - int(Input.is_action_pressed("aim_left")),
@@ -144,6 +162,17 @@ func FlipGraphics(flip):
 	head.flip_h = flip
 	body.flip_h = flip
 	legs.flip_h = flip
+	
+func takeDamage(damage):
+	if health <= 0:
+		queue_free()
+		
+	if !flashing:
+		velocity.y = 0.0
+		velocity.y -= jumpForce
+		velocity.x += maxSpeed * 3 if body.flip_h else maxSpeed * -3
+		health -= damage
+		flashing = true
 
 func reinitializeVars():
 	maxSpeed = character.maxSpeed

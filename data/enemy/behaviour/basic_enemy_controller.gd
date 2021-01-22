@@ -5,6 +5,7 @@ signal DestroySelf
 onready var hitbox
 
 export (int) var health = 50
+export (int) var damage = 2
 export (bool) var killsPlayer = true
 
 func _ready():
@@ -19,5 +20,5 @@ func OnAreaEntered(area):
 
 func OnBodyEntered(body):
 	if body.is_in_group("Player") and killsPlayer:
-		#body.kill()
+		body.takeDamage(damage)
 		pass

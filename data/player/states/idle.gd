@@ -6,5 +6,5 @@ func enter():
 func update(_delta):
 	cancelVelocity()
 	
-	if getInputDirection():
+	if owner.getInputDirection():
 		emit_signal("finished", "walk")

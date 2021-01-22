@@ -10,10 +10,6 @@ func handle_input(event):
 		if event.is_action_pressed("input_hold"):
 			emit_signal("finished", "hold")
 		
-func getInputDirection() -> int:
-	var inputDirection = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	return inputDirection
-	
 func move(maxVel, direction):
 	match direction:
 		1.0:
