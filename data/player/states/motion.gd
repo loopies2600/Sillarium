@@ -20,6 +20,12 @@ func move(maxVel, direction):
 func cancelVelocity():
 	match sign(owner.velocity.x):
 		1.0:
-			owner.velocity.x = max(owner.velocity.x - owner.friction, 0.0)
+			if owner.is_on_floor():
+				owner.velocity.x = max(owner.velocity.x - owner.friction, 0.0)
+			else:
+				owner.velocity.x = max(owner.velocity.x - owner.airFriction, 0.0)
 		-1.0:
-			owner.velocity.x = min(owner.velocity.x + owner.friction, 0.0)
+			if owner.is_on_floor():
+				owner.velocity.x = min(owner.velocity.x + owner.friction, 0.0)
+			else:
+				owner.velocity.x = min(owner.velocity.x + owner.airFriction, 0.0)

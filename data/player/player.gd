@@ -6,6 +6,7 @@ onready var health = character.health
 onready var maxSpeed = character.maxSpeed
 onready var acceleration = character.acceleration
 onready var friction = character.friction
+onready var airFriction = character.airFriction
 onready var jumpStrength = character.jumpStrength
 onready var timeJumpApex = character.timeJumpApex
 onready var fallMultiplier = character.fallMultiplier
@@ -163,14 +164,15 @@ func FlipGraphics(flip):
 	body.flip_h = flip
 	legs.flip_h = flip
 	
-func takeDamage(damage):
+func takeDamage(damage, bump = 0.0):
 	if health <= 0:
 		queue_free()
 		
 	if !flashing:
-		velocity.y = 0.0
+		snap = false
+		velocity = Vector2.ZERO
 		velocity.y -= jumpForce
-		velocity.x += maxSpeed * 3 if body.flip_h else maxSpeed * -3
+		velocity.x -= bump
 		health -= damage
 		flashing = true
 
@@ -178,6 +180,7 @@ func reinitializeVars():
 	maxSpeed = character.maxSpeed
 	acceleration = character.acceleration
 	friction = character.friction
+	airFriction = character.airFriction
 	jumpStrength = character.jumpStrength
 	timeJumpApex = character.timeJumpApex
 	fallMultiplier = character.fallMultiplier
