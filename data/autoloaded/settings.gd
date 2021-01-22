@@ -2,7 +2,7 @@ extends Node
 
 enum {LOAD_SUCCESS, LOAD_ERROR_COULDNT_OPEN}
 
-const SAVE_PATH = "res://config/settings.cfg"
+const SAVE_PATH = "user://sillarium.cfg"
 
 var _configFile = ConfigFile.new()
 
@@ -34,7 +34,10 @@ var _settings = {
 }
 
 func _ready():
-	loadSettings()
+	var cfg = loadSettings()
+	if cfg == LOAD_ERROR_COULDNT_OPEN:
+		saveSettings()
+		loadSettings()
 	bindKeys()
 	
 func bindKeys():
