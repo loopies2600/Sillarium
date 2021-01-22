@@ -12,14 +12,28 @@ var isGrabbing = false
 var currentBody = null
 
 func _ready():
-	var _unused = tongueTip.connect("body_entered", self, "_grabPlayer")
+	var _unused = tongueTip.connect("body_entered", self, "_grab")
+	_unused = tongueTip.connect("body_exited", self, "_drop")
 	hitbox = $Area2D
 	
 func _process(delta):
 	tongueTipPos.position.y = -1 * tongue.scale.y
 	tongueTip.position = tongueTipPos.position
 	
-func _grabPlayer(body):
-	if body.is_in_group("Player") and !isGrabbing:
+func _grab(body):
+	if !isGrabbing:
 		currentBody = body
+		currentBody.z_index = -4096
 		isGrabbing = true
+	
+func _drop(_body):
+	if isGrabbing:
+		currentBody = null
+		currentBody.z_index = 0
+		isGrabbing = false
+		
+func OnBodyEntered(body):
+	currentBody.visible = false
+	
+func OnBodyExited(body):
+	currentBody.visible = true

@@ -12,6 +12,8 @@ func _ready():
 	yield(get_parent(), "ready")
 	hitbox.connect("area_entered", self, "OnAreaEntered")
 	hitbox.connect("body_entered", self, "OnBodyEntered")
+	hitbox.connect("area_exited", self, "OnAreaExited")
+	hitbox.connect("body_exited", self, "OnBodyExited")
 
 func OnAreaEntered(area):
 	if area.is_in_group("PlayerProjectile"):
@@ -21,4 +23,9 @@ func OnAreaEntered(area):
 func OnBodyEntered(body):
 	if body.is_in_group("Player") and killsPlayer:
 		body.takeDamage(damage)
-		pass
+	
+func OnAreaExited(area):
+	pass
+	
+func OnBodyExited(body):
+	pass

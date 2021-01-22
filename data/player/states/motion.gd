@@ -1,7 +1,7 @@
 extends State
 
-func emter():
-	var _unused = connect("recoilPlayer", self, "_doRecoil")
+func _ready():
+	owner.connect("playerDamaged", self, "onDamage")
 	
 func handle_input(event):
 	if owner.is_on_floor():
@@ -29,3 +29,6 @@ func cancelVelocity():
 				owner.velocity.x = min(owner.velocity.x + owner.friction, 0.0)
 			else:
 				owner.velocity.x = min(owner.velocity.x + owner.airFriction, 0.0)
+				
+func onDamage():
+	emit_signal("finished", "hurt")

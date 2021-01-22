@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal playerDamaged(dm, bm)
+
 export(Resource) var character
 
 onready var health = character.health
@@ -29,6 +31,8 @@ var weapon
 var currentWeapon
 var weaponIndex = 0
 
+var currentDamage := 0
+var currentBump := 0.0
 var flashing := false
 
 onready var stateMachine = $StateMachine
@@ -108,11 +112,7 @@ func flashBehaviour():
 		visible = !visible
 	else:
 		visible = true
-		
-func _unhandled_key_input(event):
-	if flashing:
-		flashing = false
-		
+	
 func getInputDirection() -> int:
 	var inputDirection = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	return inputDirection
@@ -165,16 +165,9 @@ func FlipGraphics(flip):
 	legs.flip_h = flip
 	
 func takeDamage(damage, bump = 0.0):
-	if health <= 0:
-		queue_free()
-		
-	if !flashing:
-		snap = false
-		velocity = Vector2.ZERO
-		velocity.y -= jumpForce
-		velocity.x -= bump
-		health -= damage
-		flashing = true
+	currentDamage = damage
+	currentBump = bump
+	emit_signal("playerDamaged")
 
 func reinitializeVars():
 	maxSpeed = character.maxSpeed
