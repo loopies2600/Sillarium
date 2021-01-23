@@ -7,6 +7,7 @@ onready var target = player
 onready var center = position
 
 func _process(_delta):
-	var lookDirection = (target.global_position - global_position).normalized()
-	position = center + lookDirection * eyeRadius
+	if player != null:
+		var lookDirection = (target.global_position - global_position).normalized()
+		position = center + lookDirection * eyeRadius
 	

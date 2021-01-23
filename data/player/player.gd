@@ -13,7 +13,6 @@ onready var jumpStrength = character.jumpStrength
 onready var timeJumpApex = character.timeJumpApex
 onready var fallMultiplier = character.fallMultiplier
 onready var dashStrength = character.dashStrength
-onready var cameraOffset = character.cameraOffset
 onready var aimWeight = character.aimWeight
 
 onready var headTextures = character.headTextures
@@ -132,10 +131,7 @@ func handleWeaponInput(_delta):
 
 		# Gira el arma para que este alineada para disparar
 		weapon.RotateTo(weaponRotation)
-
-		camera.offset_h = cameraOffset * weaponDirection.x
-		camera.offset_v = cameraOffset * weaponDirection.y
-
+		
 		# Espeja el sprite del jugador para que no dispare hacia atras
 		if weaponDirection.x == -1:
 			FlipGraphics(true)
@@ -143,8 +139,6 @@ func handleWeaponInput(_delta):
 			FlipGraphics(false)
 			
 	else:
-		camera.offset_h = lerp(camera.offset_h, 0, 0.0001 * abs(camera.offset_h))
-		camera.offset_v = lerp(camera.offset_v, 0, 0.0001 * abs(camera.offset_v))
 		head.texture = headTextures[1]
 
 		# Gira el arma de acuerdo al sprite
@@ -164,7 +158,7 @@ func FlipGraphics(flip):
 	body.flip_h = flip
 	legs.flip_h = flip
 	
-func takeDamage(damage, bump = 0.0):
+func takeDamage(damage, bump = maxSpeed * -1 if body.flip_h else maxSpeed * 1):
 	currentDamage = damage
 	currentBump = bump
 	emit_signal("playerDamaged")
@@ -178,5 +172,4 @@ func reinitializeVars():
 	timeJumpApex = character.timeJumpApex
 	fallMultiplier = character.fallMultiplier
 	dashStrength = character.dashStrength
-	cameraOffset = character.cameraOffset
 	aimWeight = character.aimWeight

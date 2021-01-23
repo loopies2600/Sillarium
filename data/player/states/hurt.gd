@@ -13,6 +13,7 @@ func update(_delta):
 	
 	if owner.is_on_floor():
 		if owner.health <= 0:
+			Globals.player = null
 			owner.queue_free()
 		
 		owner.visible = true
