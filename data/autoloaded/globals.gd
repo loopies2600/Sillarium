@@ -1,8 +1,5 @@
 extends Node
 
-# Hello
-# Para variables globales
-
 const UP = Vector2.UP
 const MAX_FLOOR_ANGLE = 60
 const UNIT_SIZE = 96
@@ -23,7 +20,9 @@ func LoadLevel(levelName):
 func LoadJSON(file, index):
 	var jsonFile = File.new()
 	jsonFile.open(file, File.READ)
+	
 	var parsed = JSON.parse(jsonFile.get_as_text())
 	jsonFile.close()
 	
+	print(file, " loaded.")
 	return parsed.result[str(index)]
