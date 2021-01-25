@@ -1,17 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://data/shaders/transition.shader" type="Shader" id=1]
-[ext_resource path="res://sprites/debug/square.png" type="Texture" id=2]
+[ext_resource path="res://sprites/debug/radius.png" type="Texture" id=2]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
-shader_param/cutoff = 1.0
+shader_param/cutoff = 0.0
 shader_param/smoothSize = 0.0
-shader_param/reverse = false
 shader_param/mask = ExtResource( 2 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "Default"
+resource_name = "out"
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/cutoff")
@@ -25,13 +24,17 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 1.0, 0.0 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:material:shader_param/smoothSize")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
+
+[sub_resource type="Animation" id=3]
+resource_name = "out"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -48,5 +51,6 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Default"
-anims/Default = SubResource( 2 )
+autoplay = "in"
+anims/in = SubResource( 2 )
+anims/out = SubResource( 3 )
