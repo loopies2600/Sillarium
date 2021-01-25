@@ -15,6 +15,7 @@ musicID = 2
 [node name="TutorialTiles" type="TileMap" parent="." groups=[
 "Environment",
 ]]
+z_index = -4096
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 64, 32 )
 cell_quadrant_size = 32

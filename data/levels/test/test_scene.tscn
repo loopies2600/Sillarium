@@ -20,6 +20,7 @@ position = Vector2( -446.404, 219.597 )
 [node name="TileMap" type="TileMap" parent="." groups=[
 "Environment",
 ]]
+z_index = -4096
 tile_set = ExtResource( 2 )
 cell_quadrant_size = 64
 collision_layer = 32

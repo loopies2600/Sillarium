@@ -39,6 +39,7 @@ onready var animator = $Graphics/PlayerAnimator
 onready var body = $Graphics/Body
 onready var head = $Graphics/Body/Head
 onready var legs = $Graphics/Body/Legs
+onready var shadow = $Graphics/Shadow
 onready var hitbox = $CollisionShape2D
 onready var camera = $Camera
 
@@ -61,6 +62,12 @@ func _physics_process(delta):
 	
 	camera.offset = lerp(camera.offset, Vector2(1.0, 1.0), 0.1)
 	
+	var spaceState = get_world_2d().direct_space_state
+	var result = spaceState.intersect_ray(global_position, global_position + Vector2(0.0, OS.get_screen_size().y), [self], collision_mask, true)
+	
+	if result:
+		shadow.global_position = result.position
+		
 func animspeedAsVelocity():
 	if velocity.x != 0:
 		animator.playback_speed = velocity.x / maxSpeed

@@ -5,11 +5,10 @@
 [ext_resource path="res://data/tilemaps/test_tilemap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sprites/debug/puto.png" type="Texture" id=4]
 
-
-
 [node name="World" type="Node2D"]
 
 [node name="TileMap" parent="." instance=ExtResource( 3 )]
+z_index = -4096
 
 [node name="Gord" type="Label" parent="."]
 margin_left = 368.0
@@ -31,4 +30,4 @@ texture = ExtResource( 4 )
 position = Vector2( 128, 128 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 0, -64 )
+position = Vector2( 168.676, 451.799 )
