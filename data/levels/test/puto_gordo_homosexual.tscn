@@ -1,20 +1,23 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://data/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://data/tilemaps/test_tilemap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sprites/debug/puto.png" type="Texture" id=4]
+[ext_resource path="res://data/levels/level_parameters.gd" type="Script" id=5]
+[ext_resource path="res://data/generic/basic_entryway.tscn" type="PackedScene" id=6]
 
 [node name="World" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="TileMap" parent="." instance=ExtResource( 3 )]
 z_index = -4096
 
 [node name="Gord" type="Label" parent="."]
-margin_left = 368.0
-margin_top = 384.0
-margin_right = 905.0
-margin_bottom = 495.0
+margin_left = 324.0
+margin_top = 456.0
+margin_right = 861.0
+margin_bottom = 567.0
 custom_fonts/font = ExtResource( 1 )
 text = "puto gordo homosexual
  XDDDDDDDDDDDD"
@@ -23,7 +26,7 @@ __meta__ = {
 }
 
 [node name="Pablo" type="Sprite" parent="."]
-position = Vector2( 896, 520 )
+position = Vector2( 904, 644 )
 texture = ExtResource( 4 )
 
 [node name="StartPosition" type="Position2D" parent="."]
@@ -31,3 +34,7 @@ position = Vector2( 128, 128 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 168.676, 451.799 )
+
+[node name="BasicEntryway" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1168, 704 )
+levelToLoad = "TestTutorial"

@@ -1,17 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://data/shaders/transition.shader" type="Shader" id=1]
 [ext_resource path="res://sprites/debug/radius.png" type="Texture" id=2]
+[ext_resource path="res://data/ui/transition/transition.gd" type="Script" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/cutoff = 0.0
-shader_param/smoothSize = 0.0
+shader_param/smoothSize = null
 shader_param/mask = ExtResource( 2 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "out"
-loop = true
+length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/cutoff")
 tracks/0/interp = 1
@@ -19,7 +20,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 1.0, 0.0 ]
@@ -27,7 +28,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "out"
-loop = true
+length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/cutoff")
 tracks/0/interp = 1
@@ -35,13 +36,16 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, 1.0 ]
+"values": [ 0.0, 0.0, 1.0 ]
 }
 
-[node name="ColorRect" type="ColorRect"]
+[node name="Transition" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -50,7 +54,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "in"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
 anims/in = SubResource( 2 )
 anims/out = SubResource( 3 )

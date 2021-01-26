@@ -97,5 +97,10 @@
 	"19": {
 			"name": "Sound Test",
 			"file": "res://debug/sound_test.tscn"
+			},
+			
+	"20": {
+			"name": "Transition",
+			"file": "res://data/ui/transition/transition.tscn"
 			}
 }

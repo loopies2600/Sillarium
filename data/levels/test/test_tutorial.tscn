@@ -47,3 +47,7 @@ position = Vector2( 278, 15 )
 
 [node name="PinataMan4" parent="." instance=ExtResource( 6 )]
 position = Vector2( 275, -264 )
+
+[node name="BasicEntryway2" parent="." instance=ExtResource( 7 )]
+position = Vector2( -2400, 64 )
+levelToLoad = "EnemyTest"

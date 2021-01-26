@@ -7,6 +7,8 @@ export (int) var backgroundID
 export (int) var musicID
 
 func _ready():
+	Globals.fade("out")
+	
 	if Globals.backgrounds:
 		_backgroundSetup(backgroundID)
 	

@@ -1,7 +1,7 @@
 extends State
 
 func _ready():
-	owner.connect("playerDamaged", self, "onDamage")
+	owner.connect("player_damaged", self, "onDamage")
 	
 func handle_input(event):
 	if owner.is_on_floor():

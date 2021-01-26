@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-signal playerDamaged(dm, bm)
+signal player_damaged(dm, bm)
 
 export(Resource) var character
 
@@ -175,7 +175,7 @@ func FlipGraphics(flip):
 func takeDamage(damage, bump = maxSpeed * -1 if body.flip_h else maxSpeed * 1):
 	currentDamage = damage
 	currentBump = bump
-	emit_signal("playerDamaged")
+	emit_signal("player_damaged")
 
 func reinitializeVars():
 	maxSpeed = character.maxSpeed
