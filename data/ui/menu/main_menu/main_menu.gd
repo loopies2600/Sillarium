@@ -8,7 +8,7 @@ onready var buildNumber = $Build
 func _ready():
 	randomize()
 	buildNumber.text = "SILLARIUM BUILD " + str(randi() % 32768)
-	Globals.backgroundSetup(ID)
-	Globals.musicSetup(ID)
-	Globals.fade("out")
+	Renderer.backgroundSetup(ID)
+	Audio.musicSetup(ID)
+	Renderer.fade("out")
 	buttons[0].grab_focus()

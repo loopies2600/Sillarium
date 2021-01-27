@@ -10,6 +10,7 @@
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
 backgroundID = 2
+musicID = 2
 
 [node name="TileMap" parent="." instance=ExtResource( 1 )]
 collision_use_kinematic = true
@@ -30,7 +31,7 @@ texture = ExtResource( 3 )
 polygon = PoolVector2Array( 286.424, -148.412, 288.205, -112.776, 277.515, -70.0129, 261.478, -23.6862, 227.624, 27.9859, 179.516, 81.4398, 122.498, 115.294, 42.3173, 140.239, -57.4633, 140.239, -123.39, 115.294, -191.098, 72.5309, -249.897, 6.60437, -278.406, -66.4493, -290.879, -130.594, -287.315, -144.848, -289.097, -130.594, -276.624, -68.2311, -248.116, 3.04077, -187.535, 72.5309, -123.39, 111.73, -57.4633, 134.894, 38.7537, 136.676, 118.935, 111.73, 175.952, 77.8763, 220.497, 24.4223, 256.133, -29.0316, 268.606, -71.7947, 279.296, -114.558 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( -5.84, -30.805 )
+position = Vector2( -112, -9.305 )
 
 [node name="Caranon" parent="." instance=ExtResource( 2 )]
 position = Vector2( 672, 544 )

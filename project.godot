@@ -48,6 +48,8 @@ config/icon="res://sprites/sillarium_s.png"
 Settings="*res://data/autoloaded/settings.gd"
 Globals="*res://data/autoloaded/globals.gd"
 Objects="*res://data/autoloaded/objects.gd"
+Renderer="*res://data/autoloaded/renderer.gd"
+Audio="*res://data/autoloaded/audio.gd"
 
 [debug]
 

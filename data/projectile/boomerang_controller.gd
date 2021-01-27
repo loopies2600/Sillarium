@@ -32,7 +32,7 @@ func _physics_process(delta):
 	
 	# Cambia la velocidad
 	if !falling:
-		Objects.spawnTrail(0.1, sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, z_as_relative)
+		Renderer.spawnTrail(0.1, sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, z_as_relative)
 		velocity += velocityDecrease
 	
 	# Obtiene la distancia del inicio al bumerang

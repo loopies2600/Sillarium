@@ -17,7 +17,7 @@ func _ready():
 	_unused = $VisibilityNotifier2D.connect("screen_exited", self, "OnScreenExited")
 
 func _physics_process(delta):
-	Objects.spawnTrail(0.2, sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, z_index - 1)
+	Renderer.spawnTrail(0.2, sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, z_index - 1)
 	position += velocity * delta
 
 func _bodyEnter(_body):

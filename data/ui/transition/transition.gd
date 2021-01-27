@@ -17,5 +17,6 @@ func _fadeEnd(anim_name):
 	if anim_name == "in":
 		emit_signal("fade_finished")
 		
+	Renderer.transition = null
 	queue_free()
 	

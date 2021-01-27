@@ -7,9 +7,9 @@ var text
 export (int) var ID = 0
 
 func _ready():
-	Globals.fade("out")
-	Globals.backgroundSetup(ID)
-	Globals.musicSetup(ID)
+	Renderer.fade("out")
+	Renderer.backgroundSetup(ID)
+	Audio.musicSetup(ID)
 	
 	text = "Background: " + _getName("background") + "\nMusic: " + _getName("music")
 	

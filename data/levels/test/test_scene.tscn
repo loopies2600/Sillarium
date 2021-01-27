@@ -36,7 +36,7 @@ levelToLoad = "FunnyScene"
 position = Vector2( 298, 512 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( -166.386, 315.674 )
+position = Vector2( 1126.21, 478.309 )
 
 [node name="PitKillArea" parent="." instance=ExtResource( 7 )]
 position = Vector2( 426, 808 )
