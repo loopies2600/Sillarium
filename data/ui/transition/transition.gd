@@ -2,9 +2,10 @@ extends CanvasLayer
 
 signal fade_finished
 
-onready var mask = preload("res://sprites/debug/radius.png")
 onready var rect = $ColorRect
 onready var animator = $ColorRect/AnimationPlayer
+
+var mask
 var mode = "in"
 
 func _ready():

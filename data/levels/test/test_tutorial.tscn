@@ -40,7 +40,7 @@ position = Vector2( 920, -480 )
 position = Vector2( 840, -608 )
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
-position = Vector2( 0, -23 )
+position = Vector2( -2212.5, -22.5 )
 
 [node name="Grabber" parent="." instance=ExtResource( 1 )]
 position = Vector2( 278, 15 )

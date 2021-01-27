@@ -40,7 +40,7 @@ _global_script_class_icons={
 
 config/name="Sillarium"
 config/description="Run and Gun chistoso"
-run/main_scene="res://data/levels/test/test_tutorial.tscn"
+run/main_scene="res://data/ui/menu/main_menu/main_menu.tscn"
 config/icon="res://sprites/sillarium_s.png"
 
 [autoload]

@@ -7,6 +7,7 @@ var text
 export (int) var ID = 0
 
 func _ready():
+	Globals.fade("out")
 	_backgroundSetup()
 	_musicSetup()
 	

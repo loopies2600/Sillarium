@@ -63,6 +63,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=4]
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Legs:texture:region")
 tracks/0/interp = 1
@@ -89,7 +90,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:position")
-tracks/2/interp = 1
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -98,6 +99,42 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 4 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body/Head:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4, -44 ), Vector2( 4, -46 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Body/Legs:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4, 48 ), Vector2( 4, 44 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -129,7 +166,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:position")
-tracks/2/interp = 1
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -137,7 +174,43 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, -4 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body/Legs:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 48 ), Vector2( 4, 52 ), Vector2( 4, 48 ), Vector2( 4, 52 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body/Head:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4, -44 ), Vector2( 4, -42 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Body:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 4 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=6]
@@ -152,6 +225,7 @@ script = ExtResource( 3 )
 character = ExtResource( 9 )
 
 [node name="Graphics" type="Node2D" parent="."]
+position = Vector2( 0, -4 )
 
 [node name="Shadow" type="Sprite" parent="Graphics"]
 modulate = Color( 1, 1, 1, 0.501961 )
@@ -165,7 +239,7 @@ texture = SubResource( 1 )
 position = Vector2( 4, -44 )
 
 [node name="Legs" type="Sprite" parent="Graphics/Body"]
-position = Vector2( 4, 48 )
+position = Vector2( 0, 48 )
 z_index = -1
 texture = SubResource( 2 )
 
@@ -207,10 +281,12 @@ script = ExtResource( 12 )
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, 12 )
 shape = SubResource( 6 )
 
 [node name="Camera" parent="." instance=ExtResource( 10 )]
+visible = false
 
 [node name="FiringSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )

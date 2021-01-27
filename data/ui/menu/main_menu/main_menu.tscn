@@ -1,0 +1,133 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://data/ui/menu/main_menu/main_menu.gd" type="Script" id=2]
+[ext_resource path="res://sprites/sillarium_s.png" type="Texture" id=3]
+[ext_resource path="res://data/shaders/outline.shader" type="Shader" id=4]
+[ext_resource path="res://data/ui/menu/main_menu/play.gd" type="Script" id=5]
+[ext_resource path="res://data/ui/menu/main_menu/sound_test.gd" type="Script" id=6]
+[ext_resource path="res://data/ui/menu/main_menu/exit.gd" type="Script" id=7]
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 4 )
+shader_param/stroke = 4.0
+shader_param/texSize = Vector2( 340, 413 )
+shader_param/outline_color = null
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+backgroundID = 1
+
+[node name="Menu" type="VBoxContainer" parent="."]
+anchor_left = 0.062
+anchor_top = 0.107
+anchor_right = 0.937
+anchor_bottom = 0.893
+margin_left = 0.511997
+margin_top = -0.200005
+margin_right = 0.511963
+margin_bottom = 0.199951
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SillariumS" type="TextureRect" parent="Menu"]
+material = SubResource( 6 )
+margin_right = 896.0
+margin_bottom = 413.0
+texture = ExtResource( 3 )
+stretch_mode = 6
+
+[node name="Buttons" type="HBoxContainer" parent="Menu"]
+margin_top = 417.0
+margin_right = 896.0
+margin_bottom = 471.0
+custom_constants/separation = 28
+
+[node name="Play" type="Button" parent="Menu/Buttons"]
+margin_right = 139.0
+margin_bottom = 54.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.960784, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.698039, 0.231373, 1 )
+action_mode = 0
+text = "PLAY"
+flat = true
+script = ExtResource( 5 )
+
+[node name="Settings" type="Button" parent="Menu/Buttons"]
+margin_left = 167.0
+margin_right = 413.0
+margin_bottom = 54.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.960784, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.698039, 0.231373, 1 )
+action_mode = 0
+text = "SETTINGS"
+flat = true
+
+[node name="SoundTest" type="Button" parent="Menu/Buttons"]
+margin_left = 441.0
+margin_right = 739.0
+margin_bottom = 54.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.960784, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.698039, 0.231373, 1 )
+action_mode = 0
+text = "SOUND TEST"
+flat = true
+script = ExtResource( 6 )
+
+[node name="Exit" type="Button" parent="Menu/Buttons"]
+margin_left = 767.0
+margin_right = 894.0
+margin_bottom = 54.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.960784, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.698039, 0.231373, 1 )
+action_mode = 0
+text = "EXIT"
+flat = true
+script = ExtResource( 7 )
+
+[node name="Build" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 1 )
+text = "SILLARIUM INDEV"

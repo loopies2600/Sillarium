@@ -20,6 +20,10 @@ func fade(mode = "in", mask = preload("res://sprites/debug/radius.png")):
 	
 func LoadLevel(levelName):
 	match levelName:
+		"MainMenu":
+			var _unused = get_tree().change_scene("res://data/ui/menu/main_menu/main_menu.tscn")
+		"SoundTest":
+			var _unused = get_tree().change_scene("res://debug/sound_test.tscn")
 		"TestTutorial":
 			var _unused = get_tree().change_scene("res://data/levels/test/test_tutorial.tscn")
 		"SalaGraciosa":
