@@ -17,4 +17,4 @@ func OnPlayerEnter(_body):
 	Globals.transition.connect("fade_finished", self, "_fadeEnd")
 	
 func _fadeEnd():
-	Globals.LoadLevel(levelToLoad)
+	Globals.LoadScene(levelToLoad)

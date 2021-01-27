@@ -8,15 +8,14 @@ func spawn(id, pos = Vector2(), vel = Vector2()):
 	newObj.velocity = vel
 	newObj.global_position = pos
 	get_tree().get_root().add_child(newObj)
-	print(objName, " spawned succesfully")
 	
-func _getObj(id):
+func getObj(id):
 	var obj = load(Globals.LoadJSON("res://data/json/objects.json", id)["file"])
 	
 	return obj.instance()
 	
 func spawnTrail(fds, tex, pos, rot, scl, z = 0):
-	var newTrail = _getObj(7)
+	var newTrail = getObj(7)
 	get_tree().get_root().add_child(newTrail)
 	newTrail.fadeSpeed = fds
 	newTrail.texture = tex

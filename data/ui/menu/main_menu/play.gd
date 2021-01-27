@@ -1,8 +1,10 @@
 extends "../button.gd"
 
 func buttonPress():
-	Globals.fade("in")
-	Globals.transition.connect("fade_finished", self, "_fadeEnd")
+	if !isPressed:
+		Globals.fade("in")
+		Globals.transition.connect("fade_finished", self, "_fadeEnd")
+		isPressed = true
 	
 func _fadeEnd():
-	Globals.LoadLevel("TestTutorial")
+	Globals.LoadScene("TestTutorial")

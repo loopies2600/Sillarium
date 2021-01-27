@@ -8,24 +8,13 @@ export (int) var ID = 0
 
 func _ready():
 	Globals.fade("out")
-	_backgroundSetup()
-	_musicSetup()
+	Globals.backgroundSetup(ID)
+	Globals.musicSetup(ID)
 	
 	text = "Background: " + _getName("background") + "\nMusic: " + _getName("music")
 	
 func _process(delta):
 	label.text = text.to_upper()
-	
-func _backgroundSetup():
-	var background = load(Globals.LoadJSON("res://data/json/backgrounds.json", ID)["file"])
-	var newBackground = background.instance()
-	add_child(newBackground)
-		
-func _musicSetup():
-	var music = musicPlayer.instance()
-	music.stream = load(Globals.LoadJSON("res://data/json/music.json", ID)["file"])
-	music.play()
-	add_child(music)
 	
 func _getName(obj):
 	match obj:

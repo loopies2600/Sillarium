@@ -1,0 +1,36 @@
+{
+	"MainMenu": {
+			"name": "Main Menu",
+			"file": "res://data/ui/menu/main_menu/main_menu.tscn"
+		     },
+		     
+	"SoundTest": {
+			"name": "Sound Test",
+			"file": "res://debug/sound_test.tscn"
+		     },
+			 
+	"Settings": {
+			"name": "Settings",
+			"file": "res://data/ui/menu/settings/settings.tscn"
+		     },
+			 
+	"TestTutorial": {
+			"name": "Test Tutorial",
+			"file": "res://data/levels/test/test_tutorial.tscn"
+		     },
+			 
+	"FunnyScene": {
+			"name": "puto gordo homosexual uwu",
+			"file": "res://data/levels/test/puto_gordo_homosexual.tscn"
+		     },
+			 
+	"EnemyTest": {
+			"name": "Enemy Test",
+			"file": "res://data/levels/test/enemy_test.tscn"
+		     },
+			 
+	"TestLevel": {
+			"name": "Test Level",
+			"file": "res://data/levels/test/test_scene.tscn"
+		     },
+}
