@@ -75,8 +75,6 @@ func fire(delta):
 		
 	if type.recoil > 0.0:
 		Globals.player.velocity -= Vector2(type.recoil, 0.0).rotated(global_rotation)
-		
-	Globals.player.camera.offset = Vector2(rand_range(0.0, type.cooldown * Engine.get_frames_per_second()), rand_range(0.0, type.cooldown * Engine.get_frames_per_second()))
 	
 func _checkCooldown(delta):
 	if currentCooldown >= 0:

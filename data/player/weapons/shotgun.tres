@@ -20,4 +20,4 @@ hasCooldown = true
 displayFlash = true
 velocityReduction = 0.0
 cooldown = 0.9
-recoil = 500.0
+recoil = 400.0

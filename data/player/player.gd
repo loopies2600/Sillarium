@@ -3,6 +3,7 @@ extends KinematicBody2D
 signal player_damaged(dm, bm)
 
 export(Resource) var character
+export (float) var cameraOffset = 4
 
 onready var health = character.health
 onready var maxSpeed = character.maxSpeed
@@ -134,13 +135,15 @@ func handleWeaponInput(_delta):
 	var weaponDirection = Vector2(
 	int(Input.is_action_pressed("aim_right")) - int(Input.is_action_pressed("aim_left")),
 	int(Input.is_action_pressed("aim_down")) - int(Input.is_action_pressed("aim_up")))
-
+	
+	camera.offset_h = lerp(camera.offset_h, cameraOffset * weaponDirection.x, aimWeight / 64)
+	camera.offset_v = lerp(camera.offset_v, (cameraOffset / 2) * weaponDirection.y, aimWeight / 64)
+		
 	# Variables para girar el arma
 	var weaponRotation
 	var currentWeaponSpriteRotation = weapon.global_rotation
 
 	if weaponDirection != Vector2.ZERO:
-		# Encuentra el angulo al que se esta apuntando
 		weaponRotation = weaponDirection.angle()
 
 		# Gira el arma para que este alineada para disparar
