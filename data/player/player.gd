@@ -65,19 +65,6 @@ func _physics_process(delta):
 	
 	camera.offset = lerp(camera.offset, Vector2(1.0, 1.0), 0.1)
 	
-	var spaceState = get_world_2d().direct_space_state
-	var result = spaceState.intersect_ray(global_position, global_position + Vector2(0.0, OS.get_screen_size().y), [self], collision_mask, true)
-	
-	if result:
-		shadow.visible = true
-		shadow.global_position = result.position
-	else:
-		shadow.visible = false
-		
-	if velocity.x != 0.0:
-		if get_floor_normal().angle() != 0.0:
-			shadow.rotation = get_floor_normal().angle() - deg2rad(90)
-	
 func animspeedAsVelocity():
 	if velocity.x != 0:
 		animator.playback_speed = velocity.x / maxSpeed

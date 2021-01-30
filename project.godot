@@ -156,17 +156,13 @@ common/physics_jitter_fix=1.0
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
-quality/driver/fallback_to_gles2=true
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
 threads/thread_model=2
-quality/shadows/filter_mode=0
 batching/options/single_rect_fallback=true
 gles2/compatibility/disable_half_float=true
 environment/default_clear_color=Color( 0.0745098, 0.027451, 0.215686, 1 )
-quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"
 
 [world]

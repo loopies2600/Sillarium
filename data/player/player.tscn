@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://sprites/character/prota_test/player_one.png" type="Texture" id=1]
 [ext_resource path="res://data/player/states/machine.gd" type="Script" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://data/player/camera.tscn" type="PackedScene" id=10]
 [ext_resource path="res://data/player/states/hurt.gd" type="Script" id=11]
 [ext_resource path="res://data/player/states/hold.gd" type="Script" id=12]
-[ext_resource path="res://sprites/player/shadow.png" type="Texture" id=13]
 [ext_resource path="res://streams/sfx/player/asb_fire.wav" type="AudioStream" id=16]
 [ext_resource path="res://data/player/player_number.gd" type="Script" id=18]
 
@@ -306,11 +305,6 @@ character = ExtResource( 9 )
 
 [node name="Graphics" type="Node2D" parent="."]
 position = Vector2( 0, -4 )
-
-[node name="Shadow" type="Sprite" parent="Graphics"]
-modulate = Color( 1, 1, 1, 0.501961 )
-z_index = -2
-texture = ExtResource( 13 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
 texture = SubResource( 1 )
