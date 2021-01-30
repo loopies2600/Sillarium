@@ -8,9 +8,7 @@ func enter():
 		owner.health -= owner.currentDamage
 		owner.flashing = true
 		
-func update(_delta):
-	cancelVelocity()
-	
+func update(_delta):	
 	if owner.is_on_floor():
 		if owner.health <= 0:
 			Globals.player = null

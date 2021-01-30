@@ -6,11 +6,14 @@ func enter():
 	owner.velocity.y -= owner.jumpForce
 	
 func update(_delta):
-	if owner.getInputDirection():
-		move(owner.maxSpeed, owner.getInputDirection())
+	.update(_delta)
+	
+	if !owner.is_on_floor():
+		if owner.getInputDirection():
+			move(owner.airMaxSpeed, owner.getInputDirection())
+		else:
+			damp()
 	else:
-		cancelVelocity()
-		
 		emit_signal("finished", "idle")
 	
 func exit():

@@ -8,4 +8,4 @@ func handle_input(event):
 		emit_signal("finished", "idle")
 		
 func update(_delta):
-	cancelVelocity()
+	damp()

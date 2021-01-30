@@ -3,10 +3,11 @@ extends KinematicBody2D
 signal player_damaged(dm, bm)
 
 export(Resource) var character
-export (float) var cameraOffset = 4
+export (float) var cameraOffset = 2
 
 onready var health = character.health
 onready var maxSpeed = character.maxSpeed
+onready var airMaxSpeed = character.airMaxSpeed
 onready var acceleration = character.acceleration
 onready var friction = character.friction
 onready var airFriction = character.airFriction
@@ -37,6 +38,7 @@ var flashing := false
 
 onready var stateMachine = $StateMachine
 onready var animator = $Graphics/PlayerAnimator
+onready var graphicsAnimator = $GraphicsAnimator
 onready var body = $Graphics/Body
 onready var head = $Graphics/Body/Head
 onready var legs = $Graphics/Body/Legs
@@ -87,9 +89,12 @@ func moveAndSnap(delta):
 	jumpForce = gravity * timeJumpApex
 	
 	if is_on_ceiling():
+		graphicsAnimator.play("bump")
+		graphicsAnimator.queue("default")
 		velocity.y = 0
 		
-	velocity.y += gravity * delta * (fallMultiplier if velocity.y > 0 else 1)
+	if !is_on_floor():
+		velocity.y += gravity * delta * (fallMultiplier if velocity.y > 0 else 1)
 		
 	for i in range(get_slide_count()):
 		var collision = get_slide_collision(i)
@@ -100,7 +105,7 @@ func moveAndSnap(delta):
 	else:
 		snapAngle = Vector2()
 		
-	velocity = move_and_slide_with_snap(velocity, snapAngle, Vector2(0, groundAngle), true)
+	velocity = move_and_slide_with_snap(velocity, snapAngle, Globals.UP, true)
 
 func loadWeapon(weaponID):
 	var inheritFireAngle = 0

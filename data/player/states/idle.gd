@@ -4,7 +4,9 @@ func enter():
 	owner.animator.play("Idle")
 	
 func update(_delta):
-	cancelVelocity()
+	.update(_delta)
+	
+	damp()
 	
 	if owner.getInputDirection():
 		emit_signal("finished", "walk")
