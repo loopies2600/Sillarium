@@ -102,5 +102,9 @@
 	"20": {
 			"name": "Transition",
 			"file": "res://data/ui/transition/transition.tscn"
+			},
+	"21": {
+			"name": "Position Marker",
+			"file": "res://debug/position_marker.tscn"
 			}
 }
