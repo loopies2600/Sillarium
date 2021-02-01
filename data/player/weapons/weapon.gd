@@ -62,8 +62,8 @@ func _process(delta):
 func fire(delta):
 	if type.displayFlash:
 		var newFlash = muzzleFlash.instance()
-		newFlash.global_position = global_position + type.projectileOffset[angleIndex]
-		get_tree().get_root().add_child(newFlash)
+		newFlash.position = position + type.projectileOffset[angleIndex]
+		get_parent().add_child(newFlash)
 		
 	offset.x = lerp(offset.x, 32, delta * 8)
 	var newProjectile = type.projectile.instance()

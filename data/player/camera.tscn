@@ -3,7 +3,6 @@
 [node name="Camera2D" type="Camera2D"]
 current = true
 limit_smoothed = true
-smoothing_enabled = true
-smoothing_speed = 15.0
+smoothing_speed = 20.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
