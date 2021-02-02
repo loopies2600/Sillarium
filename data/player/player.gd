@@ -22,9 +22,7 @@ onready var playerNumberTexture = character.playerNumberTexture
 
 var velocity := Vector2()
 var groundAngle = -1
-var snap = true
 var snapAngle := Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
-
 var gravity
 var jumpForce
 
@@ -34,7 +32,11 @@ var weaponIndex = 0
 
 var currentDamage := 0
 var currentBump := 0.0
+
+var snap := true
 var flashing := false
+var riding := false
+var canShoot := true
 
 onready var stateMachine = $StateMachine
 onready var animator = $Graphics/PlayerAnimator
@@ -53,25 +55,26 @@ func _ready():
 	loadWeapon(weaponIndex)
 	
 func _physics_process(delta):
-	if Input.is_action_just_pressed("wps_left"):
-		switchWeapon(-1)
-	if Input.is_action_just_pressed("wps_right"):
-		switchWeapon(1)
-	
-	animspeedAsVelocity()
-	moveAndSnap(delta)
-	handleWeaponInput(delta)
+	if !riding:
+		animspeedAsVelocity()
+		moveAndSnap(delta)
+		
+	if canShoot:
+		handleWeaponInput(delta)
+	else:
+		weapon.hide()
+		
 	flashBehaviour()
 	
-	camera.offset = lerp(camera.offset, Vector2(1.0, 1.0), 0.1)
-	
 func animspeedAsVelocity():
-	if velocity.x != 0:
+	if getInputDirection():
 		animator.playback_speed = velocity.x / maxSpeed
 	else:
 		animator.playback_speed = 1
 	
 func moveAndSnap(delta):
+	camera.offset = lerp(camera.offset, Vector2(1.0, 1.0), 0.1)
+	
 	gravity = (2 * jumpStrength) / pow(timeJumpApex, 2)
 	jumpForce = gravity * timeJumpApex
 	
@@ -124,6 +127,13 @@ func getInputDirection() -> int:
 	return inputDirection
 	
 func handleWeaponInput(_delta):
+	weapon.show()
+	
+	if Input.is_action_just_pressed("wps_left"):
+		switchWeapon(-1)
+	if Input.is_action_just_pressed("wps_right"):
+		switchWeapon(1)
+		
 	var weaponDirection = Vector2(
 	int(Input.is_action_pressed("aim_right")) - int(Input.is_action_pressed("aim_left")),
 	int(Input.is_action_pressed("aim_down")) - int(Input.is_action_pressed("aim_up")))
@@ -182,3 +192,6 @@ func reinitializeVars():
 	fallMultiplier = character.fallMultiplier
 	dashStrength = character.dashStrength
 	aimWeight = character.aimWeight
+	
+func disableCollisionBox():
+	hitbox.set_deferred("disabled", true)

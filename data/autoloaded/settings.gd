@@ -23,7 +23,10 @@ var _settings = {
 			"shoot": KEY_SHIFT,
 			"dash": KEY_SHIFT,
 			"input_hold": KEY_C,
-			"toggle_debug": KEY_L
+			"toggle_debug": KEY_L,
+			"wps_left": KEY_E,
+			"wps_right": KEY_Q,
+			"interact": KEY_Z
 	},
 	"audio": {
 		"mute_audio": true
@@ -34,10 +37,8 @@ var _settings = {
 }
 
 func _ready():
-	var cfg = loadSettings()
-	if cfg == LOAD_ERROR_COULDNT_OPEN:
-		saveSettings()
-		loadSettings()
+	saveSettings()
+	loadSettings()
 	bindKeys()
 	
 func bindKeys():

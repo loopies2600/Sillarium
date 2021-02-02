@@ -20,8 +20,8 @@ atlas = ExtResource( 7 )
 region = Rect2( 118, 18, 38, 51 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 8 )
-region = Rect2( 278, 13, 40, 79 )
+atlas = ExtResource( 7 )
+region = Rect2( 182, 15, 76, 65 )
 
 [sub_resource type="Animation" id=3]
 tracks/0/type = "value"
@@ -304,7 +304,7 @@ script = ExtResource( 3 )
 character = ExtResource( 9 )
 
 [node name="Graphics" type="Node2D" parent="."]
-position = Vector2( 0, -4 )
+position = Vector2( 0, 4 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
 texture = SubResource( 1 )

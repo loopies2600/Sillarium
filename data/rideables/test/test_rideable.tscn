@@ -1,0 +1,114 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://sprites/rideables/test/test.png" type="Texture" id=1]
+[ext_resource path="res://data/rideables/states/move.gd" type="Script" id=2]
+[ext_resource path="res://data/rideables/states/idle.gd" type="Script" id=3]
+[ext_resource path="res://data/rideables/states/machine.gd" type="Script" id=4]
+[ext_resource path="res://data/rideables/rideable.gd" type="Script" id=5]
+[ext_resource path="res://data/rideables/test/test_parameters.tres" type="Resource" id=6]
+[ext_resource path="res://data/rideables/states/jump.gd" type="Script" id=7]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 9, 12, 251, 155 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 9, 12, 251, 155 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Running"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Rect2( 279, 4, 275, 196 ), Rect2( 9, 12, 251, 155 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, -24 ), Vector2( 0, -20 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 96, 72 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 128, 80 )
+
+[node name="TestBoyo" type="KinematicBody2D"]
+collision_layer = 53
+collision_mask = 53
+script = ExtResource( 5 )
+rideable = ExtResource( 6 )
+
+[node name="RiderPosition" type="Position2D" parent="."]
+position = Vector2( -48, -128 )
+
+[node name="Graphics" type="Sprite" parent="."]
+texture = SubResource( 1 )
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 2 )
+anims/Running = SubResource( 3 )
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -8 )
+shape = SubResource( 5 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 4 )
+START_STATE = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource( 2 )
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )

@@ -1,6 +1,8 @@
 extends "motion.gd"
 
 func enter():
+	owner.canShoot = !owner.canShoot
+	
 	if !owner.flashing:
 		owner.snap = false
 		owner.velocity = Vector2.ZERO
@@ -17,3 +19,6 @@ func update(_delta):
 		owner.visible = true
 		owner.flashing = false
 		emit_signal("finished", "idle")
+		
+func exit():
+	owner.canShoot = !owner.canShoot

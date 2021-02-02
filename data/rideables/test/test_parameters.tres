@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://data/rideables/parameters/rideable_parameters.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+health = 20
+maxSpeed = 200.0
+airMaxSpeed = 600.0
+acceleration = 10.0
+friction = 0.75
+airFriction = 0.95
+jumpStrength = 200.0
+timeJumpApex = 0.4
+fallMultiplier = 1.5
