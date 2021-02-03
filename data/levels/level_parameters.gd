@@ -10,4 +10,3 @@ func _ready():
 	Renderer.fade("out")
 	Renderer.backgroundSetup(backgroundID)
 	Audio.musicSetup(musicID)
-	Globals.debugSetup()
