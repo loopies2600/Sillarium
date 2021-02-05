@@ -15,15 +15,15 @@
 [ext_resource path="res://streams/sfx/player/asb_fire.wav" type="AudioStream" id=16]
 [ext_resource path="res://data/player/player_number.gd" type="Script" id=18]
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 7 )
 region = Rect2( 118, 18, 38, 51 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 7 )
 region = Rect2( 182, 15, 76, 65 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Legs:texture:region")
 tracks/0/interp = 1
@@ -61,7 +61,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 4 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Legs:texture:region")
@@ -136,7 +136,7 @@ tracks/5/keys = {
 "values": [ Vector2( 4, 48 ), Vector2( 4, 44 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=7]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -212,11 +212,10 @@ tracks/5/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 4 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 30, 72 )
 
-[sub_resource type="Animation" id=7]
-resource_name = "bump"
+[sub_resource type="Animation" id=9]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:position")
@@ -255,8 +254,7 @@ tracks/2/keys = {
 "values": [ Vector2( 1.25, 0.75 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "default"
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:position")
 tracks/0/interp = 1
@@ -307,7 +305,7 @@ character = ExtResource( 9 )
 position = Vector2( 0, 4 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
-texture = SubResource( 1 )
+texture = SubResource( 3 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 4, -44 )
@@ -315,7 +313,7 @@ position = Vector2( 4, -44 )
 [node name="Legs" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 0, 48 )
 z_index = -1
-texture = SubResource( 2 )
+texture = SubResource( 4 )
 
 [node name="ArmsPosition" type="Position2D" parent="Graphics/Body"]
 position = Vector2( 24, 8 )
@@ -331,9 +329,9 @@ script = ExtResource( 18 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
 playback_process_mode = 0
-anims/Hold = SubResource( 3 )
-anims/Idle = SubResource( 4 )
-anims/Walking = SubResource( 5 )
+anims/Hold = SubResource( 5 )
+anims/Idle = SubResource( 6 )
+anims/Walking = SubResource( 7 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -357,7 +355,7 @@ script = ExtResource( 11 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 12 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Camera" parent="." instance=ExtResource( 10 )]
 visible = false
@@ -366,5 +364,5 @@ visible = false
 stream = ExtResource( 16 )
 
 [node name="GraphicsAnimator" type="AnimationPlayer" parent="."]
-anims/bump = SubResource( 7 )
-anims/default = SubResource( 8 )
+anims/bump = SubResource( 9 )
+anims/default = SubResource( 10 )
