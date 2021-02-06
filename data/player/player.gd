@@ -41,6 +41,7 @@ var canShoot := true
 onready var stateMachine = $StateMachine
 onready var animator = $Graphics/PlayerAnimator
 onready var graphicsAnimator = $GraphicsAnimator
+onready var armsPos = $ArmsPosition
 onready var body = $Graphics/Body
 onready var head = $Graphics/Body/Head
 onready var legs = $Graphics/Body/Legs
@@ -50,7 +51,6 @@ onready var camera = $Camera
 
 func _ready():
 	Globals.set("player", self)
-	$Graphics/PlayerNumber.texture = playerNumberTexture
 	
 	loadWeapon(weaponIndex)
 	
@@ -110,7 +110,7 @@ func loadWeapon(weaponID):
 	weapon = currentWeapon.instance()
 	weapon.type = wpsType
 	weapon.global_rotation = inheritFireAngle
-	weapon.armsPos = body
+	weapon.armsPos = armsPos
 	add_child(weapon)
 	
 func switchWeapon(dir):

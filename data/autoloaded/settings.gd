@@ -13,9 +13,9 @@ var _settings = {
 	},
 	"controls":
 		{
-			"move_left": KEY_LEFT,
-			"move_right": KEY_RIGHT,
-			"jump": KEY_SPACE,
+			"move_left": KEY_A,
+			"move_right": KEY_D,
+			"jump": KEY_W,
 			"aim_up": KEY_UP,
 			"aim_down": KEY_DOWN,
 			"aim_left": KEY_LEFT,

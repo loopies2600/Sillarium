@@ -1,6 +1,5 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://sprites/character/prota_test/player_one.png" type="Texture" id=1]
 [ext_resource path="res://data/player/states/machine.gd" type="Script" id=2]
 [ext_resource path="res://data/player/player.gd" type="Script" id=3]
 [ext_resource path="res://data/player/states/idle.gd" type="Script" id=4]
@@ -13,17 +12,16 @@
 [ext_resource path="res://data/player/states/hurt.gd" type="Script" id=11]
 [ext_resource path="res://data/player/states/hold.gd" type="Script" id=12]
 [ext_resource path="res://streams/sfx/player/asb_fire.wav" type="AudioStream" id=16]
-[ext_resource path="res://data/player/player_number.gd" type="Script" id=18]
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 7 )
 region = Rect2( 118, 18, 38, 51 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 7 )
-region = Rect2( 182, 15, 76, 65 )
+region = Rect2( 19, 12, 55, 74 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Legs:texture:region")
 tracks/0/interp = 1
@@ -61,7 +59,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 4 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Legs:texture:region")
@@ -136,7 +134,7 @@ tracks/5/keys = {
 "values": [ Vector2( 4, 48 ), Vector2( 4, 44 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -212,10 +210,10 @@ tracks/5/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 4 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 30, 72 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=7]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:position")
@@ -254,7 +252,7 @@ tracks/2/keys = {
 "values": [ Vector2( 1.25, 0.75 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:position")
 tracks/0/interp = 1
@@ -302,36 +300,29 @@ script = ExtResource( 3 )
 character = ExtResource( 9 )
 
 [node name="Graphics" type="Node2D" parent="."]
-position = Vector2( 0, 4 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
-texture = SubResource( 3 )
+texture = SubResource( 1 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 4, -44 )
 
 [node name="Legs" type="Sprite" parent="Graphics/Body"]
-position = Vector2( 0, 48 )
+position = Vector2( 4, 48 )
 z_index = -1
-texture = SubResource( 4 )
-
-[node name="ArmsPosition" type="Position2D" parent="Graphics/Body"]
-position = Vector2( 24, 8 )
-scale = Vector2( 0.8, 1.33333 )
-__meta__ = {
-"_gizmo_extents_": 32.0
-}
-
-[node name="PlayerNumber" type="Sprite" parent="Graphics"]
-position = Vector2( 0, -120 )
-texture = ExtResource( 1 )
-script = ExtResource( 18 )
+texture = SubResource( 2 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
 playback_process_mode = 0
-anims/Hold = SubResource( 5 )
-anims/Idle = SubResource( 6 )
-anims/Walking = SubResource( 7 )
+anims/Hold = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/Walking = SubResource( 5 )
+
+[node name="ArmsPosition" type="Position2D" parent="."]
+position = Vector2( -16, -8 )
+__meta__ = {
+"_gizmo_extents_": 32.0
+}
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -355,7 +346,7 @@ script = ExtResource( 11 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 12 )
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="Camera" parent="." instance=ExtResource( 10 )]
 visible = false
@@ -364,5 +355,5 @@ visible = false
 stream = ExtResource( 16 )
 
 [node name="GraphicsAnimator" type="AnimationPlayer" parent="."]
-anims/bump = SubResource( 9 )
-anims/default = SubResource( 10 )
+anims/bump = SubResource( 7 )
+anims/default = SubResource( 8 )

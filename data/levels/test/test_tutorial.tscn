@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://data/enemy/grabber/grabber.tscn" type="PackedScene" id=1]
-[ext_resource path="res://data/rideables/test/test_rideable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://data/levels/level_parameters.gd" type="Script" id=3]
 [ext_resource path="res://data/tilemaps/tutorial.tres" type="TileSet" id=4]
 [ext_resource path="res://data/enemy/pinataman/pinata_man.tscn" type="PackedScene" id=6]
@@ -53,6 +52,3 @@ position = Vector2( 275, -264 )
 [node name="BasicEntryway2" parent="." instance=ExtResource( 7 )]
 position = Vector2( -2394, 31 )
 levelToLoad = "EnemyTest"
-
-[node name="TestBoyo" parent="." instance=ExtResource( 2 )]
-position = Vector2( -2112, -210 )

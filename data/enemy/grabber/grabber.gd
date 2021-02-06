@@ -12,8 +12,10 @@ var isGrabbing = false
 var currentBody = null
 
 func _ready():
-	var _unused = tongueTip.connect("body_entered", self, "_grab")
+	var _unused = connect("DestroySelf", self, "OnDestruction")
+	_unused = tongueTip.connect("body_entered", self, "_grab")
 	_unused = tongueTip.connect("body_exited", self, "_drop")
+	
 	hitbox = $Area2D
 	
 func _process(delta):
@@ -39,3 +41,6 @@ func OnBodyEntered(body):
 func OnBodyExited(body):
 	if currentBody != null:
 		currentBody.visible = true
+		
+func OnDestruction():
+	queue_free()
