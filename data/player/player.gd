@@ -168,8 +168,8 @@ func handleWeaponInput(_delta):
 
 	# Gira el arma y el sprite
 	weapon.RotateTo(weaponRotation)
-	weapon.global_rotation = currentWeaponSpriteRotation
-	weapon.global_rotation = lerp_angle(currentWeaponSpriteRotation, weaponRotation, aimWeight)
+	#weapon.global_rotation = currentWeaponSpriteRotation
+	#weapon.global_rotation = lerp_angle(currentWeaponSpriteRotation, weaponRotation, aimWeight)
 	weapon.ChangeSprite(body.flip_h)
 
 func FlipGraphics(flip):

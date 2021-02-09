@@ -319,7 +319,6 @@ anims/Idle = SubResource( 4 )
 anims/Walking = SubResource( 5 )
 
 [node name="ArmsPosition" type="Position2D" parent="."]
-position = Vector2( -16, -8 )
 __meta__ = {
 "_gizmo_extents_": 32.0
 }

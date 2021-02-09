@@ -15,7 +15,7 @@
 script = ExtResource( 1 )
 projectile = ExtResource( 2 )
 aimTextures = [ ExtResource( 5 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 4 ) ]
-projectileOffset = Vector2( 72, -8 )
+projectileOffset = [ Vector2( 72, -12 ), Vector2( 48, 48 ), Vector2( 16, 86 ), Vector2( -48, 48 ), Vector2( -72, -12 ), Vector2( -56, -72 ), Vector2( 4, -120 ), Vector2( 56, -72 ) ]
 hasCooldown = true
 displayFlash = true
 velocityReduction = 0.0

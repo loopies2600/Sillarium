@@ -4,6 +4,9 @@ export(Resource) var type
 
 var armsPos
 
+onready var flipXDown = type.projectileOffset[2].x
+onready var flipXUp = type.projectileOffset[6].x
+
 onready var currentCooldown = type.cooldown
 
 var rotationTimer = 5.0
@@ -36,6 +39,9 @@ func ChangeSprite(playerFlipped):
 	if angleIndex == 2 or angleIndex == 6:
 		if playerFlipped:
 			flip_v = true
+			
+	type.projectileOffset[2].x = -flipXDown if playerFlipped else flipXDown
+	type.projectileOffset[6].x = -flipXUp if playerFlipped else flipXUp
 	
 func _process(delta):
 	global_position = armsPos.global_position
@@ -56,12 +62,13 @@ func _process(delta):
 func fire(delta):
 	if type.displayFlash:
 		var newFlash = muzzleFlash.instance()
-		newFlash.position = position + type.projectileOffset.rotated(rotation)
+		newFlash.position = position + type.projectileOffset[angleIndex]
+		newFlash.global_rotation = global_rotation
 		get_parent().add_child(newFlash)
 		
 	offset.x = lerp(offset.x, 32, delta * 8)
 	var newProjectile = type.projectile.instance()
-	newProjectile.global_position = global_position + type.projectileOffset.rotated(rotation)
+	newProjectile.global_position = global_position + type.projectileOffset[angleIndex]
 	newProjectile.global_rotation = global_rotation
 	newProjectile.z_index = z_index
 	get_tree().get_root().add_child(newProjectile)
