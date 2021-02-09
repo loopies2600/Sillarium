@@ -9,7 +9,6 @@ offset = Vector2( 0, -300 )
 transform = Transform2D( 1, 0, 0, 1, 0, -300 )
 
 [node name="2" type="ParallaxLayer" parent="."]
-modulate = Color( 0.25, 0.25, 0.25, 1 )
 motion_scale = Vector2( 0.33, 0.125 )
 motion_mirroring = Vector2( 1280, 720 )
 
@@ -18,7 +17,6 @@ texture = ExtResource( 5 )
 centered = false
 
 [node name="1" type="ParallaxLayer" parent="."]
-modulate = Color( 0.25, 0.25, 0.25, 1 )
 motion_scale = Vector2( 0.66, 0.25 )
 motion_mirroring = Vector2( 1280, 720 )
 
@@ -27,7 +25,6 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="0" type="ParallaxLayer" parent="."]
-modulate = Color( 0.25, 0.25, 0.25, 1 )
 motion_scale = Vector2( 1, 0.375 )
 motion_mirroring = Vector2( 1280, 720 )
 
