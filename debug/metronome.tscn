@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://sprites/debug/metronome.png" type="Texture" id=1]
+[ext_resource path="res://streams/sfx/cowbell.wav" type="AudioStream" id=2]
+[ext_resource path="res://debug/metronome.gd" type="Script" id=3]
+[ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 18, 11, 395, 568 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Click"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Base:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.25, 0.75 ), Vector2( 1, 1 ) ]
+}
+
+[node name="Metronome" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.1, 0.1, 0.1, 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Base" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+texture = SubResource( 1 )
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+anims/Click = SubResource( 4 )
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="BeatTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="BPMLabel" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 4 )
+text = "BPM: 0"
