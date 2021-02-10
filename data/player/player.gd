@@ -1,9 +1,9 @@
 extends KinematicBody2D
+class_name Player, "res://sprites/ui/menu/player.png"
 
 signal player_damaged(dm, bm)
 
 export(Resource) var character
-export (float) var cameraOffset = 2
 
 onready var health = character.health
 onready var maxSpeed = character.maxSpeed
@@ -73,8 +73,6 @@ func animspeedAsVelocity():
 		animator.playback_speed = 1
 	
 func moveAndSnap(delta):
-	camera.offset = lerp(camera.offset, Vector2(1.0, 1.0), 0.1)
-	
 	gravity = (2 * jumpStrength) / pow(timeJumpApex, 2)
 	jumpForce = gravity * timeJumpApex
 	
@@ -138,10 +136,6 @@ func handleWeaponInput(_delta):
 	int(Input.is_action_pressed("aim_right")) - int(Input.is_action_pressed("aim_left")),
 	int(Input.is_action_pressed("aim_down")) - int(Input.is_action_pressed("aim_up")))
 	
-	camera.offset_h = lerp(camera.offset_h, cameraOffset * weaponDirection.x, aimWeight / 64)
-	camera.offset_v = lerp(camera.offset_v, (cameraOffset / 2) * weaponDirection.y, aimWeight / 64)
-		
-	# Variables para girar el arma
 	var weaponRotation
 	var currentWeaponSpriteRotation = weapon.global_rotation
 
@@ -165,11 +159,9 @@ func handleWeaponInput(_delta):
 			weaponRotation = PI
 		else:
 			weaponRotation = 0
-
+	
 	# Gira el arma y el sprite
 	weapon.RotateTo(weaponRotation)
-	#weapon.global_rotation = currentWeaponSpriteRotation
-	#weapon.global_rotation = lerp_angle(currentWeaponSpriteRotation, weaponRotation, aimWeight)
 	weapon.ChangeSprite(body.flip_h)
 
 func FlipGraphics(flip):

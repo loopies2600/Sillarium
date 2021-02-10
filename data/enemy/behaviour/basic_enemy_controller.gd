@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name BasicEnemy, "res://sprites/ui/menu/enemy.png"
 
 signal DestroySelf
 
@@ -21,7 +22,7 @@ func OnAreaEntered(area):
 		emit_signal("DestroySelf")
 
 func OnBodyEntered(body):
-	if body.is_in_group("Player") and killsPlayer:
+	if body is Player and killsPlayer:
 		body.takeDamage(damage)
 	
 func OnAreaExited(area):

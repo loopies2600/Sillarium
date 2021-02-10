@@ -9,10 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "BasicEnemy",
+"language": "GDScript",
+"path": "res://data/enemy/behaviour/basic_enemy_controller.gd"
+}, {
 "base": "Reference",
 "class": "HoverShake2D",
 "language": "GDScript",
 "path": "res://data/util/HoverShake2D.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://data/player/player.gd"
 }, {
 "base": "Resource",
 "class": "PlayerStats",
@@ -40,7 +50,9 @@ _global_script_classes=[ {
 "path": "res://data/state_machine/state_machine.gd"
 } ]
 _global_script_class_icons={
+"BasicEnemy": "res://sprites/ui/menu/enemy.png",
 "HoverShake2D": "",
+"Player": "res://sprites/ui/menu/player.png",
 "PlayerStats": "",
 "RangedWeapon": "",
 "RideableStats": "",

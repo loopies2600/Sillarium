@@ -29,7 +29,7 @@ var _settings = {
 			"interact": KEY_Z
 	},
 	"audio": {
-		"mute_audio": true
+		"mute_audio": false
 	},
 	"renderer": {
 		"display_backgrounds": true

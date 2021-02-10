@@ -10,12 +10,14 @@ var velocity = Vector2()
 var spn = 0
 
 func _ready():
-	set_process(false)
 	velocity = speed.rotated(rotation)
 	var _unused = connect("body_entered", self, "_bodyEnter")
 	_unused = connect("area_entered", self, "_areaEnter")
 	_unused = $VisibilityNotifier2D.connect("screen_exited", self, "OnScreenExited")
-
+	
+func _process(delta):
+	Objects.spawn(21, sprite.global_position)
+	
 func _physics_process(delta):
 	Renderer.spawnTrail(0.2, sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, z_index - 1)
 	position += velocity * delta
