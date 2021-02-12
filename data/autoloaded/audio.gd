@@ -24,6 +24,11 @@ func musicSetup(bgmID):
 				if getMusicPeakVolume() != Vector2(-200, -200):
 					Globals.debugOverlay.add_var("music peak volume (left, right)", self, "getMusicPeakVolume", true)
 	
+func getMusicBPM(bgmID):
+	var tempo = Globals.LoadJSON("res://data/json/music.json", str(bgmID))["tempo"]
+	
+	return float(tempo)
+	
 func getMusicPeakVolume():
 	var left = AudioServer.get_bus_peak_volume_left_db(0, 0)
 	var right = AudioServer.get_bus_peak_volume_right_db(0, 0)
