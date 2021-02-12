@@ -26,10 +26,6 @@ var snapAngle := Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
 var gravity
 var jumpForce
 
-var weapon
-var currentWeapon
-var weaponIndex = 0
-
 var currentDamage := 0
 var currentBump := 0.0
 
@@ -49,10 +45,14 @@ onready var shadow = $Graphics/Shadow
 onready var hitbox = $CollisionShape2D
 onready var camera = $Camera
 
+onready var currentWeapon
+
 func _ready():
 	Globals.set("player", self)
 	
-	loadWeapon(weaponIndex)
+	Globals.weapon = Objects.getWeapon(0, armsPos, z_index + 1)
+	currentWeapon = Globals.weapon
+	add_child(currentWeapon)
 	
 func _physics_process(delta):
 	if !riding:
@@ -62,9 +62,18 @@ func _physics_process(delta):
 	if canShoot:
 		handleWeaponInput(delta)
 	else:
-		weapon.hide()
+		currentWeapon.hide()
 		
 	flashBehaviour()
+	
+func pickUpWeapon(id):
+	if currentWeapon != null:
+		currentWeapon.queue_free()
+		
+	Globals.weapon = Objects.getWeapon(id, armsPos, z_index + 1)
+	currentWeapon = Globals.weapon
+	add_child(currentWeapon)
+	reinitializeVars()
 	
 func animspeedAsVelocity():
 	if getInputDirection():
@@ -94,27 +103,6 @@ func moveAndSnap(delta):
 		snapAngle = Vector2()
 		
 	velocity = move_and_slide_with_snap(velocity, snapAngle, Globals.UP, true)
-
-func loadWeapon(weaponID):
-	var inheritFireAngle = 0
-	
-	if weapon != null:
-		inheritFireAngle = weapon.global_rotation
-		weapon.queue_free()
-		
-	var wpsType = load(Globals.LoadJSON("res://data/json/weapons.json", weaponID)["file"])
-	var wps = load(Globals.LoadJSON("res://data/json/weapons.json", weaponID)["type"])
-	currentWeapon = wps
-	weapon = currentWeapon.instance()
-	weapon.type = wpsType
-	weapon.global_rotation = inheritFireAngle
-	weapon.armsPos = armsPos
-	add_child(weapon)
-	
-func switchWeapon(dir):
-	weaponIndex += 1 * dir
-	loadWeapon(weaponIndex)
-	reinitializeVars()
 	
 func flashBehaviour():
 	if flashing:
@@ -125,25 +113,20 @@ func getInputDirection() -> int:
 	return inputDirection
 	
 func handleWeaponInput(_delta):
-	weapon.show()
+	currentWeapon.show()
 	
-	if Input.is_action_just_pressed("wps_left"):
-		switchWeapon(-1)
-	if Input.is_action_just_pressed("wps_right"):
-		switchWeapon(1)
-		
 	var weaponDirection = Vector2(
 	int(Input.is_action_pressed("aim_right")) - int(Input.is_action_pressed("aim_left")),
 	int(Input.is_action_pressed("aim_down")) - int(Input.is_action_pressed("aim_up")))
 	
 	var weaponRotation
-	var currentWeaponSpriteRotation = weapon.global_rotation
+	var currentWeaponSpriteRotation = currentWeapon.global_rotation
 
 	if weaponDirection != Vector2.ZERO:
 		weaponRotation = weaponDirection.angle()
 
 		# Gira el arma para que este alineada para disparar
-		weapon.RotateTo(weaponRotation)
+		currentWeapon.RotateTo(weaponRotation)
 		
 		# Espeja el sprite del jugador para que no dispare hacia atras
 		if weaponDirection.x == -1:
@@ -161,8 +144,8 @@ func handleWeaponInput(_delta):
 			weaponRotation = 0
 	
 	# Gira el arma y el sprite
-	weapon.RotateTo(weaponRotation)
-	weapon.ChangeSprite(body.flip_h)
+	currentWeapon.RotateTo(weaponRotation)
+	currentWeapon.ChangeSprite(body.flip_h)
 
 func FlipGraphics(flip):
 	head.flip_h = flip

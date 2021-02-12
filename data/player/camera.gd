@@ -4,11 +4,14 @@ onready var BPM = Audio.getMusicBPM(Objects.currentWorld.musicID)
 var speed = 0.1
 var intensity = 0.9
 
+var beat = false
+
 onready var beatTimer = $BeatTimer
 
 func _ready():
-	_beat()
-	beatTimer.connect("timeout", self, "_onBeat")
+	if beat:
+		_beat()
+		beatTimer.connect("timeout", self, "_onBeat")
 	
 func _process(delta):
 	zoom = lerp(zoom, Vector2(1.0, 1.0), speed)

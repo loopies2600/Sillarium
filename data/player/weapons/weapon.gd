@@ -44,7 +44,9 @@ func ChangeSprite(playerFlipped):
 	type.projectileOffset[6].x = -flipXUp if playerFlipped else flipXUp
 	
 func _process(delta):
-	global_position = armsPos.global_position
+	if armsPos != null:
+		global_position = armsPos.global_position
+		
 	offset.x = lerp(offset.x, 0, delta * 8)
 	
 	if Input.is_action_pressed("shoot") and cooldownIsOver:

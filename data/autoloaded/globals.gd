@@ -5,6 +5,7 @@ const MAX_FLOOR_ANGLE = 60
 const UNIT_SIZE = 96
 
 var player
+var weapon
 
 onready var debugOverlay = Objects.getObj(18)
 onready var debug = Settings.getSetting("general", "debug_mode")
