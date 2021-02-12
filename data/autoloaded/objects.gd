@@ -1,5 +1,7 @@
 extends Node
 
+var currentWorld
+
 func spawn(id, pos = Vector2()):
 	var objName = Globals.LoadJSON("res://data/json/objects.json", id)["name"]
 	var obj = load(Globals.LoadJSON("res://data/json/objects.json", id)["file"])

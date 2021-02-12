@@ -1,14 +1,18 @@
 extends Control
 
-export (int) var ID = 0
+export (int) var backgroundID = 0
+export (int) var musicID = 0
 
 onready var buttons = [$Menu/Buttons/Play, $Menu/Buttons/Settings, $Menu/Buttons/SoundTest, $Menu/Buttons/Exit]
 onready var buildNumber = $Build
 
+func _init():
+	Objects.currentWorld = self
+	
 func _ready():
 	randomize()
 	buildNumber.text = "SILLARIUM BUILD " + str(randi() % 32768)
-	Renderer.backgroundSetup(ID)
-	Audio.musicSetup(ID)
+	Renderer.backgroundSetup(backgroundID)
+	Audio.musicSetup(musicID)
 	Renderer.fade("out")
 	buttons[0].grab_focus()
