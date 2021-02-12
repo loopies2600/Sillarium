@@ -1,0 +1,45 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/loopies/Documentos/GitHub/Sillarium/Sillarium.csproj": {}
+  },
+  "projects": {
+    "/home/loopies/Documentos/GitHub/Sillarium/Sillarium.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/loopies/Documentos/GitHub/Sillarium/Sillarium.csproj",
+        "projectName": "Sillarium",
+        "projectPath": "/home/loopies/Documentos/GitHub/Sillarium/Sillarium.csproj",
+        "packagesPath": "/home/loopies/.nuget/packages/",
+        "outputPath": "/home/loopies/Documentos/GitHub/Sillarium/.mono/temp/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/loopies/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "runtimeIdentifierGraphPath": "/var/lib/snapd/snap/dotnet-sdk/112/sdk/5.0.103/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
