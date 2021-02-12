@@ -1,11 +1,18 @@
+""" este singleton contiene cosas referentes a los graficos
+	no te dejes intimidar por su nombre, no da tantitos problemas editarlo """
+
 extends Node
 
+# otra variable que lee desde la configuración, esta es para decidir si deberiamos dibujar los fondos o no
 onready var backgrounds = Settings.getSetting("renderer", "display_backgrounds")
 
+# estas dos variables se usan para guardar tanto la transición como el fondo actual.
 var transition
 var currentBackground
 
 func spawnTrail(fds, tex, pos, rot, scl, z = 0):
+	# algunos sprites van a dejar un rastro, así que esta función se encarga de spawnear ese rastro.
+	# los argumentos son en orden: tiempo de desvanecimiento, textura, posición, rotación, escala, y orden Z.
 	var newTrail = Objects.getObj(7)
 	get_tree().get_root().add_child(newTrail)
 	newTrail.fadeSpeed = fds
@@ -16,6 +23,8 @@ func spawnTrail(fds, tex, pos, rot, scl, z = 0):
 	newTrail.z_index = z
 	
 func fade(mode = "in", mask = preload("res://sprites/debug/radius.png")):
+	# esta función se encarga de spawnear la transición, solo si no hay ninguna transición actualmente.
+	# los argumentos son: modo ("in" o "out") y mascara.
 	if transition == null:
 		var newFade = Objects.getObj(20)
 		transition = newFade
@@ -24,6 +33,7 @@ func fade(mode = "in", mask = preload("res://sprites/debug/radius.png")):
 		get_tree().get_root().call_deferred("add_child", newFade)
 	
 func backgroundSetup(bgID):
+	# esta función se encarga de cargar y spawnear un fondo desde el JSON, solo si no hay ningun fondo actualmente. en caso contrario, lo reemplaza.
 	if backgrounds:
 		if (bgID != null):
 			var backgroundToLoad = load(Globals.LoadJSON("res://data/json/backgrounds.json", bgID)["file"])
