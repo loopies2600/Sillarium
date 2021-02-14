@@ -85,6 +85,7 @@ tracks/1/keys = {
 }
 
 [node name="PinataMan" type="KinematicBody2D" groups=[
+"CameraManipulator",
 "Enemy",
 ]]
 collision_layer = 2147483655

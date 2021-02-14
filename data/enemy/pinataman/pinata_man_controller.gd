@@ -9,7 +9,7 @@ var velocity = Vector2()
 
 func _ready():
 	hitbox = $Area2D
-	var _unused = connect("DestroySelf", self, "OnDestruction")
+	var _unused = connect("destroy_self", self, "OnDestruction")
 	animPlayer.play("Swinging")
 	
 func disableCollision():

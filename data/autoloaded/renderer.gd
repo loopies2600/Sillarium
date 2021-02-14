@@ -14,13 +14,13 @@ func spawnTrail(fds, tex, pos, rot, scl, z = 0):
 	# algunos sprites van a dejar un rastro, así que esta función se encarga de spawnear ese rastro.
 	# los argumentos son en orden: tiempo de desvanecimiento, textura, posición, rotación, escala, y orden Z.
 	var newTrail = Objects.getObj(7)
-	get_tree().get_root().add_child(newTrail)
 	newTrail.fadeSpeed = fds
 	newTrail.texture = tex
 	newTrail.global_position = pos
 	newTrail.global_rotation = rot
 	newTrail.global_scale = scl
 	newTrail.z_index = z
+	Objects.currentWorld.add_child(newTrail)
 	
 func fade(mode = "in", mask = preload("res://sprites/debug/radius.png")):
 	# esta función se encarga de spawnear la transición, solo si no hay ninguna transición actualmente.
@@ -30,7 +30,7 @@ func fade(mode = "in", mask = preload("res://sprites/debug/radius.png")):
 		transition = newFade
 		newFade.mode = mode
 		newFade.mask = mask
-		get_tree().get_root().call_deferred("add_child", newFade)
+		Objects.currentWorld.call_deferred("add_child", newFade)
 	
 func backgroundSetup(bgID):
 	# esta función se encarga de cargar y spawnear un fondo desde el JSON, solo si no hay ningun fondo actualmente. en caso contrario, lo reemplaza.
@@ -41,7 +41,7 @@ func backgroundSetup(bgID):
 			if currentBackground == null:
 				var background = backgroundToLoad
 				currentBackground = background.instance()
-				add_child(currentBackground)
+				Objects.currentWorld.add_child(currentBackground)
 			else:
 				currentBackground.queue_free()
 				
@@ -49,5 +49,5 @@ func backgroundSetup(bgID):
 				currentBackground.queue_free()
 				var background = backgroundToLoad
 				currentBackground = background.instance()
-				add_child(currentBackground)
+				Objects.currentWorld.add_child(currentBackground)
 		

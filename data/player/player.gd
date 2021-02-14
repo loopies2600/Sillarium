@@ -119,6 +119,9 @@ func handleWeaponInput(_delta):
 	int(Input.is_action_pressed("aim_right")) - int(Input.is_action_pressed("aim_left")),
 	int(Input.is_action_pressed("aim_down")) - int(Input.is_action_pressed("aim_up")))
 	
+	if weaponDirection.y == 1 and is_on_floor():
+		weaponDirection.y = 0
+		
 	var weaponRotation
 	var currentWeaponSpriteRotation = currentWeapon.global_rotation
 

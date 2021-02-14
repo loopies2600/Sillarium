@@ -13,7 +13,7 @@ func spawn(id, pos = Vector2()):
 	
 	var newObj = obj.instance()
 	newObj.global_position = pos
-	get_tree().get_root().add_child(newObj)
+	currentWorld.add_child(newObj)
 	
 func getWeapon(id, pos, z, ammo = 0):
 	# este es muy parecido al que spawnea objetos, pero tiene parametros extra especificos para las armas.

@@ -3,7 +3,6 @@
 [ext_resource path="res://data/player/camera.gd" type="Script" id=1]
 
 [node name="Camera2D" type="Camera2D"]
-offset = Vector2( 256, -50 )
 rotating = true
 current = true
 process_mode = 0
@@ -13,6 +12,9 @@ smoothing_speed = 4.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource( 1 )
+doBeat = false
 
 [node name="BeatTimer" type="Timer" parent="."]
-autostart = true
+
+[node name="ShakeTimer" type="Timer" parent="."]
+one_shot = true
