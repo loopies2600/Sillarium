@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://data/player/states/machine.gd" type="Script" id=2]
 [ext_resource path="res://data/player/player.gd" type="Script" id=3]
@@ -16,6 +16,10 @@
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 7 )
 region = Rect2( 118, 18, 38, 51 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 7 )
+region = Rect2( 307, 18, 84, 58 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 7 )
@@ -306,6 +310,7 @@ texture = SubResource( 1 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 4, -44 )
+texture = SubResource( 9 )
 
 [node name="Legs" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 4, 48 )

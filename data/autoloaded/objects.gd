@@ -12,7 +12,7 @@ func spawn(id, pos = Vector2()):
 	var obj = load(Globals.LoadJSON("res://data/json/objects.json", id)["file"])
 	
 	var newObj = obj.instance()
-	newObj.global_position = pos
+	if newObj is Node2D: newObj.global_position = pos
 	currentWorld.add_child(newObj)
 	
 func getWeapon(id, pos, z, ammo = 0):

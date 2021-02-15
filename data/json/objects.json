@@ -106,5 +106,9 @@
 	"21": {
 			"name": "Position Marker",
 			"file": "res://debug/position_marker.tscn"
+			},
+	"22": {
+			"name": "Pause Menu",
+			"file": "res://data/ui/pause_menu/pause_menu.tscn"
 			}
 }

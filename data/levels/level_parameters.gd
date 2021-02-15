@@ -13,3 +13,4 @@ func _ready():
 	Renderer.fade("out")
 	Renderer.backgroundSetup(backgroundID)
 	Audio.musicSetup(musicID)
+	Objects.spawn(22)

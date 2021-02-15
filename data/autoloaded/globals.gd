@@ -7,7 +7,7 @@ const UP = Vector2.UP
 const MAX_FLOOR_ANGLE = 60
 const UNIT_SIZE = 128
 
-# se usa para registrar el jugador y el arma actual.
+# se usa para registrar el jugador, el arma y la pausa.
 var player
 var weapon
 
@@ -21,6 +21,7 @@ func _init():
 		debugOverlay.add_var("player position (X, Y)", player, "global_position", false)
 		debugOverlay.add_var("object count", self, "get_child_count", true)
 		add_child(debugOverlay)
+	
 	
 func quadBezier(p0: Vector2, p1: Vector2, p2: Vector2, time: float):
 	# para interpolar movimientos usando el algoritmo del bezier cuadrado

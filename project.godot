@@ -91,6 +91,10 @@ mouse_cursor/custom_image="res://sprites/silly_cursor.png"
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "smoothing" )
+
 [input]
 
 ui_accept={
@@ -170,6 +174,11 @@ interact={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
  ]
 }
+pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":80,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [input_devices]
 
@@ -192,10 +201,6 @@ pointing/emulate_touch_from_mouse=true
 
 file_logging/enable_file_logging=true
 file_logging/log_path="user://logs/sillarium.log"
-
-[physics]
-
-common/physics_jitter_fix=1.0
 
 [rendering]
 

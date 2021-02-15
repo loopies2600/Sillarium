@@ -34,7 +34,8 @@ var _settings = {
 			"toggle_debug": KEY_L,
 			"wps_left": KEY_E,
 			"wps_right": KEY_Q,
-			"interact": KEY_Z
+			"interact": KEY_Z,
+			"pause": KEY_P
 	},
 	"audio": {
 		"mute_audio": false
