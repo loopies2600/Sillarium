@@ -12,7 +12,6 @@ smoothing_speed = 4.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource( 1 )
-doBeat = false
 
 [node name="BeatTimer" type="Timer" parent="."]
 

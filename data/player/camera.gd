@@ -1,23 +1,21 @@
 extends Camera2D
 
 # pulso
+onready var doBeat = Settings.getSetting("renderer", "camera_effects")
 onready var beatTimer : Timer = $BeatTimer
 onready var BPM = Audio.getMusicBPM(Objects.currentWorld.musicID)
 
 var speed = 0.1
 var intensity = 0.9
 
-export var doBeat := true
-
 # vibración
+onready var enabled = Settings.getSetting("renderer", "camera_effects")
 onready var shakeTimer : Timer = $ShakeTimer
 
 export var amplitude := 8.0
 export var duration := 0.25 setget setShakeDuration
 export(float, EASE) var DAMP_EASING := 1.0
 export var shake := false setget setShaking
-
-export var enabled := true
 
 func _ready():
 	randomize()
@@ -26,20 +24,21 @@ func _ready():
 	connectToManipulators()
 	
 	if doBeat:
-		beatTimer.wait_time = 60.0 / BPM
+		beatTimer.wait_time = Engine.get_frames_per_second()  / BPM
 		beatTimer.start()
 		beatTimer.connect("timeout", self, "_onBeat")
 		
 func _process(delta):
-	if doBeat:
-		zoom = lerp(zoom, Vector2(1.0, 1.0), speed)
-		
 	var damping := ease(shakeTimer.time_left / shakeTimer.wait_time, DAMP_EASING)
 	offset = Vector2(
 		rand_range(amplitude, -amplitude) * damping,
 		rand_range(amplitude, -amplitude) * damping
 	)
 	
+func _physics_process(delta):
+	if doBeat:
+		zoom = lerp(zoom, Vector2(1.0, 1.0), speed)
+		
 func _onShakeTimeout():
 	self.shake = false
 	
@@ -71,4 +70,3 @@ func _beat():
 	
 func _onBeat():
 	_beat()
-	_onShakeRequest()

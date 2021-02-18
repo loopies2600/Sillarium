@@ -129,7 +129,7 @@ func handleWeaponInput(_delta):
 		weaponRotation = weaponDirection.angle()
 
 		# Gira el arma para que este alineada para disparar
-		currentWeapon.RotateTo(weaponRotation)
+		currentWeapon.RotateTo(weaponRotation, aimWeight)
 		
 		# Espeja el sprite del jugador para que no dispare hacia atras
 		if weaponDirection.x == -1:
@@ -147,7 +147,7 @@ func handleWeaponInput(_delta):
 			weaponRotation = 0
 	
 	# Gira el arma y el sprite
-	currentWeapon.RotateTo(weaponRotation)
+	currentWeapon.RotateTo(weaponRotation, aimWeight)
 	currentWeapon.ChangeSprite(body.flip_h)
 
 func FlipGraphics(flip):

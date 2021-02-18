@@ -41,6 +41,7 @@ var _settings = {
 		"mute_audio": false
 	},
 	"renderer": {
+		"camera_effects": true,
 		"display_backgrounds": true
 	}
 }

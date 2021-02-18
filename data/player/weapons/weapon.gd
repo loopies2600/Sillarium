@@ -22,8 +22,8 @@ func _ready():
 		type.cooldown = 0
 		type.cooldownIsOver = true
 	
-func RotateTo(angle):
-	rotation = angle
+func RotateTo(angle, weight):
+	rotation = lerp_angle(rotation, angle, weight)
 
 func ChangeSprite(playerFlipped):
 	flip_v = false
