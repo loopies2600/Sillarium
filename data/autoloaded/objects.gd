@@ -6,6 +6,16 @@ extends Node
 # world es la manera de la cual le decimo a las escenas que contienen niveles, y en esta variable registramos dichas escenas.
 var currentWorld
 
+func playerInit(charID, pos):
+	var characters := [preload("res://data/player/player.tscn")]
+	var currentChar = characters[charID].instance()
+	
+	if Globals.player == null:
+		get_tree().get_root().add_child(currentChar)
+		Globals.player = currentChar
+		
+	Globals.player.global_position = pos
+	
 func spawn(id, pos = Vector2()):
 	# esta función primero lee el nombre y archivo del objeto desde el JSON, luego lo instancia. ah, no te olvides de pasarle una posición, si queres.
 	var objName = Globals.LoadJSON("res://data/json/objects.json", id)["name"]

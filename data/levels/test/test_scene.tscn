@@ -1,19 +1,17 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://data/levels/level_parameters.gd" type="Script" id=1]
 [ext_resource path="res://sprites/test_tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://data/generic/basic_entryway.tscn" type="PackedScene" id=3]
-[ext_resource path="res://data/player/player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://data/enemy/dino/dino.tscn" type="PackedScene" id=5]
 [ext_resource path="res://data/enemy/lebipi/lebipi.tscn" type="PackedScene" id=6]
 [ext_resource path="res://data/hazards/killing_area.tscn" type="PackedScene" id=7]
 [ext_resource path="res://data/enemy/buma/buma.tscn" type="PackedScene" id=8]
 [ext_resource path="res://data/enemy/caranon/caranon.tscn" type="PackedScene" id=9]
 
-
-
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
+startPosition = NodePath("StartPosition")
 backgroundID = 3
 musicID = 2
 
@@ -36,9 +34,6 @@ levelToLoad = "FunnyScene"
 
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 298, 512 )
-
-[node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1126.21, 478.309 )
 
 [node name="PitKillArea" parent="." instance=ExtResource( 7 )]
 position = Vector2( 426, 808 )

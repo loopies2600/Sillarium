@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://data/enemy/grabber/grabber.tscn" type="PackedScene" id=1]
 [ext_resource path="res://data/pickups/weapons/weapon.tscn" type="PackedScene" id=2]
@@ -6,10 +6,10 @@
 [ext_resource path="res://data/tilemaps/tutorial.tres" type="TileSet" id=4]
 [ext_resource path="res://data/enemy/pinataman/pinata_man.tscn" type="PackedScene" id=6]
 [ext_resource path="res://data/generic/basic_entryway.tscn" type="PackedScene" id=7]
-[ext_resource path="res://data/player/player.tscn" type="PackedScene" id=8]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
+startPosition = NodePath("StartPosition")
 backgroundID = 2
 
 [node name="TutorialTiles" type="TileMap" parent="." groups=[
@@ -40,9 +40,6 @@ position = Vector2( 920, -480 )
 
 [node name="PinataMan3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 840, -608 )
-
-[node name="Player" parent="." instance=ExtResource( 8 )]
-position = Vector2( -2395.5, -54.5 )
 
 [node name="Grabber" parent="." instance=ExtResource( 1 )]
 position = Vector2( 278, 15 )

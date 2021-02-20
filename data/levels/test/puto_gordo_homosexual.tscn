@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://data/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://data/tilemaps/test_tilemap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sprites/debug/puto.png" type="Texture" id=4]
 [ext_resource path="res://data/levels/level_parameters.gd" type="Script" id=5]
@@ -9,6 +8,7 @@
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
+startPosition = NodePath("StartPosition")
 
 [node name="TileMap" parent="." instance=ExtResource( 3 )]
 z_index = -4096
@@ -31,9 +31,6 @@ texture = ExtResource( 4 )
 
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 128, 128 )
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1168, 628 )
 
 [node name="BasicEntryway" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1168, 704 )

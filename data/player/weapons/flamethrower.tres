@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource( 1 )
 projectile = ExtResource( 2 )
-aimTextures = [ null, null, null, null, null, null, null, null ]
+aimGraphics = [ null, null, null, null, null, null, null, null ]
 projectileOffset = [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
 hasCooldown = true
 displayFlash = false

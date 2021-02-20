@@ -1,4 +1,4 @@
-extends Sprite
+extends AnimatedSprite
 
 export(Resource) var type
 
@@ -21,6 +21,9 @@ func _ready():
 	if !type.hasCooldown:
 		type.cooldown = 0
 		type.cooldownIsOver = true
+		
+	play("Idle")
+	connect("animation_finished", self, "_animEnd")
 	
 func RotateTo(angle, weight):
 	rotation = lerp_angle(rotation, angle, weight)
@@ -33,7 +36,7 @@ func ChangeSprite(playerFlipped):
 	angleStep = fposmod(angleStep, TAU)
 	angleIndex = int(angleStep / anglePerDirection)
 
-	texture = type.aimTextures[angleIndex]
+	frames = type.aimGraphics[angleIndex]
 	Globals.player.head.texture = Globals.player.headTextures[angleIndex]
 
 	if angleIndex == 2 or angleIndex == 6:
@@ -62,6 +65,8 @@ func _process(delta):
 		_checkCooldown(delta)
 		
 func fire(delta):
+	play("Fire")
+	
 	if type.displayFlash:
 		var newFlash = muzzleFlash.instance()
 		newFlash.position = position + type.projectileOffset[angleIndex]
@@ -85,3 +90,7 @@ func _checkCooldown(delta):
 		currentCooldown -= delta
 	else:
 		cooldownIsOver = true
+	
+func _animEnd(anim):
+	if anim == "Fire":
+		play("Idle")

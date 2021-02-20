@@ -1,0 +1,16 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=2]
+
+[ext_resource path="res://sprites/player/noah/shotgun/aim_right.png" type="Texture" id=1]
+
+[resource]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": false,
+"name": "Fire",
+"speed": 5.0
+} ]

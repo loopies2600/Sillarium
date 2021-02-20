@@ -2,7 +2,7 @@ extends Resource
 class_name RangedWeapon
 
 export (PackedScene) var projectile
-export (Array, StreamTexture) var aimTextures
+export (Array, SpriteFrames) var aimGraphics
 
 export (Array, Vector2) var projectileOffset
 

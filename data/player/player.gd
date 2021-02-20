@@ -48,8 +48,6 @@ onready var camera = $Camera
 onready var currentWeapon
 
 func _ready():
-	Globals.set("player", self)
-	
 	Globals.weapon = Objects.getWeapon(0, armsPos, z_index + 1)
 	currentWeapon = Globals.weapon
 	add_child(currentWeapon)

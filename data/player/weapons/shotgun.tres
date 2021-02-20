@@ -2,19 +2,19 @@
 
 [ext_resource path="res://data/player/weapons/weapon_ranged.gd" type="Script" id=1]
 [ext_resource path="res://data/player/projectiles/main_bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://sprites/player/noah/shotgun/aim_left.png" type="Texture" id=3]
-[ext_resource path="res://sprites/player/noah/shotgun/aim_up_right.png" type="Texture" id=4]
-[ext_resource path="res://sprites/player/noah/shotgun/aim_right.png" type="Texture" id=5]
-[ext_resource path="res://sprites/player/noah/shotgun/aim_down_left.png" type="Texture" id=6]
-[ext_resource path="res://sprites/player/noah/shotgun/aim_up.png" type="Texture" id=7]
-[ext_resource path="res://sprites/player/noah/shotgun/aim_up_left.png" type="Texture" id=8]
-[ext_resource path="res://sprites/player/noah/shotgun/aim_down.png" type="Texture" id=9]
-[ext_resource path="res://sprites/player/noah/shotgun/aim_down_right.png" type="Texture" id=10]
+[ext_resource path="res://sprites/player/noah/shotgun/anim/aim_left.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://sprites/player/noah/shotgun/anim/aim_down.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://sprites/player/noah/shotgun/anim/aim_right.tres" type="SpriteFrames" id=5]
+[ext_resource path="res://sprites/player/noah/shotgun/anim/aim_up.tres" type="SpriteFrames" id=6]
+[ext_resource path="res://sprites/player/noah/shotgun/anim/aim_up_right.tres" type="SpriteFrames" id=7]
+[ext_resource path="res://sprites/player/noah/shotgun/anim/aim_down_right.tres" type="SpriteFrames" id=8]
+[ext_resource path="res://sprites/player/noah/shotgun/anim/aim_down_left.tres" type="SpriteFrames" id=9]
+[ext_resource path="res://sprites/player/noah/shotgun/anim/aim_up_left.tres" type="SpriteFrames" id=10]
 
 [resource]
 script = ExtResource( 1 )
 projectile = ExtResource( 2 )
-aimTextures = [ ExtResource( 5 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 4 ) ]
+aimGraphics = [ ExtResource( 5 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 7 ) ]
 projectileOffset = [ Vector2( 72, -12 ), Vector2( 48, 48 ), Vector2( 16, 86 ), Vector2( -48, 48 ), Vector2( -72, -12 ), Vector2( -56, -72 ), Vector2( 4, -120 ), Vector2( 56, -72 ) ]
 hasCooldown = true
 displayFlash = true
