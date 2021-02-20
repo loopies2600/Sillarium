@@ -15,7 +15,7 @@ var _configFile = ConfigFile.new()
 
 # este diccionario contiene todos los parametros que usamos y leemos, muy importante mantener el formato si queres agregar alguno.
 var _settings = {
-	"Autogenerado por el juego.": { "author" : "aSillyTeam" },
+	"Autogenerado por el juego.": { "author" : "Sillarium Team" },
 	"general": {
 		"debug_mode" : true
 	},
@@ -32,8 +32,6 @@ var _settings = {
 			"dash": KEY_SHIFT,
 			"input_hold": KEY_C,
 			"toggle_debug": KEY_L,
-			"wps_left": KEY_E,
-			"wps_right": KEY_Q,
 			"interact": KEY_Z,
 			"pause": KEY_P
 	},
