@@ -109,6 +109,6 @@
 			},
 	"22": {
 			"name": "Pause Menu",
-			"file": "res://data/ui/pause_menu/pause_menu.tscn"
+			"file": "res://data/ui/menu/pause_menu/pause_menu.tscn"
 			}
 }

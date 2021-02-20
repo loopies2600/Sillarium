@@ -10,6 +10,7 @@ func _init():
 	Objects.currentWorld = self
 	
 func _ready():
+	Renderer.fade("out")
 	randomize()
 	buildNumber.text = "SILLARIUM BUILD " + str(randi() % 32768)
 	Renderer.backgroundSetup(backgroundID)

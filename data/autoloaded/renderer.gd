@@ -33,6 +33,7 @@ func fade(mode = "in", mask = preload("res://sprites/debug/radius.png")):
 		Objects.currentWorld.call_deferred("add_child", newFade)
 	
 func backgroundSetup(bgID):
+	backgrounds = Settings.getSetting("renderer", "display_backgrounds")
 	# esta función se encarga de cargar y spawnear un fondo desde el JSON, solo si no hay ningun fondo actualmente. en caso contrario, lo reemplaza.
 	if backgrounds:
 		if (bgID != null):
@@ -50,4 +51,6 @@ func backgroundSetup(bgID):
 				var background = backgroundToLoad
 				currentBackground = background.instance()
 				Objects.currentWorld.add_child(currentBackground)
+	else:
+		currentBackground.queue_free()
 		

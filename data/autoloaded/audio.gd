@@ -10,6 +10,7 @@ onready var mute = Settings.getSetting("audio", "mute_audio")
 var currentMusic
 
 func musicSetup(bgmID):
+	mute = Settings.getSetting("audio", "mute_audio")
 	# ! significa "NO", o sea que si mute esta desactivado, todo este pedazo de codigo se va a ejecutar.
 	if !mute:
 		# si bgmID tiene algun numero dentro...
@@ -34,7 +35,9 @@ func musicSetup(bgmID):
 			if Globals.debug:
 				if getMusicPeakVolume() != Vector2(-200, -200):
 					Globals.debugOverlay.add_var("music peak volume (left, right)", self, "getMusicPeakVolume", true)
-	
+	else:
+		currentMusic.queue_free()
+		
 func getMusicBPM(bgmID):
 	# el tempo de la musica es un valor que se lee desde el JSON. necesitamos pasarle el ID del tema el cual queremos conseguir su tempo.
 	var tempo = Globals.LoadJSON("res://data/json/music.json", str(bgmID))["tempo"]

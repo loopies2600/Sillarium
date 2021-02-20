@@ -15,7 +15,6 @@ var _configFile = ConfigFile.new()
 
 # este diccionario contiene todos los parametros que usamos y leemos, muy importante mantener el formato si queres agregar alguno.
 var _settings = {
-	"Autogenerado por el juego.": { "author" : "Sillarium Team" },
 	"general": {
 		"debug_mode" : true
 	},

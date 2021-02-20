@@ -9,9 +9,9 @@
 			"file": "res://debug/sound_test.tscn"
 		     },
 			 
-	"Settings": {
-			"name": "Settings",
-			"file": "res://data/ui/menu/settings/settings.tscn"
+	"OptionsMenu": {
+			"name": "Options Menu",
+			"file": "res://data/ui/menu/options_menu/options_menu.tscn"
 		     },
 			 
 	"TestTutorial": {
