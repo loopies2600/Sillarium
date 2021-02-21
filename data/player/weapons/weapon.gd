@@ -77,7 +77,7 @@ func fire(delta):
 	var newProjectile = type.projectile.instance()
 	newProjectile.global_position = global_position + type.projectileOffset[angleIndex]
 	newProjectile.global_rotation = global_rotation
-	newProjectile.z_index = z_index
+	newProjectile.z_index = z_index - 16
 	get_tree().get_root().add_child(newProjectile)
 	currentCooldown = type.cooldown
 		
