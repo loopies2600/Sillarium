@@ -5,11 +5,19 @@ extends Node
 
 # otra variable que lee desde la configuración, esta es para decidir si deberiamos dibujar los fondos o no
 onready var backgrounds = Settings.getSetting("renderer", "display_backgrounds")
+onready var fullscreen = Settings.getSetting("renderer", "fullscreen")
 
 # estas dos variables se usan para guardar tanto la transición como el fondo actual.
 var transition
 var currentBackground
 
+func _ready():
+	toggleFS()
+	
+func toggleFS():
+	fullscreen = Settings.getSetting("renderer", "fullscreen")
+	OS.window_fullscreen = fullscreen
+	
 func spawnTrail(fds, tex, pos, rot, scl, z = 0):
 	# algunos sprites van a dejar un rastro, así que esta función se encarga de spawnear ese rastro.
 	# los argumentos son en orden: tiempo de desvanecimiento, textura, posición, rotación, escala, y orden Z.
@@ -52,5 +60,6 @@ func backgroundSetup(bgID):
 				currentBackground = background.instance()
 				Objects.currentWorld.add_child(currentBackground)
 	else:
-		currentBackground.queue_free()
+		if currentBackground != null:
+			currentBackground.queue_free()
 		

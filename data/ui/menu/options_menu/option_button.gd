@@ -25,11 +25,17 @@ func _process(_delta):
 func buttonPress():
 	match type:
 		SWITCH:
+			print(str(key))
 			val = !val
 			Settings.setSetting(category, key, val)
 			Settings.saveSettings()
-			Renderer.backgroundSetup(Objects.currentWorld.backgroundID)
-			Audio.musicSetup(Objects.currentWorld.musicID)
+			
+			if key == "display_backgrounds":
+				Renderer.backgroundSetup(Objects.currentWorld.backgroundID)
+			if key == "fullscreen":
+				Renderer.toggleFS()
+			if key == "mute_audio":
+				Audio.musicSetup(Objects.currentWorld.musicID)
 			
 	updateText()
 	

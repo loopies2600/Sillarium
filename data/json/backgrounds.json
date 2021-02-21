@@ -17,5 +17,9 @@
 	"3": {
 			"name": "Starfield",
 			"file": "res://data/backgrounds/starfield/starfield.tscn"
+		 },
+	"4": {
+			"name": "Tiles",
+			"file": "res://data/backgrounds/tiles/tiles.tscn"
 		 }
 }

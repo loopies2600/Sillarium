@@ -20,18 +20,18 @@ var _settings = {
 	},
 	"controls":
 		{
-			"move_left": KEY_A,
-			"move_right": KEY_D,
-			"jump": KEY_W,
+			"move_left": KEY_LEFT,
+			"move_right": KEY_RIGHT,
+			"jump": KEY_Z,
 			"aim_up": KEY_UP,
 			"aim_down": KEY_DOWN,
 			"aim_left": KEY_LEFT,
 			"aim_right": KEY_RIGHT,
-			"shoot": KEY_SHIFT,
-			"dash": KEY_SHIFT,
-			"input_hold": KEY_C,
+			"shoot": KEY_X,
+			"dash": KEY_S,
+			"input_hold": KEY_A,
 			"toggle_debug": KEY_L,
-			"interact": KEY_Z,
+			"interact": KEY_C,
 			"pause": KEY_P
 	},
 	"audio": {
@@ -39,7 +39,8 @@ var _settings = {
 	},
 	"renderer": {
 		"camera_effects": true,
-		"display_backgrounds": true
+		"display_backgrounds": true,
+		"fullscreen": true
 	}
 }
 

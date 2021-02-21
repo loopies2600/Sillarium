@@ -5,6 +5,10 @@ onready var label = $PauseText
 onready var music = $CoolPauseMusic
 onready var anim = $Animator
 
+func _ready():
+	if !Audio.mute:
+		music.play()
+		
 func _process(_delta):
 	if get_tree().paused:
 		music.volume_db = lerp(music.volume_db, -10.0, 0.0125)

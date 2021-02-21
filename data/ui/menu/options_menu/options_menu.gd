@@ -4,7 +4,7 @@ export (int) var backgroundID = 0
 export (int) var musicID = 0
 
 onready var optionsText = $OptionsTitle
-onready var items = $Items
+onready var categories = [$Items/Renderer/General, $Items/Controls, $Items/Renderer, $Items/Audio]
 onready var exitButton = $Exit
 
 var multiplier = 0.1
@@ -24,7 +24,7 @@ func _spawnButtons():
 		for key in Settings._settings[section].keys():
 			var val = Settings._configFile.get_value(section,key)
 			var newButton = Button.new()
-			
+			print(section)
 			newButton.set_script(preload("option_button.gd"))
 			newButton.category = section
 			newButton.key = key
@@ -33,4 +33,12 @@ func _spawnButtons():
 			newButton.multiplier = multiplier
 			multiplier -= 0.005
 			
-			items.add_child(newButton)
+			match section:
+				"general":
+					categories[0].add_child(newButton)
+				"controls":
+					categories[1].add_child(newButton)
+				"renderer":
+					categories[2].add_child(newButton)
+				"audio":
+					categories[3].add_child(newButton)

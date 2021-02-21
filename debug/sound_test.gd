@@ -7,6 +7,7 @@ var text
 export (int) var ID = 0
 
 func _ready():
+	Objects.currentWorld = self
 	Renderer.fade("out")
 	Renderer.backgroundSetup(ID)
 	Audio.musicSetup(ID)

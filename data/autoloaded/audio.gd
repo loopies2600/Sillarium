@@ -36,7 +36,8 @@ func musicSetup(bgmID):
 				if getMusicPeakVolume() != Vector2(-200, -200):
 					Globals.debugOverlay.add_var("music peak volume (left, right)", self, "getMusicPeakVolume", true)
 	else:
-		currentMusic.queue_free()
+		if currentMusic != null:
+			currentMusic.queue_free()
 		
 func getMusicBPM(bgmID):
 	# el tempo de la musica es un valor que se lee desde el JSON. necesitamos pasarle el ID del tema el cual queremos conseguir su tempo.
