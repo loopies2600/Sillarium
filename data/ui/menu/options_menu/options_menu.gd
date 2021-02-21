@@ -23,8 +23,8 @@ func _spawnButtons():
 	for section in Settings._settings.keys():
 		for key in Settings._settings[section].keys():
 			var val = Settings._configFile.get_value(section,key)
+			
 			var newButton = Button.new()
-			print(section)
 			newButton.set_script(preload("option_button.gd"))
 			newButton.category = section
 			newButton.key = key
@@ -42,3 +42,8 @@ func _spawnButtons():
 					categories[2].add_child(newButton)
 				"audio":
 					categories[3].add_child(newButton)
+	
+func toggleButtons(category):
+	for child in categories[category].get_children():
+		if child is Button:
+			child.disabled = !child.disabled

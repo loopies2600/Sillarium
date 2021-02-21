@@ -37,7 +37,7 @@ func buttonPress():
 			if key == "mute_audio":
 				Audio.musicSetup(Objects.currentWorld.musicID)
 		INPUT:
-			Objects.currentWorld.categories[1].hide()
+			Objects.currentWorld.toggleButtons(1)
 			var binder = preload("res://data/ui/menu/options_menu/key_binder.tscn")
 			var newBinder = binder.instance()
 			
@@ -47,7 +47,7 @@ func buttonPress():
 			get_tree().get_root().add_child(newBinder)
 			
 	updateText()
-	
+				
 func updateText():
 	val = Settings._configFile.get_value(category,key)
 	var confiText
