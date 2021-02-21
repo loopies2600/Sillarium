@@ -12,6 +12,7 @@ var hasSpikes = true
 export (PackedScene) var spike
 
 func _ready():
+	add_to_group("Enemy")
 	fireTimer.connect("timeout", self, "_onTimeout")
 	fireTimer.start()
 	

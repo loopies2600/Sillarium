@@ -14,16 +14,15 @@ var velocity := Vector2.ZERO
 var acceleration := Vector2.ZERO
 
 func _ready():
-	start(self.transform, $TargetTest)
+	velocity = transform.x * speed
+	
 	var _unused = connect("body_entered", self, "_bodyEnter")
 	_unused = connect("area_entered", self, "_areaEnter")
 	_unused = lifeTime.connect("timeout", self, "kill")
 	
-func start(_transform, _target):
+func setTarget(_target):
 	target = _target
-	global_transform = _transform
-	velocity = transform.x * speed
-	
+		
 func seek():
 	var steer = Vector2.ZERO
 	
@@ -34,6 +33,8 @@ func seek():
 	return steer
 	
 func _physics_process(delta):
+	setTarget(Objects.getClosestOrFurthest(self, "Enemy"))
+	
 	acceleration += seek()
 	velocity += acceleration * delta
 	velocity = velocity.clamped(speed)

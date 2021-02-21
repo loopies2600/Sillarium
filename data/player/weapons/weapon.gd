@@ -75,6 +75,7 @@ func fire(delta):
 		
 	offset.x = lerp(offset.x, 32, delta * 8)
 	var newProjectile = type.projectile.instance()
+	newProjectile.add_to_group("PlayerProjectile")
 	newProjectile.global_position = global_position + type.projectileOffset[angleIndex]
 	newProjectile.global_rotation = global_rotation
 	newProjectile.z_index = z_index - 16

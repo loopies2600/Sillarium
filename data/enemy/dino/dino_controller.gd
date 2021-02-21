@@ -18,6 +18,7 @@ var state = states.IDLE
 var stateTimer = 50
 
 func _ready():
+	add_to_group("Enemy")
 	hitbox = $Area2D
 	animator.play("SpitFire")
 	var _unused = $FlameTimer.connect("timeout", self, "throw_flame")

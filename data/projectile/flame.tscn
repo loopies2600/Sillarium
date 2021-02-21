@@ -12,7 +12,7 @@ func kill():
 	owner.kill()
 "
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CanvasItemMaterial" id=2]
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
@@ -36,7 +36,7 @@ collision_mask = 36
 script = SubResource( 1 )
 
 [node name="Fire" type="Sprite" parent="Fire"]
-material = SubResource( 5 )
+material = SubResource( 2 )
 texture = SubResource( 3 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="Fire"]

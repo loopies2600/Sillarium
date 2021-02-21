@@ -16,6 +16,23 @@ func playerInit(charID, pos):
 		
 	Globals.player.global_position = pos
 	
+func getClosestOrFurthest(caller : Object, groupName : String, getClosest := true) -> Object:
+	var targetGroup = get_tree().get_nodes_in_group(groupName)
+	var distanceAway = caller.global_transform.origin.distance_to(targetGroup[0].global_transform.origin)
+	var returnObject = targetGroup[0]
+	
+	for object in targetGroup.size():
+		var distance = caller.global_transform.origin.distance_to(targetGroup[object].global_transform.origin)
+		
+		if getClosest && distance < distanceAway:
+			distanceAway = distance
+			returnObject = targetGroup[object]
+		elif !getClosest && distance > distanceAway:
+			distanceAway = distance
+			returnObject = targetGroup[object]
+			
+	return returnObject
+	
 func spawn(id, pos = Vector2()):
 	# esta función primero lee el nombre y archivo del objeto desde el JSON, luego lo instancia. ah, no te olvides de pasarle una posición, si queres.
 	var objName = Globals.LoadJSON("res://data/json/objects.json", id)["name"]

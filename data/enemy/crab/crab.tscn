@@ -440,9 +440,7 @@ tracks/10/keys = {
 "values": [ Vector2( 33.5, 40 ), Vector2( 24, 46 ) ]
 }
 
-[node name="Crab" type="KinematicBody2D" groups=[
-"Enemy",
-]]
+[node name="Crab" type="KinematicBody2D"]
 script = ExtResource( 3 )
 spike = ExtResource( 4 )
 

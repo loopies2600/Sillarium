@@ -19,6 +19,7 @@ var touchingSurface = false
 var sRotation = 0
 
 func _ready():
+	add_to_group("Enemy")
 	hitbox = $Area2D
 	fireTimer.connect("timeout", self, "OnFireTimerTimeout")
 	animPlayer.play("Slithering")

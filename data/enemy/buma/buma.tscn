@@ -713,7 +713,6 @@ extents = Vector2( 56, 72 )
 
 [node name="Buma" type="KinematicBody2D" groups=[
 "Buma",
-"Enemy",
 ]]
 collision_layer = 4
 collision_mask = 3

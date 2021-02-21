@@ -26,6 +26,7 @@ var positionToFollow = 0
 var duration = 2
 
 func _ready():
+	add_to_group("Enemy")
 	hitbox = $Area2D
 	anim.play("Jittering")
 	tween.connect("tween_completed", self, "onTweenCompletion")

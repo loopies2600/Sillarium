@@ -257,9 +257,7 @@ tracks/15/keys = {
 "values": [ Vector2( -3, -8 ), Vector2( -3.85994, -6.8543 ), Vector2( -4.39474, -6.24572 ), Vector2( -4.2204, -5.49611 ), Vector2( -3.80317, -7.6041 ), Vector2( -2.39805, -16.26 ), Vector2( -0.0418937, -24.1385 ), Vector2( -2.68279, -12.8635 ), Vector2( -3.71174, -7.97978 ), Vector2( -4.48552, -6.66637 ) ]
 }
 
-[node name="Dino" type="KinematicBody2D" groups=[
-"Enemy",
-]]
+[node name="Dino" type="KinematicBody2D"]
 scale = Vector2( -1, 1 )
 collision_layer = 32
 collision_mask = 32
