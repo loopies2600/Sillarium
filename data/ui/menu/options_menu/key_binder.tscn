@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/ui/menu/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://data/ui/menu/options_menu/key_binder.gd" type="Script" id=3]
+
+[node name="KeyBinder" type="Panel"]
+pause_mode = 2
+margin_left = 734.0
+margin_top = 280.0
+margin_right = 990.0
+margin_bottom = 536.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InputName" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 16.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "EMPTY"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyName" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -84.0
+margin_bottom = -84.0
+rect_scale = Vector2( 1.5, 1.5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PressAnyKey" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -32.0
+margin_right = 752.0
+margin_bottom = 744.0
+rect_scale = Vector2( 0.25, 0.25 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "PRESS THE DESIRED KEY TO BIND"
+align = 1
+valign = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

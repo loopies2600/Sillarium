@@ -1,6 +1,6 @@
 extends "res://data/ui/menu/button.gd"
 
-enum {SWITCH, KEYBOARD, VALUE}
+enum {SWITCH, INPUT, VALUE}
 
 var type = VALUE
 
@@ -36,10 +36,20 @@ func buttonPress():
 				Renderer.toggleFS()
 			if key == "mute_audio":
 				Audio.musicSetup(Objects.currentWorld.musicID)
+		INPUT:
+			Objects.currentWorld.categories[1].hide()
+			var binder = preload("res://data/ui/menu/options_menu/key_binder.tscn")
+			var newBinder = binder.instance()
+			
+			newBinder.daddyButton = self
+			newBinder.control = str(key).to_upper()
+			newBinder.key = OS.get_scancode_string(int(val)).to_upper()
+			get_tree().get_root().add_child(newBinder)
 			
 	updateText()
 	
 func updateText():
+	val = Settings._configFile.get_value(category,key)
 	var confiText
 	
 	if str(val) == "True":
@@ -51,7 +61,7 @@ func updateText():
 		confiText = "NO"
 		text = ("%s: %s" % [key, confiText]).to_upper()
 	else:
-		type = KEYBOARD
+		type = INPUT
 		text = ("%s: %s" % [key, OS.get_scancode_string(int(val))]).to_upper()
 		
 	text = text.replace("_", " ")
