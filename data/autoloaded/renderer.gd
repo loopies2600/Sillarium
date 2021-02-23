@@ -6,6 +6,7 @@ extends Node
 # otra variable que lee desde la configuración, esta es para decidir si deberiamos dibujar los fondos o no
 onready var backgrounds = Settings.getSetting("renderer", "display_backgrounds")
 onready var fullscreen = Settings.getSetting("renderer", "fullscreen")
+onready var frameFreezer = Settings.getSetting("renderer", "freeze_frame")
 
 # estas dos variables se usan para guardar tanto la transición como el fondo actual.
 var transition
@@ -62,4 +63,9 @@ func backgroundSetup(bgID):
 	else:
 		if currentBackground != null:
 			currentBackground.queue_free()
-		
+			
+			
+func freezeFrame(delay : int):
+	if not frameFreezer:
+		return
+	OS.delay_msec(delay)

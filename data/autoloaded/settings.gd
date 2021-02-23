@@ -40,7 +40,8 @@ var _settings = {
 	"renderer": {
 		"camera_effects": true,
 		"display_backgrounds": true,
-		"fullscreen": true
+		"fullscreen": false,
+		"freeze_frame": true
 	}
 }
 

@@ -36,9 +36,8 @@ func _process(delta):
 	)
 	
 func _physics_process(delta):
-	if doBeat:
-		zoom = lerp(zoom, Vector2(1.0, 1.0), speed)
-		
+	zoom = lerp(zoom, Vector2(1.0, 1.0), speed)
+	
 func _onShakeTimeout():
 	self.shake = false
 	
