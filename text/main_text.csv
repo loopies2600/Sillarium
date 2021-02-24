@@ -1,0 +1,45 @@
+,en,es,pt
+LANGUAGE,English,Español,Português
+AUDIO,audio,audio,audio
+MUTE_AUDIO,mute_audio,silenciar_audio,mutar_audio
+PEAK_VOLUME,"peak volume (left, right)","volumen maximo (izquierda, derecha)",
+GENERAL,general,general,geral
+DEBUG_MODE,debug_mode,modo_debug,modo_debug
+PLAYER_POSITION,"player position (X, Y)","posicion del jugador (X, Y)",
+OBJECT_COUNT,object count,cantidad de objetos,
+RENDERER,renderer,renderizador,renderizar
+DISPLAY_BACKGROUNDS,display_backgrounds,mostrar_fondos,mostrar_fondos
+FULLSCREEN,full_screen,pantalla_completa,tela_cheia
+FREEZE_FRAME,freeze_frame,congelar_frame,congelar_frame
+CONTROLS,controls,controles,controles
+MOVE_LEFT,move_left,mover_izquierda,mover_esquerda
+MOVE_RIGHT,move_right,mover_derecha,mover_direita
+JUMP,jump,saltar,pular
+AIM_UP,aim_up,mirar_arriba,mirar_cima
+AIM_DOWN,aim_down,mirar_abajo,mirar_baixo
+AIM_LEFT,aim_left,mirar_izquierda,mirar_esquerda
+AIM_RIGHT,aim_right,mirar_derecha,mirar_direita
+SHOOT,shoot,disparar,atirar
+DASH,dash,lanzarse,correr
+INPUT_HOLD,input_hold,bloquear_controles,segurar_botao
+TOGGLE_DEBUG,toggle_debug,alternar_debug,alternancia_debug
+INTERACT,interact,interactuar,interagir
+PAUSE,pause,pausar,pausar
+CAMERA_EFFECTS,camera_effects,efectos_de_camara,
+CFG_LOAD_ERROR,Error loading the settings. Error code: %s,Error al cargar la configuración. Codigo de error: %s,Erro carregando as configurações. Codigo de erro: %s
+CFG_LOAD_SUCCESS,Settings Loaded. File: %s,Configuración cargada. Archivo: %s,Configurações carregadas. Arquivo: %s
+MM_PLAYBT,PLAY,JUGAR,
+MM_OPTIONSBT,OPTIONS,OPCIONES,
+MM_SOUNDTEST,SOUND TEST,SOUND TEST,SOUND TEST
+MM_EXIT,EXIT,SALIR,
+KB_PRESSTOBIND,PRESS THE DESIRED KEY TO BIND,PULSA CUALQUIER TECLA PARA ASIGNAR,
+OM_TITLE,OPTIONS,OPCIONES,
+OM_GENERAL,GENERAL,GENERAL,
+OM_RENDERER,RENDERER,RENDERIZADOR,
+OM_CONTROLS,CONTROLS,CONTROLES,
+OM_AUDIO,AUDIO,AUDIO,
+OM_EXIT,EXIT,SALIR,
+PAUSED,PAUSED,PAUSADO,
+PGH,fat fucker XDDDDDDDDDDDDDD,puto gordo homosexual XDDDDDDDDDDDDD,
+YES,yes,si,sim
+NO,no,no,nao

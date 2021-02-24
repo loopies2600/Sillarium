@@ -187,6 +187,10 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_7="PlayerOnly"
 2d_physics/layer_8="Pickups"
 
+[locale]
+
+translations=PoolStringArray( "res://text/main_text.en.translation", "res://text/main_text.es.translation", "res://text/main_text.pt.translation" )
+
 [logging]
 
 file_logging/enable_file_logging=true

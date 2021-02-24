@@ -25,7 +25,6 @@ func _process(_delta):
 func buttonPress():
 	match type:
 		SWITCH:
-			print(str(key))
 			val = !val
 			Settings.setSetting(category, key, val)
 			Settings.saveSettings()
@@ -54,15 +53,15 @@ func updateText():
 	
 	if str(val) == "True":
 		type = SWITCH
-		confiText = "YES"
-		text = ("%s: %s" % [key, confiText]).to_upper()
+		confiText = tr("YES")
+		text = ("%s: %s" % [tr(str(key).to_upper()), confiText]).to_upper()
 	elif str(val) == "False":
 		type = SWITCH
-		confiText = "NO"
-		text = ("%s: %s" % [key, confiText]).to_upper()
+		confiText = tr("NO")
+		text = ("%s: %s" % [tr(str(key).to_upper()), confiText]).to_upper()
 	else:
 		type = INPUT
-		text = ("%s: %s" % [key, OS.get_scancode_string(int(val))]).to_upper()
+		text = ("%s: %s" % [tr(str(key).to_upper()), OS.get_scancode_string(int(val))]).to_upper()
 		
 	text = text.replace("_", " ")
 	add_font_override("font", font)

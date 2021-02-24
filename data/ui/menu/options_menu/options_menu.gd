@@ -13,6 +13,7 @@ func _init():
 	Objects.currentWorld = self
 	
 func _ready():
+	optionsText.bbcode_text = "[wave amp=64]" + tr("OM_TITLE")
 	Renderer.fade("out")
 	exitButton.grab_focus()
 	Renderer.backgroundSetup(backgroundID)

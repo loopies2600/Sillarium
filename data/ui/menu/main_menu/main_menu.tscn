@@ -51,19 +51,19 @@ __meta__ = {
 
 [node name="SillariumS" type="TextureRect" parent="Menu"]
 material = SubResource( 1 )
-margin_right = 895.0
+margin_right = 1374.0
 margin_bottom = 413.0
 texture = ExtResource( 3 )
 stretch_mode = 6
 
 [node name="Buttons" type="HBoxContainer" parent="Menu"]
 margin_top = 417.0
-margin_right = 895.0
+margin_right = 1374.0
 margin_bottom = 471.0
 custom_constants/separation = 28
 
 [node name="Play" type="Button" parent="Menu/Buttons"]
-margin_right = 139.0
+margin_right = 299.0
 margin_bottom = 54.0
 theme = ExtResource( 8 )
 custom_styles/hover = SubResource( 2 )
@@ -74,12 +74,12 @@ custom_styles/normal = SubResource( 6 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color_hover = Color( 0.960784, 1, 0, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.698039, 0.231373, 1 )
-text = "PLAY"
+text = "MM_PLAYBT"
 script = ExtResource( 5 )
 
 [node name="Options" type="Button" parent="Menu/Buttons"]
-margin_left = 167.0
-margin_right = 386.0
+margin_left = 327.0
+margin_right = 706.0
 margin_bottom = 54.0
 theme = ExtResource( 8 )
 custom_styles/hover = SubResource( 2 )
@@ -90,12 +90,12 @@ custom_styles/normal = SubResource( 6 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color_hover = Color( 0.960784, 1, 0, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.698039, 0.231373, 1 )
-text = "OPTIONS"
+text = "MM_OPTIONSBT"
 script = ExtResource( 9 )
 
 [node name="SoundTest" type="Button" parent="Menu/Buttons"]
-margin_left = 414.0
-margin_right = 712.0
+margin_left = 734.0
+margin_right = 1119.0
 margin_bottom = 54.0
 theme = ExtResource( 8 )
 custom_styles/hover = SubResource( 2 )
@@ -106,12 +106,12 @@ custom_styles/normal = SubResource( 6 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color_hover = Color( 0.960784, 1, 0, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.698039, 0.231373, 1 )
-text = "SOUND TEST"
+text = "MM_SOUNDTEST"
 script = ExtResource( 6 )
 
 [node name="Exit" type="Button" parent="Menu/Buttons"]
-margin_left = 740.0
-margin_right = 867.0
+margin_left = 1147.0
+margin_right = 1374.0
 margin_bottom = 54.0
 theme = ExtResource( 8 )
 custom_styles/hover = SubResource( 2 )
@@ -122,7 +122,7 @@ custom_styles/normal = SubResource( 6 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color_hover = Color( 0.960784, 1, 0, 1 )
 custom_colors/font_color_pressed = Color( 1, 0.698039, 0.231373, 1 )
-text = "EXIT"
+text = "MM_EXIT"
 script = ExtResource( 7 )
 
 [node name="Build" type="Label" parent="."]

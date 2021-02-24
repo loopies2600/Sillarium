@@ -25,7 +25,7 @@ margin_bottom = 16.0
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[wave amp=64]OPTIONS"
-text = "OPTIONS"
+text = "OM_TITLE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -43,7 +43,7 @@ __meta__ = {
 }
 
 [node name="Renderer" type="VBoxContainer" parent="Items"]
-margin_right = 264.0
+margin_right = 364.0
 margin_bottom = 600.0
 custom_constants/separation = 16
 __meta__ = {
@@ -51,58 +51,58 @@ __meta__ = {
 }
 
 [node name="General" type="VBoxContainer" parent="Items/Renderer"]
-margin_right = 264.0
+margin_right = 364.0
 margin_bottom = 54.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GeneralLabel" type="Label" parent="Items/Renderer/General"]
-margin_right = 264.0
+margin_right = 364.0
 margin_bottom = 54.0
 custom_fonts/font = ExtResource( 1 )
-text = "GENERAL"
+text = "OM_GENERAL"
 
 [node name="RendererLabel" type="Label" parent="Items/Renderer"]
 margin_top = 70.0
-margin_right = 264.0
+margin_right = 364.0
 margin_bottom = 124.0
 custom_fonts/font = ExtResource( 1 )
-text = "RENDERER"
+text = "OM_RENDERER"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Controls" type="VBoxContainer" parent="Items"]
-margin_left = 328.0
-margin_right = 586.0
+margin_left = 428.0
+margin_right = 786.0
 margin_bottom = 600.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ControlsLabel" type="Label" parent="Items/Controls"]
-margin_right = 258.0
+margin_right = 358.0
 margin_bottom = 54.0
 custom_fonts/font = ExtResource( 1 )
-text = "CONTROLS"
+text = "OM_CONTROLS"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Audio" type="VBoxContainer" parent="Items"]
-margin_left = 650.0
-margin_right = 809.0
+margin_left = 850.0
+margin_right = 1109.0
 margin_bottom = 600.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AudioLabel" type="Label" parent="Items/Audio"]
-margin_right = 159.0
+margin_right = 259.0
 margin_bottom = 54.0
 custom_fonts/font = ExtResource( 1 )
-text = "AUDIO"
+text = "OM_AUDIO"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -117,7 +117,7 @@ margin_bottom = 18.0
 rect_scale = Vector2( 0.5, 0.5 )
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 1 )
-text = "  EXIT  "
+text = "OM_EXIT"
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false

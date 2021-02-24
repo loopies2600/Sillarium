@@ -9,6 +9,8 @@ func _ready():
 	if !Audio.mute:
 		music.play()
 		
+	label.bbcode_text = "[wave]" + tr("PAUSED")
+		
 func _process(_delta):
 	if get_tree().paused:
 		music.volume_db = lerp(music.volume_db, -10.0, 0.0125)

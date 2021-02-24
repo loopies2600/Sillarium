@@ -86,18 +86,18 @@ func loadSettings():
 	
 	# si no podemos leer la configuración, es obvio que el juego va a crashear, pero en caso de que no lo haga mandamos este error al motor.
 	if error != OK:
-		print("Error loading the settings. Error code: %s" % error)
+		print(tr("CFG_LOAD_ERROR") % error)
 		return LOAD_ERROR_COULDNT_OPEN
 	
 	# si pudimos leerla le avisamos al editor y empezamos a analizarla.
-	print("Settings Loaded. File: %s" % SAVE_PATH)
+	print(tr("CFG_LOAD_SUCCESS") % SAVE_PATH)
 	
 	for section in _settings.keys():
 		# como con los controles o como cuando guardamos, tenemos que leer cada sección, una por una, por ello hacemos varios bucles.
 		for key in _settings[section].keys():
 			var val = _configFile.get_value(section,key)
 			_settings[section][key] = val
-			print("%s: %s" % [key, val])
+			print(tr(str(key).to_upper()) + ": %s" % val)
 			
 	# y entonces le avisamos que es un positivo, además de imprimir cada clave en la consola.
 	return LOAD_SUCCESS

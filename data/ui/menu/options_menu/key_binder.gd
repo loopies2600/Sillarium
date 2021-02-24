@@ -8,7 +8,7 @@ var control
 var key
 
 func _ready():
-	inputName.text = control
+	inputName.text = tr(control).to_upper()
 	keyName.text = key
 	
 	inputName.text = inputName.text.replace("_", " ")
