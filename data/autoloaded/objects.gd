@@ -5,6 +5,7 @@ extends Node
 
 # world es la manera de la cual le decimo a las escenas que contienen niveles, y en esta variable registramos dichas escenas.
 var currentWorld
+var previousWorld
 
 func playerInit(charID, pos):
 	var characters := [preload("res://data/player/player.tscn")]

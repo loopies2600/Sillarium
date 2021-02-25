@@ -25,7 +25,7 @@ margin_bottom = 16.0
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[wave amp=64]OPTIONS"
-text = "OM_TITLE"
+text = "OPTIONS"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -43,7 +43,7 @@ __meta__ = {
 }
 
 [node name="Renderer" type="VBoxContainer" parent="Items"]
-margin_right = 364.0
+margin_right = 372.0
 margin_bottom = 600.0
 custom_constants/separation = 16
 __meta__ = {
@@ -51,22 +51,30 @@ __meta__ = {
 }
 
 [node name="General" type="VBoxContainer" parent="Items/Renderer"]
-margin_right = 364.0
-margin_bottom = 54.0
+margin_right = 372.0
+margin_bottom = 120.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GeneralLabel" type="Label" parent="Items/Renderer/General"]
-margin_right = 364.0
+margin_right = 372.0
 margin_bottom = 54.0
 custom_fonts/font = ExtResource( 1 )
 text = "OM_GENERAL"
 
+[node name="LanguageButton" type="Button" parent="Items/Renderer/General"]
+margin_top = 58.0
+margin_right = 372.0
+margin_bottom = 120.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 1 )
+text = "OM_LANGUAGE"
+
 [node name="RendererLabel" type="Label" parent="Items/Renderer"]
-margin_top = 70.0
-margin_right = 364.0
-margin_bottom = 124.0
+margin_top = 136.0
+margin_right = 372.0
+margin_bottom = 190.0
 custom_fonts/font = ExtResource( 1 )
 text = "OM_RENDERER"
 __meta__ = {
@@ -74,8 +82,8 @@ __meta__ = {
 }
 
 [node name="Controls" type="VBoxContainer" parent="Items"]
-margin_left = 428.0
-margin_right = 786.0
+margin_left = 436.0
+margin_right = 794.0
 margin_bottom = 600.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -91,8 +99,8 @@ __meta__ = {
 }
 
 [node name="Audio" type="VBoxContainer" parent="Items"]
-margin_left = 850.0
-margin_right = 1109.0
+margin_left = 858.0
+margin_right = 1117.0
 margin_bottom = 600.0
 __meta__ = {
 "_edit_use_anchors_": false

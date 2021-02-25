@@ -33,4 +33,9 @@
 			"name": "Test Level",
 			"file": "res://data/levels/test/test_scene.tscn"
 		     },
+
+	"LanguageSelect": {
+			"name": "Language Select",
+			"file": "res://data/ui/menu/language_select/language_select.tscn"
+		     }
 }

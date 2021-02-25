@@ -7,7 +7,6 @@ onready var buttons = [$Menu/Buttons/Play, $Menu/Buttons/Settings, $Menu/Buttons
 onready var buildNumber = $Build
 
 func _init():
-	TranslationServer.set_locale("es")
 	Objects.currentWorld = self
 	
 func _ready():
@@ -16,5 +15,4 @@ func _ready():
 	buildNumber.text = "SILLARIUM BUILD " + str(randi() % 32768)
 	Renderer.backgroundSetup(backgroundID)
 	Audio.musicSetup(musicID)
-	Renderer.fade("out")
 	buttons[0].grab_focus()

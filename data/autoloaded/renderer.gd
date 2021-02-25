@@ -39,7 +39,7 @@ func fade(mode = "in", mask = preload("res://sprites/debug/radius.png")):
 		transition = newFade
 		newFade.mode = mode
 		newFade.mask = mask
-		Objects.currentWorld.call_deferred("add_child", newFade)
+		Objects.currentWorld.add_child(newFade)
 	
 func backgroundSetup(bgID):
 	backgrounds = Settings.getSetting("renderer", "display_backgrounds")

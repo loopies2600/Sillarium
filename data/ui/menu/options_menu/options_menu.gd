@@ -5,6 +5,7 @@ export (int) var musicID = 0
 
 onready var optionsText = $OptionsTitle
 onready var categories = [$Items/Renderer/General, $Items/Controls, $Items/Renderer, $Items/Audio]
+onready var langButton = $Items/Renderer/General/LanguageButton
 onready var exitButton = $Exit
 
 var multiplier = 0.1
@@ -18,6 +19,7 @@ func _ready():
 	exitButton.grab_focus()
 	Renderer.backgroundSetup(backgroundID)
 	Audio.musicSetup(musicID)
+	langButton.connect("pressed", self, "_langButtonPress")
 	_spawnButtons()
 	
 func _spawnButtons():
@@ -44,6 +46,14 @@ func _spawnButtons():
 				"audio":
 					categories[3].add_child(newButton)
 	
+func _langButtonPress():
+	Objects.previousWorld = name
+	Renderer.fade("in")
+	Renderer.transition.connect("fade_finished", self, "_fadeEnd")
+	
+func _fadeEnd():
+	Globals.LoadScene("LanguageSelect")
+		
 func toggleButtons(category):
 	for child in categories[category].get_children():
 		if child is Button:
