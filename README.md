@@ -1,3 +1,13 @@
 # Sillarium
 
-oh pasen pedofilia oh pasen pedofilia, causa, acá la gente es fría ohhh, me llega al pincho si es un bebito, la cosa es cachar, causa, cachar un bebito, causa, una virgen más rico causa, peladita rica causa que rica la niñita causa, cacharla causa, eso me excita más conchesumare, oh pasen porno de niñas oe conchetumadre, acá la gente es fria oh, que chucha van a tener sentimientos esos mongolos.
+OF COURSE A COPYPASTA LIKE THAT WOULD BE SO CONTROVERSIAL! 
+
+im sorry...
+
+welp, what's Sillarium about?:
+
+it's a little run and gun game that i am making with some internet pals, it'll be opensource forever and im planning to release a demo soon, so i'll be keeping y'all updated :)
+
+Build Instructions:
+
+- Download Godot Engine and import the project. nothing more, nothing less.
