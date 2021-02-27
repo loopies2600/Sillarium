@@ -35,7 +35,7 @@ var _settings = {
 			"pause": KEY_P
 	},
 	"audio": {
-		"mute_audio": true
+		"mute_audio": false
 	},
 	"renderer": {
 		"camera_effects": true,

@@ -7,9 +7,6 @@ var armsPos
 onready var flipXDown = type.projectileOffset[2].x
 onready var flipXUp = type.projectileOffset[6].x
 
-onready var cooldown = $CooldownTimer
-
-var bpm = Audio.getMusicBPM(Objects.currentWorld.musicID)
 var rotationTimer = 5.0
 var cooldownIsOver = false
 
@@ -23,7 +20,7 @@ func _ready():
 	
 	play("Idle")
 	connect("animation_finished", self, "_animEnd")
-	cooldown.connect("timeout", self, "_cooldownEnd")
+	Audio.connect("pump", self, "_cooldownEnd")
 	
 func RotateTo(angle, weight):
 	rotation = lerp_angle(rotation, angle, weight)
@@ -87,9 +84,7 @@ func fire(delta):
 		Globals.player.velocity -= Vector2(type.recoil, 0.0).rotated(global_rotation)
 	
 func _startCooldown():
-	cooldown.wait_time = 59.5 / bpm
 	cooldownIsOver = false
-	cooldown.start()
 	
 func _cooldownEnd():
 	cooldownIsOver = true
