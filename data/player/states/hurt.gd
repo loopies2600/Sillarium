@@ -4,8 +4,6 @@ func enter():
 	owner.startGracePeriod()
 	owner.canShoot = !owner.canShoot
 	
-	
-	
 	if !owner.flashing:
 		owner.snap = false
 		owner.velocity = Vector2.ZERO
@@ -17,6 +15,8 @@ func update(delta):
 	owner.animspeedAsVelocity()
 	owner.moveAndSnap(delta)
 	
+	owner.graphics.rotation += 0.25
+	
 	if owner.health <= 0:
 			Globals.player = null
 			owner.queue_free()
@@ -25,4 +25,5 @@ func update(delta):
 		emit_signal("finished", "idle")
 		
 func exit():
+	owner.graphics.rotation = 0.0
 	owner.canShoot = !owner.canShoot

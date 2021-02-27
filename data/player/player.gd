@@ -35,6 +35,7 @@ var flashing := false
 var canShoot := true
 
 onready var stateMachine = $StateMachine
+onready var graphics = $Graphics
 onready var animator = $Graphics/PlayerAnimator
 onready var graphicsAnimator = $GraphicsAnimator
 onready var armsPos = $ArmsPosition
@@ -104,7 +105,8 @@ func moveAndSnap(delta):
 	
 func flashBehaviour():
 	if flashing:
-		visible = !visible
+		pass
+		# visible = !visible
 		
 func getInputDirection() -> int:
 	var inputDirection = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
