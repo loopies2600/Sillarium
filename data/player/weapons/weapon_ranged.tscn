@@ -9,3 +9,5 @@ frames = ExtResource( 3 )
 animation = "Idle"
 script = ExtResource( 2 )
 type = ExtResource( 1 )
+
+[node name="CooldownTimer" type="Timer" parent="."]

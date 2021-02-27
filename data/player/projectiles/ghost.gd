@@ -42,11 +42,9 @@ func _physics_process(delta):
 	position += velocity * delta
 	
 func _bodyEnter(_body):
-	Renderer.freezeFrame(100)
 	kill()
 	
 func _areaEnter(_area):
-	Renderer.freezeFrame(100)
 	kill()
 	
 func kill():

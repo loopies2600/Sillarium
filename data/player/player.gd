@@ -44,6 +44,7 @@ onready var legs = $Graphics/Body/Legs
 onready var shadow = $Graphics/Shadow
 onready var hitbox = $CollisionShape2D
 onready var camera = $Camera
+onready var attackSound = $FiringSound
 onready var gracePeriod = $GracePeriodTimer
 
 onready var currentWeapon

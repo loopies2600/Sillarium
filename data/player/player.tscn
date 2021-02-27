@@ -360,6 +360,7 @@ shape = SubResource( 7 )
 
 [node name="FiringSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
+pitch_scale = 0.25
 
 [node name="GraphicsAnimator" type="AnimationPlayer" parent="."]
 anims/bump = SubResource( 8 )

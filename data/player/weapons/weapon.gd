@@ -7,8 +7,9 @@ var armsPos
 onready var flipXDown = type.projectileOffset[2].x
 onready var flipXUp = type.projectileOffset[6].x
 
-onready var currentCooldown = type.cooldown
+onready var cooldown = $CooldownTimer
 
+var bpm = Audio.getMusicBPM(Objects.currentWorld.musicID)
 var rotationTimer = 5.0
 var cooldownIsOver = false
 
@@ -18,12 +19,11 @@ var angleIndex = 0
 onready var muzzleFlash = preload("res://data/player/projectiles/muzzle_flash.tscn")
 
 func _ready():
-	if !type.hasCooldown:
-		type.cooldown = 0
-		type.cooldownIsOver = true
-		
+	_startCooldown()
+	
 	play("Idle")
 	connect("animation_finished", self, "_animEnd")
+	cooldown.connect("timeout", self, "_cooldownEnd")
 	
 func RotateTo(angle, weight):
 	rotation = lerp_angle(rotation, angle, weight)
@@ -62,7 +62,7 @@ func _process(delta):
 			Globals.get("player").maxSpeed = Globals.get("player").character.maxSpeed
 		
 	if type.hasCooldown:
-		_checkCooldown(delta)
+		pass
 		
 func fire(delta):
 	play("Fire")
@@ -80,17 +80,19 @@ func fire(delta):
 	newProjectile.global_rotation = global_rotation
 	newProjectile.z_index = z_index - 16
 	get_tree().get_root().add_child(newProjectile)
-	currentCooldown = type.cooldown
+	_startCooldown()
+	Globals.player.attackSound.play()
 		
 	if type.recoil > 0.0:
 		Globals.player.velocity -= Vector2(type.recoil, 0.0).rotated(global_rotation)
 	
-func _checkCooldown(delta):
-	if currentCooldown >= 0:
-		cooldownIsOver = false
-		currentCooldown -= delta
-	else:
-		cooldownIsOver = true
+func _startCooldown():
+	cooldown.wait_time = 59.5 / bpm
+	cooldownIsOver = false
+	cooldown.start()
+	
+func _cooldownEnd():
+	cooldownIsOver = true
 	
 func _animEnd(anim):
 	if anim == "Fire":
