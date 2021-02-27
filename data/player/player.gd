@@ -16,6 +16,7 @@ onready var timeJumpApex = character.timeJumpApex
 onready var fallMultiplier = character.fallMultiplier
 onready var dashStrength = character.dashStrength
 onready var aimWeight = character.aimWeight
+onready var graceTime = character.graceTime
 
 onready var headTextures = character.headTextures
 onready var playerNumberTexture = character.playerNumberTexture
@@ -31,7 +32,6 @@ var currentBump := 0.0
 
 var snap := true
 var flashing := false
-var riding := false
 var canShoot := true
 
 onready var stateMachine = $StateMachine
@@ -44,19 +44,18 @@ onready var legs = $Graphics/Body/Legs
 onready var shadow = $Graphics/Shadow
 onready var hitbox = $CollisionShape2D
 onready var camera = $Camera
+onready var gracePeriod = $GracePeriodTimer
 
 onready var currentWeapon
 
 func _ready():
+	gracePeriod.connect("timeout", self, "_gracePeriodEnd")
+	
 	Globals.weapon = Objects.getWeapon(2, armsPos, z_index + 1)
 	currentWeapon = Globals.weapon
 	add_child(currentWeapon)
 	
 func _physics_process(delta):
-	if !riding:
-		animspeedAsVelocity()
-		moveAndSnap(delta)
-		
 	if canShoot:
 		handleWeaponInput(delta)
 	else:
@@ -171,3 +170,17 @@ func reinitializeVars():
 	
 func disableCollisionBox():
 	hitbox.set_deferred("disabled", true)
+	
+func startGracePeriod():
+	gracePeriod.wait_time = character.graceTime
+	gracePeriod.start()
+	
+	set_collision_mask_bit(2, false)
+	set_collision_mask_bit(3, false)
+	
+func _gracePeriodEnd():
+	visible = true
+	flashing = false
+	
+	set_collision_mask_bit(2, true)
+	set_collision_mask_bit(3, true)

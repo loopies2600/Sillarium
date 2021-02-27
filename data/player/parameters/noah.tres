@@ -39,8 +39,8 @@ region = Rect2( 307, 18, 84, 58 )
 [resource]
 script = ExtResource( 1 )
 health = 10
-maxSpeed = 400.0
-airMaxSpeed = 450.0
+maxSpeed = 300.0
+airMaxSpeed = 350.0
 acceleration = 75.0
 friction = 0.69
 airFriction = 0.95
@@ -49,5 +49,6 @@ timeJumpApex = 0.4
 fallMultiplier = 1.5
 dashStrength = 1000.0
 aimWeight = 0.875
+graceTime = 2.0
 headTextures = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ]
 playerNumberTexture = ExtResource( 2 )

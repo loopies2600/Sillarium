@@ -1,5 +1,6 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
+[ext_resource path="res://data/player/states/locked.gd" type="Script" id=1]
 [ext_resource path="res://data/player/states/machine.gd" type="Script" id=2]
 [ext_resource path="res://data/player/player.gd" type="Script" id=3]
 [ext_resource path="res://data/player/states/idle.gd" type="Script" id=4]
@@ -17,15 +18,15 @@
 atlas = ExtResource( 7 )
 region = Rect2( 118, 18, 38, 51 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 7 )
 region = Rect2( 307, 18, 84, 58 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 7 )
 region = Rect2( 19, 12, 55, 74 )
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Legs:texture:region")
 tracks/0/interp = 1
@@ -63,7 +64,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 4 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=5]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Legs:texture:region")
@@ -138,7 +139,7 @@ tracks/5/keys = {
 "values": [ Vector2( 4, 48 ), Vector2( 4, 44 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=6]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -214,10 +215,10 @@ tracks/5/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 4 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 30, 72 )
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=8]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:position")
@@ -304,24 +305,25 @@ script = ExtResource( 3 )
 character = ExtResource( 9 )
 
 [node name="Graphics" type="Node2D" parent="."]
+position = Vector2( 0, -4 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
 texture = SubResource( 1 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 4, -44 )
-texture = SubResource( 10 )
+texture = SubResource( 2 )
 
 [node name="Legs" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 4, 48 )
 z_index = -1
-texture = SubResource( 11 )
+texture = SubResource( 3 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
 playback_process_mode = 0
-anims/Hold = SubResource( 12 )
-anims/Idle = SubResource( 13 )
-anims/Walking = SubResource( 14 )
+anims/Hold = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Walking = SubResource( 6 )
 
 [node name="ArmsPosition" type="Position2D" parent="."]
 __meta__ = {
@@ -347,17 +349,21 @@ script = ExtResource( 12 )
 [node name="Hurt" type="Node" parent="StateMachine"]
 script = ExtResource( 11 )
 
+[node name="Locked" type="Node" parent="StateMachine"]
+script = ExtResource( 1 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, 12 )
-shape = SubResource( 15 )
+shape = SubResource( 7 )
 
 [node name="Camera" parent="." instance=ExtResource( 10 )]
-visible = false
 
 [node name="FiringSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
 
 [node name="GraphicsAnimator" type="AnimationPlayer" parent="."]
-anims/bump = SubResource( 16 )
+anims/bump = SubResource( 8 )
 anims/default = SubResource( 9 )
+
+[node name="GracePeriodTimer" type="Timer" parent="."]
+wait_time = 2.0

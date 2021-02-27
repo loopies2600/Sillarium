@@ -5,8 +5,11 @@ func enter():
 	owner.velocity.y = 0.0
 	owner.velocity.y -= owner.jumpForce
 	
-func update(_delta):
-	.update(_delta)
+func update(delta):
+	.update(delta)
+	
+	owner.animspeedAsVelocity()
+	owner.moveAndSnap(delta)
 	
 	if !owner.is_on_floor():
 		if owner.getInputDirection():

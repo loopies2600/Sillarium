@@ -13,7 +13,5 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource( 1 )
 
-[node name="BeatTimer" type="Timer" parent="."]
-
 [node name="ShakeTimer" type="Timer" parent="."]
 one_shot = true

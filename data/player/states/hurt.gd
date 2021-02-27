@@ -1,7 +1,10 @@
 extends "motion.gd"
 
 func enter():
+	owner.startGracePeriod()
 	owner.canShoot = !owner.canShoot
+	
+	
 	
 	if !owner.flashing:
 		owner.snap = false
@@ -10,14 +13,15 @@ func enter():
 		owner.health -= owner.currentDamage
 		owner.flashing = true
 		
-func update(_delta):	
-	if owner.is_on_floor():
-		if owner.health <= 0:
+func update(delta):
+	owner.animspeedAsVelocity()
+	owner.moveAndSnap(delta)
+	
+	if owner.health <= 0:
 			Globals.player = null
 			owner.queue_free()
 		
-		owner.visible = true
-		owner.flashing = false
+	if owner.is_on_floor():
 		emit_signal("finished", "idle")
 		
 func exit():
