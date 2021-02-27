@@ -3,8 +3,9 @@ extends CanvasLayer
 var vars = []
 
 func _ready():
-	$DebugInfo.visible = false
-	$SystemInfo.visible = false
+	add_var("music peak volume (left, right)", Audio, "getMusicPeakVolume", true)
+	add_var("player position (X, Y)", Globals.player, "global_position", false)
+	add_var("object count", get_tree().get_root(), "get_child_count", true)
 	
 func add_var(var_name, object, var_ref, is_method, latter_word:String = ""):
 	vars.append([var_name, object, var_ref, is_method, latter_word])
@@ -38,7 +39,7 @@ func _process(_delta):
 	system_text += str("static memory: ", String.humanize_size(smem), "\n").to_upper()
 	
 	#driver de video
-	var video = OS.get_video_driver_name(0)
+	var video = OS.get_current_video_driver()
 	system_text += str("video mode: ", video, "\n").to_upper()
 	
 	$SystemInfo.text = system_text

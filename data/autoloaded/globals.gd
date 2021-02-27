@@ -15,13 +15,10 @@ var weapon
 onready var debugOverlay = Objects.getObj(18)
 onready var debug = Settings.getSetting("general", "debug_mode")
 
-func _init():
+func _ready():
 	# aca iniciamos la interfaz debug si el modo debug esta activado.
 	if debug:
-		debugOverlay.add_var("player position (X, Y)", player, "global_position", false)
-		debugOverlay.add_var("object count", self, "get_child_count", true)
 		add_child(debugOverlay)
-	
 	
 func quadBezier(p0: Vector2, p1: Vector2, p2: Vector2, time: float):
 	# para interpolar movimientos usando el algoritmo del bezier cuadrado

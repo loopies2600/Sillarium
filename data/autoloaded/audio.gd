@@ -38,10 +38,6 @@ func musicSetup(bgmID):
 				currentMusic.stream = load(Globals.LoadJSON("res://data/json/music.json", str(bgmID))["file"])
 				currentMusic.play()
 			
-			# si el modo debug esta activado, registremos el volumen en la interfaz debug.
-			if Globals.debug:
-				if getMusicPeakVolume() != Vector2(-200, -200):
-					Globals.debugOverlay.add_var("music peak volume (left, right)", self, "getMusicPeakVolume", true)
 	else:
 		if currentMusic != null:
 			currentMusic.queue_free()
