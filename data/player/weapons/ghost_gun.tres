@@ -19,5 +19,5 @@ projectileOffset = [ Vector2( 72, -12 ), Vector2( 48, 48 ), Vector2( 16, 86 ), V
 hasCooldown = true
 displayFlash = true
 velocityReduction = 0.0
-cooldown = 4
+cooldown = 1
 recoil = 0.0

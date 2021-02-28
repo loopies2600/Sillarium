@@ -50,7 +50,7 @@ func _process(delta):
 		
 	offset.x = lerp(offset.x, 0, delta * 8)
 	
-	if Input.is_action_pressed("shoot") and cooldownIsOver:
+	if Input.is_action_just_pressed("shoot") and cooldownIsOver:
 		if type.velocityReduction != 0.0:
 			Globals.get("player").maxSpeed = Globals.get("player").character.maxSpeed - type.velocityReduction
 		fire(delta)
