@@ -10,5 +10,5 @@ export (bool) var hasCooldown = true
 export (bool) var displayFlash = false
 
 export (float) var velocityReduction = 0.0
-export (float) var cooldown = 0.0
+export (int) var cooldown = 0
 export (float) var recoil = 0.0
