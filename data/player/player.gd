@@ -15,11 +15,13 @@ onready var jumpStrength = character.jumpStrength
 onready var timeJumpApex = character.timeJumpApex
 onready var fallMultiplier = character.fallMultiplier
 onready var dashStrength = character.dashStrength
+onready var dashDuration = character.dashDuration
 onready var aimWeight = character.aimWeight
+onready var bounceOff = character.bounceOff
 onready var graceTime = character.graceTime
 
 onready var headTextures = character.headTextures
-onready var playerNumberTexture = character.playerNumberTexture
+onready var dashTexture = character.dashTexture
 
 var velocity := Vector2()
 var groundAngle = -1
@@ -33,6 +35,7 @@ var currentBump := 0.0
 var snap := true
 var flashing := false
 var canShoot := true
+var canDash := true
 
 onready var stateMachine = $StateMachine
 onready var graphics = $Graphics

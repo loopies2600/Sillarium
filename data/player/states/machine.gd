@@ -7,7 +7,8 @@ func _ready():
 		"jump": $Jump,
 		"hold": $Hold,
 		"hurt": $Hurt,
-		"locked": $Locked
+		"locked": $Locked,
+		"dash": $Dash
 	}
 	
 func _change_state(state_name):

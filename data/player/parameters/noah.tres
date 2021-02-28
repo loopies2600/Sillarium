@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=12 format=2]
 
 [ext_resource path="res://data/player/parameters/parameters.gd" type="Script" id=1]
-[ext_resource path="res://sprites/character/prota_test/player_one.png" type="Texture" id=2]
+[ext_resource path="res://sprites/player/noah/noah_dash.png" type="Texture" id=2]
 [ext_resource path="res://sprites/player/noah/noah_0s.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -47,8 +47,10 @@ airFriction = 0.95
 jumpStrength = 200.0
 timeJumpApex = 0.4
 fallMultiplier = 1.5
-dashStrength = 1000.0
+dashStrength = 800.0
+dashDuration = 0.2
 aimWeight = 0.875
+bounceOff = 0.75
 graceTime = 2.0
 headTextures = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ]
-playerNumberTexture = ExtResource( 2 )
+dashTexture = ExtResource( 2 )
