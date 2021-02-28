@@ -1,0 +1,30 @@
+extends KinematicBody2D
+
+export (float, 0, 1) var bounceOff = 0.75
+export (Vector2) var initialVel = Vector2(64, -256)
+
+onready var sprite = $Sprite
+onready var hitbox = $Hitbox
+onready var visibility = $VisibilityNotifier2D
+
+var velocity
+
+func _ready():
+	velocity = initialVel
+	visibility.connect("screen_exited", self, "_screenExit")
+	
+func _physics_process(delta):
+	hitbox.shape.extents = sprite.region_rect.size / 2
+	
+	velocity.y += Globals.GRAVITY * delta
+	var collision = move_and_collide(velocity * delta)
+	
+	if collision:
+		velocity = velocity.bounce(collision.normal)
+		velocity *= bounceOff
+		
+	if velocity.abs() <= Vector2(0.1, 0.1):
+		_kill()
+		
+func _kill():
+	queue_free()

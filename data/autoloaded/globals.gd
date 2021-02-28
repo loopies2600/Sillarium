@@ -6,6 +6,7 @@ extends Node
 const UP = Vector2.UP
 const MAX_FLOOR_ANGLE = 60
 const UNIT_SIZE = 128
+const GRAVITY = 512
 
 # se usa para registrar el jugador, el arma y la pausa.
 var player

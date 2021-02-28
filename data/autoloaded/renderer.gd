@@ -31,6 +31,17 @@ func spawnTrail(fds, tex, pos, rot, scl, z = 0):
 	newTrail.z_index = z
 	Objects.currentWorld.add_child(newTrail)
 	
+func spawn4Piece(tex, pos, rot, scl, z = 0):
+	# basado en el codigo del fade, se nota
+	var fourPiece = Objects.getObj(23)
+	fourPiece.texture = tex
+	fourPiece.global_position = pos
+	fourPiece.global_rotation = rot
+	fourPiece.global_scale = scl
+	fourPiece.z_index = z
+		
+	Objects.currentWorld.add_child(fourPiece)
+	
 func fade(mode = "in", mask = preload("res://sprites/debug/radius.png")):
 	# esta función se encarga de spawnear la transición, solo si no hay ninguna transición actualmente.
 	# los argumentos son: modo ("in" o "out") y mascara.

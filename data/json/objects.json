@@ -110,5 +110,9 @@
 	"22": {
 			"name": "Pause Menu",
 			"file": "res://data/ui/menu/pause_menu/pause_menu.tscn"
+			},
+	"23": {
+			"name": "4 Piece Particle",
+			"file": "res://data/particles/pieces/pieces.tscn"
 			}
 }

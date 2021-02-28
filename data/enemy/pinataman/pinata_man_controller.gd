@@ -1,5 +1,6 @@
 extends "../behaviour/basic_enemy_controller.gd"
 
+onready var sprite = $Sprite
 onready var animPlayer = $AnimationPlayer
 onready var collisionBox = $CollisionShape2D
 
@@ -17,6 +18,7 @@ func disableCollision():
 
 func OnDestruction():
 	call_deferred("disableCollision")
+	Renderer.spawn4Piece(sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, sprite.z_index)
 	animPlayer.play("Exploding")
 
 func EmitParticles():
