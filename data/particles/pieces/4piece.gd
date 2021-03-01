@@ -5,7 +5,13 @@ var texture : Texture
 onready var pieces = [$Piece, $Piece2, $Piece3, $Piece4]
 
 func _ready():
+	pieces[0].initialVel = Vector2(rand_range(-128, -64), rand_range(-512, 256))
+	pieces[1].initialVel = Vector2(rand_range(128, 64), rand_range(-512, 256))
+	pieces[2].initialVel = Vector2(rand_range(-128, -64), rand_range(-512, 256))
+	pieces[3].initialVel = Vector2(rand_range(128, 64), rand_range(-512, 256))
+	
 	for piece in pieces:
+		piece.velocity = piece.initialVel
 		piece.sprite.texture = texture
 		piece.hitbox.rotation -= global_rotation
 		

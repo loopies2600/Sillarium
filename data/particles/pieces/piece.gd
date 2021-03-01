@@ -1,16 +1,15 @@
 extends KinematicBody2D
 
 export (float, 0, 1) var bounceOff = 0.75
-export (Vector2) var initialVel = Vector2(64, -256)
 
 onready var sprite = $Sprite
 onready var hitbox = $Hitbox
 onready var visibility = $VisibilityNotifier2D
 
+var initialVel = Vector2()
 var velocity
 
 func _ready():
-	velocity = initialVel
 	visibility.connect("screen_exited", self, "_screenExit")
 	
 func _physics_process(delta):
