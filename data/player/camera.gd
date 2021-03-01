@@ -12,7 +12,6 @@ func _ready():
 	randomize()
 	set_process(false)
 	self.duration = duration
-	connectToManipulators()
 	
 func _process(delta):
 	var damping := ease(shakeTimer.time_left / shakeTimer.wait_time, DAMP_EASING)

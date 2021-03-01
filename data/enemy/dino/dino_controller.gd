@@ -22,7 +22,7 @@ func _ready():
 	hitbox = $Area2D
 	animator.play("SpitFire")
 	var _unused = $FlameTimer.connect("timeout", self, "throw_flame")
-	_unused = connect("DestroySelf", self, "OnDestruction")
+	_unused = connect("destroy_self", self, "OnDestruction")
 	
 func _physics_process(_delta):
 	velocity.y += GRAVITY
@@ -88,4 +88,12 @@ func throw_flame():
 	get_tree().get_root().add_child(newFlame)
 	
 func OnDestruction():
+	emit_signal("camera_shake_requested")
+	
+	Renderer.spawn4Piece(parentSprite.texture, parentSprite.global_position, parentSprite.global_rotation, parentSprite.global_scale, parentSprite.z_index)
+	
+	for sprite in parentSprite.get_children():
+		if sprite is Sprite:
+			Renderer.spawn4Piece(sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, sprite.z_index)
+			
 	queue_free()

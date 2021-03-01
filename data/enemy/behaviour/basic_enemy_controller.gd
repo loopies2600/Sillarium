@@ -1,6 +1,7 @@
 extends KinematicBody2D
 class_name BasicEnemy, "res://sprites/ui/menu/enemy.png"
 
+signal take_damage
 signal destroy_self
 signal camera_shake_requested
 
@@ -30,8 +31,9 @@ func _takeDamage(damage : int):
 	health -= damage
 	
 	if health <= 0:
-		emit_signal("camera_shake_requested")
 		emit_signal("destroy_self")
+	else:
+		emit_signal("take_damage")
 		
 func OnAreaExited(area):
 	pass

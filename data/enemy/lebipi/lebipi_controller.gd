@@ -32,7 +32,7 @@ func _ready():
 	tween.connect("tween_completed", self, "onTweenCompletion")
 	doTween()
 	
-	var _unused = connect("DestroySelf", self, "OnDestruction")
+	var _unused = connect("destroy_self", self, "OnDestruction")
 	
 	# Debug stuff
 	if Globals.debug:
@@ -94,7 +94,15 @@ func DropRock():
 	hasRock = false
 
 func OnDestruction():
-	anim.play("Death")
+	emit_signal("camera_shake_requested")
+	
+	Renderer.spawn4Piece(renderer.texture, renderer.global_position, renderer.global_rotation, renderer.global_scale, renderer.z_index)
+	
+	for sprite in renderer.get_children():
+		if sprite is Sprite:
+			Renderer.spawn4Piece(sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, sprite.z_index)
+			
+	DropRockAndDestroySelf()
 
 func RemoveRockChild():
 	get_tree().get_root().add_child(rock_child)

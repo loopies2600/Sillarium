@@ -16,6 +16,7 @@ func playerInit(charID, pos):
 		Globals.player = currentChar
 		
 	Globals.player.global_position = pos
+	Globals.player.camera.connectToManipulators()
 	
 func getClosestOrFurthest(caller : Object, groupName : String, getClosest := true) -> Object:
 	var targetGroup = get_tree().get_nodes_in_group(groupName)

@@ -1,6 +1,7 @@
 extends "../behaviour/basic_enemy_controller.gd"
 
 # Child nodes
+onready var renderer = $Graphics
 onready var animPlayer = $Graphics/AnimationPlayer
 onready var boomerangHand = $Graphics/HandR
 onready var throwTimer = $ThrowTimer
@@ -23,7 +24,7 @@ func _ready():
 	add_to_group("Enemy")
 	hitbox = $Area2D
 	var _unused = throwTimer.connect("timeout", self, "OnThrowTimerTimeout")
-	_unused = connect("DestroySelf", self, "OnDestruction")
+	_unused = connect("destroy_self", self, "OnDestruction")
 	
 	# Empieza el timer
 	throwTimer.wait_time = throwTime
@@ -71,6 +72,9 @@ func OnAreaEntered(area):
 		yield(animPlayer, "animation_finished")
 		animPlayer.play("Idle")
 		throwTimer.start()
+	elif area.is_in_group("PlayerProjectile"):
+		area.kill()
+		_takeDamage(area.damage)
 
 func PlayIdleAnimation():
 	animPlayer.play("Idle")
@@ -79,6 +83,9 @@ func disableCollision():
 	$CollisionShape2D.disabled = true
 
 func OnDestruction():
-	throwTimer.stop()
-	call_deferred("disableCollision")
-	animPlayer.play("Death")
+	for sprite in renderer.get_children():
+		if sprite is Sprite:
+			Renderer.spawn4Piece(sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, sprite.z_index)
+	
+	emit_signal("camera_shake_requested")
+	queue_free()

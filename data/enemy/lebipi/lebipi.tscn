@@ -154,7 +154,9 @@ extents = Vector2( 30, 16 )
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 24, 4 )
 
-[node name="Lebipi" type="KinematicBody2D"]
+[node name="Lebipi" type="KinematicBody2D" groups=[
+"CameraManipulator",
+]]
 z_index = 2
 collision_layer = 4
 collision_mask = 2

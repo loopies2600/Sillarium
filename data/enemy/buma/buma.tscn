@@ -683,7 +683,7 @@ region = Rect2( 120, 4, 44, 59 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 8 )
-region = Rect2( 4, 4, 101, 67 )
+region = Rect2( 4, 76, 101, 67 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 6 )
@@ -709,17 +709,19 @@ tracks/0/keys = {
 extents = Vector2( 32, 72 )
 
 [sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 56, 72 )
+extents = Vector2( 58, 74 )
 
 [node name="Buma" type="KinematicBody2D" groups=[
 "Buma",
+"CameraManipulator",
 ]]
-collision_layer = 4
-collision_mask = 3
+collision_layer = 7
+collision_mask = 2
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
+health = 10
 boomerang = ExtResource( 1 )
 throwTime = 3.0
 
@@ -772,8 +774,8 @@ position = Vector2( 0, -14 )
 shape = SubResource( 13 )
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 31
-collision_mask = 31
+collision_layer = 6
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 modulate = Color( 0.364706, 0.972549, 0.0862745, 1 )

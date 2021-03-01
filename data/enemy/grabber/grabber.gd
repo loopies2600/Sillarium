@@ -45,5 +45,6 @@ func OnBodyExited(body):
 		currentBody.visible = true
 		
 func OnDestruction():
+	emit_signal("camera_shake_requested")
 	Renderer.spawn4Piece(sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, sprite.z_index)
 	queue_free()
