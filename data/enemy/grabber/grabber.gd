@@ -1,6 +1,7 @@
 extends "../behaviour/basic_enemy_controller.gd"
 
 onready var renderer = $Graphics
+onready var sprite = $Graphics/Body
 onready var tongue = $Graphics/Tongue
 onready var tongueTipPos = $Graphics/Tongue/TipPos
 onready var tongueTip = $Graphics/TongueArea
@@ -13,7 +14,7 @@ var currentBody = null
 
 func _ready():
 	add_to_group("Enemy")
-	var _unused = connect("DestroySelf", self, "OnDestruction")
+	var _unused = connect("destroy_self", self, "OnDestruction")
 	_unused = tongueTip.connect("body_entered", self, "_grab")
 	_unused = tongueTip.connect("body_exited", self, "_drop")
 	
@@ -44,4 +45,5 @@ func OnBodyExited(body):
 		currentBody.visible = true
 		
 func OnDestruction():
+	Renderer.spawn4Piece(sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, sprite.z_index)
 	queue_free()

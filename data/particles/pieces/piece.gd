@@ -23,8 +23,13 @@ func _physics_process(delta):
 		velocity = velocity.bounce(collision.normal)
 		velocity *= bounceOff
 		
+	if velocity.abs() <= Vector2(0.5, 0.5):
+		sprite.visible = !sprite.visible
 	if velocity.abs() <= Vector2(0.1, 0.1):
 		_kill()
 		
+func _screenExit():
+	_kill()
+	
 func _kill():
 	queue_free()
