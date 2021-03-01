@@ -95,10 +95,13 @@ extents = Vector2( 64, 16 )
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 64, 4 )
 
-[node name="Grabber" type="KinematicBody2D"]
+[node name="Grabber" type="KinematicBody2D" groups=[
+"CameraManipulator",
+]]
 collision_layer = 7
 collision_mask = 2
 script = ExtResource( 2 )
+health = 10
 killsPlayer = false
 
 [node name="Graphics" type="Node2D" parent="."]

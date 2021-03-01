@@ -56,7 +56,7 @@ onready var currentWeapon
 func _ready():
 	gracePeriod.connect("timeout", self, "_gracePeriodEnd")
 	
-	Globals.weapon = Objects.getWeapon(2, armsPos, z_index + 1)
+	Globals.weapon = Objects.getWeapon(0, armsPos, z_index + 1)
 	currentWeapon = Globals.weapon
 	add_child(currentWeapon)
 	

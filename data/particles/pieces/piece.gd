@@ -22,7 +22,7 @@ func _physics_process(delta):
 		velocity = velocity.bounce(collision.normal)
 		velocity *= bounceOff
 		
-	if velocity.abs() <= Vector2(0.5, 0.5):
+	if velocity.abs() <= Vector2(0.75, 0.75):
 		sprite.visible = !sprite.visible
 	if velocity.abs() <= Vector2(0.1, 0.1):
 		_kill()

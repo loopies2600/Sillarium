@@ -5,6 +5,7 @@ onready var hitbox = $CollisionShape2D
 onready var lifeTime = $LifeTime
 onready var anim = $Animator
 
+export (int) var damage = 10
 export (int) var speed = 400
 export (int) var steerStrength = 75
 

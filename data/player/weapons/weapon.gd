@@ -7,6 +7,7 @@ var armsPos
 onready var beatsLeft = type.cooldown
 onready var flipXDown = type.projectileOffset[2].x
 onready var flipXUp = type.projectileOffset[6].x
+onready var cooldownTimer = $Cooldown
 
 var rotationTimer = 5.0
 var cooldownIsOver = false
@@ -21,7 +22,7 @@ func _ready():
 	
 	play("Idle")
 	connect("animation_finished", self, "_animEnd")
-	Audio.connect("pump", self, "_onBeat")
+	cooldownTimer.connect("timeout", self, "_cooldownTimeout")
 	
 func RotateTo(angle, weight):
 	rotation = lerp_angle(rotation, angle, weight)
@@ -86,13 +87,11 @@ func fire(delta):
 	
 func _startCooldown():
 	cooldownIsOver = false
-	beatsLeft = type.cooldown
+	cooldownTimer.wait_time = type.cooldown
+	cooldownTimer.start()
 	
-func _onBeat():
-	if beatsLeft == 1:
-		cooldownIsOver = true
-	else:
-		beatsLeft -= 1
+func _cooldownTimeout():
+	cooldownIsOver = true
 	
 func _animEnd(anim):
 	if anim == "Fire":
