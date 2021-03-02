@@ -44,6 +44,8 @@ func spawn(id, pos = Vector2()):
 	if newObj is Node2D: newObj.global_position = pos
 	currentWorld.add_child(newObj)
 	
+	return newObj
+	
 func getWeapon(id, pos, z, ammo = 0):
 	# este es muy parecido al que spawnea objetos, pero tiene parametros extra especificos para las armas.
 	var wpsType = load(Globals.LoadJSON("res://data/json/pickups.json", id)["file"])

@@ -114,5 +114,8 @@
 	"23": {
 			"name": "4 Piece Particle",
 			"file": "res://data/particles/pieces/pieces.tscn"
+			},
+	"24": {		"name": "Player Respawner",
+			"file": "res://data/player/respawner.tscn"
 			}
 }

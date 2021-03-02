@@ -16,11 +16,10 @@ func update(delta):
 	owner.moveAndSnap(delta)
 	
 	owner.graphics.rotation += 0.25
-	
-	if owner.health <= 0:
-			Globals.player = null
-			owner.queue_free()
 		
+	if owner.health <= 0:
+			owner.kill()
+			
 	if owner.is_on_floor():
 		emit_signal("finished", "idle")
 		

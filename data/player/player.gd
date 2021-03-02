@@ -108,8 +108,7 @@ func moveAndSnap(delta):
 	
 func flashBehaviour():
 	if flashing:
-		pass
-		# visible = !visible
+		visible = !visible
 		
 func getInputDirection() -> int:
 	var inputDirection = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -183,6 +182,14 @@ func startGracePeriod():
 	
 	set_collision_mask_bit(2, false)
 	set_collision_mask_bit(3, false)
+	
+func kill():
+	var respawner = Objects.spawn(24, global_position)
+	
+	Globals.player = null
+	remove_child(camera)
+	respawner.add_child(camera)
+	queue_free()
 	
 func _gracePeriodEnd():
 	visible = true
