@@ -53,9 +53,9 @@ func _process(_delta):
 	if fading:
 		currentMusic.volume_db -= 1.0
 	
-		if currentMusic.volume_db <= -64.0:
-			currentMusic.stop()
+		if currentMusic.volume_db <= -32.0:
 			currentMusic.volume_db = 0.0
+			currentMusic.stop()
 			fading = false
 	
 func setBeat(value):
