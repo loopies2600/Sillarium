@@ -15,6 +15,7 @@ onready var mute = Settings.getSetting("audio", "mute_audio")
 var currentMusic
 var beat setget setBeat, getBeat
 var time
+var fading := false
 
 func musicSetup(bgmID):
 	mute = Settings.getSetting("audio", "mute_audio")
@@ -37,7 +38,7 @@ func musicSetup(bgmID):
 				currentMusic.stop()
 				currentMusic.stream = load(Globals.LoadJSON("res://data/json/music.json", str(bgmID))["file"])
 				currentMusic.play()
-			
+				
 	else:
 		if currentMusic != null:
 			currentMusic.queue_free()
@@ -48,6 +49,14 @@ func _process(_delta):
 	
 	time = currentMusic.get_playback_position() + AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency() + (1 / COMPENSATE_HZ) * COMPENSATE_FRAMES
 	self.beat = int(time * getMusicBPM(Objects.currentWorld.musicID) / 60.0) % 4
+	
+	if fading:
+		currentMusic.volume_db -= 1.0
+	
+		if currentMusic.volume_db <= -64.0:
+			currentMusic.stop()
+			currentMusic.volume_db = 0.0
+			fading = false
 	
 func setBeat(value):
 	var oldBeat = beat
@@ -73,3 +82,6 @@ func getMusicPeakVolume():
 	var right = AudioServer.get_bus_peak_volume_right_db(0, 0)
 	
 	return Vector2(left, right)
+	
+func fade():
+	fading = true

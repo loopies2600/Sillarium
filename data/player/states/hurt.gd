@@ -2,7 +2,7 @@ extends "motion.gd"
 
 func enter():
 	owner.startGracePeriod()
-	owner.canShoot = !owner.canShoot
+	owner.canInput = !owner.canInput
 	
 	if !owner.flashing:
 		owner.snap = false
@@ -25,4 +25,4 @@ func update(delta):
 		
 func exit():
 	owner.graphics.rotation = 0.0
-	owner.canShoot = !owner.canShoot
+	owner.canInput = !owner.canInput

@@ -7,7 +7,7 @@
 [ext_resource path="res://data/shaders/wave.shader" type="Shader" id=5]
 [ext_resource path="res://data/shaders/mode7.shader" type="Shader" id=6]
 
-[sub_resource type="ShaderMaterial" id=7]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
 shader_param/toScreen = false
 shader_param/effectType = 4
@@ -15,7 +15,7 @@ shader_param/uSpeed = 4.0
 shader_param/uFrequency = 4.0
 shader_param/uWaveAmplitude = 0.5
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 6 )
 shader_param/DEPTH = Vector2( 0, -8 )
 shader_param/POSITION = Vector2( 0, 0 )
@@ -24,15 +24,14 @@ shader_param/REPEAT_Y = true
 shader_param/FLIP = true
 shader_param/toScreen = true
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 0.0588235, 0.0431373, 0.0980392, 1, 0.0196078, 0.0784314, 0.286275, 1 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 width = 1024
 
-[sub_resource type="Animation" id=4]
-resource_name = "Idle"
+[sub_resource type="Animation" id=5]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shader:material:shader_param/POSITION")
@@ -72,7 +71,7 @@ __meta__ = {
 
 [node name="BG" type="TextureRect" parent="Background"]
 modulate = Color( 0.964706, 0.619608, 0.992157, 1 )
-material = SubResource( 7 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = 40.0
@@ -84,12 +83,12 @@ __meta__ = {
 }
 
 [node name="Shader" type="TextureRect" parent="."]
-material = SubResource( 1 )
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = 40.0
 mouse_filter = 2
-texture = SubResource( 3 )
+texture = SubResource( 4 )
 expand = true
 flip_v = true
 __meta__ = {
@@ -136,4 +135,4 @@ text = "PORTUGUES"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 playback_speed = 0.25
-anims/Idle = SubResource( 4 )
+anims/Idle = SubResource( 5 )

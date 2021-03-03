@@ -32,9 +32,9 @@ var jumpForce
 var currentDamage := 0
 var currentBump := 0.0
 
+var canInput := false
 var snap := true
 var flashing := false
-var canShoot := true
 var canDash := true
 
 onready var stateMachine = $StateMachine
@@ -61,7 +61,7 @@ func _ready():
 	add_child(currentWeapon)
 	
 func _physics_process(delta):
-	if canShoot:
+	if canInput:
 		handleWeaponInput(delta)
 	else:
 		currentWeapon.hide()
@@ -111,8 +111,10 @@ func flashBehaviour():
 		visible = !visible
 		
 func getInputDirection() -> int:
-	var inputDirection = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	return inputDirection
+	if canInput:
+		var inputDirection = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+		return inputDirection
+	else: return 0
 	
 func handleWeaponInput(_delta):
 	currentWeapon.show()

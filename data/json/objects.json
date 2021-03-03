@@ -117,5 +117,9 @@
 			},
 	"24": {		"name": "Player Respawner",
 			"file": "res://data/player/respawner.tscn"
+			},
+	"25": {
+			"name": "Level Start Timer",
+			"file": "res://data/levels/level_start_timer.tscn"
 			}
 }

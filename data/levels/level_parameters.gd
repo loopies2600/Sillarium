@@ -13,8 +13,15 @@ func _init():
 	Objects.currentWorld = self
 	
 func _ready():
+	var startTimer = Objects.spawn(25)
+	startTimer.connect("level_start", self, "start")
+	
+	Audio.fade()
 	Renderer.fade("out")
 	Renderer.backgroundSetup(backgroundID)
-	Audio.musicSetup(musicID)
 	Objects.spawn(22)
 	Objects.playerInit(0, startPos)
+	
+func start():
+	Globals.player.canInput = true
+	Audio.musicSetup(musicID)

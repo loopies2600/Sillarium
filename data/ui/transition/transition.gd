@@ -19,4 +19,3 @@ func _fadeEnd(anim_name):
 		
 	Renderer.transition = null
 	queue_free()
-	

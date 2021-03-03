@@ -46,22 +46,23 @@ func ChangeSprite(playerFlipped):
 	type.projectileOffset[6].x = -flipXUp if playerFlipped else flipXUp
 	
 func _process(delta):
-	if armsPos != null:
-		global_position = armsPos.global_position
+	if Globals.player.canInput:
+		if armsPos != null:
+			global_position = armsPos.global_position
+			
+		offset.x = lerp(offset.x, 0, delta * 8)
 		
-	offset.x = lerp(offset.x, 0, delta * 8)
-	
-	if Input.is_action_just_pressed("shoot") and cooldownIsOver:
-		if type.velocityReduction != 0.0:
-			Globals.get("player").maxSpeed = Globals.get("player").character.maxSpeed - type.velocityReduction
-		fire(delta)
-		
-	if Input.is_action_just_released("shoot") and cooldownIsOver:
-		if type.velocityReduction != 0.0:
-			Globals.get("player").maxSpeed = Globals.get("player").character.maxSpeed
-		
-	if type.hasCooldown:
-		pass
+		if Input.is_action_just_pressed("shoot") and cooldownIsOver:
+			if type.velocityReduction != 0.0:
+				Globals.get("player").maxSpeed = Globals.get("player").character.maxSpeed - type.velocityReduction
+			fire(delta)
+			
+		if Input.is_action_just_released("shoot") and cooldownIsOver:
+			if type.velocityReduction != 0.0:
+				Globals.get("player").maxSpeed = Globals.get("player").character.maxSpeed
+			
+		if type.hasCooldown:
+			pass
 		
 func fire(delta):
 	play("Fire")
