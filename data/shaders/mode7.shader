@@ -1,16 +1,18 @@
 shader_type canvas_item;
 
-uniform float POSITION;
 uniform vec2 DEPTH;
+uniform vec2 POSITION;
 uniform bool REPEAT_X;
 uniform bool REPEAT_Y;
 uniform bool FLIP;
+uniform bool toScreen;
 
 void fragment() {
 	mat4 TRANSFORM = mat4(0.0);
 	TRANSFORM[0].x = 4.0;
 	TRANSFORM[1].y = 4.0;
-	TRANSFORM[3].y = POSITION;
+	TRANSFORM[3].x = POSITION.x;
+	TRANSFORM[3].y = POSITION.y;
 	mat4 mat = mat4(1.0);
 	mat[0].w = DEPTH.x;
 	mat[1].w = DEPTH.y;
@@ -32,7 +34,12 @@ void fragment() {
 	if (((uv.x > 0.0 && uv.x < 1.0) || REPEAT_X) && ((uv.y > 0.0 && uv.y < 1.0) || REPEAT_Y) && (w > 0.0 || FLIP)) {
 		// Apply texture
 		uv = mod(uv, 1.0);
-		COLOR = texture(TEXTURE, uv);
+		
+		if (toScreen) {
+			COLOR = textureLod(SCREEN_TEXTURE, uv, 0.0);
+		} else {
+			COLOR = texture(TEXTURE, uv);
+		}
 	} else {
 		COLOR = vec4(0, 0, 0, 0);
 	}
