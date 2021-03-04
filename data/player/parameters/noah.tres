@@ -1,40 +1,7 @@
-[gd_resource type="Resource" load_steps=12 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://data/player/parameters/parameters.gd" type="Script" id=1]
 [ext_resource path="res://sprites/player/noah/noah_dash.png" type="Texture" id=2]
-[ext_resource path="res://sprites/player/noah/noah_0s.png" type="Texture" id=3]
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 3 )
-region = Rect2( 307, 18, 84, 58 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 3 )
-region = Rect2( 307, 18, 84, 58 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 3 )
-region = Rect2( 474, 20, 76, 60 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 3 )
-region = Rect2( 307, 18, 84, 58 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 3 )
-region = Rect2( 307, 18, 84, 58 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 3 )
-region = Rect2( 307, 18, 84, 58 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 3 )
-region = Rect2( 394, 14, 74, 61 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 3 )
-region = Rect2( 307, 18, 84, 58 )
 
 [resource]
 script = ExtResource( 1 )
@@ -52,5 +19,4 @@ dashDuration = 0.2
 aimWeight = 0.875
 bounceOff = 0.75
 graceTime = 2.0
-headTextures = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ]
 dashTexture = ExtResource( 2 )

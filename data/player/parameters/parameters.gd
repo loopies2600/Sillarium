@@ -16,5 +16,4 @@ export (float, 0, 1) var aimWeight = 0.875
 export (float, 0, 1) var bounceOff = 0.75
 export (float) var graceTime = 2.0
 
-export (Array, AtlasTexture) var headTextures
 export (Texture) var dashTexture

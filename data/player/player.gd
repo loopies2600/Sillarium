@@ -21,7 +21,6 @@ onready var aimWeight = character.aimWeight
 onready var bounceOff = character.bounceOff
 onready var graceTime = character.graceTime
 
-onready var headTextures = character.headTextures
 onready var dashTexture = character.dashTexture
 
 var isGrounded := true
@@ -125,6 +124,8 @@ func getInputDirection() -> int:
 	
 func handleWeaponInput(_delta):
 	if canInput:
+		currentWeapon.show()
+		
 		var weaponDirection = Vector2(
 		int(Input.is_action_pressed("aim_right")) - int(Input.is_action_pressed("aim_left")),
 		int(Input.is_action_pressed("aim_down")) - int(Input.is_action_pressed("aim_up")))
@@ -133,7 +134,6 @@ func handleWeaponInput(_delta):
 			weaponDirection.y = 0
 			
 		var weaponRotation
-		var currentWeaponSpriteRotation = currentWeapon.global_rotation
 
 		if weaponDirection != Vector2.ZERO:
 			weaponRotation = weaponDirection.angle()
@@ -157,7 +157,9 @@ func handleWeaponInput(_delta):
 		# Gira el arma y el sprite
 		currentWeapon.RotateTo(weaponRotation, aimWeight)
 		currentWeapon.ChangeSprite(body.flip_h)
-		head.texture = headTextures[currentWeapon.angleIndex]
+		
+	else:
+		currentWeapon.hide()
 
 func FlipGraphics(flip):
 	head.flip_h = flip
