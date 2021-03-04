@@ -1,6 +1,7 @@
 extends KinematicBody2D
 class_name Player, "res://sprites/ui/menu/player.png"
 
+signal player_grounded_updated(isGrounded)
 signal player_damaged(dm, bm)
 
 export(Resource) var character
@@ -23,6 +24,7 @@ onready var graceTime = character.graceTime
 onready var headTextures = character.headTextures
 onready var dashTexture = character.dashTexture
 
+var isGrounded := true
 var velocity := Vector2()
 var groundAngle = -1
 var snapAngle := Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
@@ -61,13 +63,18 @@ func _ready():
 	add_child(currentWeapon)
 	
 func _physics_process(delta):
-	if canInput:
-		handleWeaponInput(delta)
-	else:
-		currentWeapon.hide()
-		
+	cameraStuffies()
+	handleWeaponInput(delta)
 	flashBehaviour()
+	realNastyOffsetStuff()
 	
+func cameraStuffies():
+	var wasGrounded = isGrounded
+	isGrounded = is_on_floor()
+	
+	if wasGrounded == null || isGrounded != wasGrounded:
+		emit_signal("player_grounded_updated", isGrounded)
+		
 func pickUpWeapon(id):
 	if currentWeapon != null:
 		currentWeapon.queue_free()
@@ -117,47 +124,56 @@ func getInputDirection() -> int:
 	else: return 0
 	
 func handleWeaponInput(_delta):
-	currentWeapon.show()
-	
-	var weaponDirection = Vector2(
-	int(Input.is_action_pressed("aim_right")) - int(Input.is_action_pressed("aim_left")),
-	int(Input.is_action_pressed("aim_down")) - int(Input.is_action_pressed("aim_up")))
-	
-	if weaponDirection.y == 1 and is_on_floor():
-		weaponDirection.y = 0
+	if canInput:
+		var weaponDirection = Vector2(
+		int(Input.is_action_pressed("aim_right")) - int(Input.is_action_pressed("aim_left")),
+		int(Input.is_action_pressed("aim_down")) - int(Input.is_action_pressed("aim_up")))
 		
-	var weaponRotation
-	var currentWeaponSpriteRotation = currentWeapon.global_rotation
-
-	if weaponDirection != Vector2.ZERO:
-		weaponRotation = weaponDirection.angle()
-
-		# Gira el arma para que este alineada para disparar
-		currentWeapon.RotateTo(weaponRotation, aimWeight)
-		
-		# Espeja el sprite del jugador para que no dispare hacia atras
-		if weaponDirection.x == -1:
-			FlipGraphics(true)
-		elif weaponDirection.x == 1:
-			FlipGraphics(false)
+		if weaponDirection.y == 1 and is_on_floor():
+			weaponDirection.y = 0
 			
-	else:
-		head.texture = headTextures[1]
+		var weaponRotation
+		var currentWeaponSpriteRotation = currentWeapon.global_rotation
 
-		# Gira el arma de acuerdo al sprite
-		if body.flip_h:
-			weaponRotation = PI
+		if weaponDirection != Vector2.ZERO:
+			weaponRotation = weaponDirection.angle()
+
+			# Gira el arma para que este alineada para disparar
+			currentWeapon.RotateTo(weaponRotation, aimWeight)
+			
+			# Espeja el sprite del jugador para que no dispare hacia atras
+			if weaponDirection.x == -1:
+				FlipGraphics(true)
+			elif weaponDirection.x == 1:
+				FlipGraphics(false)
+				
 		else:
-			weaponRotation = 0
-	
-	# Gira el arma y el sprite
-	currentWeapon.RotateTo(weaponRotation, aimWeight)
-	currentWeapon.ChangeSprite(body.flip_h)
+			# Gira el arma de acuerdo al sprite
+			if body.flip_h:
+				weaponRotation = PI
+			else:
+				weaponRotation = 0
+		
+		# Gira el arma y el sprite
+		currentWeapon.RotateTo(weaponRotation, aimWeight)
+		currentWeapon.ChangeSprite(body.flip_h)
+		head.texture = headTextures[currentWeapon.angleIndex]
 
 func FlipGraphics(flip):
 	head.flip_h = flip
 	body.flip_h = flip
 	legs.flip_h = flip
+	
+func realNastyOffsetStuff():
+	var bodyParts = [head, body, legs]
+	
+	for part in bodyParts:
+		var oldOffset = part.offset.x
+		
+		if part.flip_h: 
+			part.offset.x = -oldOffset
+		else: 
+			part.offset.x = oldOffset
 	
 func takeDamage(damage, bump = maxSpeed * -1 if body.flip_h else maxSpeed * 1):
 	currentDamage = damage
@@ -174,6 +190,8 @@ func reinitializeVars():
 	fallMultiplier = character.fallMultiplier
 	dashStrength = character.dashStrength
 	aimWeight = character.aimWeight
+	bounceOff = character.bounceOff
+	graceTime = character.graceTime
 	
 func disableCollisionBox():
 	hitbox.set_deferred("disabled", true)

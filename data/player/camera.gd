@@ -9,6 +9,9 @@ export(float, EASE) var DAMP_EASING := 1.0
 export var shake := false setget setShaking
 
 func _ready():
+	if owner is Player:
+		owner.connect("player_grounded_updated", self, "_playerGrounded")
+	
 	randomize()
 	set_process(false)
 	self.duration = duration
@@ -27,6 +30,9 @@ func _onShakeRequest():
 	if not enabled:
 		return
 	self.shake = true
+	
+func _playerGrounded(isGrounded):
+	drag_margin_v_enabled = !isGrounded
 	
 func setShakeDuration(value: float):
 	duration = value

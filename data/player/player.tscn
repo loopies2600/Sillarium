@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://data/player/states/locked.gd" type="Script" id=1]
 [ext_resource path="res://data/player/states/machine.gd" type="Script" id=2]
@@ -13,19 +13,131 @@
 [ext_resource path="res://data/player/states/hurt.gd" type="Script" id=11]
 [ext_resource path="res://data/player/states/hold.gd" type="Script" id=12]
 [ext_resource path="res://data/player/states/dash.gd" type="Script" id=13]
+[ext_resource path="res://sprites/player/noah/noah_4s.png" type="Texture" id=14]
 [ext_resource path="res://streams/sfx/player/asb_fire.wav" type="AudioStream" id=16]
 
 [sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 7 )
-region = Rect2( 118, 18, 38, 51 )
+atlas = ExtResource( 14 )
+region = Rect2( 13, 24, 84, 100 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 7 )
-region = Rect2( 307, 18, 84, 58 )
+atlas = ExtResource( 14 )
+region = Rect2( 122, 12, 84, 58 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 7 )
-region = Rect2( 19, 12, 55, 74 )
+atlas = ExtResource( 8 )
+region = Rect2( 278, 13, 40, 79 )
+
+[sub_resource type="Animation" id=10]
+resource_name = "Dash"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:texture:atlas")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 13, 24, 84, 100 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -20, 32 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body/Head:texture:atlas")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body/Head:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -32 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Body/Legs:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Body/Head:texture:region")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 122, 12, 84, 58 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath(".:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -12 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Body/Head:texture")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 2 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 tracks/0/type = "value"
@@ -63,6 +175,42 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 4 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body/Head:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 2 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body/Head:texture:atlas")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Body/Head:texture:region")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 307, 18, 84, 58 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -139,6 +287,90 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector2( 4, 48 ), Vector2( 4, 44 ) ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Body:texture:atlas")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Body:texture:region")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 118, 18, 38, 51 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Body:offset")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Body/Legs:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Body/Head:texture:atlas")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Body/Head:texture:region")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 307, 18, 84, 58 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Body/Head:texture")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 2 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 length = 0.3
@@ -214,6 +446,42 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 4 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Body/Head:texture:atlas")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Body/Head:texture")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 2 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Body/Head:texture:region")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 307, 18, 84, 58 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=7]
@@ -306,27 +574,31 @@ script = ExtResource( 3 )
 character = ExtResource( 9 )
 
 [node name="Graphics" type="Node2D" parent="."]
-position = Vector2( 0, -4 )
+position = Vector2( 0, -12 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
 texture = SubResource( 1 )
+offset = Vector2( -20, 32 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
-position = Vector2( 4, -44 )
+position = Vector2( 0, -32 )
 texture = SubResource( 2 )
 
 [node name="Legs" type="Sprite" parent="Graphics/Body"]
-position = Vector2( 4, 48 )
+visible = false
+position = Vector2( 0, 48 )
 z_index = -1
 texture = SubResource( 3 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
 playback_process_mode = 0
+anims/Dash = SubResource( 10 )
 anims/Hold = SubResource( 4 )
 anims/Idle = SubResource( 5 )
 anims/Walking = SubResource( 6 )
 
 [node name="ArmsPosition" type="Position2D" parent="."]
+position = Vector2( 0, 6 )
 __meta__ = {
 "_gizmo_extents_": 32.0
 }

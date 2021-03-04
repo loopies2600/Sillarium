@@ -36,8 +36,7 @@ func ChangeSprite(playerFlipped):
 	angleIndex = int(angleStep / anglePerDirection)
 
 	frames = type.aimGraphics[angleIndex]
-	Globals.player.head.texture = Globals.player.headTextures[angleIndex]
-
+	
 	if angleIndex == 2 or angleIndex == 6:
 		if playerFlipped:
 			flip_v = true
@@ -46,12 +45,12 @@ func ChangeSprite(playerFlipped):
 	type.projectileOffset[6].x = -flipXUp if playerFlipped else flipXUp
 	
 func _process(delta):
-	if Globals.player.canInput:
-		if armsPos != null:
-			global_position = armsPos.global_position
-			
-		offset.x = lerp(offset.x, 0, delta * 8)
+	if armsPos != null:
+		global_position = armsPos.global_position
 		
+	offset.x = lerp(offset.x, 0, delta * 8)
+		
+	if Globals.player.canInput:
 		if Input.is_action_just_pressed("shoot") and cooldownIsOver:
 			if type.velocityReduction != 0.0:
 				Globals.get("player").maxSpeed = Globals.get("player").character.maxSpeed - type.velocityReduction
@@ -60,9 +59,7 @@ func _process(delta):
 		if Input.is_action_just_released("shoot") and cooldownIsOver:
 			if type.velocityReduction != 0.0:
 				Globals.get("player").maxSpeed = Globals.get("player").character.maxSpeed
-			
-		if type.hasCooldown:
-			pass
+		
 		
 func fire(delta):
 	play("Fire")
