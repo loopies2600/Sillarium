@@ -13,6 +13,7 @@ onready var mute = Settings.getSetting("audio", "mute_audio")
 
 # esta variable guarda el reproductor de audio que se este usando, ojo, no es para guardar el archivo actual que se este reproduciendo
 var currentMusic
+var currentID
 var beat setget setBeat, getBeat
 var time
 var fading := false
@@ -38,7 +39,8 @@ func musicSetup(bgmID):
 				currentMusic.stop()
 				currentMusic.stream = load(Globals.LoadJSON("res://data/json/music.json", str(bgmID))["file"])
 				currentMusic.play()
-				
+			
+			currentID = bgmID
 	else:
 		if currentMusic != null:
 			currentMusic.queue_free()
@@ -48,7 +50,7 @@ func _process(_delta):
 		return
 	
 	time = currentMusic.get_playback_position() + AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency() + (1 / COMPENSATE_HZ) * COMPENSATE_FRAMES
-	self.beat = int(time * getMusicBPM(Objects.currentWorld.musicID) / 60.0) % 4
+	self.beat = int(time * getMusicBPM(currentID) / 60.0) % 4
 	
 	if fading:
 		currentMusic.volume_db -= 1.0

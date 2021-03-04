@@ -46,7 +46,7 @@ func spawn4Piece(sprite : Sprite):
 		
 	Objects.currentWorld.add_child(fourPiece)
 	
-func fade(mode = "in", mask = preload("res://sprites/debug/radius.png")):
+func fade(mode = "in", mask = preload("res://sprites/debug/test_transition.png")):
 	# esta función se encarga de spawnear la transición, solo si no hay ninguna transición actualmente.
 	# los argumentos son: modo ("in" o "out") y mascara.
 	if transition == null:
@@ -54,7 +54,7 @@ func fade(mode = "in", mask = preload("res://sprites/debug/radius.png")):
 		transition = newFade
 		newFade.mode = mode
 		newFade.mask = mask
-		Objects.currentWorld.add_child(newFade)
+		get_tree().get_root().call_deferred("add_child", newFade)
 	
 func backgroundSetup(bgID):
 	backgrounds = Settings.getSetting("renderer", "display_backgrounds")

@@ -1,16 +1,16 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://data/shaders/transition.shader" type="Shader" id=1]
-[ext_resource path="res://sprites/debug/mask_noise.tres" type="Texture" id=2]
+[ext_resource path="res://sprites/debug/test_transition.png" type="Texture" id=2]
 [ext_resource path="res://data/ui/transition/transition.gd" type="Script" id=3]
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/cutoff = 1.0
-shader_param/smoothSize = null
+shader_param/smoothSize = 0.86
 shader_param/mask = ExtResource( 2 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/cutoff")
@@ -25,7 +25,7 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/cutoff")
@@ -44,7 +44,7 @@ tracks/0/keys = {
 script = ExtResource( 3 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource( 3 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
@@ -53,5 +53,5 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
-anims/in = SubResource( 4 )
-anims/out = SubResource( 5 )
+anims/in = SubResource( 2 )
+anims/out = SubResource( 3 )
