@@ -27,7 +27,7 @@ func update(delta):
 		emit_signal("finished", "idle")
 		
 	if !bumpedThru:
-		owner.velocity = Vector2(owner.dashStrength, 0.0).rotated(sRot)
+		owner.velocity = Vector2(owner.dashStrength * owner.getFacingDirection(), 0.0)
 		
 		if dashTime < 0.0:
 			emit_signal("finished", "idle")

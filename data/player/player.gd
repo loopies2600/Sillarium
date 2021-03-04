@@ -125,6 +125,10 @@ func getInputDirection() -> int:
 		return inputDirection
 	else: return 0
 	
+func getFacingDirection() -> int:
+	var facingDirection = -1 if body.flip_h else 1
+	return facingDirection
+	
 func handleWeaponInput(_delta):
 	if canInput:
 		currentWeapon.show()
