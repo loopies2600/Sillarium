@@ -96,11 +96,11 @@ func DropRock():
 func OnDestruction():
 	emit_signal("camera_shake_requested")
 	
-	Renderer.spawn4Piece(renderer.texture, renderer.global_position, renderer.global_rotation, renderer.global_scale, renderer.z_index)
+	Renderer.spawn4Piece(renderer)
 	
 	for sprite in renderer.get_children():
 		if sprite is Sprite:
-			Renderer.spawn4Piece(sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, sprite.z_index)
+			Renderer.spawn4Piece(sprite)
 			
 	DropRockAndDestroySelf()
 

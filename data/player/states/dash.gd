@@ -7,6 +7,7 @@ var bumpedThru = false
 
 func enter():
 	owner.animator.play("Dash")
+	owner.setEnemyCollision(false)
 	
 	bumpedThru = false
 	owner.canInput = false
@@ -15,7 +16,7 @@ func enter():
 	sRot = owner.currentWeapon.rotation
 	
 func update(delta):
-	Renderer.spawnTrail(0.1, owner.dashTexture, owner.global_position, owner.rotation, owner.scale, owner.z_index - 1, owner.body.flip_h, owner.body.flip_v)
+	Renderer.spawnTrail(0.1, owner.dash)
 	var collision = owner.move_and_collide(owner.velocity * delta)
 	dashTime -= delta
 	
@@ -32,4 +33,5 @@ func update(delta):
 			emit_signal("finished", "idle")
 			
 func exit():
+	owner.setEnemyCollision(true)
 	owner.canInput = true

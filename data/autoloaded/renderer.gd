@@ -19,30 +19,30 @@ func toggleFS():
 	fullscreen = Settings.getSetting("renderer", "fullscreen")
 	OS.window_fullscreen = fullscreen
 	
-func spawnTrail(fds, tex, pos, rot, scl, z, flipH, flipV):
+func spawnTrail(fds : float, sprite : Sprite):
 	# algunos sprites van a dejar un rastro, así que esta función se encarga de spawnear ese rastro.
 	# los argumentos son en orden: tiempo de desvanecimiento, textura, posición, rotación, escala, y orden Z.
 	var newTrail = Objects.getObj(7)
 	newTrail.fadeSpeed = fds
-	newTrail.texture = tex
-	newTrail.global_position = pos
-	newTrail.global_rotation = rot
-	newTrail.global_scale = scl
-	newTrail.z_index = z
-	newTrail.flip_h = flipH
-	newTrail.flip_v = flipV
+	newTrail.texture = sprite.texture
+	newTrail.global_position = sprite.global_position
+	newTrail.global_rotation = sprite.global_rotation
+	newTrail.global_scale = sprite.global_scale
+	newTrail.z_index = sprite.z_index
+	newTrail.flip_h = sprite.flip_h
+	newTrail.flip_v = sprite.flip_v
 	Objects.currentWorld.add_child(newTrail)
 	
-func spawn4Piece(tex, pos, rot, scl, z, flipH, flipV):
+func spawn4Piece(sprite : Sprite):
 	# basado en el codigo del fade, se nota
 	var fourPiece = Objects.getObj(23)
-	fourPiece.texture = tex
-	fourPiece.global_position = pos
-	fourPiece.global_rotation = rot
-	fourPiece.global_scale = scl
-	fourPiece.z_index = z
-	fourPiece.flip_h = flipH
-	fourPiece.flip_v = flipV
+	fourPiece.texture = sprite.texture
+	fourPiece.global_position = sprite.global_position
+	fourPiece.global_rotation = sprite.global_rotation
+	fourPiece.global_scale = sprite.scale
+	fourPiece.z_index = sprite.z_index
+	fourPiece.flipH = sprite.flip_h
+	fourPiece.flipV = sprite.flip_v
 		
 	Objects.currentWorld.add_child(fourPiece)
 	

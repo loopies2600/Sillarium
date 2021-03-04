@@ -5,6 +5,7 @@ signal player_grounded_updated(isGrounded)
 signal player_damaged(dm, bm)
 
 export(Resource) var character
+onready var dashTexture = character.dashTexture
 
 onready var health = character.health
 onready var maxSpeed = character.maxSpeed
@@ -20,8 +21,6 @@ onready var dashDuration = character.dashDuration
 onready var aimWeight = character.aimWeight
 onready var bounceOff = character.bounceOff
 onready var graceTime = character.graceTime
-
-onready var dashTexture = character.dashTexture
 
 var isGrounded := true
 var velocity := Vector2()
@@ -46,15 +45,19 @@ onready var armsPos = $ArmsPosition
 onready var body = $Graphics/Body
 onready var head = $Graphics/Body/Head
 onready var legs = $Graphics/Body/Legs
+onready var dash = $Graphics/Body/Dash
 onready var shadow = $Graphics/Shadow
 onready var hitbox = $CollisionShape2D
 onready var camera = $Camera
 onready var attackSound = $FiringSound
 onready var gracePeriod = $GracePeriodTimer
 
+onready var bodyParts = [head, body, legs, dash]
+
 onready var currentWeapon
 
 func _ready():
+	dash.texture = dashTexture
 	gracePeriod.connect("timeout", self, "_gracePeriodEnd")
 	
 	Globals.weapon = Objects.getWeapon(0, armsPos, z_index + 1)
@@ -162,13 +165,10 @@ func handleWeaponInput(_delta):
 		currentWeapon.hide()
 
 func FlipGraphics(flip):
-	head.flip_h = flip
-	body.flip_h = flip
-	legs.flip_h = flip
+	for part in bodyParts:
+		part.flip_h = flip
 	
 func realNastyOffsetStuff():
-	var bodyParts = [head, body, legs]
-	
 	for part in bodyParts:
 		var oldOffset = part.offset.x
 		
@@ -183,6 +183,8 @@ func takeDamage(damage, bump = maxSpeed * -1 if body.flip_h else maxSpeed * 1):
 	emit_signal("player_damaged")
 
 func reinitializeVars():
+	dash.texture = dashTexture
+	
 	maxSpeed = character.maxSpeed
 	acceleration = character.acceleration
 	friction = character.friction
@@ -202,8 +204,7 @@ func startGracePeriod():
 	gracePeriod.wait_time = character.graceTime
 	gracePeriod.start()
 	
-	set_collision_mask_bit(2, false)
-	set_collision_mask_bit(3, false)
+	setEnemyCollision(false)
 	
 func kill():
 	var respawner = Objects.spawn(24, global_position)
@@ -217,5 +218,8 @@ func _gracePeriodEnd():
 	visible = true
 	flashing = false
 	
-	set_collision_mask_bit(2, true)
-	set_collision_mask_bit(3, true)
+	setEnemyCollision(true)
+	
+func setEnemyCollision(booly: bool):
+	set_collision_mask_bit(2, booly)
+	set_collision_mask_bit(3, booly)

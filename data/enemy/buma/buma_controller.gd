@@ -85,7 +85,7 @@ func disableCollision():
 func OnDestruction():
 	for sprite in renderer.get_children():
 		if sprite is Sprite:
-			Renderer.spawn4Piece(sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, sprite.z_index)
+			Renderer.spawn4Piece(sprite)
 	
 	emit_signal("camera_shake_requested")
 	queue_free()

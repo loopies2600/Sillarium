@@ -46,5 +46,5 @@ func OnBodyExited(body):
 		
 func OnDestruction():
 	emit_signal("camera_shake_requested")
-	Renderer.spawn4Piece(sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, sprite.z_index, sprite.flip_h, sprite.flip_v)
+	Renderer.spawn4Piece(sprite)
 	queue_free()

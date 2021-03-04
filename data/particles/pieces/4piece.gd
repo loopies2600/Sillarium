@@ -1,5 +1,7 @@
 extends Node2D
 
+var flipH : bool
+var flipV : bool
 var texture : Texture
 
 onready var pieces = [$Piece, $Piece2, $Piece3, $Piece4]
@@ -12,6 +14,8 @@ func _ready():
 	
 	for piece in pieces:
 		piece.velocity = piece.initialVel
+		piece.sprite.flip_h = flipH
+		piece.sprite.flip_v = flipV
 		piece.sprite.texture = texture
 		piece.hitbox.rotation -= global_rotation
 		

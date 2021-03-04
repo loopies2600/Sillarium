@@ -19,7 +19,7 @@ func disableCollision():
 func OnDestruction():
 	emit_signal("camera_shake_requested")
 	call_deferred("disableCollision")
-	Renderer.spawn4Piece(sprite.texture, sprite.global_position, sprite.global_rotation, sprite.global_scale, sprite.z_index, sprite.flip_h, sprite.flip_v)
+	Renderer.spawn4Piece(sprite)
 	animPlayer.play("Exploding")
 
 func EmitParticles():

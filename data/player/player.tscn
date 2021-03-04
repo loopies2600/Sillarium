@@ -638,6 +638,10 @@ z_index = -1
 texture = SubResource( 3 )
 offset = Vector2( -20, -16 )
 
+[node name="Dash" type="Sprite" parent="Graphics/Body"]
+visible = false
+position = Vector2( 0, 12 )
+
 [node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
 playback_process_mode = 0
 anims/Dash = SubResource( 4 )

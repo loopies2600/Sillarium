@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource( 1 )
+dashTexture = ExtResource( 2 )
 health = 10
 maxSpeed = 300.0
 airMaxSpeed = 350.0
@@ -19,4 +20,3 @@ dashDuration = 0.2
 aimWeight = 0.875
 bounceOff = 0.75
 graceTime = 2.0
-dashTexture = ExtResource( 2 )
