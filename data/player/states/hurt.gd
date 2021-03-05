@@ -1,6 +1,7 @@
 extends "motion.gd"
 
 func enter():
+	owner.playRandomAnim(["Hurt0"])
 	owner.startGracePeriod()
 	owner.canInput = !owner.canInput
 	
@@ -15,8 +16,6 @@ func update(delta):
 	owner.animspeedAsVelocity()
 	owner.moveAndSnap(delta)
 	
-	owner.graphics.rotation += 0.25
-		
 	if owner.health <= 0:
 			owner.kill()
 			
@@ -24,5 +23,4 @@ func update(delta):
 		emit_signal("finished", "idle")
 		
 func exit():
-	owner.graphics.rotation = 0.0
 	owner.canInput = !owner.canInput

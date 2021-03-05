@@ -92,6 +92,11 @@ func animspeedAsVelocity():
 	else:
 		animator.playback_speed = 1
 	
+func playRandomAnim(anims : Array):
+	randomize()
+	var animToPlay = randi() % anims.size()
+	animator.play(anims[animToPlay])
+	
 func moveAndSnap(delta):
 	gravity = (2 * jumpStrength) / pow(timeJumpApex, 2)
 	jumpForce = gravity * timeJumpApex
@@ -117,7 +122,8 @@ func moveAndSnap(delta):
 	
 func flashBehaviour():
 	if flashing:
-		visible = !visible
+		pass
+		#visible = !visible
 		
 func getInputDirection() -> int:
 	if canInput:
