@@ -1,9 +1,9 @@
 extends KinematicBody2D
 class_name BasicEnemy, "res://sprites/ui/menu/enemy.png"
 
-signal take_damage
+signal camera_shake_requested(mode, time, amp)
 signal destroy_self
-signal camera_shake_requested
+signal take_damage
 
 onready var hitbox
 
