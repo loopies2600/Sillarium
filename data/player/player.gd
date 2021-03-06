@@ -100,13 +100,13 @@ func moveAndSnap(delta):
 	gravity = (2 * jumpStrength) / pow(timeJumpApex, 2)
 	jumpForce = gravity * timeJumpApex
 	
+	if !is_on_floor():
+		velocity.y += gravity * delta * (fallMultiplier if velocity.y > 0 else 1)
+	
 	if is_on_ceiling():
 		graphicsAnimator.play("bump")
 		graphicsAnimator.queue("default")
 		velocity.y = 0
-		
-	if !is_on_floor():
-		velocity.y += gravity * delta * (fallMultiplier if velocity.y > 0 else 1)
 		
 	for i in range(get_slide_count()):
 		var collision = get_slide_collision(i)

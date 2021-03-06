@@ -1,13 +1,13 @@
 extends "motion.gd"
 
-func enter():
+func enter(msg := {}):
 	owner.snap = false
-	owner.velocity.y = 0.0
-	owner.velocity.y -= owner.jumpForce
 	
-func update(delta):
-	.update(delta)
+	if msg.has("isJump"):
+		owner.velocity.y = 0.0
+		owner.velocity.y -= owner.jumpForce
 	
+func physics_update(delta):
 	owner.animspeedAsVelocity()
 	owner.moveAndSnap(delta)
 	

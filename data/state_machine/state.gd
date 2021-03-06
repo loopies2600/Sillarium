@@ -2,19 +2,19 @@ extends Node
 class_name State
 
 #warning-ignore:unused_signal
-signal finished(next_state_name)
+signal finished(next_state_name, msg)
 
-func enter():
+func enter(_msg := {} ) -> void:
 	return
 
-func exit():
+func exit() -> void:
 	return
 
-func handle_input(_event):
+func handle_input(_event : InputEvent):
 	return
 
-func update(_delta):
+func update(_delta : float):
 	return
 
-func _on_animation_finished(_anim_name):
+func physics_update(_delta : float):
 	return

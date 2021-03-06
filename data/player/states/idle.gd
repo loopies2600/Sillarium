@@ -1,11 +1,9 @@
 extends "motion.gd"
 
-func enter():
+func enter(_msg := {}):
 	owner.animator.play("Idle")
 	
-func update(delta):
-	.update(delta)
-	
+func physics_update(delta):
 	owner.animspeedAsVelocity()
 	owner.moveAndSnap(delta)
 	damp()

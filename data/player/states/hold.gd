@@ -1,6 +1,6 @@
 extends "motion.gd"
 
-func enter():
+func enter(msg := {}):
 	owner.animator.play("Hold")
 	
 func handle_input(event):

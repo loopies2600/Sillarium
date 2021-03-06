@@ -1,7 +1,7 @@
 extends Area2D
 
 export (bool) var enabled = true
-export (String) var levelToLoad = "SalaGraciosa"
+export (int) var levelToLoad = 0
 
 func _ready():
 	var _unused = connect("body_entered", self, "OnPlayerEnter")

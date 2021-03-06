@@ -1,11 +1,9 @@
 extends "motion.gd"
 
-func enter():
+func enter(msg := {}):
 	owner.animator.play("Walking")
 	
-func update(delta):
-	.update(delta)
-	
+func physics_update(delta):
 	owner.animspeedAsVelocity()
 	owner.moveAndSnap(delta)
 	move(owner.maxSpeed, owner.getInputDirection())

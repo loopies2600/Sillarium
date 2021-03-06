@@ -5,7 +5,7 @@ var sRot
 
 var bumpedThru = false
 
-func enter():
+func enter(msg := {}):
 	owner.animator.play("Dash")
 	owner.setEnemyCollision(false)
 	

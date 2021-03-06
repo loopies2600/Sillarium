@@ -1,6 +1,6 @@
 extends "motion.gd"
 
-func enter():
+func enter(msg := {}):
 	owner.playRandomAnim(["Hurt0"])
 	owner.startGracePeriod()
 	owner.canInput = !owner.canInput
@@ -22,5 +22,5 @@ func update(delta):
 	if owner.is_on_floor():
 		emit_signal("finished", "idle")
 		
-func exit():
+func exit(msg := {}):
 	owner.canInput = !owner.canInput
