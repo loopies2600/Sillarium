@@ -38,4 +38,3 @@ position = Vector2( 672, 544 )
 
 [node name="BasicEntryway" parent="." instance=ExtResource( 5 )]
 position = Vector2( -112, 64 )
-levelToLoad = "TestTutorial"

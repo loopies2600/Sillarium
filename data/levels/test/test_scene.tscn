@@ -30,7 +30,6 @@ tile_data = PoolIntArray( -2097164, 0, 0, -2097163, 0, 0, -2097162, 0, 0, -20971
 
 [node name="BasicEntryway" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1122, 576 )
-levelToLoad = "FunnyScene"
 
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 298, 512 )

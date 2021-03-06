@@ -31,7 +31,7 @@ tile_data = PoolIntArray( -2031656, 1, 0, -2031655, 1, 0, -2031654, 1, 0, -20316
 
 [node name="BasicEntryway" parent="." instance=ExtResource( 7 )]
 position = Vector2( 992, 64 )
-levelToLoad = "TestLevel"
+levelToLoad = 6
 
 [node name="PinataMan" parent="." instance=ExtResource( 6 )]
 position = Vector2( 976, -352 )
@@ -50,7 +50,7 @@ position = Vector2( 275, -264 )
 
 [node name="BasicEntryway2" parent="." instance=ExtResource( 7 )]
 position = Vector2( -2394, 31 )
-levelToLoad = "EnemyTest"
+levelToLoad = 5
 
 [node name="WeaponPickup" parent="." instance=ExtResource( 2 )]
 position = Vector2( -2094.5, -96 )

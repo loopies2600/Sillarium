@@ -122,10 +122,12 @@ texture = SubResource( 1 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 texture = SubResource( 2 )
+offset = Vector2( 0, -44 )
 
 [node name="Legs" type="Sprite" parent="Graphics/Body"]
 z_index = -1
 texture = SubResource( 3 )
+offset = Vector2( 6, 48 )
 
 [node name="Dash" type="Sprite" parent="Graphics/Body"]
 visible = false
