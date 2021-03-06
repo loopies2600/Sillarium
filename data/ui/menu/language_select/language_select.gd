@@ -39,7 +39,7 @@ func _returnToScene():
 	
 func _fadeEnd():
 	if Objects.previousWorld:
-		Globals.LoadScene(Objects.previousWorld)
+		return get_tree().change_scene(Objects.previousWorld)
 	else:
-		Globals.LoadScene("MainMenu")
+		Globals.LoadScene(0)
 

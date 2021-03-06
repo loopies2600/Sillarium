@@ -5,4 +5,4 @@ func buttonPress():
 	Renderer.transition.connect("fade_finished", self, "_fadeEnd")
 	
 func _fadeEnd():
-	Globals.LoadScene("MainMenu")
+	Globals.LoadScene(0)

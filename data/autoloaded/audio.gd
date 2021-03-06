@@ -5,6 +5,7 @@ extends Node
 
 signal pump
 
+const MUSIC = "res://data/json/music.json"
 const COMPENSATE_FRAMES = 2
 const COMPENSATE_HZ = 60.0
 
@@ -14,6 +15,7 @@ onready var mute = Settings.getSetting("audio", "mute_audio")
 # esta variable guarda el reproductor de audio que se este usando, ojo, no es para guardar el archivo actual que se este reproduciendo
 var currentMusic
 var currentID
+var currentBPM
 var beat setget setBeat, getBeat
 var time
 var fading := false
@@ -25,7 +27,7 @@ func musicSetup(bgmID):
 		# si bgmID tiene algun numero dentro...
 		if (bgmID != null):
 			# se va a cargar el archivo de musica desde el JSON, según su ID.
-			var musicToLoad = load(Globals.LoadJSON("res://data/json/music.json", str(bgmID))["file"])
+			var musicToLoad = load(Globals.LoadJSON(MUSIC, bgmID, "file"))
 			
 			# si no existe un reproductor de audio, creemos uno y que reproduzca la musica que le pasamos arriba.
 			if currentMusic == null:
@@ -37,10 +39,11 @@ func musicSetup(bgmID):
 			# si el reproductor existe, pero queremos cambiar de musica, paramos la musica anterior y empezamos a reproducir la nueva.
 			if currentMusic.stream != musicToLoad:
 				currentMusic.stop()
-				currentMusic.stream = load(Globals.LoadJSON("res://data/json/music.json", str(bgmID))["file"])
+				currentMusic.stream = load(Globals.LoadJSON(MUSIC, bgmID, "file"))
 				currentMusic.play()
 			
 			currentID = bgmID
+			currentBPM = getMusicBPM(currentID)
 	else:
 		if currentMusic != null:
 			currentMusic.queue_free()
@@ -50,7 +53,7 @@ func _process(_delta):
 		return
 	
 	time = currentMusic.get_playback_position() + AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency() + (1 / COMPENSATE_HZ) * COMPENSATE_FRAMES
-	self.beat = int(time * getMusicBPM(currentID) / 60.0) % 4
+	self.beat = int(time * currentBPM / 60.0) % 4
 	
 	if fading:
 		currentMusic.volume_db -= 1.0
@@ -74,7 +77,7 @@ func getBeat():
 	
 func getMusicBPM(bgmID):
 	# el tempo de la musica es un valor que se lee desde el JSON. necesitamos pasarle el ID del tema el cual queremos conseguir su tempo.
-	var tempo = Globals.LoadJSON("res://data/json/music.json", str(bgmID))["tempo"]
+	var tempo = Globals.LoadJSON(MUSIC, bgmID, "tempo")
 	
 	return float(tempo)
 	

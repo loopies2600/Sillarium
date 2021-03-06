@@ -21,7 +21,7 @@ func _ready():
 	_startCooldown()
 	
 	play("Idle")
-	connect("animation_finished", self, "_animEnd")
+	var _unused = connect("animation_finished", self, "_animEnd")
 	cooldownTimer.connect("timeout", self, "_cooldownTimeout")
 	
 func RotateTo(angle, weight):
@@ -91,6 +91,5 @@ func _startCooldown():
 func _cooldownTimeout():
 	cooldownIsOver = true
 	
-func _animEnd(anim):
-	if anim == "Fire":
-		play("Idle")
+func _animEnd():
+	pass

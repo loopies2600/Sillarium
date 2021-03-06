@@ -1,7 +1,7 @@
 extends State
 
 func _ready():
-	owner.connect("player_damaged", self, "onDamage")
+	var _unused = owner.connect("player_damaged", self, "onDamage")
 	
 func update(_delta):
 	if owner.canInput:

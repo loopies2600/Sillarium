@@ -47,12 +47,12 @@ func _spawnButtons():
 					categories[3].add_child(newButton)
 	
 func _langButtonPress():
-	Objects.previousWorld = name
+	Objects.previousWorld = filename
 	Renderer.fade("in")
 	Renderer.transition.connect("fade_finished", self, "_fadeEnd")
 	
 func _fadeEnd():
-	Globals.LoadScene("LanguageSelect")
+	Globals.LoadScene(7)
 		
 func toggleButtons(category):
 	for child in categories[category].get_children():

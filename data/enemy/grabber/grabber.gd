@@ -20,7 +20,7 @@ func _ready():
 	
 	hitbox = $Area2D
 	
-func _process(delta):
+func _process(_delta):
 	tongueTipPos.position.y = -1 * tongue.scale.y
 	tongueTip.position = tongueTipPos.position
 	
@@ -36,10 +36,12 @@ func _drop(_body):
 		currentBody = null
 		isGrabbing = false
 		
+# warning-ignore:unused_argument
 func OnBodyEntered(body):
 	if currentBody != null:
 		currentBody.visible = false
 	
+# warning-ignore:unused_argument
 func OnBodyExited(body):
 	if currentBody != null:
 		currentBody.visible = true

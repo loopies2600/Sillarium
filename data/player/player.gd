@@ -46,7 +46,6 @@ onready var body = $Graphics/Body
 onready var head = $Graphics/Body/Head
 onready var legs = $Graphics/Body/Legs
 onready var dash = $Graphics/Body/Dash
-onready var shadow = $Graphics/Shadow
 onready var hitbox = $CollisionShape2D
 onready var camera = $Camera
 onready var attackSound = $FiringSound

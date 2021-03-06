@@ -22,17 +22,17 @@ var facing = 0
 
 func _ready():
 	if owner is Player:
-		owner.connect("player_grounded_updated", self, "_playerGrounded")
+		var _unused = owner.connect("player_grounded_updated", self, "_playerGrounded")
 	
 	randomize()
 	set_process(false)
 	self.duration = duration
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	_checkFacing()
 	previousPosition = get_camera_position()
 	
-func _process(delta):
+func _process(_delta):
 	var damping := ease(shakeTimer.time_left / shakeTimer.wait_time, DAMP_EASING)
 	
 	match shakeMode:
@@ -53,8 +53,8 @@ func _checkFacing():
 		facing = newFacing
 		
 		var targetOffset = get_viewport_rect().size.x * AHEAD_FACTOR * facing
-		tween.interpolate_property(self, "position:x", position.x, targetOffset, SHIFT_DURATION, SHIFT_TRANS, SHIFT_EASE)
-		tween.start()
+		var _unused = tween.interpolate_property(self, "position:x", position.x, targetOffset, SHIFT_DURATION, SHIFT_TRANS, SHIFT_EASE)
+		_unused = tween.start()
 		
 func _onShakeTimeout():
 	self.shake = false
@@ -86,4 +86,3 @@ func setShaking(boolean: bool):
 func connectToManipulators():
 	for cameraManipulator in get_tree().get_nodes_in_group("CameraManipulator"):
 		cameraManipulator.connect("camera_shake_requested", self, "_onShakeRequest")
-		cameraManipulator.connect("beat", self, "_onBeat")

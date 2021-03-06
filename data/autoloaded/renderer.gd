@@ -3,6 +3,8 @@
 
 extends Node
 
+const BG = "res://data/json/backgrounds.json"
+
 # otra variable que lee desde la configuración, esta es para decidir si deberiamos dibujar los fondos o no
 onready var backgrounds = Settings.getSetting("renderer", "display_backgrounds")
 onready var fullscreen = Settings.getSetting("renderer", "fullscreen")
@@ -61,7 +63,7 @@ func backgroundSetup(bgID):
 	# esta función se encarga de cargar y spawnear un fondo desde el JSON, solo si no hay ningun fondo actualmente. en caso contrario, lo reemplaza.
 	if backgrounds:
 		if (bgID != null):
-			var backgroundToLoad = load(Globals.LoadJSON("res://data/json/backgrounds.json", bgID)["file"])
+			var backgroundToLoad = load(Globals.LoadJSON(BG, bgID, "file"))
 			
 			if currentBackground == null:
 				var background = backgroundToLoad

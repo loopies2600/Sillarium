@@ -10,15 +10,19 @@ func _ready():
 	hitbox.connect("area_exited", self, "OnAreaExited")
 	hitbox.connect("body_exited", self, "OnBodyExited")
 	
+# warning-ignore:unused_argument
 func OnAreaEntered(area):
 	pass
 	
+# warning-ignore:unused_argument
 func OnBodyEntered(body):
 	pass
 	
+# warning-ignore:unused_argument
 func OnAreaExited(area):
 	pass
 	
+# warning-ignore:unused_argument
 func OnBodyExited(body):
 	pass
 

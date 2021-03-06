@@ -2,7 +2,9 @@
 
 extends Node
 
-# se usa globalmente para las fisicas... para qué es el UNIT_SIZE???
+# se usan globalmente, bueno, como todo singleton.
+const SCENE = "res://data/json/scenes.json"
+
 const UP = Vector2.UP
 const MAX_FLOOR_ANGLE = 60
 const UNIT_SIZE = 128
@@ -41,18 +43,28 @@ func cubicBezier(p0: Vector2, p1: Vector2, p2: Vector2, p3: Vector2, time: float
 	var r = r0.linear_interpolate(r1, time)
 	return r
 	
-func LoadScene(sceneName):
+func LoadScene(sceneID : int):
 	# con esta función cargamos escenas desde ese JSON.
-	var newScene = LoadJSON("res://data/json/scenes.json", sceneName)["file"]
-	get_tree().change_scene(newScene)
+	var newScene = LoadJSON(SCENE, sceneID, "file")
+	return get_tree().change_scene(newScene)
 	
-func LoadJSON(file, index):
+func LoadJSON(file : String, index : int, property : String):
 	# este es el grande, con esta función podemos leer archivos JSON :).
 	var jsonFile = File.new()
 	jsonFile.open(file, File.READ)
 	
-	var parsed = JSON.parse(jsonFile.get_as_text())
+	var jsonString = jsonFile.get_as_text()
+	var parsed : Dictionary = parse_json(jsonString)
 	jsonFile.close()
 	
-	return parsed.result[str(index)]
+	return parsed[str(index)][property]
+		
+func getJSONSize(file : String):
+	var jsonFile = File.new()
+	jsonFile.open(file, File.READ)
 	
+	var jsonString = jsonFile.get_as_text()
+	var parsed : Dictionary = parse_json(jsonString)
+	jsonFile.close()
+	
+	return parsed.size()

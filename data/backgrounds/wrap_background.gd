@@ -6,7 +6,7 @@ export (int) var speed = 1;
 func _ready():
 	rect_size = rect_size + (offsetLimit * 2)
 	
-func _process(delta):
+func _process(_delta):
 	rect_position -= Vector2(speed, speed)
 	
 	if (abs(rect_position.x) >= offsetLimit.x):

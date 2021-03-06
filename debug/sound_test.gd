@@ -14,12 +14,12 @@ func _ready():
 	
 	text = "Background: " + _getName("background") + "\nMusic: " + _getName("music")
 	
-func _process(delta):
+func _process(_delta):
 	label.text = text.to_upper()
 	
 func _getName(obj):
 	match obj:
 		"background":
-			return Globals.LoadJSON("res://data/json/backgrounds.json", ID)["name"]
+			return Globals.LoadJSON("res://data/json/backgrounds.json", ID, "name")
 		"music":
-			return Globals.LoadJSON("res://data/json/music.json", ID)["name"]
+			return Globals.LoadJSON("res://data/json/music.json", ID, "name")
