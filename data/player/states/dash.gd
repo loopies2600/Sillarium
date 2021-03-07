@@ -34,4 +34,4 @@ func update(delta):
 			
 func exit():
 	owner.setEnemyCollision(true)
-	owner.canInput = true
+	owner.canInput = false

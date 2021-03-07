@@ -1,5 +1,8 @@
 extends Node2D
 
+signal level_initialized
+signal level_started
+
 onready var musicPlayer = preload("res://streams/music_player.tscn")
 onready var debugOverlay = preload("res://debug/debug_overlay.tscn").instance()
 
@@ -20,8 +23,10 @@ func _ready():
 	Renderer.fade("out")
 	Renderer.backgroundSetup(backgroundID)
 	Objects.spawn(22)
-	Objects.playerInit(0, startPos)
+	Objects.spawnPlayer(0, startPos)
+	
+	emit_signal("level_initialized")
 	
 func start():
-	Globals.player.canInput = true
+	emit_signal("level_started")
 	Audio.musicSetup(musicID)

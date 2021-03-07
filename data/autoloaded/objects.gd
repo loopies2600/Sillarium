@@ -10,7 +10,7 @@ const PICKUP = "res://data/json/pickups.json"
 var currentWorld
 var previousWorld
 
-func playerInit(charID, pos):
+func spawnPlayer(charID, pos):
 	var characters := [preload("res://data/player/player.tscn")]
 	var currentChar = characters[charID].instance()
 	
@@ -19,8 +19,7 @@ func playerInit(charID, pos):
 		Globals.player = currentChar
 		
 	Globals.player.global_position = pos
-	Globals.player.camera.connectToManipulators()
-	Globals.player.canInput = false
+	Globals.player.connectSignals()
 	
 func getClosestOrFurthest(caller : Object, groupName : String, getClosest := true) -> Object:
 	var targetGroup = get_tree().get_nodes_in_group(groupName)

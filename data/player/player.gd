@@ -57,17 +57,27 @@ onready var currentWeapon
 
 func _ready():
 	dash.texture = dashTexture
-	gracePeriod.connect("timeout", self, "_gracePeriodEnd")
 	
 	Globals.weapon = Objects.getWeapon(0, armsPos, z_index + 1)
 	currentWeapon = Globals.weapon
 	add_child(currentWeapon)
 	
+func connectSignals():
+	Objects.currentWorld.connect("level_initialized", self, "_onLevelInit")
+	Objects.currentWorld.connect("level_started", self, "_onLevelStart")
+	gracePeriod.connect("timeout", self, "_gracePeriodEnd")
+	camera.connectToManipulators()
+	
+func _onLevelInit():
+	canInput = false
+	
+func _onLevelStart():
+	canInput = true
+	
 func _physics_process(delta):
 	cameraStuffies()
 	handleWeaponInput(delta)
 	flashBehaviour()
-	realNastyOffsetStuff()
 	
 func cameraStuffies():
 	var wasGrounded = isGrounded
@@ -120,8 +130,7 @@ func moveAndSnap(delta):
 	
 func flashBehaviour():
 	if flashing:
-		pass
-		#visible = !visible
+		visible = !visible
 		
 func getInputDirection() -> int:
 	if canInput:
@@ -135,8 +144,7 @@ func getFacingDirection() -> int:
 	
 func handleWeaponInput(_delta):
 	if canInput:
-		currentWeapon.show()
-		
+		currentWeapon.set_process(true)
 		var weaponDirection = Vector2(
 		int(Input.is_action_pressed("aim_right")) - int(Input.is_action_pressed("aim_left")),
 		int(Input.is_action_pressed("aim_down")) - int(Input.is_action_pressed("aim_up")))
@@ -170,20 +178,11 @@ func handleWeaponInput(_delta):
 		currentWeapon.ChangeSprite(body.flip_h)
 		
 	else:
-		currentWeapon.hide()
+		currentWeapon.set_process(false)
 
 func FlipGraphics(flip):
 	for part in bodyParts:
 		part.flip_h = flip
-	
-func realNastyOffsetStuff():
-	for part in bodyParts:
-		var oldOffset = part.offset.x
-		
-		if part.flip_h: 
-			part.offset.x = -oldOffset
-		else: 
-			part.offset.x = oldOffset
 	
 func takeDamage(damage, bump = maxSpeed * -1 if body.flip_h else maxSpeed * 1):
 	currentDamage = damage

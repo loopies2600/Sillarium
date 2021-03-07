@@ -3,7 +3,7 @@ extends "motion.gd"
 func enter(msg := {}):
 	owner.playRandomAnim(["Hurt0"])
 	owner.startGracePeriod()
-	owner.canInput = !owner.canInput
+	owner.canInput = false
 	
 	if !owner.flashing:
 		owner.snap = false
@@ -18,9 +18,3 @@ func update(delta):
 	
 	if owner.health <= 0:
 			owner.kill()
-			
-	if owner.is_on_floor():
-		emit_signal("finished", "idle")
-		
-func exit(msg := {}):
-	owner.canInput = !owner.canInput

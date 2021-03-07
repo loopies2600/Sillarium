@@ -12,31 +12,46 @@ var _active = false setget set_active
 
 func _ready():
 	yield(owner, "ready")
+	Objects.currentWorld.connect("level_started", self, "_start")
+	Objects.currentWorld.connect("level_initialized", self, "_initialized")
+	
 	for child in get_children():
 		child.connect("finished", self, "_change_state")
+	
+func _initialized():
+	set_active(false)
+	
+func _start():
 	initialize(START_STATE)
-
-func initialize(start_state):
+	
+func initialize(start_state, msg := {} ):
 	set_active(true)
 	states_stack.push_front(get_node(start_state))
 	current_state = states_stack[0]
-	current_state.enter()
+	current_state.enter(msg)
 
 func set_active(value):
 	_active = value
 	set_physics_process(value)
+	set_process(value)
 	set_process_input(value)
 	if not _active:
 		states_stack = []
 		current_state = null
 
 func _input(event):
+	if not _active:
+		return
 	current_state.handle_input(event)
 
 func _process(delta):
+	if not _active:
+		return
 	current_state.update(delta)
 	
 func _physics_process(delta):
+	if not _active:
+		return
 	current_state.physics_update(delta)
 
 func _change_state(state_name : String, msg := {} ) -> void:
