@@ -35,9 +35,12 @@ func _ready():
 	var _unused = connect("destroy_self", self, "OnDestruction")
 	
 	# Debug stuff
-	if Globals.debug:
+	if Globals.debugMenuOpen:
 		debugPos.show()
 		debugFollow.show()
+	else:
+		debugPos.hide()
+		debugFollow.hide()
 
 func _physics_process(_delta):
 	rotor.flip_h = !rotor.flip_h

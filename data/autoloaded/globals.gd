@@ -7,7 +7,8 @@ const SCENE = "res://data/json/scenes.json"
 
 const UP = Vector2.UP
 const MAX_FLOOR_ANGLE = 60
-const UNIT_SIZE = 128
+const UNIT_SIZE = 64
+const CELL_SIZE = Vector2(64, 32)
 const GRAVITY = 980
 
 # se usa para registrar el jugador, el arma y la pausa.
@@ -15,8 +16,10 @@ var player
 var weapon
 
 # aca registramos la interfaz debug, y checkeamos si deberiamos activarlo.
+onready var debugMenuOpen := false
 onready var debugOverlay = Objects.getObj(18)
 onready var debug = Settings.getSetting("general", "debug_mode")
+
 
 func _ready():
 	# aca iniciamos la interfaz debug si el modo debug esta activado.

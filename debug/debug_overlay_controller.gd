@@ -45,5 +45,7 @@ func _process(_delta):
 	$SystemInfo.text = system_text
 	
 	if Input.is_action_just_pressed("toggle_debug"):
-		$DebugInfo.visible = !$DebugInfo.visible
-		$SystemInfo.visible = !$SystemInfo.visible
+		Globals.debugMenuOpen = !Globals.debugMenuOpen
+		
+		for child in get_children():
+			child.visible = !child.visible

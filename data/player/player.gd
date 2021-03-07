@@ -106,7 +106,6 @@ func moveAndSnap(delta):
 	if is_on_ceiling():
 		graphicsAnimator.play("bump")
 		graphicsAnimator.queue("default")
-		velocity.y = 0
 		
 	for i in range(get_slide_count()):
 		var collision = get_slide_collision(i)
