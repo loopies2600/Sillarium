@@ -1,10 +1,11 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://data/ui/text_box/text_box_controller.gd" type="Script" id=1]
+[ext_resource path="res://scripts/ui/text_box/text_box_controller.gd" type="Script" id=1]
 [ext_resource path="res://sprites/debug/text_box_background.png" type="Texture" id=2]
 [ext_resource path="res://sprites/debug/action_alien.png" type="Texture" id=3]
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=4]
-[ext_resource path="res://data/ui/text_box/text.gd" type="Script" id=6]
+[ext_resource path="res://scripts/ui/text_box/text.gd" type="Script" id=6]
+
 
 [node name="TextBox" type="Node2D"]
 script = ExtResource( 1 )

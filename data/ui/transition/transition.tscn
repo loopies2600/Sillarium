@@ -2,7 +2,8 @@
 
 [ext_resource path="res://data/shaders/transition.shader" type="Shader" id=1]
 [ext_resource path="res://sprites/debug/test_transition.png" type="Texture" id=2]
-[ext_resource path="res://data/ui/transition/transition.gd" type="Script" id=3]
+[ext_resource path="res://scripts/ui/transition/transition.gd" type="Script" id=3]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )

@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://sprites/weather/rain_drop.png" type="Texture" id=1]
-[ext_resource path="res://data/particles/weather/rain/rain_emitter.gd" type="Script" id=2]
+[ext_resource path="res://scripts/particles/weather/rain/rain_emitter.gd" type="Script" id=2]
+
 
 [node name="Rain" type="CPUParticles2D"]
 modulate = Color( 0.870588, 0.992157, 1, 1 )

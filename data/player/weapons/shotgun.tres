@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=11 format=2]
 
-[ext_resource path="res://data/player/weapons/weapon_ranged.gd" type="Script" id=1]
+[ext_resource path="res://scripts/player/weapons/weapon_ranged.gd" type="Script" id=1]
 [ext_resource path="res://data/player/projectiles/main_bullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sprites/player/noah/shotgun/anim/aim_left.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://sprites/player/noah/shotgun/anim/aim_down.tres" type="SpriteFrames" id=4]
@@ -10,6 +10,7 @@
 [ext_resource path="res://sprites/player/noah/shotgun/anim/aim_down_right.tres" type="SpriteFrames" id=8]
 [ext_resource path="res://sprites/player/noah/shotgun/anim/aim_down_left.tres" type="SpriteFrames" id=9]
 [ext_resource path="res://sprites/player/noah/shotgun/anim/aim_up_left.tres" type="SpriteFrames" id=10]
+
 
 [resource]
 script = ExtResource( 1 )

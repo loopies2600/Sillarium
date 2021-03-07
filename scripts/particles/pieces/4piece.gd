@@ -30,3 +30,7 @@ func _ready():
 	pieces[1].sprite.region_rect = Rect2(pieceSize.x, 0.0, pieceSize.x, pieceSize.y)
 	pieces[2].sprite.region_rect = Rect2(0.0, pieceSize.y, pieceSize.x, pieceSize.y)
 	pieces[3].sprite.region_rect = Rect2(pieceSize.x, pieceSize.y, pieceSize.x, pieceSize.y)
+
+func _process(_delta):
+	if get_child_count() == 0:
+		queue_free()

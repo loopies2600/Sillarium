@@ -12,47 +12,47 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "BasicEnemy",
 "language": "GDScript",
-"path": "res://data/enemy/behaviour/basic_enemy_controller.gd"
+"path": "res://scripts/enemy/behaviour/basic_enemy_controller.gd"
 }, {
 "base": "Reference",
 "class": "HoverShake2D",
 "language": "GDScript",
-"path": "res://data/util/HoverShake2D.gd"
+"path": "res://scripts/util/shake.gd"
 }, {
 "base": "Area2D",
 "class": "Pickup",
 "language": "GDScript",
-"path": "res://data/pickups/pickup.gd"
+"path": "res://scripts/pickups/pickup.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://data/player/player.gd"
+"path": "res://scripts/player/player.gd"
 }, {
 "base": "Resource",
 "class": "PlayerStats",
 "language": "GDScript",
-"path": "res://data/player/parameters/parameters.gd"
+"path": "res://scripts/player/parameters/parameters.gd"
 }, {
 "base": "Resource",
 "class": "RangedWeapon",
 "language": "GDScript",
-"path": "res://data/player/weapons/weapon_ranged.gd"
+"path": "res://scripts/player/weapons/weapon_ranged.gd"
 }, {
 "base": "Resource",
 "class": "RideableStats",
 "language": "GDScript",
-"path": "res://data/rideables/parameters/rideable_parameters.gd"
+"path": "res://scripts/rideables/parameters/rideable_parameters.gd"
 }, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
-"path": "res://data/state_machine/state.gd"
+"path": "res://scripts/state_machine/state.gd"
 }, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://data/state_machine/state_machine.gd"
+"path": "res://scripts/state_machine/state_machine.gd"
 } ]
 _global_script_class_icons={
 "BasicEnemy": "res://sprites/ui/menu/enemy.png",
@@ -75,11 +75,11 @@ config/icon="res://sprites/sillarium_s.png"
 
 [autoload]
 
-Settings="*res://data/autoloaded/settings.gd"
-Globals="*res://data/autoloaded/globals.gd"
-Objects="*res://data/autoloaded/objects.gd"
-Renderer="*res://data/autoloaded/renderer.gd"
-Audio="*res://data/autoloaded/audio.gd"
+Settings="*res://scripts/autoloaded/settings.gd"
+Globals="*res://scripts/autoloaded/globals.gd"
+Objects="*res://scripts/autoloaded/objects.gd"
+Renderer="*res://scripts/autoloaded/renderer.gd"
+Audio="*res://scripts/autoloaded/audio.gd"
 
 [debug]
 

@@ -1,8 +1,9 @@
 [gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://sprites/enemy/shellshocker/shell_shocker_sheet.png" type="Texture" id=1]
-[ext_resource path="res://data/enemy/caranon/caranon_controller.gd" type="Script" id=2]
+[ext_resource path="res://scripts/enemy/caranon/caranon_controller.gd" type="Script" id=2]
 [ext_resource path="res://data/enemy/caranon/bullet.tscn" type="PackedScene" id=3]
+
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )

@@ -1,4 +1,4 @@
-extends "../button.gd"
+extends "res://scripts/ui/menu/button.gd"
 
 func buttonPress():
 	Renderer.fade("in")

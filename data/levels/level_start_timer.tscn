@@ -1,8 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://sprites/debug/timer.png" type="Texture" id=1]
-[ext_resource path="res://data/levels/level_start_timer.gd" type="Script" id=2]
+[ext_resource path="res://scripts/levels/level_start_timer.gd" type="Script" id=2]
 [ext_resource path="res://streams/sfx/letsgo.wav" type="AudioStream" id=3]
+
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4

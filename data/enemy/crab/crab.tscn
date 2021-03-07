@@ -1,10 +1,12 @@
 [gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://sprites/enemy/crab/crab.png" type="Texture" id=1]
-[ext_resource path="res://data/enemy/behaviour/pupil_follow_player.gd" type="Script" id=2]
-[ext_resource path="res://data/enemy/crab/crab.gd" type="Script" id=3]
+[ext_resource path="res://scripts/enemy/behaviour/pupil_follow_player.gd" type="Script" id=2]
+[ext_resource path="res://scripts/enemy/crab/crab.gd" type="Script" id=3]
 [ext_resource path="res://data/projectile/projectile.tscn" type="PackedScene" id=4]
 [ext_resource path="res://sprites/enemy/crab/spike.png" type="Texture" id=6]
+
+
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )

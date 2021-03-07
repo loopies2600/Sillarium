@@ -3,8 +3,9 @@
 [ext_resource path="res://sprites/enemy/pinataman/pinataman.png" type="Texture" id=1]
 [ext_resource path="res://sprites/enemy/pinataman/pinataman_explode_2.png" type="Texture" id=2]
 [ext_resource path="res://sprites/enemy/pinataman/pinataman_explode_1.png" type="Texture" id=3]
-[ext_resource path="res://data/enemy/pinataman/pinata_man_controller.gd" type="Script" id=4]
+[ext_resource path="res://scripts/enemy/pinataman/pinata_man_controller.gd" type="Script" id=4]
 [ext_resource path="res://data/enemy/pinataman/particles.tscn" type="PackedScene" id=5]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 48, 48 )

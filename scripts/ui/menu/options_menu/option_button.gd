@@ -1,4 +1,4 @@
-extends "res://data/ui/menu/button.gd"
+extends "res://scripts/ui/menu/button.gd"
 
 enum {SWITCH, INPUT, VALUE}
 

@@ -1,6 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://clear_particles.gd" type="Script" id=1]
+[ext_resource path="res://scripts/particles/clear_particles.gd" type="Script" id=1]
+
 
 [sub_resource type="Curve" id=1]
 min_value = -500.0

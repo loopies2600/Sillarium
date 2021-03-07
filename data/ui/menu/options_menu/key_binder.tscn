@@ -2,7 +2,8 @@
 
 [ext_resource path="res://sprites/ui/menu/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=2]
-[ext_resource path="res://data/ui/menu/options_menu/key_binder.gd" type="Script" id=3]
+[ext_resource path="res://scripts/ui/menu/options_menu/key_binder.gd" type="Script" id=3]
+
 
 [node name="KeyBinder" type="Panel"]
 pause_mode = 2

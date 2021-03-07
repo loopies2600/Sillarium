@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://data/player/weapons/flamethrower.tres" type="Resource" id=1]
-[ext_resource path="res://data/player/weapons/weapon.gd" type="Script" id=2]
+[ext_resource path="res://scripts/player/weapons/weapon.gd" type="Script" id=2]
 [ext_resource path="res://sprites/player/noah/shotgun/anim/aim_right.tres" type="SpriteFrames" id=3]
+
 
 [node name="RangedWeapon" type="AnimatedSprite"]
 frames = ExtResource( 3 )
