@@ -22,6 +22,8 @@ onready var aimWeight = character.aimWeight
 onready var bounceOff = character.bounceOff
 onready var graceTime = character.graceTime
 
+var lastGoodPosition := Vector2()
+
 var isGrounded := true
 var velocity := Vector2()
 var groundAngle = -1
@@ -72,19 +74,21 @@ func _onLevelInit():
 	canInput = false
 	
 func _onLevelStart():
+	startGracePeriod()
 	canInput = true
 	
 func _physics_process(delta):
-	cameraStuffies()
+	groundCheck()
 	handleWeaponInput(delta)
 	flashBehaviour()
 	
-func cameraStuffies():
+func groundCheck():
 	var wasGrounded = isGrounded
 	isGrounded = is_on_floor()
 	
 	if wasGrounded == null || isGrounded != wasGrounded:
 		emit_signal("player_grounded_updated", isGrounded)
+		lastGoodPosition = position
 		
 func pickUpWeapon(id):
 	if currentWeapon != null:
@@ -210,6 +214,7 @@ func disableCollisionBox():
 func startGracePeriod():
 	gracePeriod.wait_time = character.graceTime
 	gracePeriod.start()
+	flashing = true
 	
 	setEnemyCollision(false)
 	
@@ -219,6 +224,7 @@ func kill():
 	Globals.player = null
 	remove_child(camera)
 	respawner.add_child(camera)
+	respawner.respawnPos = lastGoodPosition
 	queue_free()
 	
 func _gracePeriodEnd():

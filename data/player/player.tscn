@@ -14,8 +14,6 @@
 [ext_resource path="res://scripts/player/states/dash.gd" type="Script" id=13]
 [ext_resource path="res://streams/sfx/player/asb_fire.wav" type="AudioStream" id=16]
 
-
-
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 7 )
 region = Rect2( 118, 18, 38, 51 )

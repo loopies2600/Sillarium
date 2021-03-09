@@ -4,7 +4,7 @@ class_name BinaryUtils
 static func dec2bin(var decimalValue : int) -> int:
 	var binaryString = "" 
 	var temp 
-	var count = 7
+	var count = 31
 	while(count >= 0):
 		temp = decimalValue >> count 
 		if(temp & 1):

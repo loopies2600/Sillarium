@@ -10,7 +10,6 @@ func enter(msg := {}):
 		owner.velocity = Vector2.ZERO
 		owner.velocity -= Vector2(owner.currentBump, abs(owner.currentBump) * 2)
 		owner.health -= owner.currentDamage
-		owner.flashing = true
 		
 func update(delta):
 	owner.animspeedAsVelocity()

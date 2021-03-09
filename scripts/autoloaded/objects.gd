@@ -10,7 +10,7 @@ const PICKUP = "res://data/json/pickups.json"
 var currentWorld
 var previousWorld
 
-func spawnPlayer(charID, pos):
+func spawnPlayer(charID, pos, respawner : Position2D = null):
 	var characters := [preload("res://data/player/player.tscn")]
 	var currentChar = characters[charID].instance()
 	
@@ -20,6 +20,11 @@ func spawnPlayer(charID, pos):
 		
 	Globals.player.global_position = pos
 	Globals.player.connectSignals()
+	
+	if respawner:
+		respawner.connect("player_respawned", Globals.player, "_onLevelStart")
+	
+	return Globals.player
 	
 func getClosestOrFurthest(caller : Object, groupName : String, getClosest := true) -> Object:
 	var targetGroup = get_tree().get_nodes_in_group(groupName)

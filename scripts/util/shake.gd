@@ -14,7 +14,8 @@ var hover_speed = 10
 var velocity = Vector2(0,0)
 var max_velocity = Vector2(5,5)
 
-func init(_target, starting_direction = "random", vertical_distance = 15, horizontal_distance = 0, speed = 10):
+func init(_target, starting_direction = "random", vertical_distance = 15, horizontal_distance = 16, speed = 10):
+	randomize()
 	_dist.x = horizontal_distance
 	_dist.y = vertical_distance
 	hover_speed = speed
