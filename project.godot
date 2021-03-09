@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/enemy/behaviour/basic_enemy_controller.gd"
 }, {
+"base": "Object",
+"class": "BinaryUtils",
+"language": "GDScript",
+"path": "res://scripts/util/binary_utils.gd"
+}, {
 "base": "Reference",
 "class": "HoverShake2D",
 "language": "GDScript",
@@ -47,15 +52,16 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
-"path": "res://scripts/state_machine/state.gd"
+"path": "res://scripts/util/state_machine/state.gd"
 }, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://scripts/state_machine/state_machine.gd"
+"path": "res://scripts/util/state_machine/state_machine.gd"
 } ]
 _global_script_class_icons={
 "BasicEnemy": "res://sprites/ui/menu/enemy.png",
+"BinaryUtils": "",
 "HoverShake2D": "",
 "Pickup": "",
 "Player": "res://sprites/ui/menu/player.png",

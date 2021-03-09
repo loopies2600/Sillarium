@@ -15,4 +15,3 @@ func _ready():
 	buildNumber.text = "SILLARIUM BUILD " + str(randi() % 32768)
 	Renderer.backgroundSetup(backgroundID)
 	Audio.musicSetup(musicID)
-	buttons[0].grab_focus()

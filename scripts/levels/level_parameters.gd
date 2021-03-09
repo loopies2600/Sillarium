@@ -18,15 +18,15 @@ func _init():
 func _ready():
 	var startTimer = Objects.spawn(25)
 	startTimer.connect("level_start", self, "start")
-	
 	Audio.fade()
+	
 	Renderer.fade("out")
 	Renderer.backgroundSetup(backgroundID)
 	Objects.spawn(22)
 	Objects.spawnPlayer(0, startPos)
 	
 	emit_signal("level_initialized")
-	
+
 func start():
 	emit_signal("level_started")
 	Audio.musicSetup(musicID)
