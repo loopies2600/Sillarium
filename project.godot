@@ -24,12 +24,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/util/shake.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Kinematos",
+"language": "GDScript",
+"path": "res://scripts/util/kinematos/kinema_util.gd"
+}, {
 "base": "Area2D",
 "class": "Pickup",
 "language": "GDScript",
 "path": "res://scripts/pickups/pickup.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Kinematos",
 "class": "Player",
 "language": "GDScript",
 "path": "res://scripts/player/player.gd"
@@ -63,6 +68,7 @@ _global_script_class_icons={
 "BasicEnemy": "res://sprites/ui/menu/enemy.png",
 "BinaryUtils": "",
 "HoverShake2D": "",
+"Kinematos": "",
 "Pickup": "",
 "Player": "res://sprites/ui/menu/player.png",
 "PlayerStats": "",

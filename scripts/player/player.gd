@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Kinematos
 class_name Player, "res://sprites/ui/menu/player.png"
 
 signal player_grounded_updated(isGrounded)
@@ -76,8 +76,7 @@ func _onLevelStart():
 	startGracePeriod()
 	canInput = true
 	
-func _physics_process(delta):
-	groundCheck()
+func _process(_delta):
 	handleWeaponInput()
 	flashBehaviour()
 	
@@ -86,6 +85,9 @@ func _physics_process(delta):
 			FlipGraphics(true)
 		1:
 			FlipGraphics(false)
+	
+func _physics_process(_delta):
+	groundCheck()
 	
 func groundCheck():
 	var wasGrounded = isGrounded
@@ -102,7 +104,6 @@ func pickUpWeapon(id):
 	Globals.weapon = Objects.getWeapon(id, armsPos, z_index + 1)
 	currentWeapon = Globals.weapon
 	add_child(currentWeapon)
-	reinitializeVars()
 	
 func animspeedAsVelocity():
 	if getInputDirection():
@@ -171,20 +172,6 @@ func takeDamage(damage, bump = maxSpeed * -1 if body.flip_h else maxSpeed * 1):
 	currentDamage = damage
 	currentBump = bump
 	emit_signal("player_damaged")
-
-func reinitializeVars():
-	dash.texture = dashTexture
-	
-	maxSpeed = character.maxSpeed
-	acceleration = character.acceleration
-	friction = character.friction
-	airFriction = character.airFriction
-	jumpStrength = character.jumpStrength
-	timeJumpApex = character.timeJumpApex
-	fallMultiplier = character.fallMultiplier
-	dashStrength = character.dashStrength
-	bounceOff = character.bounceOff
-	graceTime = character.graceTime
 	
 func disableCollisionBox():
 	hitbox.set_deferred("disabled", true)
@@ -194,7 +181,7 @@ func startGracePeriod():
 	gracePeriod.start()
 	flashing = true
 	
-	setEnemyCollision(false)
+	setCollisionBits([2, 3], false)
 	
 func kill():
 	var respawner = Objects.spawn(24, global_position)
@@ -209,8 +196,4 @@ func _gracePeriodEnd():
 	visible = true
 	flashing = false
 	
-	setEnemyCollision(true)
-	
-func setEnemyCollision(booly: bool):
-	set_collision_mask_bit(2, booly)
-	set_collision_mask_bit(3, booly)
+	setCollisionBits([2, 3], true)

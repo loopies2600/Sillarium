@@ -7,7 +7,7 @@ var bumpedThru = false
 
 func enter(msg := {}):
 	owner.animator.play("Dash")
-	owner.setEnemyCollision(false)
+	owner.setCollisionBits([2, 3], false)
 	
 	bumpedThru = false
 	owner.canInput = false
@@ -33,5 +33,5 @@ func update(delta):
 			emit_signal("finished", "idle")
 			
 func exit():
-	owner.setEnemyCollision(true)
+	owner.setCollisionBits([2, 3], true)
 	owner.canInput = true
