@@ -46,9 +46,13 @@ var _settings = {
 }
 
 func _ready():
-	# por ahora, en _ready() vamos a tanto guardar como cargar la configuración, así que ni intentes editar el archivo porque lo vamos a sobreescribir.
-	saveSettings()
-	loadSettings()
+	var didLoad = loadSettings()
+	
+	if didLoad == LOAD_ERROR_COULDNT_OPEN:
+		print("Settings file doesn't exist, creating one...")
+		saveSettings()
+		loadSettings()
+		
 	bindKeys()
 	
 func bindKeys():

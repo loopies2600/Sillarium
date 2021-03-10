@@ -14,6 +14,5 @@ export (float) var timeJumpApex = 0.4
 export (float) var fallMultiplier = 1.5
 export (float) var dashStrength = 800.0
 export (float) var dashDuration = 0.2
-export (float, 0, 1) var aimWeight = 0.875
 export (float, 0, 1) var bounceOff = 0.75
 export (float) var graceTime = 2.0

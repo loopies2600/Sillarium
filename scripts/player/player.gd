@@ -18,7 +18,6 @@ onready var timeJumpApex = character.timeJumpApex
 onready var fallMultiplier = character.fallMultiplier
 onready var dashStrength = character.dashStrength
 onready var dashDuration = character.dashDuration
-onready var aimWeight = character.aimWeight
 onready var bounceOff = character.bounceOff
 onready var graceTime = character.graceTime
 
@@ -60,7 +59,7 @@ onready var currentWeapon
 func _ready():
 	dash.texture = dashTexture
 	
-	Globals.weapon = Objects.getWeapon(0, armsPos, z_index + 1)
+	Globals.weapon = Objects.getWeapon(0, armsPos, z_index + 1, self)
 	currentWeapon = Globals.weapon
 	add_child(currentWeapon)
 	
@@ -79,8 +78,14 @@ func _onLevelStart():
 	
 func _physics_process(delta):
 	groundCheck()
-	handleWeaponInput(delta)
+	handleWeaponInput()
 	flashBehaviour()
+	
+	match getInputDirection():
+		-1:
+			FlipGraphics(true)
+		1:
+			FlipGraphics(false)
 	
 func groundCheck():
 	var wasGrounded = isGrounded
@@ -142,47 +147,21 @@ func getInputDirection() -> int:
 		return inputDirection
 	else: return 0
 	
-func getFacingDirection() -> int:
+func getFacingDirection(returnFlipState = false):
 	var facingDirection = -1 if body.flip_h else 1
+	
+	if returnFlipState:
+		return body.flip_h
+		
 	return facingDirection
 	
-func handleWeaponInput(_delta):
+func handleWeaponInput():
 	if canInput:
 		currentWeapon.set_process(true)
-		var weaponDirection = Vector2(
-		int(Input.is_action_pressed("aim_right")) - int(Input.is_action_pressed("aim_left")),
-		int(Input.is_action_pressed("aim_down")) - int(Input.is_action_pressed("aim_up")))
-		
-		if weaponDirection.y == 1 and is_on_floor():
-			weaponDirection.y = 0
-			
-		var weaponRotation
-
-		if weaponDirection != Vector2.ZERO:
-			weaponRotation = weaponDirection.angle()
-
-			# Gira el arma para que este alineada para disparar
-			currentWeapon.RotateTo(weaponRotation, aimWeight)
-			
-			# Espeja el sprite del jugador para que no dispare hacia atras
-			if weaponDirection.x == -1:
-				FlipGraphics(true)
-			elif weaponDirection.x == 1:
-				FlipGraphics(false)
-				
-		else:
-			# Gira el arma de acuerdo al sprite
-			if body.flip_h:
-				weaponRotation = PI
-			else:
-				weaponRotation = 0
-		
-		# Gira el arma y el sprite
-		currentWeapon.RotateTo(weaponRotation, aimWeight)
-		currentWeapon.ChangeSprite(body.flip_h)
-		
+		currentWeapon.set_process_input(true)
 	else:
 		currentWeapon.set_process(false)
+		currentWeapon.set_process_input(false)
 
 func FlipGraphics(flip):
 	for part in bodyParts:
@@ -204,7 +183,6 @@ func reinitializeVars():
 	timeJumpApex = character.timeJumpApex
 	fallMultiplier = character.fallMultiplier
 	dashStrength = character.dashStrength
-	aimWeight = character.aimWeight
 	bounceOff = character.bounceOff
 	graceTime = character.graceTime
 	

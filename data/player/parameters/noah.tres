@@ -17,6 +17,5 @@ timeJumpApex = 0.4
 fallMultiplier = 1.5
 dashStrength = 800.0
 dashDuration = 0.2
-aimWeight = 0.875
 bounceOff = 0.75
 graceTime = 2.0

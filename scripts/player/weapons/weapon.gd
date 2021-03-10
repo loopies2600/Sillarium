@@ -4,7 +4,6 @@ export(Resource) var type
 
 var armsPos
 
-onready var beatsLeft = type.cooldown
 onready var flipXDown = type.projectileOffset[2].x
 onready var flipXUp = type.projectileOffset[6].x
 onready var cooldownTimer = $Cooldown
@@ -24,10 +23,7 @@ func _ready():
 	var _unused = connect("animation_finished", self, "_animEnd")
 	cooldownTimer.connect("timeout", self, "_cooldownTimeout")
 	
-func RotateTo(angle, weight):
-	rotation = lerp_angle(rotation, angle, weight)
-
-func ChangeSprite(playerFlipped):
+func ChangeSprite(flip):
 	flip_v = false
 
 	# Consigue el indice del angulo
@@ -38,28 +34,46 @@ func ChangeSprite(playerFlipped):
 	frames = type.aimGraphics[angleIndex]
 	
 	if angleIndex == 2 or angleIndex == 6:
-		if playerFlipped:
+		if flip:
 			flip_v = true
-			
-	type.projectileOffset[2].x = -flipXDown if playerFlipped else flipXDown
-	type.projectileOffset[6].x = -flipXUp if playerFlipped else flipXUp
+	
+	type.projectileOffset[2].x = -flipXDown if flip else flipXDown
+	type.projectileOffset[6].x = -flipXUp if flip else flipXUp
+	
+func _input(event):
+	if event.is_action_pressed("shoot") and cooldownIsOver:
+		fire()
 	
 func _process(delta):
 	if armsPos != null:
 		global_position = armsPos.global_position
 		
 	offset.x = lerp(offset.x, 0, delta * 8)
+	
+	if type.canRotate:
+		doRotation()
+	
+func doRotation():
+	var direction = Vector2(
+		int(Input.is_action_pressed("aim_right")) - int(Input.is_action_pressed("aim_left")),
+		int(Input.is_action_pressed("aim_down")) - int(Input.is_action_pressed("aim_up")))
 		
-	if Input.is_action_just_pressed("shoot") and cooldownIsOver:
-		if type.velocityReduction != 0.0:
-			Globals.get("player").maxSpeed = Globals.get("player").character.maxSpeed - type.velocityReduction
-		fire(delta)
+	var facingRight
+	var desiredRotation
+	
+	if direction != Vector2.ZERO:
+		desiredRotation = direction.angle()
+		
+	else:
+		if get_parent().getFacingDirection() == -1:
+			desiredRotation = PI
+		else:
+			desiredRotation = 0
 			
-	if Input.is_action_just_released("shoot") and cooldownIsOver:
-		if type.velocityReduction != 0.0:
-			Globals.get("player").maxSpeed = Globals.get("player").character.maxSpeed
-		
-func fire(delta):
+	rotation = lerp_angle(rotation, desiredRotation, type.aimWeight)
+	ChangeSprite(get_parent().getFacingDirection(true))
+	
+func fire():
 	play("Fire")
 	
 	if type.displayFlash:
@@ -68,7 +82,7 @@ func fire(delta):
 		newFlash.global_rotation = global_rotation
 		get_parent().add_child(newFlash)
 		
-	offset.x = lerp(offset.x, 32, delta * 8)
+	offset.x = 32.0
 	var newProjectile = type.projectile.instance()
 	newProjectile.add_to_group("PlayerProjectile")
 	newProjectile.global_position = global_position + type.projectileOffset[angleIndex]
@@ -76,10 +90,10 @@ func fire(delta):
 	newProjectile.z_index = z_index - 16
 	get_tree().get_root().add_child(newProjectile)
 	_startCooldown()
-	Globals.player.attackSound.play()
+	get_parent().attackSound.play()
 		
 	if type.recoil > 0.0:
-		Globals.player.velocity -= Vector2(type.recoil, 0.0).rotated(global_rotation)
+		get_parent().velocity -= Vector2(type.recoil, 0.0).rotated(global_rotation)
 	
 func _startCooldown():
 	cooldownIsOver = false
