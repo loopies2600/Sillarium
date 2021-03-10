@@ -1,7 +1,7 @@
 extends "motion.gd"
 
 func enter(msg := {}):
-	owner.snap = false
+	owner.snapVector = Vector2.ZERO
 	
 	if msg.has("isJump"):
 		owner.velocity.y = 0.0
@@ -9,15 +9,14 @@ func enter(msg := {}):
 	
 func physics_update(delta):
 	owner.animspeedAsVelocity()
-	owner.moveAndSnap(delta)
 	
 	if !owner.is_on_floor():
 		if owner.getInputDirection():
-			move(owner.airMaxSpeed, owner.getInputDirection())
+			owner.move(owner.airMaxSpeed)
 		else:
-			damp()
+			owner.damp(owner.airFriction)
 	else:
 		emit_signal("finished", "idle")
-	
+		
 func exit():
-	owner.snap = true
+	owner.snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)

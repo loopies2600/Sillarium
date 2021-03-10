@@ -11,7 +11,7 @@ func _playerGrounded(isGrounded):
 	else:
 		emit_signal("finished", "air")
 	
-func update(_delta):
+func update(delta):
 	if owner.is_on_floor():
 			if owner.canInput:
 				if Input.is_action_pressed("jump"):
@@ -24,14 +24,5 @@ func update(_delta):
 				if Input.is_action_just_pressed("dash"):
 					emit_signal("finished", "dash")
 		
-func move(maxVel, direction):
-	owner.velocity.x = clamp(owner.velocity.x + (direction * owner.acceleration), -maxVel, maxVel)
-	
-func damp():
-	if owner.is_on_floor():
-		owner.velocity.x *= owner.friction
-	else:
-		owner.velocity.x *= owner.airFriction
-	
 func onDamage():
 	emit_signal("finished", "hurt")

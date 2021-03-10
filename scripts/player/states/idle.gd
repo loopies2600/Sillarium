@@ -4,9 +4,8 @@ func enter(_msg := {}):
 	owner.animator.play("Idle")
 	
 func physics_update(delta):
+	owner.damp()
 	owner.animspeedAsVelocity()
-	owner.moveAndSnap(delta)
-	damp()
 	
 	if owner.getInputDirection():
 		emit_signal("finished", "walk")

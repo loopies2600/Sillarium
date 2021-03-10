@@ -24,17 +24,14 @@ onready var graceTime = character.graceTime
 var lastGoodPosition := Vector2()
 
 var isGrounded := true
-var velocity := Vector2()
-var groundAngle = -1
-var snapAngle := Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
-var gravity
 var jumpForce
+var snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
+var velocity := Vector2()
 
 var currentDamage := 0
 var currentBump := 0.0
 
 var canInput := false
-var snap := true
 var flashing := false
 var canDash := true
 
@@ -86,8 +83,16 @@ func _process(_delta):
 		1:
 			FlipGraphics(false)
 	
-func _physics_process(_delta):
+func _physics_process(delta):
 	groundCheck()
+	
+	var gravity
+	gravity = (2 * jumpStrength) / pow(timeJumpApex, 2)
+	
+	jumpForce = gravity * timeJumpApex
+	velocity.y += gravity * delta * (fallMultiplier if velocity.y > 0 else 1)
+	
+	velocity.y = move_and_slide_with_snap(velocity, snapVector, Globals.UP, true).y
 	
 func groundCheck():
 	var wasGrounded = isGrounded
@@ -116,32 +121,16 @@ func playRandomAnim(anims : Array):
 	var animToPlay = randi() % anims.size()
 	animator.play(anims[animToPlay])
 	
-func moveAndSnap(delta):
-	gravity = (2 * jumpStrength) / pow(timeJumpApex, 2)
-	jumpForce = gravity * timeJumpApex
+func move(speed := maxSpeed, direction := getInputDirection()):
+	velocity.x = clamp(velocity.x + (getInputDirection() * speed), -speed, speed)
 	
-	if !is_on_floor():
-		velocity.y += gravity * delta * (fallMultiplier if velocity.y > 0 else 1)
-	
-	if is_on_ceiling():
-		graphicsAnimator.play("bump")
-		graphicsAnimator.queue("default")
-		
-	for i in range(get_slide_count()):
-		var collision = get_slide_collision(i)
-		groundAngle = collision.normal.angle()
-	
-	if snap:
-		snapAngle = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
-	else:
-		snapAngle = Vector2()
-		
-	velocity = move_and_slide_with_snap(velocity, snapAngle, Globals.UP, true)
+func damp(damping := friction):
+	velocity.x *= damping
 	
 func flashBehaviour():
 	if flashing:
 		visible = !visible
-		
+	
 func getInputDirection() -> int:
 	if canInput:
 		var inputDirection = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")

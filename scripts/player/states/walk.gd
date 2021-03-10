@@ -1,12 +1,11 @@
 extends "motion.gd"
 
-func enter(msg := {}):
+func enter(_msg := {}):
 	owner.animator.play("Walking")
 	
-func physics_update(delta):
+func physics_update(_delta):
 	owner.animspeedAsVelocity()
-	owner.moveAndSnap(delta)
-	move(owner.maxSpeed, owner.getInputDirection())
+	owner.move()
 	
 	if not owner.getInputDirection():
 		emit_signal("finished", "idle")

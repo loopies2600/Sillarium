@@ -24,13 +24,13 @@ func update(delta):
 		owner.velocity *= owner.bounceOff
 		owner.velocity = owner.velocity.bounce(collision.normal)
 		bumpedThru = true
-		emit_signal("finished", "idle")
+		emit_signal("finished", "previous")
 		
 	if !bumpedThru:
 		owner.velocity = Vector2(owner.dashStrength * owner.getFacingDirection(), 0.0)
 		
 		if dashTime < 0.0:
-			emit_signal("finished", "idle")
+			emit_signal("finished", "previous")
 			
 func exit():
 	owner.setCollisionBits([2, 3], true)
