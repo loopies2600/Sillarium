@@ -26,7 +26,7 @@ region = Rect2( 307, 18, 84, 58 )
 atlas = ExtResource( 7 )
 region = Rect2( 19, 12, 55, 74 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 30, 64 )
 
 [sub_resource type="Animation" id=5]
@@ -168,7 +168,7 @@ script = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 16 )
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="Camera" parent="." instance=ExtResource( 10 )]
 

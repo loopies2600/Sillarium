@@ -84,6 +84,7 @@ func _process(_delta):
 			FlipGraphics(false)
 	
 func _physics_process(delta):
+	keepOnScreen()
 	groundCheck()
 	
 	var gravity
@@ -94,6 +95,16 @@ func _physics_process(delta):
 	
 	velocity.y = move_and_slide_with_snap(velocity, snapVector, Globals.UP, true).y
 	
+func keepOnScreen():
+	var ctrans = get_canvas_transform()
+
+	var minPos = -ctrans.get_origin() / ctrans.get_scale()
+
+	var viewSize = get_viewport_rect().size / ctrans.get_scale()
+	var maxPos = minPos + viewSize
+
+	global_position.x = clamp(global_position.x, minPos.x, maxPos.x)
+
 func groundCheck():
 	var wasGrounded = isGrounded
 	isGrounded = is_on_floor()
