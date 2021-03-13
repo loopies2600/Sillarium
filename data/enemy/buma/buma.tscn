@@ -7,7 +7,6 @@
 [ext_resource path="res://scripts/enemy/buma/buma_controller.gd" type="Script" id=7]
 [ext_resource path="res://sprites/enemy/buma/buma_head.png" type="Texture" id=8]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "Catching"
 length = 0.2

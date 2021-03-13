@@ -10,7 +10,7 @@ const PICKUP = "res://data/json/pickups.json"
 var currentWorld
 var previousWorld
 
-func spawnPlayer(charID, pos, respawner : Position2D = null):
+func spawnPlayer(charID, pos, respawning := false):
 	var characters := [preload("res://data/player/player.tscn")]
 	var currentChar = characters[charID].instance()
 	
@@ -21,8 +21,8 @@ func spawnPlayer(charID, pos, respawner : Position2D = null):
 	Globals.player.global_position = pos
 	Globals.player.connectSignals()
 	
-	if respawner:
-		respawner.connect("player_respawned", Globals.player, "_onLevelStart")
+	if respawning:
+		Globals.player.emit_signal("player_respawned")
 	
 	return Globals.player
 	

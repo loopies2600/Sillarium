@@ -14,6 +14,7 @@ func _ready():
 	yield(owner, "ready")
 	Objects.currentWorld.connect("level_started", self, "_start")
 	Objects.currentWorld.connect("level_initialized", self, "_initialized")
+	owner.connect("player_respawned", self, "_start")
 	
 	for child in get_children():
 		child.connect("finished", self, "_change_state")

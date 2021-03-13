@@ -9,7 +9,6 @@
 [ext_resource path="res://data/generic/basic_entryway.tscn" type="PackedScene" id=7]
 
 [node name="World" type="Node2D"]
-position = Vector2( 1000, 500 )
 script = ExtResource( 3 )
 startPosition = NodePath("StartPosition")
 backgroundID = 2

@@ -4,8 +4,8 @@
 [ext_resource path="res://scripts/player/weapons/weapon.gd" type="Script" id=2]
 [ext_resource path="res://sprites/player/noah/shotgun/anim/aim_right.tres" type="SpriteFrames" id=3]
 
-
 [node name="RangedWeapon" type="AnimatedSprite"]
+use_parent_material = true
 frames = ExtResource( 3 )
 animation = "Idle"
 script = ExtResource( 2 )

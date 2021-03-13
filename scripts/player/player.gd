@@ -2,12 +2,15 @@ extends Kinematos
 class_name Player, "res://sprites/ui/menu/player.png"
 
 signal player_grounded_updated(isGrounded)
-signal player_damaged(dm, bm)
+signal player_damaged(x, y)
+signal player_health_updated(health)
+signal player_killed()
+signal player_respawned()
 
 export(Resource) var character
 onready var dashTexture = character.dashTexture
 
-onready var health = character.health
+onready var health = character.health setget _setHealth
 onready var maxSpeed = character.maxSpeed
 onready var airMaxSpeed = character.airMaxSpeed
 onready var acceleration = character.acceleration
@@ -27,9 +30,6 @@ var isGrounded := true
 var jumpForce
 var snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
 var velocity := Vector2()
-
-var currentDamage := 0
-var currentBump := 0.0
 
 var canInput := false
 var flashing := false
@@ -65,6 +65,7 @@ func connectSignals():
 	Objects.currentWorld.connect("level_started", self, "_onLevelStart")
 	gracePeriod.connect("timeout", self, "_gracePeriodEnd")
 	camera.connectToManipulators()
+	connect("player_respawned", self, "_onRespawn")
 	
 func _onLevelInit():
 	canInput = false
@@ -72,6 +73,12 @@ func _onLevelInit():
 func _onLevelStart():
 	startGracePeriod()
 	canInput = true
+	
+func _onRespawn():
+	startGracePeriod()
+	canInput = true
+	velocity = Vector2.ZERO
+	velocity.y -= jumpStrength / 4
 	
 func _process(_delta):
 	handleWeaponInput()
@@ -121,6 +128,10 @@ func pickUpWeapon(id):
 	currentWeapon = Globals.weapon
 	add_child(currentWeapon)
 	
+func animateGraphics(anim : String):
+	graphicsAnimator.play(anim)
+	graphicsAnimator.queue("default")
+	
 func animspeedAsVelocity():
 	if getInputDirection():
 		animator.playback_speed = velocity.x / maxSpeed
@@ -168,10 +179,12 @@ func FlipGraphics(flip):
 	for part in bodyParts:
 		part.flip_h = flip
 	
-func takeDamage(damage, bump = maxSpeed * -1 if body.flip_h else maxSpeed * 1):
-	currentDamage = damage
-	currentBump = bump
-	emit_signal("player_damaged")
+func takeDamage(damage, bumpX = (-maxSpeed * 2) * getFacingDirection(), bumpY = (-jumpStrength * 4)):
+	if !flashing:
+		startGracePeriod()
+		animateGraphics("hurt")
+		self.health -= damage
+		emit_signal("player_damaged", bumpX, bumpY)
 	
 func disableCollisionBox():
 	hitbox.set_deferred("disabled", true)
@@ -182,6 +195,17 @@ func startGracePeriod():
 	flashing = true
 	
 	setCollisionBits([2, 3], false)
+	
+func _setHealth(value: int):
+	var prevHealth = health
+	health = clamp(value, 0, character.health)
+	
+	if health != prevHealth:
+		emit_signal("player_health_updated", health)
+		
+		if health == 0:
+			emit_signal("player_killed")
+			kill()
 	
 func kill():
 	var respawner = Objects.spawn(24, global_position)

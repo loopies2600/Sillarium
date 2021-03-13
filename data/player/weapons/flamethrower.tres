@@ -3,14 +3,14 @@
 [ext_resource path="res://scripts/player/weapons/weapon_ranged.gd" type="Script" id=1]
 [ext_resource path="res://data/projectile/flame.tscn" type="PackedScene" id=2]
 
-
 [resource]
 script = ExtResource( 1 )
 projectile = ExtResource( 2 )
 aimGraphics = [ null, null, null, null, null, null, null, null ]
 projectileOffset = [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+canRotate = true
 hasCooldown = true
 displayFlash = false
-velocityReduction = 0.0
+aimWeight = 0.875
 cooldown = 0.25
 recoil = 0.0

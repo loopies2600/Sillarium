@@ -63,4 +63,4 @@ func OnScreenExited():
 
 func OnBodyEntered(body):
 	if body.is_in_group("Player"):
-		body.takeDamage(damage, velocity.x)
+		body.takeDamage(damage, -velocity.x)
