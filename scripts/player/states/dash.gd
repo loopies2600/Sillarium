@@ -1,22 +1,26 @@
 extends "motion.gd"
 
+var dashModulate
 var dashTime
-var sRot
 
 var bumpedThru = false
 
 func enter(msg := {}):
+	bumpedThru = false
+	dashModulate = owner.getShaderParam("flash_color")
+	dashTime = owner.dashDuration
+	
 	owner.animator.play("Dash")
+	owner.animateGraphics("dash")
 	owner.setCollisionBits([2, 3], false)
 	
-	bumpedThru = false
 	owner.canInput = false
 	owner.canDash = false
-	dashTime = owner.dashDuration
-	sRot = owner.currentWeapon.rotation
 	
 func update(delta):
-	Renderer.spawnTrail(0.1, owner.dash)
+	for part in owner.bodyParts:
+		Renderer.spawnTrail(0.1, part, dashModulate)
+		
 	var collision = owner.move_and_collide(owner.velocity * delta)
 	dashTime -= delta
 	

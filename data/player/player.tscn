@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/player/states/locked.gd" type="Script" id=1]
 [ext_resource path="res://scripts/player/states/machine.gd" type="Script" id=2]
@@ -16,27 +16,27 @@
 [ext_resource path="res://data/anim/hurt.tres" type="Animation" id=14]
 [ext_resource path="res://streams/sfx/player/asb_fire.wav" type="AudioStream" id=16]
 
-[sub_resource type="ShaderMaterial" id=9]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 8 )
-shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/flash_color = Color( 0.87451, 0.443137, 0.14902, 1 )
 shader_param/flash_modifier = 0.0
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 7 )
-region = Rect2( 118, 18, 38, 51 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 7 )
-region = Rect2( 307, 18, 84, 58 )
+region = Rect2( 118, 18, 38, 51 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 7 )
+region = Rect2( 307, 18, 84, 58 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 7 )
 region = Rect2( 19, 12, 55, 74 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 30, 64 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:position")
@@ -87,7 +87,71 @@ tracks/3/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
+resource_name = "dash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Graphics:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:material:shader_param/flash_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.87451, 0.443137, 0.14902, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:material:shader_param/flash_modifier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:position")
 tracks/0/interp = 1
@@ -140,7 +204,7 @@ tracks/3/keys = {
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
 ]]
-material = SubResource( 9 )
+material = SubResource( 1 )
 z_index = 4000
 collision_layer = 65
 collision_mask = 237
@@ -153,22 +217,18 @@ position = Vector2( 0, -4 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
 use_parent_material = true
-texture = SubResource( 1 )
+texture = SubResource( 2 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 use_parent_material = true
-texture = SubResource( 2 )
+texture = SubResource( 3 )
 offset = Vector2( 0, -44 )
 
 [node name="Legs" type="Sprite" parent="Graphics/Body"]
 use_parent_material = true
 z_index = -1
-texture = SubResource( 3 )
+texture = SubResource( 4 )
 offset = Vector2( 6, 48 )
-
-[node name="Dash" type="Sprite" parent="Graphics/Body"]
-visible = false
-position = Vector2( 0, 12 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
 
@@ -203,17 +263,20 @@ script = ExtResource( 1 )
 script = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, 16 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="Camera" parent="." instance=ExtResource( 10 )]
+visible = false
 
 [node name="FiringSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
 
 [node name="GraphicsAnimator" type="AnimationPlayer" parent="."]
-anims/bump = SubResource( 5 )
-anims/default = SubResource( 6 )
+anims/bump = SubResource( 6 )
+anims/dash = SubResource( 7 )
+anims/default = SubResource( 8 )
 anims/hurt = ExtResource( 14 )
 
 [node name="GracePeriodTimer" type="Timer" parent="."]

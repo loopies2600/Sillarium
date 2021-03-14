@@ -1,17 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/generic/trail_controller.gd" type="Script" id=1]
 [ext_resource path="res://sprites/enemy/buma/buma_boomerang.png" type="Texture" id=2]
+[ext_resource path="res://data/shaders/flash.shader" type="Shader" id=3]
 
-
-[sub_resource type="CanvasItemMaterial" id=1]
-blend_mode = 1
-light_mode = 1
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 3 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 1.0
 
 [node name="Trail" type="Sprite"]
 show_behind_parent = true
 material = SubResource( 1 )
 z_index = -4096
+z_as_relative = false
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
 

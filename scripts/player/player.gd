@@ -43,19 +43,16 @@ onready var armsPos = $ArmsPosition
 onready var body = $Graphics/Body
 onready var head = $Graphics/Body/Head
 onready var legs = $Graphics/Body/Legs
-onready var dash = $Graphics/Body/Dash
 onready var hitbox = $CollisionShape2D
 onready var camera = $Camera
 onready var attackSound = $FiringSound
 onready var gracePeriod = $GracePeriodTimer
 
-onready var bodyParts = [head, body, legs, dash]
+onready var bodyParts = [head, body, legs]
 
 onready var currentWeapon
 
 func _ready():
-	dash.texture = dashTexture
-	
 	Globals.weapon = Objects.getWeapon(0, armsPos, z_index + 1, self)
 	currentWeapon = Globals.weapon
 	add_child(currentWeapon)
@@ -81,17 +78,14 @@ func _onRespawn():
 	velocity.y -= jumpStrength / 4
 	
 func _process(_delta):
+	if getInputDirection():
+		flipGraphics(getInputDirection())
+		
 	handleWeaponInput()
 	flashBehaviour()
 	
-	match getInputDirection():
-		-1:
-			FlipGraphics(true)
-		1:
-			FlipGraphics(false)
-	
 func _physics_process(delta):
-	keepOnScreen()
+	keepOnScreen(true)
 	groundCheck()
 	
 	var gravity
@@ -102,16 +96,6 @@ func _physics_process(delta):
 	
 	velocity.y = move_and_slide_with_snap(velocity, snapVector, Globals.UP, true).y
 	
-func keepOnScreen():
-	var ctrans = get_canvas_transform()
-
-	var minPos = -ctrans.get_origin() / ctrans.get_scale()
-
-	var viewSize = get_viewport_rect().size / ctrans.get_scale()
-	var maxPos = minPos + viewSize
-
-	global_position.x = clamp(global_position.x, minPos.x, maxPos.x)
-
 func groundCheck():
 	var wasGrounded = isGrounded
 	isGrounded = is_on_floor()
@@ -129,6 +113,7 @@ func pickUpWeapon(id):
 	add_child(currentWeapon)
 	
 func animateGraphics(anim : String):
+	graphicsAnimator.stop()
 	graphicsAnimator.play(anim)
 	graphicsAnimator.queue("default")
 	
@@ -159,12 +144,8 @@ func getInputDirection() -> int:
 		return inputDirection
 	else: return 0
 	
-func getFacingDirection(returnFlipState = false):
-	var facingDirection = -1 if body.flip_h else 1
-	
-	if returnFlipState:
-		return body.flip_h
-		
+func getFacingDirection():
+	var facingDirection = body.scale.x
 	return facingDirection
 	
 func handleWeaponInput():
@@ -175,9 +156,8 @@ func handleWeaponInput():
 		currentWeapon.set_process(false)
 		currentWeapon.set_process_input(false)
 
-func FlipGraphics(flip):
-	for part in bodyParts:
-		part.flip_h = flip
+func flipGraphics(facing):
+	body.scale.x = facing
 	
 func takeDamage(damage, bumpX = (-maxSpeed * 2) * getFacingDirection(), bumpY = (-jumpStrength * 4)):
 	if !flashing:

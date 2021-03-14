@@ -34,7 +34,7 @@ func ChangeSprite(flip):
 	frames = type.aimGraphics[angleIndex]
 	
 	if angleIndex == 2 or angleIndex == 6:
-		if flip:
+		if flip == -1:
 			flip_v = true
 	
 	type.projectileOffset[2].x = -flipXDown if flip else flipXDown
@@ -71,7 +71,7 @@ func doRotation():
 			desiredRotation = 0
 			
 	rotation = lerp_angle(rotation, desiredRotation, type.aimWeight)
-	ChangeSprite(get_parent().getFacingDirection(true))
+	ChangeSprite(get_parent().getFacingDirection())
 	
 func fire():
 	play("Fire")

@@ -21,10 +21,11 @@ func toggleFS():
 	fullscreen = Settings.getSetting("renderer", "fullscreen")
 	OS.window_fullscreen = fullscreen
 	
-func spawnTrail(fds : float, sprite : Sprite):
+func spawnTrail(fds : float, sprite : Sprite, mdt := Color.white):
 	# algunos sprites van a dejar un rastro, así que esta función se encarga de spawnear ese rastro.
 	# los argumentos son en orden: tiempo de desvanecimiento, textura, posición, rotación, escala, y orden Z.
 	var newTrail = Objects.getObj(7)
+	newTrail.modulation = mdt
 	newTrail.fadeSpeed = fds
 	newTrail.texture = sprite.texture
 	newTrail.global_position = sprite.global_position
