@@ -45,6 +45,7 @@ var _settings = {
 	},
 	"dont-autogenerate-buttons": {
 		"lang": "en",
+		"master_volume": 1.0,
 		"music_volume": 1.0,
 		"sound_volume": 1.0,
 		"accent_color_0": Color.orange,
@@ -54,6 +55,7 @@ var _settings = {
 }
 
 func _ready():
+	saveSettings()
 	var didLoad = loadSettings()
 	
 	if didLoad == LOAD_ERROR_COULDNT_OPEN:

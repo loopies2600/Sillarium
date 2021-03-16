@@ -11,6 +11,7 @@ const COMPENSATE_HZ = 60.0
 
 # lee desde el archivo de configuración si el juego deberia reproducir musica y el volumen.
 onready var mute = Settings.getSetting("audio", "mute_audio")
+onready var masterVolume = Settings.getSetting("dont-autogenerate-buttons", "master_volume")
 onready var musicVolume = Settings.getSetting("dont-autogenerate-buttons", "music_volume")
 onready var soundVolume = Settings.getSetting("dont-autogenerate-buttons", "sound_volume")
 
@@ -26,6 +27,9 @@ func musicSetup(bgmID):
 	mute = Settings.getSetting("audio", "mute_audio")
 	# ! significa "NO", o sea que si mute esta desactivado, todo este pedazo de codigo se va a ejecutar.
 	if !mute:
+		for b in AudioServer.bus_count:
+			var bName := AudioServer.get_bus_name(b)
+			setupVolume(bName)
 		# si bgmID tiene algun numero dentro...
 		if (bgmID != null):
 			# se va a cargar el archivo de musica desde el JSON, según su ID.
@@ -94,9 +98,7 @@ func getMusicPeakVolume():
 func fade():
 	fading = true
 	
-func reloadVolume():
-	musicVolume = Settings.getSetting("dont-autogenerate-buttons", "music_volume")
-	soundVolume = Settings.getSetting("dont-autogenerate-buttons", "sound_volume")
+func setupVolume(bus : String):
+	set(bus.to_lower() + "Volume", Settings.getSetting("dont-autogenerate-buttons", bus.to_lower() + "_volume"))
 	
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear2db(musicVolume))
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sound"), linear2db(soundVolume))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus), linear2db(get(bus.to_lower() + "Volume")))

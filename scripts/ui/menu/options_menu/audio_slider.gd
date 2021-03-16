@@ -16,5 +16,5 @@ func _process(_delta) -> void:
 		
 func _onValueChanged(value: float) -> void:
 	Settings.setSetting("dont-autogenerate-buttons", _busName + "_volume", value)
-	Audio.reloadVolume()
-	Audio.musicSetup(owner.musicID)
+	Audio.setupVolume(targetAudioBus)
+	Settings.saveSettings()
