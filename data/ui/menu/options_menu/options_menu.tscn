@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/ui/menu/options_menu/options_menu.gd" type="Script" id=2]
 [ext_resource path="res://sprites/ui/menu/main_theme.tres" type="Theme" id=3]
 [ext_resource path="res://scripts/ui/menu/options_menu/exit_to_menu.gd" type="Script" id=4]
+[ext_resource path="res://scripts/ui/menu/options_menu/sound_test.gd" type="Script" id=5]
+[ext_resource path="res://scripts/ui/menu/options_menu/audio_slider.gd" type="Script" id=6]
 
 [node name="OptionsMenu" type="Control"]
 anchor_right = 1.0
@@ -18,10 +20,6 @@ musicID = 2
 [node name="OptionsTitle" type="RichTextLabel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 14.0
-margin_top = 16.0
-margin_right = 14.0
-margin_bottom = 16.0
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[wave amp=64]OPTIONS"
@@ -100,20 +98,98 @@ __meta__ = {
 
 [node name="Audio" type="VBoxContainer" parent="Items"]
 margin_left = 858.0
-margin_right = 1117.0
+margin_right = 1370.0
 margin_bottom = 600.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AudioLabel" type="Label" parent="Items/Audio"]
-margin_right = 259.0
+margin_right = 512.0
 margin_bottom = 54.0
 custom_fonts/font = ExtResource( 1 )
 text = "OM_AUDIO"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MVPanel" type="PanelContainer" parent="Items/Audio"]
+margin_top = 58.0
+margin_right = 512.0
+margin_bottom = 140.0
+theme = ExtResource( 3 )
+
+[node name="MVContainer" type="VBoxContainer" parent="Items/Audio/MVPanel"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 508.0
+margin_bottom = 78.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MVLabel" type="Label" parent="Items/Audio/MVPanel/MVContainer"]
+margin_right = 504.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "OM_MUSIC_VOLUME"
+align = 1
+valign = 1
+
+[node name="MusicVolume" type="HSlider" parent="Items/Audio/MVPanel/MVContainer"]
+margin_top = 58.0
+margin_right = 504.0
+margin_bottom = 74.0
+theme = ExtResource( 3 )
+max_value = 1.0
+step = 0.0
+tick_count = 10
+ticks_on_borders = true
+script = ExtResource( 6 )
+targetAudioBus = "Music"
+
+[node name="SVPanel" type="PanelContainer" parent="Items/Audio"]
+margin_top = 144.0
+margin_right = 512.0
+margin_bottom = 226.0
+theme = ExtResource( 3 )
+
+[node name="SVContainer" type="VBoxContainer" parent="Items/Audio/SVPanel"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 508.0
+margin_bottom = 78.0
+
+[node name="SVLabel" type="Label" parent="Items/Audio/SVPanel/SVContainer"]
+margin_right = 504.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "OM_SOUND_VOLUME"
+align = 1
+valign = 1
+
+[node name="SoundVolume" type="HSlider" parent="Items/Audio/SVPanel/SVContainer"]
+margin_top = 58.0
+margin_right = 504.0
+margin_bottom = 74.0
+theme = ExtResource( 3 )
+max_value = 1.0
+step = 0.0
+tick_count = 10
+ticks_on_borders = true
+script = ExtResource( 6 )
+targetAudioBus = "Sound"
+
+[node name="SoundTest" type="Button" parent="Items/Audio"]
+margin_top = 230.0
+margin_right = 512.0
+margin_bottom = 292.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 1 )
+text = "MM_SOUNDTEST"
+script = ExtResource( 5 )
 
 [node name="Exit" type="Button" parent="."]
 anchor_top = 1.0

@@ -1,11 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/ui/menu/main_menu/main_menu.gd" type="Script" id=2]
 [ext_resource path="res://sprites/sillarium_s.png" type="Texture" id=3]
 [ext_resource path="res://data/shaders/outline.shader" type="Shader" id=4]
 [ext_resource path="res://scripts/ui/menu/main_menu/play.gd" type="Script" id=5]
-[ext_resource path="res://scripts/ui/menu/main_menu/sound_test.gd" type="Script" id=6]
 [ext_resource path="res://scripts/ui/menu/main_menu/exit.gd" type="Script" id=7]
 [ext_resource path="res://sprites/ui/menu/main_theme.tres" type="Theme" id=8]
 [ext_resource path="res://scripts/ui/menu/main_menu/options_menu.gd" type="Script" id=9]
@@ -57,10 +56,10 @@ texture = ExtResource( 3 )
 stretch_mode = 6
 
 [node name="Buttons" type="HBoxContainer" parent="Menu"]
-margin_top = 417.0
+margin_top = 440.0
 margin_right = 1374.0
-margin_bottom = 471.0
-custom_constants/separation = 28
+margin_bottom = 494.0
+custom_constants/separation = 150
 
 [node name="Play" type="Button" parent="Menu/Buttons"]
 margin_right = 299.0
@@ -78,8 +77,8 @@ text = "MM_PLAYBT"
 script = ExtResource( 5 )
 
 [node name="Options" type="Button" parent="Menu/Buttons"]
-margin_left = 327.0
-margin_right = 706.0
+margin_left = 449.0
+margin_right = 828.0
 margin_bottom = 54.0
 theme = ExtResource( 8 )
 custom_styles/hover = SubResource( 2 )
@@ -93,25 +92,9 @@ custom_colors/font_color_pressed = Color( 1, 0.698039, 0.231373, 1 )
 text = "MM_OPTIONSBT"
 script = ExtResource( 9 )
 
-[node name="SoundTest" type="Button" parent="Menu/Buttons"]
-margin_left = 734.0
-margin_right = 1119.0
-margin_bottom = 54.0
-theme = ExtResource( 8 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color_hover = Color( 0.960784, 1, 0, 1 )
-custom_colors/font_color_pressed = Color( 1, 0.698039, 0.231373, 1 )
-text = "MM_SOUNDTEST"
-script = ExtResource( 6 )
-
 [node name="Exit" type="Button" parent="Menu/Buttons"]
-margin_left = 1147.0
-margin_right = 1374.0
+margin_left = 978.0
+margin_right = 1205.0
 margin_bottom = 54.0
 theme = ExtResource( 8 )
 custom_styles/hover = SubResource( 2 )

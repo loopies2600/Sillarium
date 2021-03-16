@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=5 format=2]
+[gd_resource type="Theme" load_steps=7 format=2]
 
 [ext_resource path="res://sprites/ui/menu/main_button_style.tres" type="StyleBox" id=1]
+[ext_resource path="res://sprites/ui/menu/grabber_style.tres" type="StyleBox" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.164706, 0.164706, 0.176471, 0.501961 )
@@ -55,6 +56,24 @@ shadow_color = Color( 0.00784314, 0, 0, 0.501961 )
 shadow_size = 8
 shadow_offset = Vector2( 0, 8 )
 anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.309804, 0.117647, 0.231373, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.133333, 0, 0, 1 )
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 1
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+shadow_size = 1
+shadow_offset = Vector2( 0, 1 )
 
 [resource]
 Button/colors/font_color = Color( 1, 1, 1, 1 )
@@ -190,9 +209,9 @@ HSlider/icons/grabber = null
 HSlider/icons/grabber_disabled = null
 HSlider/icons/grabber_highlight = null
 HSlider/icons/tick = null
-HSlider/styles/grabber_area = null
-HSlider/styles/grabber_area_highlight = null
-HSlider/styles/slider = null
+HSlider/styles/grabber_area = ExtResource( 2 )
+HSlider/styles/grabber_area_highlight = ExtResource( 2 )
+HSlider/styles/slider = SubResource( 5 )
 HSplitContainer/constants/autohide = 1
 HSplitContainer/constants/separation = 12
 HSplitContainer/icons/grabber = null

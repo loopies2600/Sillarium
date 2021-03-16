@@ -1,5 +1,7 @@
 extends Control
 
+onready var language = Settings.getSetting("dont-autogenerate-buttons", "lang")
+
 onready var mat = $Shader.get_material()
 onready var grad2 = $Shader.texture.gradient
 onready var buttons = [$Languages/English, $Languages/Espanol, $Languages/Portugues]
@@ -10,6 +12,7 @@ func _init():
 	Objects.currentWorld = self
 	
 func _ready():
+	TranslationServer.set_locale(language)
 	Renderer.fade("out")
 	
 	for button in buttons:
@@ -22,18 +25,21 @@ func _process(_delta):
 	grad2.set_color(1, Color(rand_range(0.0, 0.25), rand_range(0.0, 0.25), rand_range(0.0, 0.25), 0.0))
 	
 func _onEnglishPressed():
-	TranslationServer.set_locale("en")
+	Settings.setSetting("dont-autogenerate-buttons", "lang", "en")
 	_returnToScene()
 	
 func _onEspanolPressed():
-	TranslationServer.set_locale("es")
+	Settings.setSetting("dont-autogenerate-buttons", "lang", "es")
 	_returnToScene()
 	
 func _onPortuguesPressed():
-	TranslationServer.set_locale("pt")
+	Settings.setSetting("dont-autogenerate-buttons", "lang", "pt")
 	_returnToScene()
 	
 func _returnToScene():
+	language = Settings.getSetting("dont-autogenerate-buttons", "lang")
+	TranslationServer.set_locale(language)
+	Settings.saveSettings()
 	Renderer.fade("in")
 	Renderer.transition.connect("fade_finished", self, "_fadeEnd")
 	

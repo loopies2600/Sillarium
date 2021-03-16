@@ -59,7 +59,7 @@ func updateText():
 		type = SWITCH
 		confiText = tr("NO")
 		text = ("%s: %s" % [tr(str(key).to_upper()), confiText]).to_upper()
-	else:
+	elif str(val) is String:
 		type = INPUT
 		text = ("%s: %s" % [tr(str(key).to_upper()), OS.get_scancode_string(int(val))]).to_upper()
 		

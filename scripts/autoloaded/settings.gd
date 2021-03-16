@@ -42,6 +42,14 @@ var _settings = {
 		"display_backgrounds": true,
 		"fullscreen": false,
 		"freeze_frame": true
+	},
+	"dont-autogenerate-buttons": {
+		"lang": "en",
+		"music_volume": 1.0,
+		"sound_volume": 1.0,
+		"accent_color_0": Color.orange,
+		"accent_color_1": Color.red,
+		"accent_color_2": Color.blue
 	}
 }
 

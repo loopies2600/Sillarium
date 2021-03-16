@@ -9,11 +9,13 @@ const MUSIC = "res://data/json/music.json"
 const COMPENSATE_FRAMES = 2
 const COMPENSATE_HZ = 60.0
 
-# lee desde el archivo de configuración si el juego deberia reproducir musica.
+# lee desde el archivo de configuración si el juego deberia reproducir musica y el volumen.
 onready var mute = Settings.getSetting("audio", "mute_audio")
+onready var musicVolume = Settings.getSetting("dont-autogenerate-buttons", "music_volume")
+onready var soundVolume = Settings.getSetting("dont-autogenerate-buttons", "sound_volume")
 
 # esta variable guarda el reproductor de audio que se este usando, ojo, no es para guardar el archivo actual que se este reproduciendo
-var currentMusic
+var currentMusic : AudioStreamPlayer
 var currentID
 var currentBPM
 var beat setget setBeat, getBeat
@@ -42,9 +44,10 @@ func musicSetup(bgmID):
 				currentMusic.stream = load(Globals.LoadJSON(MUSIC, bgmID, "file"))
 				currentMusic.play()
 			
+			currentMusic.set_bus("Music")
 			currentID = bgmID
 			currentBPM = getMusicBPM(currentID)
-	else:
+	else:	
 		if currentMusic != null:
 			currentMusic.queue_free()
 	
@@ -90,3 +93,10 @@ func getMusicPeakVolume():
 	
 func fade():
 	fading = true
+	
+func reloadVolume():
+	musicVolume = Settings.getSetting("dont-autogenerate-buttons", "music_volume")
+	soundVolume = Settings.getSetting("dont-autogenerate-buttons", "sound_volume")
+	
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear2db(musicVolume))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sound"), linear2db(soundVolume))
