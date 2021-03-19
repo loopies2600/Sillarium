@@ -11,14 +11,14 @@
 [ext_resource path="res://sprites/player/noah/shotgun/anim/aim_down_left.tres" type="SpriteFrames" id=9]
 [ext_resource path="res://sprites/player/noah/shotgun/anim/aim_up_left.tres" type="SpriteFrames" id=10]
 
-
 [resource]
 script = ExtResource( 1 )
 projectile = ExtResource( 2 )
 aimGraphics = [ ExtResource( 5 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 7 ) ]
 projectileOffset = [ Vector2( 72, -12 ), Vector2( 48, 48 ), Vector2( 16, 86 ), Vector2( -48, 48 ), Vector2( -72, -12 ), Vector2( -56, -72 ), Vector2( 4, -120 ), Vector2( 56, -72 ) ]
-hasCooldown = true
+canRotate = true
+hasCooldown = false
 displayFlash = true
-velocityReduction = 0.0
+aimWeight = 0.875
 cooldown = 0.25
 recoil = 0.0

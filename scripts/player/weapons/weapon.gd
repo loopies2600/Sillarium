@@ -17,7 +17,10 @@ var angleIndex = 0
 onready var muzzleFlash = preload("res://data/player/projectiles/muzzle_flash.tscn")
 
 func _ready():
-	_startCooldown()
+	if type.hasCooldown:
+		_startCooldown()
+	else:
+		cooldownIsOver = true
 	
 	play("Idle")
 	var _unused = connect("animation_finished", self, "_animEnd")
@@ -82,6 +85,9 @@ func fire():
 		newFlash.global_rotation = global_rotation
 		get_parent().add_child(newFlash)
 		
+	if type.hasCooldown:
+		_startCooldown()
+		
 	offset.x = 32.0
 	var newProjectile = type.projectile.instance()
 	newProjectile.add_to_group("PlayerProjectile")
@@ -89,7 +95,6 @@ func fire():
 	newProjectile.global_rotation = global_rotation
 	newProjectile.z_index = z_index - 16
 	get_tree().get_root().add_child(newProjectile)
-	_startCooldown()
 	get_parent().attackSound.play()
 		
 	if type.recoil > 0.0:

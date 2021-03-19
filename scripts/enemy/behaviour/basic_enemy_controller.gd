@@ -6,7 +6,7 @@ signal camera_shake_requested(mode, time, amp)
 signal destroy_self
 signal take_damage
 
-onready var hitbox
+onready var hitbox : Area2D
 
 export (int) var health = 5
 export (int) var damage = 2
@@ -14,17 +14,16 @@ export (bool) var killsPlayer = true
 
 func _ready():
 	yield(get_parent(), "ready")
-	hitbox.connect("area_entered", self, "OnAreaEntered")
-	hitbox.connect("body_entered", self, "OnBodyEntered")
-	hitbox.connect("area_exited", self, "OnAreaExited")
-	hitbox.connect("body_exited", self, "OnBodyExited")
+	var _unused = hitbox.connect("area_entered", self, "onAreaEntered")
+	_unused = hitbox.connect("body_entered", self, "onBodyEntered")
+	_unused = hitbox.connect("area_exited", self, "onAreaExited")
+	_unused = hitbox.connect("body_exited", self, "onBodyExited")
 
-func OnAreaEntered(area):
+func onAreaEntered(area):
 	if area.is_in_group("PlayerProjectile"):
-		area.kill()
 		_takeDamage(area.damage)
 
-func OnBodyEntered(body):
+func onBodyEntered(body):
 	if body is Player and killsPlayer:
 		body.takeDamage(damage)
 	
@@ -37,9 +36,9 @@ func _takeDamage(eDamage : int):
 		emit_signal("take_damage")
 		
 # warning-ignore:unused_argument
-func OnAreaExited(area):
+func onAreaExited(area):
 	pass
 	
 # warning-ignore:unused_argument
-func OnBodyExited(body):
+func onBodyExited(body):
 	pass
