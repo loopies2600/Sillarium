@@ -31,9 +31,10 @@ func spawnTrail(fds : float, sprite : Sprite, mdt := Color.white):
 	newTrail.global_position = sprite.global_position
 	newTrail.global_rotation = sprite.global_rotation
 	newTrail.global_scale = sprite.global_scale
-	newTrail.z_index = sprite.z_index
+	newTrail.z_index = sprite.z_index - 1
 	newTrail.flip_h = sprite.flip_h
 	newTrail.flip_v = sprite.flip_v
+	newTrail.offset = sprite.offset
 	Objects.currentWorld.add_child(newTrail)
 	
 func spawn4Piece(sprite : Sprite):

@@ -16,6 +16,7 @@ func physics_update(delta):
 		else:
 			owner.damp(owner.airFriction)
 	else:
+		owner.canInput = true
 		emit_signal("finished", "idle")
 		
 func exit():

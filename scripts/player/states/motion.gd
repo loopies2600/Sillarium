@@ -6,7 +6,6 @@ func _ready():
 	
 func _playerGrounded(isGrounded):
 	if isGrounded:
-		owner.canInput = true
 		owner.canDash = true
 	else:
 		emit_signal("finished", "air")

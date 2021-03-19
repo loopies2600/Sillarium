@@ -64,6 +64,8 @@ func connectSignals():
 	camera.connectToManipulators()
 	connect("player_respawned", self, "_onRespawn")
 	
+	stateMachine.connectSignals()
+	
 func _onLevelInit():
 	canInput = false
 	
@@ -81,11 +83,12 @@ func _process(_delta):
 	if getInputDirection():
 		flipGraphics(getInputDirection())
 		
-	handleWeaponInput()
+	handleInputProcessing()
 	flashBehaviour()
 	
 func _physics_process(delta):
 	keepOnScreen(true)
+	print(canInput)
 	groundCheck()
 	
 	var gravity
@@ -148,13 +151,9 @@ func getFacingDirection():
 	var facingDirection = body.scale.x
 	return facingDirection
 	
-func handleWeaponInput():
-	if canInput:
-		currentWeapon.set_process(true)
-		currentWeapon.set_process_input(true)
-	else:
-		currentWeapon.set_process(false)
-		currentWeapon.set_process_input(false)
+func handleInputProcessing():
+	currentWeapon.set_process(canInput)
+	currentWeapon.set_process_input(canInput)
 
 func flipGraphics(facing):
 	body.scale.x = facing

@@ -88,7 +88,7 @@ func fire():
 	if type.hasCooldown:
 		_startCooldown()
 		
-	offset.x = 32.0
+	offset.x = 4
 	var newProjectile = type.projectile.instance()
 	newProjectile.add_to_group("PlayerProjectile")
 	newProjectile.global_position = global_position + type.projectileOffset[angleIndex]
