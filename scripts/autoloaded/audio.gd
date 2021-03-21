@@ -3,7 +3,7 @@
 
 extends Node
 
-signal pump
+signal pump(beat)
 
 const MUSIC = "res://data/json/music.json"
 const COMPENSATE_FRAMES = 2
@@ -60,7 +60,7 @@ func _process(_delta):
 		return
 	
 	time = currentMusic.get_playback_position() + AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency() + (1 / COMPENSATE_HZ) * COMPENSATE_FRAMES
-	self.beat = int(time * currentBPM / 60.0) % 4
+	self.beat = int(time * currentBPM / 60.0)
 	
 	if fading:
 		currentMusic.volume_db -= 1.0
@@ -77,7 +77,7 @@ func setBeat(value):
 		return
 	else:
 		beat = value
-		emit_signal("pump")
+		emit_signal("pump", beat)
 	
 func getBeat():
 	return beat

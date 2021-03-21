@@ -28,6 +28,7 @@ shader_param/outline_color = null
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -0.00012207
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -50,15 +51,15 @@ __meta__ = {
 
 [node name="SillariumS" type="TextureRect" parent="Menu"]
 material = SubResource( 1 )
-margin_right = 1374.0
+margin_right = 1205.0
 margin_bottom = 413.0
 texture = ExtResource( 3 )
 stretch_mode = 6
 
 [node name="Buttons" type="HBoxContainer" parent="Menu"]
-margin_top = 440.0
-margin_right = 1374.0
-margin_bottom = 494.0
+margin_top = 417.0
+margin_right = 1205.0
+margin_bottom = 471.0
 custom_constants/separation = 150
 
 [node name="Play" type="Button" parent="Menu/Buttons"]
