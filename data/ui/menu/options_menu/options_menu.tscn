@@ -18,6 +18,8 @@ backgroundID = 4
 musicID = 2
 
 [node name="OptionsTitle" type="RichTextLabel" parent="."]
+anchor_left = 0.025
+anchor_top = 0.025
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/normal_font = ExtResource( 1 )
@@ -42,7 +44,7 @@ __meta__ = {
 
 [node name="Renderer" type="VBoxContainer" parent="Items"]
 margin_right = 372.0
-margin_bottom = 600.0
+margin_bottom = 720.0
 custom_constants/separation = 16
 __meta__ = {
 "_edit_use_anchors_": false
@@ -82,7 +84,7 @@ __meta__ = {
 [node name="Controls" type="VBoxContainer" parent="Items"]
 margin_left = 436.0
 margin_right = 794.0
-margin_bottom = 600.0
+margin_bottom = 720.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -99,7 +101,7 @@ __meta__ = {
 [node name="Audio" type="VBoxContainer" parent="Items"]
 margin_left = 858.0
 margin_right = 1370.0
-margin_bottom = 600.0
+margin_bottom = 720.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -192,12 +194,12 @@ text = "MM_SOUNDTEST"
 script = ExtResource( 5 )
 
 [node name="Exit" type="Button" parent="."]
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 916.0
-margin_top = -44.0
-margin_right = 1103.0
-margin_bottom = 18.0
+margin_left = -235.0
+margin_top = -62.0
 rect_scale = Vector2( 0.5, 0.5 )
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 1 )

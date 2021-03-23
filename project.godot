@@ -99,6 +99,9 @@ settings/fps/force_fps=60
 
 [display]
 
+window/size/width=1280
+window/size/height=720
+window/size/resizable=false
 mouse_cursor/custom_image="res://sprites/silly_cursor.png"
 window/stretch/mode="2d"
 window/stretch/aspect="keep"

@@ -28,7 +28,6 @@ shader_param/outline_color = null
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -0.00012207
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -45,6 +44,7 @@ margin_left = 0.511997
 margin_top = -0.200005
 margin_right = 0.511963
 margin_bottom = 0.199951
+custom_constants/separation = 128
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -57,9 +57,9 @@ texture = ExtResource( 3 )
 stretch_mode = 6
 
 [node name="Buttons" type="HBoxContainer" parent="Menu"]
-margin_top = 417.0
+margin_top = 541.0
 margin_right = 1205.0
-margin_bottom = 471.0
+margin_bottom = 595.0
 custom_constants/separation = 150
 
 [node name="Play" type="Button" parent="Menu/Buttons"]

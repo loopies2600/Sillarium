@@ -8,24 +8,12 @@
 resource_name = "Slip"
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("PauseText:rect_position")
+tracks/0/path = NodePath("ColorBG:color")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -256, 550 ), Vector2( 10, 550 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("ColorBG:color")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -41,19 +29,19 @@ script = ExtResource( 2 )
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.501961 )
+color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PauseText" type="RichTextLabel" parent="."]
 visible = false
+anchor_left = 0.025
 anchor_top = 1.0
+anchor_right = 0.025
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = -50.0
-margin_right = 260.0
-margin_bottom = 5.0
+margin_top = -55.0
+margin_right = 250.0
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[wave]PAUSED"
