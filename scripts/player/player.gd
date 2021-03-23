@@ -6,6 +6,7 @@ signal player_damaged(x, y)
 signal player_health_updated(health)
 signal player_killed()
 signal player_respawned()
+signal player_score_updated
 
 export(Resource) var character
 onready var dashTexture = character.dashTexture
@@ -34,6 +35,11 @@ var velocity := Vector2()
 var canInput := false
 var flashing := false
 var canDash := true
+
+var score := 0 setget _setScore
+var deaths := 0 setget _setDeaths
+
+var playerID = 0
 
 onready var stateMachine = $StateMachine
 onready var graphics = $Graphics
@@ -98,6 +104,14 @@ func _physics_process(delta):
 	velocity.y += gravity * delta * (fallMultiplier if velocity.y > 0 else 1)
 	
 	velocity.y = move_and_slide_with_snap(velocity, snapVector, Globals.UP, true).y
+	
+func _setScore(value : int) -> void:
+	score = value
+	emit_signal("player_score_updated")
+	
+func _setDeaths(value : int) -> void:
+	deaths = value
+	emit_signal("player_killed")
 	
 func groundCheck():
 	var wasGrounded = isGrounded
@@ -183,10 +197,10 @@ func _setHealth(value: int):
 		emit_signal("player_health_updated", health)
 		
 		if health == 0:
-			emit_signal("player_killed")
 			kill()
 	
 func kill():
+	self.deaths += 1
 	var respawner = Objects.spawn(24, global_position)
 	
 	Globals.player = null

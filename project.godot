@@ -92,6 +92,7 @@ Globals="*res://scripts/autoloaded/globals.gd"
 Objects="*res://scripts/autoloaded/objects.gd"
 Renderer="*res://scripts/autoloaded/renderer.gd"
 Audio="*res://scripts/autoloaded/audio.gd"
+Data="*res://scripts/autoloaded/data.gd"
 
 [debug]
 

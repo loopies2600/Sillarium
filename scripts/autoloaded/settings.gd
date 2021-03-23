@@ -58,7 +58,7 @@ func _ready():
 	saveSettings()
 	var didLoad = loadSettings()
 	
-	if didLoad == LOAD_ERROR_COULDNT_OPEN:
+	if didLoad != OK:
 		print("Settings file doesn't exist, creating one...")
 		saveSettings()
 		loadSettings()
