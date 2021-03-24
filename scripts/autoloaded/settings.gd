@@ -20,6 +20,11 @@ var _settings = {
 	},
 	"controls":
 		{
+			"toggle_debug": KEY_L,
+			"pause": KEY_P
+	},
+	"player_one":
+		{
 			"move_left": KEY_LEFT,
 			"move_right": KEY_RIGHT,
 			"jump": KEY_Z,
@@ -30,9 +35,21 @@ var _settings = {
 			"shoot": KEY_X,
 			"dash": KEY_S,
 			"input_hold": KEY_A,
-			"toggle_debug": KEY_L,
-			"interact": KEY_C,
-			"pause": KEY_P
+			"interact": KEY_C
+	},
+	"player_two":
+		{
+			"move_left_to": KEY_LEFT,
+			"move_right_to": KEY_RIGHT,
+			"jump_to": KEY_Z,
+			"aim_up_to": KEY_UP,
+			"aim_down_to": KEY_DOWN,
+			"aim_left_to": KEY_LEFT,
+			"aim_right_to": KEY_RIGHT,
+			"shoot_to": KEY_X,
+			"dash_to": KEY_S,
+			"input_hold_to": KEY_A,
+			"interact_to": KEY_C
 	},
 	"audio": {
 		"mute_audio": false
@@ -62,27 +79,24 @@ func _ready():
 		print("Settings file doesn't exist, creating one...")
 		saveSettings()
 		loadSettings()
-		
-	bindKeys()
 	
 func bindKeys():
-	# está esta complicadita, primero debe leer cada clave que haya en controles.
-	
-	for key in _configFile.get_section_keys("controls"):
-		# luego guarda un valor en value, y así en bucle
-		var value = _configFile.get_value("controls", key)
-		
-		# tiene que encontrar la lista con el nombre de esa acción.
-		var actionList = InputMap.get_action_list(key)
-		
-		# si la lista no está vacia, va a borrar los eventos---
-		if !actionList.empty():
-			InputMap.action_erase_event(key, actionList[0])
+	for cat in ["controls", "player_one", "player_two"]:
+		for key in _configFile.get_section_keys(cat):
+			# luego guarda un valor en value, y así en bucle
+			var value = _configFile.get_value(cat, key)
 			
-		# para luego reemplazarlos con el evento que está escrito en el archivo de configuración.
-		var newKey = InputEventKey.new()
-		newKey.set_scancode(value)
-		InputMap.action_add_event(key, newKey)
+			# tiene que encontrar la lista con el nombre de esa acción.
+			var actionList = InputMap.get_action_list(key)
+			
+			# si la lista no está vacia, va a borrar los eventos---
+			if !actionList.empty():
+				InputMap.action_erase_event(key, actionList[0])
+				
+			# para luego reemplazarlos con el evento que está escrito en el archivo de configuración.
+			var newKey = InputEventKey.new()
+			newKey.set_scancode(value)
+			InputMap.action_add_event(key, newKey)
 		
 func saveSettings():
 	# primero tiene que ir en bucle por cada sección en el diccionario de las opciones, así las va guardando en el archivo CFG.
@@ -91,8 +105,8 @@ func saveSettings():
 			# si queres conseguir, editar o leer valores, ConfigFile tiene todas las funciones necesarias.
 			_configFile.set_value(section, key, _settings[section][key])
 	
-	# cuando está todo hecho, guardamos el archivo.
 	_configFile.save(SAVE_PATH)
+	bindKeys()
 	
 func loadSettings():
 	# se nota que esto es más complejo. tiene que leer la configuración desde SAVE_PATH, que es el hipotetico lugar donde se guarda nuestra configuraciṕóm.
@@ -114,6 +128,7 @@ func loadSettings():
 			print(tr(str(key).to_upper()) + ": %s" % val)
 			
 	# y entonces le avisamos que es un positivo, además de imprimir cada clave en la consola.
+	bindKeys()
 	return LOAD_SUCCESS
 	
 func getSetting(category, key):

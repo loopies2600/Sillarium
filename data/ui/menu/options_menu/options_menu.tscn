@@ -83,14 +83,14 @@ __meta__ = {
 
 [node name="Controls" type="VBoxContainer" parent="Items"]
 margin_left = 436.0
-margin_right = 794.0
+margin_right = 1047.0
 margin_bottom = 720.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ControlsLabel" type="Label" parent="Items/Controls"]
-margin_right = 358.0
+margin_right = 611.0
 margin_bottom = 54.0
 custom_fonts/font = ExtResource( 1 )
 text = "OM_CONTROLS"
@@ -98,9 +98,48 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="WayTooBig" type="HBoxContainer" parent="Items/Controls"]
+margin_top = 58.0
+margin_right = 611.0
+margin_bottom = 112.0
+custom_constants/separation = 32
+
+[node name="P1Controls" type="VBoxContainer" parent="Items/Controls/WayTooBig"]
+margin_right = 286.0
+margin_bottom = 54.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="P1Label" type="Label" parent="Items/Controls/WayTooBig/P1Controls"]
+margin_right = 286.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 1 )
+text = "OM_P1CTRL"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="P2Controls" type="VBoxContainer" parent="Items/Controls/WayTooBig"]
+margin_left = 318.0
+margin_right = 611.0
+margin_bottom = 54.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="P2Label" type="Label" parent="Items/Controls/WayTooBig/P2Controls"]
+margin_right = 293.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 1 )
+text = "OM_P2CTRL"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Audio" type="VBoxContainer" parent="Items"]
-margin_left = 858.0
-margin_right = 1370.0
+margin_left = 1111.0
+margin_right = 1623.0
 margin_bottom = 720.0
 __meta__ = {
 "_edit_use_anchors_": false

@@ -9,18 +9,10 @@ var key
 var val
 
 var font
-var multiplier
 
 func _ready():
-	modulate.a = 0.0
 	theme = preload("res://sprites/ui/menu/main_theme.tres")
 	updateText()
-	
-func _process(_delta):
-	if modulate.a < 1.0:
-		modulate.a += multiplier
-	else:
-		modulate.a = 1.0
 	
 func buttonPress():
 	match type:
@@ -40,13 +32,14 @@ func buttonPress():
 			var binder = preload("res://data/ui/menu/options_menu/key_binder.tscn")
 			var newBinder = binder.instance()
 			
+			newBinder.inputCategory = category
 			newBinder.daddyButton = self
 			newBinder.control = str(key).to_upper()
 			newBinder.key = OS.get_scancode_string(int(val)).to_upper()
 			get_tree().get_root().add_child(newBinder)
 			
 	updateText()
-				
+	
 func updateText():
 	val = Settings._configFile.get_value(category,key)
 	var confiText

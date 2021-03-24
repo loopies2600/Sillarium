@@ -3,6 +3,7 @@ extends Panel
 onready var inputName = $InputName
 onready var keyName = $KeyName
 
+var inputCategory
 var daddyButton
 var control
 var key
@@ -16,7 +17,7 @@ func _ready():
 func _input(event):
 	if event is InputEventKey:
 		var value = event.scancode
-		Settings.setSetting("controls", str(control).to_lower(), value)
+		Settings.setSetting(inputCategory, str(control).to_lower(), value)
 		Settings.saveSettings()
 		Objects.currentWorld.toggleButtons(1)
 		daddyButton.updateText()
