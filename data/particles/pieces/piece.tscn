@@ -3,12 +3,11 @@
 [ext_resource path="res://sprites/debug/action_alien.png" type="Texture" id=1]
 [ext_resource path="res://scripts/particles/pieces/piece.gd" type="Script" id=2]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 
 [node name="Piece" type="KinematicBody2D"]
-collision_layer = 0
-collision_mask = 32
+collision_layer = 32
+collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

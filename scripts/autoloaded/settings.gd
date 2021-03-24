@@ -39,17 +39,17 @@ var _settings = {
 	},
 	"player_two":
 		{
-			"move_left_to": KEY_LEFT,
-			"move_right_to": KEY_RIGHT,
-			"jump_to": KEY_Z,
-			"aim_up_to": KEY_UP,
-			"aim_down_to": KEY_DOWN,
-			"aim_left_to": KEY_LEFT,
-			"aim_right_to": KEY_RIGHT,
-			"shoot_to": KEY_X,
-			"dash_to": KEY_S,
-			"input_hold_to": KEY_A,
-			"interact_to": KEY_C
+			"move_left_to": KEY_KP_4,
+			"move_right_to": KEY_KP_6,
+			"jump_to": KEY_K,
+			"aim_up_to": KEY_KP_8,
+			"aim_down_to": KEY_KP_2,
+			"aim_left_to": KEY_KP_4,
+			"aim_right_to": KEY_KP_6,
+			"shoot_to": KEY_U,
+			"dash_to": KEY_O,
+			"input_hold_to": KEY_I,
+			"interact_to": KEY_J
 	},
 	"audio": {
 		"mute_audio": false

@@ -10,21 +10,29 @@ const PICKUP = "res://data/json/pickups.json"
 var currentWorld
 var previousWorld
 
-func spawnPlayer(charID, pos, respawning := false):
+func spawnPlayer(charID, pos, respawning := false, pSlot := "player"):
 	var characters := [preload("res://data/player/player.tscn")]
 	var currentChar = characters[charID].instance()
 	
-	if Globals.player == null:
+	if Globals.get(pSlot) == null:
 		get_tree().get_root().add_child(currentChar)
-		Globals.player = currentChar
+		Globals.set(pSlot, currentChar)
 		
-	Globals.player.global_position = pos
-	Globals.player.connectSignals()
+	Globals.get(pSlot).slot = pSlot
+	
+	match pSlot:
+		"player":
+			Globals.get(pSlot).inputSuffix = ""
+		"playerTwo":
+			Globals.get(pSlot).inputSuffix = "_to"
+			
+	Globals.get(pSlot).global_position = pos
+	Globals.get(pSlot).connectSignals()
 	
 	if respawning:
-		Globals.player.emit_signal("player_respawned")
+		Globals.get(pSlot).emit_signal("player_respawned")
 	
-	return Globals.player
+	return Globals.get(pSlot)
 	
 func getClosestOrFurthest(caller : Object, groupName : String, getClosest := true) -> Object:
 	var targetGroup = get_tree().get_nodes_in_group(groupName)

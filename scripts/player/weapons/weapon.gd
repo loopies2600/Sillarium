@@ -44,7 +44,7 @@ func ChangeSprite(flip):
 	type.projectileOffset[6].x = -flipXUp if flip else flipXUp
 	
 func _input(event):
-	if event.is_action_pressed("shoot") and cooldownIsOver:
+	if event.is_action_pressed("shoot" + get_parent().inputSuffix) and cooldownIsOver:
 		fire()
 	
 func _process(delta):
@@ -58,8 +58,8 @@ func _process(delta):
 	
 func doRotation():
 	var direction = Vector2(
-		int(Input.is_action_pressed("aim_right")) - int(Input.is_action_pressed("aim_left")),
-		int(Input.is_action_pressed("aim_down")) - int(Input.is_action_pressed("aim_up")))
+		int(Input.is_action_pressed("aim_right" + get_parent().inputSuffix)) - int(Input.is_action_pressed("aim_left" + get_parent().inputSuffix)),
+		int(Input.is_action_pressed("aim_down" + get_parent().inputSuffix)) - int(Input.is_action_pressed("aim_up" + get_parent().inputSuffix)))
 		
 	var facingRight
 	var desiredRotation

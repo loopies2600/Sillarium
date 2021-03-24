@@ -24,6 +24,7 @@ func _ready():
 	Renderer.backgroundSetup(backgroundID)
 	Objects.spawn(22)
 	Objects.spawnPlayer(0, startPos)
+	Objects.spawnPlayer(0, startPos + Vector2(200, 0), false, "playerTwo")
 	
 	emit_signal("level_initialized")
 

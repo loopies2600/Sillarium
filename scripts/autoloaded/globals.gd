@@ -11,9 +11,9 @@ const UNIT_SIZE = 64
 const CELL_SIZE = Vector2(64, 32)
 const GRAVITY = 980
 
-# se usa para registrar el jugador, el arma y la pausa.
+# se usa para registrar los jugadores.
 var player
-var weapon
+var playerTwo
 
 # aca registramos la interfaz debug, y checkeamos si deberiamos activarlo.
 onready var debugMenuOpen := false

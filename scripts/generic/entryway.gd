@@ -12,9 +12,10 @@ func ChangeStatus(cond):
 func ChangeHitbox(cond):
 	$CollisionShape2D.disabled = cond
 
-func OnPlayerEnter(_body):
-	Renderer.fade("in")
-	Renderer.transition.connect("fade_finished", self, "_fadeEnd")
+func OnPlayerEnter(body):
+	if body is Player:
+		Renderer.fade("in")
+		Renderer.transition.connect("fade_finished", self, "_fadeEnd")
 	
 func _fadeEnd():
 	Globals.LoadScene(levelToLoad)

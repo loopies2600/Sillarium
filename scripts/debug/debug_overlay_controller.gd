@@ -4,7 +4,8 @@ var vars = []
 
 func _ready():
 	add_var("music peak volume (left, right)", Audio, "getMusicPeakVolume", true)
-	add_var("player position (X, Y)", Globals.player, "global_position", false)
+	add_var("player 1 position (X, Y)", Globals.player, "global_position", false)
+	add_var("player 2 position (X, Y)", Globals.playerTwo, "global_position", false)
 	add_var("object count", get_tree().get_root(), "get_child_count", true)
 	
 func add_var(var_name, object, var_ref, is_method, latter_word:String = ""):

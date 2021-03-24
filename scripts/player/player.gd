@@ -39,7 +39,12 @@ var canDash := true
 var score := 0 setget _setScore
 var deaths := 0 setget _setDeaths
 
-var playerID = 0
+var playerID := 0
+var slot := "player"
+var inputSuffix := ""
+
+var currentWeapon
+var weapon
 
 onready var stateMachine = $StateMachine
 onready var graphics = $Graphics
@@ -56,11 +61,9 @@ onready var gracePeriod = $GracePeriodTimer
 
 onready var bodyParts = [head, body, legs]
 
-onready var currentWeapon
-
 func _ready():
-	Globals.weapon = Objects.getWeapon(0, armsPos, z_index + 1, self)
-	currentWeapon = Globals.weapon
+	weapon = Objects.getWeapon(0, armsPos, z_index + 1, self)
+	currentWeapon = weapon
 	add_child(currentWeapon)
 	
 func connectSignals():
@@ -125,8 +128,8 @@ func pickUpWeapon(id):
 	if currentWeapon != null:
 		currentWeapon.queue_free()
 		
-	Globals.weapon = Objects.getWeapon(id, armsPos, z_index + 1)
-	currentWeapon = Globals.weapon
+	weapon = Objects.getWeapon(id, armsPos, z_index + 1)
+	currentWeapon = weapon
 	add_child(currentWeapon)
 	
 func animateGraphics(anim : String):
@@ -157,7 +160,7 @@ func flashBehaviour():
 	
 func getInputDirection() -> int:
 	if canInput:
-		var inputDirection = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+		var inputDirection = Input.get_action_strength("move_right" + inputSuffix) - Input.get_action_strength("move_left" + inputSuffix)
 		return inputDirection
 	else: return 0
 	
@@ -203,10 +206,11 @@ func kill():
 	self.deaths += 1
 	var respawner = Objects.spawn(24, global_position)
 	
-	Globals.player = null
+	Globals.set(slot, null)
 	remove_child(camera)
 	respawner.add_child(camera)
 	respawner.respawnPos = lastGoodPosition
+	respawner.playerSlot = slot
 	queue_free()
 	
 func _gracePeriodEnd():
