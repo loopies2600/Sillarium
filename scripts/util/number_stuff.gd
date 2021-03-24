@@ -1,6 +1,9 @@
 extends Object
-class_name BinaryUtils
+class_name NumberStuff
 
+static func isEven(value : int) -> bool:
+	return value % 2 == 0
+		
 static func dec2bin(var decimalValue : int) -> int:
 	var binaryString = "" 
 	var temp 

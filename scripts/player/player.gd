@@ -93,8 +93,6 @@ func _process(_delta):
 	flashBehaviour()
 	
 func _physics_process(delta):
-	keepOnScreen(true)
-	print(canInput)
 	groundCheck()
 	
 	var gravity
@@ -104,6 +102,8 @@ func _physics_process(delta):
 	velocity.y += gravity * delta * (fallMultiplier if velocity.y > 0 else 1)
 	
 	velocity.y = move_and_slide_with_snap(velocity, snapVector, Globals.UP, true).y
+	
+	keepOnScreen(true, false, Vector2(hitbox.shape.extents.x * 2, 0))
 	
 func _setScore(value : int) -> void:
 	score = value
