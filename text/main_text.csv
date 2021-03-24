@@ -53,3 +53,16 @@ SOUND_VOLUME,sound_volume,volumen_del_sonido,
 ACCENT_COLOR_0,accent_color_noah,color_de_enfasis_noah,
 ACCENT_COLOR_1,accent_color_coil,color_de_enfasis_coil,
 ACCENT_COLOR_2,accent_color_dd,color_de_enfasis_dd,
+OM_P1CTRL,PLAYER ONE,JUGADOR UNO,
+OM_P2CTRL,PLAYER TWO,JUGADOR DOS,
+MOVE_LEFT_TO,move_left,mover_izquierda,mover_esquerda
+MOVE_RIGHT_TO,move_right,mover_derecha,mover_direita
+JUMP_TO,jump,saltar,pular
+AIM_UP_TO,aim_up,mirar_arriba,mirar_cima
+AIM_DOWN_TO,aim_down,mirar_abajo,mirar_baixo
+AIM_LEFT_TO,aim_left,mirar_izquierda,mirar_esquerda
+AIM_RIGHT_TO,aim_right,mirar_derecha,mirar_direita
+SHOOT_TO,shoot,disparar,atirar
+DASH_TO,dash,lanzarse,correr
+INPUT_HOLD_TO,input_hold,bloquear_controles,segurar_botao
+INTERACT_TO,interact,interactuar,interagir
