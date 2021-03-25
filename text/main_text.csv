@@ -2,13 +2,13 @@
 LANGUAGE,English,Español,Português
 AUDIO,audio,audio,audio
 MUTE_AUDIO,mute_audio,silenciar_audio,mutar_audio
-PEAK_VOLUME,"peak volume (left, right)","volumen maximo (izquierda, derecha)",
+PEAK_VOLUME,"peak volume (left, right)","volumen maximo (izquierda, derecha)","volume maximo (esquerda, direita)"
 GENERAL,general,general,geral
 DEBUG_MODE,debug_mode,modo_debug,modo_debug
-PLAYER_POSITION,"player position (X, Y)","posicion del jugador (X, Y)",
-OBJECT_COUNT,object count,cantidad de objetos,
+PLAYER_POSITION,"player position (X, Y)","posicion del jugador (X, Y)","posição do jogador"
+OBJECT_COUNT,object count,cantidad de objetos,contador the objetos
 RENDERER,renderer,renderizador,renderizar
-DISPLAY_BACKGROUNDS,display_backgrounds,mostrar_fondos,mostrar_fondos
+DISPLAY_BACKGROUNDS,display_backgrounds,mostrar_fondos,mostrar_fundos
 FULLSCREEN,full_screen,pantalla_completa,tela_cheia
 FREEZE_FRAME,freeze_frame,congelar_frame,congelar_frame
 CONTROLS,controls,controles,controles
@@ -21,40 +21,40 @@ AIM_LEFT,aim_left,mirar_izquierda,mirar_esquerda
 AIM_RIGHT,aim_right,mirar_derecha,mirar_direita
 SHOOT,shoot,disparar,atirar
 DASH,dash,lanzarse,correr
-INPUT_HOLD,input_hold,bloquear_controles,segurar_botao
-TOGGLE_DEBUG,toggle_debug,alternar_debug,alternancia_debug
+INPUT_HOLD,input_hold,bloquear_controles,segurar_botão
+TOGGLE_DEBUG,toggle_debug,alternar_debug,alternar_debug
 INTERACT,interact,interactuar,interagir
 PAUSE,pause,pausar,pausar
-CAMERA_EFFECTS,camera_effects,efectos_de_camara,
+CAMERA_EFFECTS,camera_effects,efectos_de_camara,efeitos_de_câmera
 CFG_LOAD_ERROR,Error loading the settings. Error code: %s,Error al cargar la configuración. Codigo de error: %s,Erro carregando as configurações. Codigo de erro: %s
 CFG_LOAD_SUCCESS,Settings Loaded. File: %s,Configuración cargada. Archivo: %s,Configurações carregadas. Arquivo: %s
-MM_PLAYBT,PLAY,JUGAR,
-MM_OPTIONSBT,OPTIONS,OPCIONES,
+MM_PLAYBT,PLAY,JUGAR,JOGAR
+MM_OPTIONSBT,OPTIONS,OPCIONES,OPÇÕES
 MM_SOUNDTEST,SOUND TEST,SOUND TEST,SOUND TEST
-MM_EXIT,EXIT,SALIR,
-KB_PRESSTOBIND,PRESS THE DESIRED KEY TO BIND,PULSA CUALQUIER TECLA PARA ASIGNAR,
-OM_TITLE,OPTIONS,OPCIONES,
-OM_GENERAL,GENERAL,GENERAL,
+MM_EXIT,EXIT,SALIR,SAIR
+KB_PRESSTOBIND,PRESS THE DESIRED KEY TO BIND,PULSA CUALQUIER TECLA PARA ASIGNAR,CLIQUE NA TECLA DESEJADA
+OM_TITLE,OPTIONS,OPCIONES,OPÇÕES
+OM_GENERAL,GENERAL,GENERAL,GERAL
 OM_RENDERER,RENDERER,RENDERIZADOR,
 OM_CONTROLS,CONTROLS,CONTROLES,
 OM_AUDIO,AUDIO,AUDIO,
-OM_EXIT,EXIT,SALIR,
+OM_EXIT,EXIT,SALIR,SAIR
 PAUSED,PAUSED,PAUSADO,
 PGH,fat fucker XDDDDDDDDDDDDDD,puto gordo homosexual XDDDDDDDDDDDDD,
 YES,yes,si,sim
-NO,no,no,nao
+NO,no,no,não
 OM_LANGUAGE,LANGUAGE,IDIOMA,IDIOMA
 OM_MUSIC_VOLUME,MUSIC VOLUME,VOLUMEN - MUSICA,
 OM_SOUND_VOLUME,SOUND VOLUME,VOLUMEN - SONIDO,
 LANG,language,idioma,idioma
-MASTER_VOLUME,master_volume,volumen_maestro,
-MUSIC_VOLUME,music_volume,volumen_de_la_musica,
-SOUND_VOLUME,sound_volume,volumen_del_sonido,
+MASTER_VOLUME,master_volume,volumen_maestro,volume_geral
+MUSIC_VOLUME,music_volume,volumen_de_la_musica,volume_da_musica
+SOUND_VOLUME,sound_volume,volumen_del_sonido,volume_de_som
 ACCENT_COLOR_0,accent_color_noah,color_de_enfasis_noah,
 ACCENT_COLOR_1,accent_color_coil,color_de_enfasis_coil,
 ACCENT_COLOR_2,accent_color_dd,color_de_enfasis_dd,
-OM_P1CTRL,PLAYER ONE,JUGADOR UNO,
-OM_P2CTRL,PLAYER TWO,JUGADOR DOS,
+OM_P1CTRL,PLAYER ONE,JUGADOR UNO,JOGADOR UM
+OM_P2CTRL,PLAYER TWO,JUGADOR DOS,JOGADOR DOIS
 MOVE_LEFT_TO,move_left,mover_izquierda,mover_esquerda
 MOVE_RIGHT_TO,move_right,mover_derecha,mover_direita
 JUMP_TO,jump,saltar,pular
