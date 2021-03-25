@@ -207,8 +207,10 @@ tracks/3/keys = {
 ]]
 material = SubResource( 1 )
 z_index = 4000
+input_pickable = true
 collision_layer = 32
 collision_mask = 65
+collision/safe_margin = 1.0
 script = ExtResource( 3 )
 character = ExtResource( 9 )
 
@@ -264,12 +266,10 @@ script = ExtResource( 1 )
 script = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, 16 )
 shape = SubResource( 5 )
 
 [node name="Camera" parent="." instance=ExtResource( 10 )]
-visible = false
 
 [node name="FiringSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )

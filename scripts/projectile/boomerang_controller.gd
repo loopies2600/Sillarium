@@ -32,7 +32,7 @@ func _physics_process(delta):
 	
 	# Cambia la velocidad
 	if !falling:
-		Objects.spawn(21, sprite.global_position)
+		Objects.spawn(21, {"global_position" : sprite.global_position})
 		Renderer.spawnTrail(0.1, sprite)
 		velocity += velocityDecrease
 	

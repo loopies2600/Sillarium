@@ -14,7 +14,7 @@ func _init():
 	Objects.currentWorld = self
 	
 func _ready():
-	optionsText.bbcode_text = "[wave amp=64]" + tr("OM_TITLE")
+	optionsText.bbcode_text = "[wave amp=32]" + tr("OM_TITLE")
 	Renderer.fade("out")
 	Renderer.backgroundSetup(backgroundID)
 	Audio.musicSetup(musicID)
@@ -31,7 +31,7 @@ func _spawnButtons():
 			newButton.category = section
 			newButton.key = key
 			newButton.val = val
-			newButton.font = optionsText.get_font("normal_font")
+			newButton.font = langButton.get_font("font")
 			
 			match section:
 				"general":

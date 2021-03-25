@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/ui/menu/options_menu/options_menu.gd" type="Script" id=2]
@@ -6,6 +6,17 @@
 [ext_resource path="res://scripts/ui/menu/options_menu/exit_to_menu.gd" type="Script" id=4]
 [ext_resource path="res://scripts/ui/menu/options_menu/sound_test.gd" type="Script" id=5]
 [ext_resource path="res://scripts/ui/menu/options_menu/audio_slider.gd" type="Script" id=6]
+[ext_resource path="res://font/planetk.tres" type="DynamicFont" id=7]
+[ext_resource path="res://font/lmilk.tres" type="DynamicFont" id=8]
+[ext_resource path="res://font/planetkosmos.TTF" type="DynamicFontData" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+extra_spacing_char = 8
+font_data = ExtResource( 9 )
 
 [node name="OptionsMenu" type="Control"]
 anchor_right = 1.0
@@ -22,9 +33,9 @@ anchor_left = 0.025
 anchor_top = 0.025
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/normal_font = ExtResource( 1 )
+custom_fonts/normal_font = ExtResource( 7 )
 bbcode_enabled = true
-bbcode_text = "[wave amp=64]OPTIONS"
+bbcode_text = "[wave amp=32]OPTIONS"
 text = "OPTIONS"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -43,7 +54,7 @@ __meta__ = {
 }
 
 [node name="Renderer" type="VBoxContainer" parent="Items"]
-margin_right = 372.0
+margin_right = 495.0
 margin_bottom = 720.0
 custom_constants/separation = 16
 __meta__ = {
@@ -51,127 +62,127 @@ __meta__ = {
 }
 
 [node name="General" type="VBoxContainer" parent="Items/Renderer"]
-margin_right = 372.0
-margin_bottom = 120.0
+margin_right = 495.0
+margin_bottom = 140.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GeneralLabel" type="Label" parent="Items/Renderer/General"]
-margin_right = 372.0
-margin_bottom = 54.0
-custom_fonts/font = ExtResource( 1 )
+margin_right = 495.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 1 )
 text = "OM_GENERAL"
 
 [node name="LanguageButton" type="Button" parent="Items/Renderer/General"]
-margin_top = 58.0
-margin_right = 372.0
-margin_bottom = 120.0
+margin_top = 84.0
+margin_right = 495.0
+margin_bottom = 140.0
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 1 )
 text = "OM_LANGUAGE"
 
 [node name="RendererLabel" type="Label" parent="Items/Renderer"]
-margin_top = 136.0
-margin_right = 372.0
-margin_bottom = 190.0
-custom_fonts/font = ExtResource( 1 )
+margin_top = 156.0
+margin_right = 495.0
+margin_bottom = 236.0
+custom_fonts/font = SubResource( 1 )
 text = "OM_RENDERER"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Controls" type="VBoxContainer" parent="Items"]
-margin_left = 436.0
-margin_right = 1047.0
+margin_left = 559.0
+margin_right = 1180.0
 margin_bottom = 720.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ControlsLabel" type="Label" parent="Items/Controls"]
-margin_right = 611.0
-margin_bottom = 54.0
-custom_fonts/font = ExtResource( 1 )
+margin_right = 621.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 1 )
 text = "OM_CONTROLS"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="WayTooBig" type="HBoxContainer" parent="Items/Controls"]
-margin_top = 58.0
-margin_right = 611.0
-margin_bottom = 112.0
+margin_top = 84.0
+margin_right = 621.0
+margin_bottom = 148.0
 custom_constants/separation = 32
 
 [node name="P1Controls" type="VBoxContainer" parent="Items/Controls/WayTooBig"]
-margin_right = 286.0
-margin_bottom = 54.0
+margin_right = 287.0
+margin_bottom = 64.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="P1Label" type="Label" parent="Items/Controls/WayTooBig/P1Controls"]
-margin_right = 286.0
-margin_bottom = 54.0
-custom_fonts/font = ExtResource( 1 )
+margin_right = 287.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 8 )
 text = "OM_P1CTRL"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="P2Controls" type="VBoxContainer" parent="Items/Controls/WayTooBig"]
-margin_left = 318.0
-margin_right = 611.0
-margin_bottom = 54.0
+margin_left = 319.0
+margin_right = 621.0
+margin_bottom = 64.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="P2Label" type="Label" parent="Items/Controls/WayTooBig/P2Controls"]
-margin_right = 293.0
-margin_bottom = 54.0
-custom_fonts/font = ExtResource( 1 )
+margin_right = 302.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 8 )
 text = "OM_P2CTRL"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Audio" type="VBoxContainer" parent="Items"]
-margin_left = 1111.0
-margin_right = 1623.0
+margin_left = 1244.0
+margin_right = 1708.0
 margin_bottom = 720.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AudioLabel" type="Label" parent="Items/Audio"]
-margin_right = 512.0
-margin_bottom = 54.0
-custom_fonts/font = ExtResource( 1 )
+margin_right = 464.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 1 )
 text = "OM_AUDIO"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MVPanel" type="PanelContainer" parent="Items/Audio"]
-margin_top = 58.0
-margin_right = 512.0
-margin_bottom = 140.0
+margin_top = 84.0
+margin_right = 464.0
+margin_bottom = 160.0
 theme = ExtResource( 3 )
 
 [node name="MVContainer" type="VBoxContainer" parent="Items/Audio/MVPanel"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 508.0
-margin_bottom = 78.0
+margin_right = 460.0
+margin_bottom = 72.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MVLabel" type="Label" parent="Items/Audio/MVPanel/MVContainer"]
-margin_right = 504.0
-margin_bottom = 54.0
+margin_right = 456.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "OM_MUSIC_VOLUME"
@@ -179,9 +190,9 @@ align = 1
 valign = 1
 
 [node name="MusicVolume" type="HSlider" parent="Items/Audio/MVPanel/MVContainer"]
-margin_top = 58.0
-margin_right = 504.0
-margin_bottom = 74.0
+margin_top = 52.0
+margin_right = 456.0
+margin_bottom = 68.0
 theme = ExtResource( 3 )
 max_value = 1.0
 step = 0.0
@@ -191,20 +202,20 @@ script = ExtResource( 6 )
 targetAudioBus = "Music"
 
 [node name="SVPanel" type="PanelContainer" parent="Items/Audio"]
-margin_top = 144.0
-margin_right = 512.0
-margin_bottom = 226.0
+margin_top = 164.0
+margin_right = 464.0
+margin_bottom = 240.0
 theme = ExtResource( 3 )
 
 [node name="SVContainer" type="VBoxContainer" parent="Items/Audio/SVPanel"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 508.0
-margin_bottom = 78.0
+margin_right = 460.0
+margin_bottom = 72.0
 
 [node name="SVLabel" type="Label" parent="Items/Audio/SVPanel/SVContainer"]
-margin_right = 504.0
-margin_bottom = 54.0
+margin_right = 456.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "OM_SOUND_VOLUME"
@@ -212,9 +223,9 @@ align = 1
 valign = 1
 
 [node name="SoundVolume" type="HSlider" parent="Items/Audio/SVPanel/SVContainer"]
-margin_top = 58.0
-margin_right = 504.0
-margin_bottom = 74.0
+margin_top = 52.0
+margin_right = 456.0
+margin_bottom = 68.0
 theme = ExtResource( 3 )
 max_value = 1.0
 step = 0.0
@@ -224,9 +235,9 @@ script = ExtResource( 6 )
 targetAudioBus = "Sound"
 
 [node name="SoundTest" type="Button" parent="Items/Audio"]
-margin_top = 230.0
-margin_right = 512.0
-margin_bottom = 292.0
+margin_top = 244.0
+margin_right = 464.0
+margin_bottom = 300.0
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 1 )
 text = "MM_SOUNDTEST"

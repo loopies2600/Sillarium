@@ -15,8 +15,9 @@ func _ready():
 	connectSignals()
 	
 func connectSignals():
-	Objects.currentWorld.connect("level_started", self, "_levelStarted")
-	Objects.currentWorld.connect("level_initialized", self, "_levelInitialized")
+	if Objects.currentWorld:
+		Objects.currentWorld.connect("level_started", self, "_levelStarted")
+		Objects.currentWorld.connect("level_initialized", self, "_levelInitialized")
 	owner.connect("player_respawned", self, "_levelStarted")
 	
 	for child in get_children():

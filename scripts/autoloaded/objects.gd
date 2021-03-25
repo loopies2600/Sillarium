@@ -22,8 +22,10 @@ func spawnPlayer(charID, pos, respawning := false, pSlot := "player"):
 	
 	match pSlot:
 		"player":
+			Globals.debugOverlay.vars[1][1] = Globals.player
 			Globals.get(pSlot).inputSuffix = ""
 		"playerTwo":
+			Globals.debugOverlay.vars[2][1] = Globals.playerTwo
 			Globals.get(pSlot).inputSuffix = "_to"
 			
 	Globals.get(pSlot).global_position = pos
@@ -51,13 +53,17 @@ func getClosestOrFurthest(caller : Object, groupName : String, getClosest := tru
 			
 	return returnObject
 	
-func spawn(id, pos = Vector2()):
+func spawn(id, cVars = {}):
 	# esta función primero lee el nombre y archivo del objeto desde el JSON, luego lo instancia. ah, no te olvides de pasarle una posición, si queres.
 	var _objName = Globals.LoadJSON(OBJ, id, "name")
 	var obj = load(Globals.LoadJSON(OBJ, id, "file"))
 	
 	var newObj = obj.instance()
-	if newObj is Node2D: newObj.global_position = pos
+	
+	if !cVars.empty():
+		for variable in cVars:
+			newObj.set(variable, cVars[variable])
+			
 	currentWorld.add_child(newObj)
 	
 	return newObj

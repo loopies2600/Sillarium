@@ -93,7 +93,7 @@ func getMusicPeakVolume():
 	var left = AudioServer.get_bus_peak_volume_left_db(0, 0)
 	var right = AudioServer.get_bus_peak_volume_right_db(0, 0)
 	
-	return Vector2(left, right)
+	return Vector2(-left, right)
 	
 func fade():
 	fading = true
