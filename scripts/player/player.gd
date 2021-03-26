@@ -190,7 +190,7 @@ func startGracePeriod():
 	gracePeriod.start()
 	flashing = true
 	
-	setCollisionBits([2, 3], false)
+	setCollisionBits([CollisionLayers.ENEMY, CollisionLayers.ENEMY_PROJECTILE], false)
 	
 func _setHealth(value: int):
 	var prevHealth = health
@@ -217,4 +217,4 @@ func _gracePeriodEnd():
 	visible = true
 	flashing = false
 	
-	setCollisionBits([2, 3], true)
+	setCollisionBits([CollisionLayers.ENEMY, CollisionLayers.ENEMY_PROJECTILE], true)

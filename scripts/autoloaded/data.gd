@@ -23,8 +23,6 @@ var _data := {
 func _ready():
 	Save(SAVE_PATH, 0)
 	
-	print(getData("player0", "weapon"))
-	
 func Save(path := SAVE_PATH, slot := 0):
 	var dir = Directory.new()
 	if !dir.dir_exists(path):

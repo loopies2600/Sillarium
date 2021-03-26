@@ -60,8 +60,6 @@ func _input(event):
 	if event.is_action_pressed("toggle_debug"):
 		Globals.debugMenuOpen = !Globals.debugMenuOpen
 		
-		print(Globals.debugMenuOpen)
-		
 		if Globals.debugMenuOpen:
 			targetAlpha = 1.0
 		else:

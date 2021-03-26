@@ -12,7 +12,7 @@ func enter(msg := {}):
 	
 	owner.animator.play("Dash")
 	owner.animateGraphics("dash")
-	owner.setCollisionBits([2, 3], false)
+	owner.setCollisionBits([CollisionLayers.ENEMY, CollisionLayers.ENEMY_PROJECTILE], false)
 	
 	owner.canInput = false
 	owner.canDash = false
@@ -36,5 +36,5 @@ func update(delta):
 		emit_signal("finished", "previous")
 			
 func exit():
-	owner.setCollisionBits([2, 3], true)
+	owner.setCollisionBits([CollisionLayers.ENEMY, CollisionLayers.ENEMY_PROJECTILE], true)
 	owner.canInput = true
