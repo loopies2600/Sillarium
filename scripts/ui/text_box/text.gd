@@ -1,76 +1,81 @@
 extends RichTextLabel
 
-enum Modes {PERCENTAGE, CHARACTERS}
+export(float) var soundBitVolume = 1.0
+export(String) var soundBitBus = "Sound"
 
-const CHARACTER_MODE_THRESHOLD_DENOMINATOR = 8.0
+var texts := []
+var sounds := []
+var textSpeed := 0.75
+var printing := false
+var currentPage := 0
+var charCount := 0
 
-export(Modes) var mode = Modes.PERCENTAGE
-export(float) var volume_db = 1.0
-export(String) var audio_bus = "Master"
-
-var sounds: Array = []
-var print_on: bool = false
-var print_speed: float = 1.0
-var fast_print_speed: float = 2.0
-var accumulation: float = 0.0
-var chunk_size = 1.0
-onready var audio_player: AudioStreamPlayer = AudioStreamPlayer.new()
+onready var soundBitPlayer: AudioStreamPlayer = AudioStreamPlayer.new()
+onready var charTimer : Timer = Timer.new()
 
 func _ready():
-	audio_player.bus = audio_bus
-	add_child(audio_player)
-
-
-func print_message(message: String, speed: float = 1.0, sound_paths: Array = ["res://streams/sfx/unknown_voice.wav"]):
-	print_speed = speed
-	fast_print_speed = 2.0 * speed
+	soundBitPlayer.volume_db = soundBitVolume
+	soundBitPlayer.bus = soundBitBus
+	add_child(soundBitPlayer)
 	
-	for x in sound_paths:
-		sounds.append(load(x))
+	add_child(charTimer)
+	charTimer.set_one_shot(true)
+	charTimer.connect("timeout", self, "_addChar")
 	
-	if message.length() != 0:
-		text = message
-		print_on = true
+func _process(_delta):
+	visible_characters = charCount
 	
-	percent_visible = 0.0
-
-
-func _process(delta):
-	if print_on:
-		randomize()
-		sounds.shuffle()
-		audio_player.volume_db = volume_db
-		match mode:
-			Modes.PERCENTAGE:
-				accumulation += delta * print_speed
-				
-				if accumulation > 0.01 * print_speed:
-					percent_visible += accumulation
-					
-					audio_player.stream = sounds[0]
-					audio_player.pitch_scale = 2
-					audio_player.play()
-					
-					accumulation = 0.0
-			Modes.CHARACTERS:
-				chunk_size = (1.0 / get_total_character_count()) * print_speed
-				accumulation += delta * chunk_size
-				
-				if accumulation >= (1.0 + randf()) / get_total_character_count():
-					percent_visible += accumulation
-					
-					audio_player.stream = sounds[0]
-					audio_player.pitch_scale = 1.1 - (randf() * 0.2)
-					audio_player.play()
-					
-					accumulation = 0.0
+func _input(event):
+	if event.is_action_pressed("jump"):
+		if charCount < texts[currentPage].length():
+			charCount = texts[currentPage].length()
+			printing = false
+		else:
+			_movePage(1)
+			
+func _movePage(howMany : int):
+	if currentPage < texts.size() - 1:
+		currentPage += howMany
+	else:
+		currentPage = 0
+	
+	charCount = 0
+	printing = true
+	text = texts[currentPage]
+	_startTimer()
+	
+func _message(strings := [], soundList := [], speed := textSpeed):
+	sounds = soundList
+	
+	for msg in len(strings):
+		strings[msg] = strings[msg].to_upper()
 		
-		if percent_visible >= 1.0:
-			print_on = false
-
-func fast_speed():
-	print_speed = fast_print_speed
-
-
-func normal_speed():
-	print_speed = fast_print_speed / 2
+	texts = strings
+	textSpeed = speed
+	printing = true
+	
+	text = texts[currentPage]
+	_startTimer()
+	
+func _startTimer(waitTime := textSpeed):
+	charTimer.set_wait_time(waitTime)
+	charTimer.start()
+	
+func _addChar():
+	if printing:
+		charCount += 1
+		
+		if charCount > texts[currentPage].length() - 1:
+			printing = false
+			
+		if sounds:
+			if texts[currentPage][charCount - 1] != " ":
+				_playSoundBit(sounds)
+				_startTimer()
+			else:
+				_startTimer(textSpeed * 1.25)
+		
+func _playSoundBit(sndArray := []):
+	soundBitPlayer.stream = load(sndArray[randi() % sndArray.size()])
+	soundBitPlayer.pitch_scale = rand_range(0.75, 1.25)
+	soundBitPlayer.play()
