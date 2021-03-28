@@ -3,10 +3,13 @@ class_name Player, "res://sprites/ui/menu/player.png"
 
 signal player_grounded_updated(isGrounded)
 signal player_damaged(x, y)
+signal player_combo_updated()
 signal player_health_updated(health)
+signal player_lives_updated()
+signal player_score_updated()
+signal player_weapon_updated(wpsID)
 signal player_killed()
 signal player_respawned()
-signal player_score_updated
 
 export(Resource) var character
 onready var dashTexture = character.dashTexture
@@ -24,7 +27,11 @@ onready var dashStrength = character.dashStrength
 onready var dashDuration = character.dashDuration
 onready var bounceOff = character.bounceOff
 onready var graceTime = character.graceTime
+onready var comboTime = character.comboTime
 
+var playerID := 0
+var slot := "player"
+var inputSuffix := ""
 var lastGoodPosition := Vector2()
 
 var isGrounded := true
@@ -32,16 +39,15 @@ var jumpForce
 var snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
 var velocity := Vector2()
 
-var canInput := false
-var flashing := false
 var canDash := true
+var canInput := false
+var doinCombo := false
+var flashing := false
 
-var score := 0 setget _setScore
-var deaths := 0 setget _setDeaths
-
-var playerID := 0
-var slot := "player"
-var inputSuffix := ""
+var combo := 0 setget _setCombo
+var deaths : int = Data.getData(slot, "deaths") setget _setDeaths
+var lives : int = Data.getData(slot, "lives") setget _setLives
+var score : int = Data.getData(slot, "total_score") setget _setScore
 
 var currentWeapon
 var weapon
@@ -57,7 +63,8 @@ onready var legs = $Graphics/Body/Legs
 onready var hitbox = $CollisionShape2D
 onready var camera = $Camera
 onready var attackSound = $FiringSound
-onready var gracePeriod = $GracePeriodTimer
+onready var gracePeriod = $Timers/GracePeriodTimer
+onready var comboPeriod = $Timers/ComboTimer
 
 onready var bodyParts = [head, body, legs]
 
@@ -70,6 +77,7 @@ func connectSignals():
 	Objects.currentWorld.connect("level_initialized", self, "_onLevelInit")
 	Objects.currentWorld.connect("level_started", self, "_onLevelStart")
 	gracePeriod.connect("timeout", self, "_gracePeriodEnd")
+	comboPeriod.connect("timeout", self, "_comboEnd")
 	camera.connectToManipulators()
 	connect("player_respawned", self, "_onRespawn")
 	
@@ -79,6 +87,7 @@ func _onLevelInit():
 	canInput = false
 	
 func _onLevelStart():
+	Objects.spawn(16)
 	startGracePeriod()
 	canInput = true
 	
@@ -109,15 +118,27 @@ func _physics_process(delta):
 	keepOnScreen(true, false, Vector2(hitbox.shape.extents.x * 2, 0))
 	
 func _setScore(value : int) -> void:
-	score = value
+	Data.setData(slot, "total_score", value)
+	score = Data.getData(slot, "total_score")
 	emit_signal("player_score_updated")
 	
 func _setDeaths(value : int) -> void:
-	deaths = value
+	Data.setData(slot, "deaths", value)
+	deaths = Data.getData(slot, "deaths")
 	emit_signal("player_killed")
+	
+func _setLives(value : int) -> void:
+	Data.setData(slot, "lives", value)
+	lives = Data.getData(slot, "lives")
+	emit_signal("player_lives_updated")
+	
+func _setCombo(value : int) -> void:
+	combo = clamp(value, 0, 1000000)
+	emit_signal("player_combo_updated")
 	
 func groundCheck():
 	var wasGrounded = isGrounded
+	score = Data.getData(slot, "total_score")
 	isGrounded = is_on_floor()
 	
 	if wasGrounded == null || isGrounded != wasGrounded:
@@ -125,6 +146,7 @@ func groundCheck():
 		lastGoodPosition = position
 		
 func pickUpWeapon(id):
+	emit_signal("player_weapon_updated", id)
 	if currentWeapon != null:
 		currentWeapon.queue_free()
 		
@@ -157,6 +179,10 @@ func damp(damping := friction):
 func flashBehaviour():
 	if flashing:
 		visible = !visible
+		
+	if !doinCombo && combo > 0:
+		self.combo -= 1
+		self.score += 1
 	
 func getInputDirection() -> int:
 	if canInput:
@@ -192,6 +218,11 @@ func startGracePeriod():
 	
 	setCollisionBits([CollisionLayers.ENEMY, CollisionLayers.ENEMY_PROJECTILE], false)
 	
+func womboCombo():
+	comboPeriod.wait_time = character.comboTime
+	comboPeriod.start()
+	doinCombo = true
+	
 func _setHealth(value: int):
 	var prevHealth = health
 	health = clamp(value, 0, character.health)
@@ -204,13 +235,19 @@ func _setHealth(value: int):
 	
 func kill():
 	self.deaths += 1
-	var respawner = Objects.spawn(24, global_position)
+	self.lives -= 1
 	
-	Globals.set(slot, null)
-	remove_child(camera)
-	respawner.add_child(camera)
-	respawner.respawnPos = lastGoodPosition
-	respawner.playerSlot = slot
+	if lives > 1:
+		var respawner = Objects.spawn(24, {
+		"global_position" : global_position,
+		"respawnPos" : lastGoodPosition, 
+		"playerSlot" : slot}
+		)
+		
+		Globals.set(slot, null)
+		remove_child(camera)
+		respawner.add_child(camera)
+		
 	queue_free()
 	
 func _gracePeriodEnd():
@@ -218,3 +255,6 @@ func _gracePeriodEnd():
 	flashing = false
 	
 	setCollisionBits([CollisionLayers.ENEMY, CollisionLayers.ENEMY_PROJECTILE], true)
+	
+func _comboEnd():
+	doinCombo = false

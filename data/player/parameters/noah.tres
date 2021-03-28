@@ -17,3 +17,4 @@ dashStrength = 500.0
 dashDuration = 0.2
 bounceOff = 0.75
 graceTime = 2.0
+comboTime = 4.0

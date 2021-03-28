@@ -16,3 +16,4 @@ export (float) var dashStrength = 500.0
 export (float) var dashDuration = 0.2
 export (float, 0, 1) var bounceOff = 0.75
 export (float) var graceTime = 2.0
+export (float) var comboTime = 4.0

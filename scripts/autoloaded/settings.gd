@@ -125,7 +125,6 @@ func loadSettings():
 		for key in _settings[section].keys():
 			var val = _configFile.get_value(section,key)
 			_settings[section][key] = val
-			print(tr(str(key).to_upper()) + ": %s" % val)
 			
 	# y entonces le avisamos que es un positivo, además de imprimir cada clave en la consola.
 	bindKeys()

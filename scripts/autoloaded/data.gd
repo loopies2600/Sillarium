@@ -6,14 +6,16 @@ const SAVE_FORMAT = ".sillarium"
 const SAVE_PATH = "user://save/"
 
 var _data := {
-	"player0": {
+	"player": {
 		"character" : 0,
+		"lives" : 4,
 		"deaths" : 0,
 		"total_score" : 0,
 		"weapon" : 0
 	},
-	"player1": {
+	"playerTwo": {
 		"character" : 0,
+		"lives" : 4,
 		"deaths" : 0,
 		"total_score" : 0,
 		"weapon" : 0

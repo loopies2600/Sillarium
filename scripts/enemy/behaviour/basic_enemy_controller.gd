@@ -10,6 +10,7 @@ onready var hitbox : Area2D
 
 export (int) var health = 5
 export (int) var damage = 2
+export (int) var score = 50
 export (bool) var killsPlayer = true
 
 func _ready():
@@ -21,16 +22,19 @@ func _ready():
 
 func onAreaEntered(area):
 	if area.is_in_group("PlayerProjectile"):
-		_takeDamage(area.damage)
+		_takeDamage(area.damage, area.papa)
 
 func onBodyEntered(body):
 	if body is Player and killsPlayer:
 		body.takeDamage(damage)
 	
-func _takeDamage(eDamage : int):
+func _takeDamage(eDamage : int, dealer = null):
 	health -= eDamage
 	
 	if health <= 0:
+		dealer.score += score
+		dealer.combo += score
+		dealer.womboCombo()
 		emit_signal("destroy_self")
 	else:
 		emit_signal("take_damage")

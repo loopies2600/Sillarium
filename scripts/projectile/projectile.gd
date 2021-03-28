@@ -10,6 +10,7 @@ onready var sprite : Sprite
 onready var hitbox : CollisionShape2D
 
 var color = Color.white
+var papa
 var velocity = Vector2()
 
 func initialize():

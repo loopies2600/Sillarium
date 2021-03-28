@@ -3,6 +3,8 @@
 
 extends Node
 
+signal player_back_in_action(slot)
+
 const OBJ = "res://data/json/objects.json"
 const PICKUP = "res://data/json/pickups.json"
 
@@ -32,6 +34,7 @@ func spawnPlayer(charID, pos, respawning := false, pSlot := "player"):
 	Globals.get(pSlot).connectSignals()
 	
 	if respawning:
+		emit_signal("player_back_in_action", pSlot)
 		Globals.get(pSlot).emit_signal("player_respawned")
 	
 	return Globals.get(pSlot)
@@ -78,6 +81,11 @@ func getWeapon(id, pos, z, _ammo = 0):
 	weapon.z_index = z
 	weapon.type = wpsType
 	return weapon
+	
+func getWeaponName(id):
+	var wpsName = Globals.LoadJSON(PICKUP, id, "name")
+	
+	return wpsName
 	
 func getObj(id):
 	# este es como el que spawnea objetos, pero solo lee el archivo de objeto desde el JSON, el resto lo podes hacer vos mismo...

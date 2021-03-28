@@ -43,7 +43,7 @@ func _returnToScene():
 	Renderer.fade("in")
 	Renderer.transition.connect("fade_finished", self, "_fadeEnd")
 	
-func _fadeEnd():
+func _fadeEnd(_mode):
 	if Objects.previousWorld:
 		return get_tree().change_scene(Objects.previousWorld)
 	else:

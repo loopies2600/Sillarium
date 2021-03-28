@@ -280,6 +280,12 @@ anims/dash = SubResource( 7 )
 anims/default = SubResource( 8 )
 anims/hurt = ExtResource( 14 )
 
-[node name="GracePeriodTimer" type="Timer" parent="."]
+[node name="Timers" type="Node" parent="."]
+
+[node name="GracePeriodTimer" type="Timer" parent="Timers"]
 wait_time = 2.0
+one_shot = true
+
+[node name="ComboTimer" type="Timer" parent="Timers"]
+wait_time = 4.0
 one_shot = true

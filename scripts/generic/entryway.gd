@@ -17,5 +17,5 @@ func OnPlayerEnter(body):
 		Renderer.fade("in")
 		Renderer.transition.connect("fade_finished", self, "_fadeEnd")
 	
-func _fadeEnd():
+func _fadeEnd(_mode):
 	Globals.LoadScene(levelToLoad)

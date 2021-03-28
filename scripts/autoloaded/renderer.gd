@@ -59,6 +59,11 @@ func fade(mode = "in", mask = preload("res://sprites/debug/test_transition.png")
 		newFade.mode = mode
 		newFade.mask = mask
 		get_tree().get_root().call_deferred("add_child", newFade)
+		
+	for transitionFunc in get_tree().get_nodes_in_group("TransitionFunc"):
+		transition.connect("fade_started", transitionFunc, "_fadeStart")
+		transition.connect("fade_finished", transitionFunc, "_fadeEnd")
+		
 	
 func backgroundSetup(bgID):
 	backgrounds = Settings.getSetting("renderer", "display_backgrounds")
