@@ -138,7 +138,6 @@ func _setCombo(value : int) -> void:
 	
 func groundCheck():
 	var wasGrounded = isGrounded
-	score = Data.getData(slot, "total_score")
 	isGrounded = is_on_floor()
 	
 	if wasGrounded == null || isGrounded != wasGrounded:

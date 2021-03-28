@@ -35,7 +35,7 @@ func _setupVars(_health = "don't use this variable!"):
 	
 	livlab.text = "LIVES = " + str(curData.lives)
 	scolab.text = "SCORE = " + str(curData.total_score)
-	wpslab.text = "WEAPON = " + Objects.getWeaponName(curData.weapon)
+	wpslab.text = "WEAPON = " + Objects.getWeaponName(curData.weapon).to_upper()
 	
 func _process(_delta):
 	bg.flip_v = !bg.flip_v
