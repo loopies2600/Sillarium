@@ -236,7 +236,7 @@ func kill():
 	self.deaths += 1
 	self.lives -= 1
 	
-	if lives > 1:
+	if lives > 0:
 		var respawner = Objects.spawn(24, {
 		"global_position" : global_position,
 		"respawnPos" : lastGoodPosition, 

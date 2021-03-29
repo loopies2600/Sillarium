@@ -1,9 +1,12 @@
 extends AnimatedSprite
 
+signal weapon_ammo_updated()
+
 export(Resource) var type
 
 var armsPos
 
+onready var ammo = type.maxAmmo setget _setAmmo
 onready var flipXDown = type.projectileOffset[2].x
 onready var flipXUp = type.projectileOffset[6].x
 onready var cooldownTimer = $Cooldown
@@ -43,9 +46,9 @@ func ChangeSprite(flip):
 	type.projectileOffset[2].x = -flipXDown if flip else flipXDown
 	type.projectileOffset[6].x = -flipXUp if flip else flipXUp
 	
-func _input(event):
-	if event.is_action_pressed("shoot" + get_parent().inputSuffix) and cooldownIsOver:
-		fire()
+func _setAmmo(value : int) -> void:
+	ammo = value
+	emit_signal("weapon_ammo_updated")
 	
 func _process(delta):
 	if armsPos != null:
@@ -55,6 +58,17 @@ func _process(delta):
 	
 	if type.canRotate:
 		doRotation()
+		
+	_handleFiring()
+		
+func _handleFiring():
+	match type.fireType:
+		0:
+			if Input.is_action_just_pressed("shoot" + get_parent().inputSuffix) and cooldownIsOver:
+				fire()
+		1:
+			if Input.is_action_pressed("shoot" + get_parent().inputSuffix) and cooldownIsOver:
+				fire()
 	
 func doRotation():
 	var direction = Vector2(
@@ -77,29 +91,32 @@ func doRotation():
 	ChangeSprite(get_parent().getFacingDirection())
 	
 func fire():
-	play("Fire")
-	
-	if type.displayFlash:
-		var newFlash = muzzleFlash.instance()
-		newFlash.position = position + type.projectileOffset[angleIndex]
-		newFlash.global_rotation = global_rotation
-		get_parent().add_child(newFlash)
+	if ammo > 0:
+		play("Fire")
 		
-	if type.hasCooldown:
-		_startCooldown()
+		if type.displayFlash:
+			var newFlash = muzzleFlash.instance()
+			newFlash.position = position + type.projectileOffset[angleIndex]
+			newFlash.global_rotation = global_rotation
+			get_parent().add_child(newFlash)
+			
+		if type.hasCooldown:
+			_startCooldown()
+			
+		offset.x = 4
+		var newProjectile = type.projectile.instance()
+		newProjectile.add_to_group("PlayerProjectile")
+		newProjectile.global_position = global_position + type.projectileOffset[angleIndex]
+		newProjectile.global_rotation = global_rotation
+		newProjectile.z_index = z_index - 16
+		newProjectile.papa = get_parent()
+		get_tree().get_root().add_child(newProjectile)
+		get_parent().attackSound.play()
+			
+		if type.recoil > 0.0:
+			get_parent().velocity -= Vector2(type.recoil, 0.0).rotated(global_rotation)
 		
-	offset.x = 4
-	var newProjectile = type.projectile.instance()
-	newProjectile.add_to_group("PlayerProjectile")
-	newProjectile.global_position = global_position + type.projectileOffset[angleIndex]
-	newProjectile.global_rotation = global_rotation
-	newProjectile.z_index = z_index - 16
-	newProjectile.papa = get_parent()
-	get_tree().get_root().add_child(newProjectile)
-	get_parent().attackSound.play()
-		
-	if type.recoil > 0.0:
-		get_parent().velocity -= Vector2(type.recoil, 0.0).rotated(global_rotation)
+		self.ammo -= 1
 	
 func _startCooldown():
 	cooldownIsOver = false

@@ -90,7 +90,7 @@ margin_left = 4.0
 margin_top = 2.0
 margin_right = 4.0
 margin_bottom = 6.0
-custom_constants/separation = 220
+custom_constants/separation = 64
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -113,8 +113,8 @@ custom_fonts/font = ExtResource( 5 )
 text = "HP"
 
 [node name="ScoringStuff" type="VBoxContainer" parent="Container/Stuff"]
-margin_left = 370.0
-margin_right = 556.0
+margin_left = 214.0
+margin_right = 400.0
 margin_bottom = 100.0
 
 [node name="Score" type="Label" parent="Container/Stuff/ScoringStuff"]
@@ -134,9 +134,17 @@ margin_bottom = 100.0
 custom_fonts/font = ExtResource( 5 )
 text = "WEAPON"
 
+[node name="Ammo" type="Label" parent="Container/Stuff"]
+margin_left = 464.0
+margin_top = 26.0
+margin_right = 584.0
+margin_bottom = 74.0
+custom_fonts/font = ExtResource( 5 )
+text = "AMMO"
+
 [node name="ComboStuff" type="VBoxContainer" parent="Container/Stuff"]
-margin_left = 776.0
-margin_right = 926.0
+margin_left = 648.0
+margin_right = 798.0
 margin_bottom = 100.0
 
 [node name="Combo" type="Label" parent="Container/Stuff/ComboStuff"]
