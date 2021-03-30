@@ -1,6 +1,7 @@
 extends Node
 class_name StateMachine
 
+# warning-ignore:unused_signal
 signal state_changed(current_state)
 
 export(NodePath) var START_STATE
@@ -10,18 +11,39 @@ var states_stack = []
 var current_state = null
 var _active = false setget set_active
 
+var firstConnection := true
+
 func _ready():
 	yield(owner, "ready")
 	connectSignals()
 	
 func connectSignals():
+	if !firstConnection:
+		_disconnectEverything()
+		
+	var _unused
 	if Objects.currentWorld:
-		Objects.currentWorld.connect("level_started", self, "_levelStarted")
-		Objects.currentWorld.connect("level_initialized", self, "_levelInitialized")
-	owner.connect("player_respawned", self, "_levelStarted")
+		_unused = Objects.currentWorld.connect("level_started", self, "_levelStarted")
+		_unused = Objects.currentWorld.connect("level_initialized", self, "_levelInitialized")
+		
+	if owner is Player:
+		_unused = owner.connect("player_respawned", self, "_levelStarted")
 	
 	for child in get_children():
 		child.connect("finished", self, "_change_state")
+		
+	firstConnection = false
+		
+func _disconnectEverything():
+	if Objects.currentWorld:
+		Objects.currentWorld.disconnect("level_started", self, "_levelStarted")
+		Objects.currentWorld.disconnect("level_initialized", self, "_levelInitialized")
+		
+	if owner is Player:
+		owner.disconnect("player_respawned", self, "_levelStarted")
+	
+	for child in get_children():
+		child.disconnect("finished", self, "_change_state")
 		
 func _levelInitialized():
 	set_active(false)

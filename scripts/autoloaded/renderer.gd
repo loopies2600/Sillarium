@@ -72,16 +72,15 @@ func backgroundSetup(bgID):
 		if (bgID != null):
 			var backgroundToLoad = load(Globals.LoadJSON(BG, bgID, "file"))
 			
-			if currentBackground == null:
-				var background = backgroundToLoad
-				currentBackground = background.instance()
-				Objects.currentWorld.add_child(currentBackground)
-			else:
+			var background = backgroundToLoad
+			currentBackground = background.instance()
+			Objects.currentWorld.add_child(currentBackground)
+				
+			if currentBackground:
 				currentBackground.queue_free()
 				
 			if currentBackground != backgroundToLoad:
 				currentBackground.queue_free()
-				var background = backgroundToLoad
 				currentBackground = background.instance()
 				Objects.currentWorld.add_child(currentBackground)
 	else:

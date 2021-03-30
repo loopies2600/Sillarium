@@ -1,6 +1,6 @@
 extends State
 
-func enter(msg := {}):
+func enter(_msg := {}):
 	owner.anim.play("Attack")
 	yield(owner.anim, "animation_finished")
 	emit_signal("finished", "idle")

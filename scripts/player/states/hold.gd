@@ -1,7 +1,7 @@
 extends "motion.gd"
 
-func enter(msg := {}):
-	owner.animator.play("Hold")
+func enter(_msg := {}):
+	pass
 	
 func physics_update(_delta):
 	owner.damp()

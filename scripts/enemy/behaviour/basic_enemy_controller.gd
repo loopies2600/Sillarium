@@ -34,7 +34,6 @@ func _takeDamage(eDamage : int, dealer = null):
 	if health <= 0:
 		dealer.score += score
 		dealer.combo += score
-		dealer.womboCombo()
 		emit_signal("destroy_self")
 	else:
 		emit_signal("take_damage")

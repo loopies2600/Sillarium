@@ -41,8 +41,16 @@ func _returnToScene():
 	TranslationServer.set_locale(language)
 	Settings.saveSettings()
 	Renderer.fade("in")
-	Renderer.transition.connect("fade_finished", self, "_fadeEnd")
+	_connectDaFade()
 	
+func _connectDaFade():
+	var connection = Renderer.transition.connect("fade_finished", self, "_fadeEnd")
+	
+	if connection:
+		Renderer.transition.disconnect("fade_finished", self, "_fadeEnd")
+		connection = null
+		connection = Renderer.transition.connect("fade_finished", self, "_fadeEnd")
+		
 func _fadeEnd(_mode):
 	if Objects.previousWorld:
 		return get_tree().change_scene(Objects.previousWorld)

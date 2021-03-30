@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+var firstConnection := true
 var papaSlot = "player"
 var papa = Globals.get(papaSlot)
 
@@ -14,18 +15,30 @@ onready var amolab = $Container/Stuff/Ammo
 onready var comlab = $Container/Stuff/ComboStuff/Counter
 
 func _ready():
-	Objects.connect("player_back_in_action", self, "_setupVars")
+	var _unused = Objects.connect("player_back_in_action", self, "_setupVars")
 	
 	if papa:
 		_setupVars()
 	
 func _connectStuff():
+	if !firstConnection:
+		_disconnectStuff()
+		
 	papa = Globals.get(papaSlot)
 	for property in ["health", "lives", "score", "weapon", "combo"]:
 		papa.connect("player_" + property + "_updated", self, "_setupVars")
 		
 	papa.weapon.connect("weapon_ammo_updated", self, "_setupVars")
+	
+	firstConnection = false
 		
+func _disconnectStuff():
+	papa = Globals.get(papaSlot)
+	for property in ["health", "lives", "score", "weapon", "combo"]:
+		papa.disconnect("player_" + property + "_updated", self, "_setupVars")
+		
+	papa.weapon.disconnect("weapon_ammo_updated", self, "_setupVars")
+	
 func _setupVars(_health = "don't use this variable!"):
 	_connectStuff()
 	

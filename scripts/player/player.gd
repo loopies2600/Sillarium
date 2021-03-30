@@ -9,6 +9,7 @@ signal player_lives_updated()
 signal player_score_updated()
 signal player_weapon_updated(wpsID)
 signal player_killed()
+# warning-ignore:unused_signal
 signal player_respawned()
 
 export(Resource) var character
@@ -74,12 +75,12 @@ func _ready():
 	add_child(currentWeapon)
 	
 func connectSignals():
-	Objects.currentWorld.connect("level_initialized", self, "_onLevelInit")
-	Objects.currentWorld.connect("level_started", self, "_onLevelStart")
-	gracePeriod.connect("timeout", self, "_gracePeriodEnd")
-	comboPeriod.connect("timeout", self, "_comboEnd")
-	camera.connectToManipulators()
-	connect("player_respawned", self, "_onRespawn")
+	var _unused = Objects.currentWorld.connect("level_initialized", self, "_onLevelInit")
+	_unused = Objects.currentWorld.connect("level_started", self, "_onLevelStart")
+	_unused = gracePeriod.connect("timeout", self, "_gracePeriodEnd")
+	_unused = comboPeriod.connect("timeout", self, "_comboEnd")
+	_unused = camera.connectToManipulators()
+	_unused = connect("player_respawned", self, "_onRespawn")
 	
 	stateMachine.connectSignals()
 	
@@ -133,7 +134,12 @@ func _setLives(value : int) -> void:
 	emit_signal("player_lives_updated")
 	
 func _setCombo(value : int) -> void:
-	combo = clamp(value, 0, 1000000)
+# warning-ignore:narrowing_conversion
+	if doinCombo:
+		combo = clamp(value, 0, 1000000)
+	else:
+		womboCombo()
+		
 	emit_signal("player_combo_updated")
 	
 func groundCheck():
@@ -170,7 +176,7 @@ func playRandomAnim(anims : Array):
 	animator.play(anims[animToPlay])
 	
 func move(speed := maxSpeed, direction := getInputDirection()):
-	velocity.x = clamp(velocity.x + (getInputDirection() * speed), -speed, speed)
+	velocity.x = clamp(velocity.x + (direction * speed), -speed, speed)
 	
 func damp(damping := friction):
 	velocity.x *= damping
@@ -180,7 +186,8 @@ func flashBehaviour():
 		visible = !visible
 		
 	if !doinCombo && combo > 0:
-		self.combo -= 1
+		combo -= 1
+		emit_signal("player_combo_updated")
 		self.score += 1
 	
 func getInputDirection() -> int:

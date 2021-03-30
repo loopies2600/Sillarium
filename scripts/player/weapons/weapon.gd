@@ -75,7 +75,6 @@ func doRotation():
 		int(Input.is_action_pressed("aim_right" + get_parent().inputSuffix)) - int(Input.is_action_pressed("aim_left" + get_parent().inputSuffix)),
 		int(Input.is_action_pressed("aim_down" + get_parent().inputSuffix)) - int(Input.is_action_pressed("aim_up" + get_parent().inputSuffix)))
 		
-	var facingRight
 	var desiredRotation
 	
 	if direction != Vector2.ZERO:

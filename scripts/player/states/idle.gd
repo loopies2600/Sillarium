@@ -1,9 +1,9 @@
 extends "motion.gd"
 
 func enter(_msg := {}):
-	owner.animator.play("Idle")
+	pass
 	
-func physics_update(delta):
+func physics_update(_delta):
 	owner.damp()
 	owner.animspeedAsVelocity()
 	

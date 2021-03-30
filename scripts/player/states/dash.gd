@@ -5,12 +5,11 @@ var dashTime
 
 var bumpedThru = false
 
-func enter(msg := {}):
+func enter(_msg := {}):
 	bumpedThru = false
 	dashModulate = owner.getShaderParam("flash_color")
 	dashTime = owner.dashDuration
 	
-	owner.animator.play("Dash")
 	owner.animateGraphics("dash")
 	owner.setCollisionBits([CollisionLayers.ENEMY, CollisionLayers.ENEMY_PROJECTILE], false)
 	

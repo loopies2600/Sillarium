@@ -7,7 +7,7 @@ func enter(msg := {}):
 		owner.velocity.y = 0.0
 		owner.velocity.y -= owner.jumpForce
 	
-func physics_update(delta):
+func physics_update(_delta):
 	owner.animspeedAsVelocity()
 	
 	if !owner.is_on_floor():

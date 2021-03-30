@@ -4,7 +4,7 @@ export (int) var idleTimer = 5.0
 
 var idleTime = idleTimer
 
-func enter(msg := {}):
+func enter(_msg := {}):
 	owner.anim.play("Idle")
 	idleTime = idleTimer
 	
