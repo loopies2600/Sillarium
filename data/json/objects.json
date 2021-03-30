@@ -50,8 +50,10 @@
 			 },
 			 
 	"10": {
-			"name": "Player (Noah)",
-			"file": "res://data/player/player.tscn"
+			"name": "Player",
+			"0": "res://data/player/noah.tscn",
+			"1": "res://data/player/coil.tscn",
+			"2": "res://data/player/dd.tscn"
 			 },
 			 
 	"11": {

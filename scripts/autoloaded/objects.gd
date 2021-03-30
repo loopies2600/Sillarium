@@ -13,8 +13,8 @@ var currentWorld
 var previousWorld
 
 func spawnPlayer(charID, pos, respawning := false, pSlot := "player"):
-	var characters := [preload("res://data/player/player.tscn")]
-	var currentChar = characters[charID].instance()
+	var character = load(Globals.LoadJSON(OBJ, 10, str(charID)))
+	var currentChar = character.instance()
 	
 	if Globals.get(pSlot) == null:
 		get_tree().get_root().add_child(currentChar)

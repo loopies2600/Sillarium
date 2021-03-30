@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource( 1 )
+fireType = 0
 projectile = ExtResource( 2 )
 aimGraphics = [ null, null, null, null, null, null, null, null ]
 projectileOffset = [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
@@ -14,3 +15,4 @@ displayFlash = false
 aimWeight = 0.875
 cooldown = 0.25
 recoil = 0.0
+maxAmmo = 100

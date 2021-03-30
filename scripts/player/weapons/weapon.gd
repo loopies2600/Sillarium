@@ -25,6 +25,7 @@ func _ready():
 	else:
 		cooldownIsOver = true
 	
+	modulate = get_parent().graphics.modulate
 	play("Idle")
 	var _unused = connect("animation_finished", self, "_animEnd")
 	cooldownTimer.connect("timeout", self, "_cooldownTimeout")
@@ -77,6 +78,10 @@ func doRotation():
 		
 	var desiredRotation
 	
+	if get_parent().isGrounded:
+		if direction.y == 1:
+			direction.y = 0
+		
 	if direction != Vector2.ZERO:
 		desiredRotation = direction.angle()
 		
