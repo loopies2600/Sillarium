@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+onready var tex = load(\"res://sprites/debug/direction.png\")
+onready var texSize = tex.get_size().x / 2 + tex.get_size().y / 2
+
+var targetPos := Vector2(500, 250)
+
+func _process(_delta):
+	update()
+	targetPos = lerp(targetPos, get_viewport().get_mouse_position(), 0.5)
+	
+func _draw():
+	var possibleCircles = int((targetPos.x + targetPos.y) / texSize)
+	
+	for cir in range(possibleCircles):
+		draw_texture(tex, Vector2((targetPos.x / possibleCircles) * cir, (targetPos.y / possibleCircles) * cir))
+"
+
+[node name="Line" type="Node2D"]
+script = SubResource( 1 )
