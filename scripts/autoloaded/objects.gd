@@ -25,9 +25,11 @@ func spawnPlayer(charID, pos, respawning := false, pSlot := "player"):
 	match pSlot:
 		"player":
 			Globals.debugOverlay.vars[1][1] = Globals.player
+			Globals.debugOverlay.vars[3][1] = Globals.player
 			Globals.get(pSlot).inputSuffix = ""
 		"playerTwo":
 			Globals.debugOverlay.vars[2][1] = Globals.playerTwo
+			Globals.debugOverlay.vars[4][1] = Globals.playerTwo
 			Globals.get(pSlot).inputSuffix = "_to"
 			
 	Globals.get(pSlot).global_position = pos

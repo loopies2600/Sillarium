@@ -5,20 +5,20 @@
 [ext_resource path="res://scripts/backgrounds/mode7.gd" type="Script" id=3]
 [ext_resource path="res://sprites/debug/direction.png" type="Texture" id=4]
 
-
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
-shader_param/POSITION = 0.0
-shader_param/DEPTH = Vector2( -0.011, 0.972 )
+shader_param/DEPTH = Vector2( -0.011, 0.394 )
+shader_param/POSITION = Vector2( 0, 0 )
 shader_param/REPEAT_X = true
 shader_param/REPEAT_Y = true
 shader_param/FLIP = false
+shader_param/toScreen = null
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 0, 0.0117647, 0.188235, 1, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 width = 300
 
 [node name="Tutorial" type="CanvasLayer"]
@@ -46,7 +46,7 @@ margin_left = 1024.0
 margin_right = 1408.0
 margin_bottom = 1024.0
 rect_rotation = 90.0
-texture = SubResource( 5 )
+texture = SubResource( 3 )
 stretch_mode = 1
 flip_h = true
 __meta__ = {
@@ -59,7 +59,7 @@ margin_top = 384.0
 margin_right = 1324.0
 margin_bottom = 1408.0
 rect_rotation = 90.0
-texture = SubResource( 5 )
+texture = SubResource( 3 )
 stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false

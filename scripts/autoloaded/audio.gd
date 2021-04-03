@@ -53,7 +53,9 @@ func musicSetup(bgmID):
 			currentBPM = getMusicBPM(currentID)
 	else:	
 		if currentMusic != null:
+			set_process(false)
 			currentMusic.queue_free()
+			currentMusic = null
 	
 func _process(_delta):
 	if !currentMusic or !currentMusic.playing:

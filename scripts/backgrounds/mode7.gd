@@ -8,4 +8,4 @@ var speed = 0.125
 
 func _process(_delta):
 	wrap = wrapf(wrap + speed, 0, 2)
-	mat.set_shader_param("POSITION", wrap)
+	mat.set_shader_param("POSITION", Vector2(0, wrap))

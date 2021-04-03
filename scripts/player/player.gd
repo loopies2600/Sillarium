@@ -4,6 +4,7 @@ class_name Player, "res://sprites/ui/menu/player.png"
 signal player_grounded_updated(isGrounded)
 signal player_damaged(x, y)
 signal player_combo_updated()
+signal player_gravity_updated(doinGravity)
 signal player_health_updated(health)
 signal player_lives_updated()
 signal player_score_updated()
@@ -40,6 +41,7 @@ var jumpForce
 var snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
 var velocity := Vector2()
 
+var applyGravity := true setget _doGravity
 var canDash := true
 var canInput := false
 var doinCombo := false
@@ -112,11 +114,17 @@ func _physics_process(delta):
 	gravity = (2 * jumpStrength) / pow(timeJumpApex, 2)
 	
 	jumpForce = gravity * timeJumpApex
-	velocity.y += gravity * delta * (fallMultiplier if velocity.y > 0 else 1)
+	
+	if applyGravity:
+		velocity.y += gravity * delta * (fallMultiplier if velocity.y > 0 else 1)
 	
 	velocity.y = move_and_slide_with_snap(velocity, snapVector, Globals.UP, true).y
 	
 	keepOnScreen(true, false, Vector2(hitbox.shape.extents.x * 2, 0))
+	
+func _doGravity(booly : bool) -> void:
+	applyGravity = booly
+	emit_signal("player_gravity_updated", applyGravity)
 	
 func _setScore(value : int) -> void:
 	Data.setData(slot, "total_score", value)
