@@ -44,6 +44,7 @@ var velocity := Vector2()
 var applyGravity := true setget _doGravity
 var canDash := true
 var canInput := false
+var dragging := false
 var doinCombo := false
 var flashing := false
 
@@ -101,6 +102,13 @@ func _onRespawn():
 	velocity.y -= jumpStrength / 4
 	
 func _process(_delta):
+	if dragging:
+		snapVector = Vector2.ZERO
+		var newPos = get_global_mouse_position()
+		velocity = (newPos - position) * 4
+	else:
+		keepOnScreen(true, false, Vector2(hitbox.shape.extents.x * 2, 0))
+		
 	if getInputDirection():
 		flipGraphics(getInputDirection())
 		
@@ -116,11 +124,10 @@ func _physics_process(delta):
 	jumpForce = gravity * timeJumpApex
 	
 	if applyGravity:
-		velocity.y += gravity * delta * (fallMultiplier if velocity.y > 0 else 1)
+		if !dragging:
+			velocity.y += gravity * delta * (fallMultiplier if velocity.y > 0 else 1)
 	
 	velocity.y = move_and_slide_with_snap(velocity, snapVector, Globals.UP, true).y
-	
-	keepOnScreen(true, false, Vector2(hitbox.shape.extents.x * 2, 0))
 	
 func _doGravity(booly : bool) -> void:
 	applyGravity = booly
@@ -272,3 +279,13 @@ func _gracePeriodEnd():
 	
 func _comboEnd():
 	doinCombo = false
+	
+func _input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			dragging = event.pressed
+			
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and not event.pressed:
+			dragging = false
