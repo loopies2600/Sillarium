@@ -224,6 +224,7 @@ func flipGraphics(facing):
 	
 func takeDamage(damage, bumpX = (-maxSpeed * 2) * getFacingDirection(), bumpY = (-jumpStrength * 4)):
 	if !flashing:
+		emit_signal("camera_shake_requested")
 		startGracePeriod()
 		animateGraphics("hurt")
 		self.health -= damage

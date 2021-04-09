@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name Kinematos
 
+signal camera_shake_requested(mode, time, amp)
+
 func setCollisionBits(bitArray := [], booly := true):
 	for bit in bitArray:
 		set_collision_mask_bit(bit, booly)

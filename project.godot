@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody2D",
+"base": "Kinematos",
 "class": "BasicEnemy",
 "language": "GDScript",
 "path": "res://scripts/enemy/behaviour/basic_enemy_controller.gd"

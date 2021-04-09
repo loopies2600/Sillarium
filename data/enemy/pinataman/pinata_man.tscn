@@ -6,7 +6,6 @@
 [ext_resource path="res://scripts/enemy/pinataman/pinata_man_controller.gd" type="Script" id=4]
 [ext_resource path="res://data/enemy/pinataman/particles.tscn" type="PackedScene" id=5]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 48, 48 )
 

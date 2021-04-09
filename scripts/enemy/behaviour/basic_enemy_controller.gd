@@ -1,8 +1,7 @@
-extends KinematicBody2D
+extends Kinematos
 class_name BasicEnemy, "res://sprites/ui/menu/enemy.png"
 
 # warning-ignore:unused_signal
-signal camera_shake_requested(mode, time, amp)
 signal destroy_self
 signal take_damage
 
