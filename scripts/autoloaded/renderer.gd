@@ -73,18 +73,14 @@ func weatherSetup(weatherID):
 	if climates:
 		if (weatherID != null):
 			var weatherToLoad = load(Globals.LoadJSON(WEATHER, weatherID, "file"))
+			var weather = weatherToLoad.instance()
 			
-			var weather = weatherToLoad
-			currentWeather = weather.instance()
-			Objects.currentWorld.add_child(currentWeather)
-			
-			if currentWeather:
-				currentWeather.queue_free()
-				
 			if currentWeather != weatherToLoad:
-				currentWeather.queue_free()
-				currentWeather = weather.instance()
-				Objects.currentWorld.add_child(currentWeather)
+				if currentWeather:
+					currentWeather.queue_free()
+				
+				currentWeather = weather
+				add_child(currentWeather)
 	else:
 		if currentWeather != null:
 			currentWeather.queue_free()
@@ -96,18 +92,14 @@ func backgroundSetup(bgID):
 	if backgrounds:
 		if (bgID != null):
 			var backgroundToLoad = load(Globals.LoadJSON(BG, bgID, "file"))
+			var background = backgroundToLoad.instance()
 			
-			var background = backgroundToLoad
-			currentBackground = background.instance()
-			Objects.currentWorld.add_child(currentBackground)
-				
-			if currentBackground:
-				currentBackground.queue_free()
-				
 			if currentBackground != backgroundToLoad:
-				currentBackground.queue_free()
-				currentBackground = background.instance()
-				Objects.currentWorld.add_child(currentBackground)
+				if currentBackground:
+					currentBackground.queue_free()
+					
+				currentBackground = background
+				add_child(currentBackground)
 	else:
 		if currentBackground != null:
 			currentBackground.queue_free()

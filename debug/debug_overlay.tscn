@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/debug/debug_overlay_controller.gd" type="Script" id=1]
 [ext_resource path="res://font/lmilk.tres" type="DynamicFont" id=2]
+[ext_resource path="res://debug/objects_list/object_list.tscn" type="PackedScene" id=3]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 layer = 128
@@ -34,3 +35,5 @@ valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ObjectsList" parent="." instance=ExtResource( 3 )]

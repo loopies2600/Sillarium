@@ -61,7 +61,12 @@ func LoadJSON(file : String, index : int, property : String):
 	jsonFile.close()
 	
 	return parsed[str(index)][property]
-		
+	
+func getJSONEntryName(jsonFile, id):
+	var tempName = Globals.LoadJSON(jsonFile, id, "name")
+	
+	return tempName
+	
 func getJSONSize(file : String):
 	var jsonFile = File.new()
 	jsonFile.open(file, File.READ)

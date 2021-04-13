@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+onready var objList = $ObjectsList
+
 var targetAlpha := 0.0
 var vars = []
 
@@ -17,6 +19,11 @@ func add_var(var_name, object, var_ref, is_method, latter_word:String = ""):
 func _process(delta):
 	for child in get_children():
 		child.modulate.a = lerp(child.modulate.a, targetAlpha, delta * 16)
+		
+	if objList.modulate.a < 0.1:
+		objList.hide()
+	else:
+		objList.show()
 	
 	var system_text = "SYSTEM VARIABLES\n"
 	var debug_text = "SILLARIUM VARIABLES\n"

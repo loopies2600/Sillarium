@@ -9,6 +9,7 @@ export (int) var damage = 10
 export (int) var speed = 400
 export (int) var steerStrength = 75
 
+var papa
 var target = null
 
 var velocity := Vector2.ZERO

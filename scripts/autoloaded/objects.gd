@@ -84,11 +84,6 @@ func getWeapon(id, pos, z, _ammo = 0):
 	weapon.type = wpsType
 	return weapon
 	
-func getWeaponName(id):
-	var wpsName = Globals.LoadJSON(PICKUP, id, "name")
-	
-	return wpsName
-	
 func getObj(id):
 	# este es como el que spawnea objetos, pero solo lee el archivo de objeto desde el JSON, el resto lo podes hacer vos mismo...
 	var obj = load(Globals.LoadJSON(OBJ, id, "file"))
