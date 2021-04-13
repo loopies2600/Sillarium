@@ -9,6 +9,7 @@ onready var debugOverlay = preload("res://debug/debug_overlay.tscn").instance()
 export (NodePath) var startPosition
 export (int) var backgroundID
 export (int) var musicID
+export (int) var weatherID
 
 onready var startPos = get_node(startPosition).position
 
@@ -22,6 +23,7 @@ func _ready():
 	
 	Renderer.fade("out")
 	Renderer.backgroundSetup(backgroundID)
+	Renderer.weatherSetup(weatherID)
 	Objects.spawn(22)
 	Objects.spawnPlayer(0, startPos)
 	

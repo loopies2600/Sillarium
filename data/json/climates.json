@@ -1,0 +1,6 @@
+{
+	"0": {
+			"name": "Rain",
+			"file": "res://data/particles/weather/rain/rain_emitter.tscn"
+		     }
+}

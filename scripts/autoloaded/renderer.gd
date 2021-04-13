@@ -4,8 +4,10 @@
 extends Node
 
 const BG = "res://data/json/backgrounds.json"
+const WEATHER = "res://data/json/climates.json"
 
 # otra variable que lee desde la configuración, esta es para decidir si deberiamos dibujar los fondos o no
+onready var climates = Settings.getSetting("renderer", "display_weather")
 onready var backgrounds = Settings.getSetting("renderer", "display_backgrounds")
 onready var fullscreen = Settings.getSetting("renderer", "fullscreen")
 onready var frameFreezer = Settings.getSetting("renderer", "freeze_frame")
@@ -13,6 +15,7 @@ onready var frameFreezer = Settings.getSetting("renderer", "freeze_frame")
 # estas dos variables se usan para guardar tanto la transición como el fondo actual.
 var transition
 var currentBackground
+var currentWeather
 
 func _ready():
 	toggleFS()
@@ -64,7 +67,29 @@ func fade(mode = "in", mask = preload("res://sprites/debug/test_transition.png")
 		transition.connect("fade_started", transitionFunc, "_fadeStart")
 		transition.connect("fade_finished", transitionFunc, "_fadeEnd")
 		
+func weatherSetup(weatherID):
+	climates = Settings.getSetting("renderer", "display_weather")
 	
+	if climates:
+		if (weatherID != null):
+			var weatherToLoad = load(Globals.LoadJSON(WEATHER, weatherID, "file"))
+			
+			var weather = weatherToLoad
+			currentWeather = weather.instance()
+			Objects.currentWorld.add_child(currentWeather)
+			
+			if currentWeather:
+				currentWeather.queue_free()
+				
+			if currentWeather != weatherToLoad:
+				currentWeather.queue_free()
+				currentWeather = weather.instance()
+				Objects.currentWorld.add_child(currentWeather)
+	else:
+		if currentWeather != null:
+			currentWeather.queue_free()
+			currentWeather = null
+			
 func backgroundSetup(bgID):
 	backgrounds = Settings.getSetting("renderer", "display_backgrounds")
 	# esta función se encarga de cargar y spawnear un fondo desde el JSON, solo si no hay ningun fondo actualmente. en caso contrario, lo reemplaza.
@@ -86,7 +111,7 @@ func backgroundSetup(bgID):
 	else:
 		if currentBackground != null:
 			currentBackground.queue_free()
-			
+			currentBackground = null
 			
 func freezeFrame(delay : int):
 	if not frameFreezer:

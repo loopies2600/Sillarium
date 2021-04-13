@@ -57,6 +57,7 @@ var _settings = {
 	"renderer": {
 		"camera_effects": true,
 		"display_backgrounds": true,
+		"display_weather": true,
 		"fullscreen": false,
 		"freeze_frame": true
 	},

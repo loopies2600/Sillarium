@@ -1,22 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://sprites/weather/rain_drop.png" type="Texture" id=1]
-[ext_resource path="res://scripts/particles/weather/rain/rain_emitter.gd" type="Script" id=2]
 
+[node name="Rain" type="CanvasLayer"]
 
-[node name="Rain" type="CPUParticles2D"]
-modulate = Color( 0.870588, 0.992157, 1, 1 )
-position = Vector2( 200, -200 )
+[node name="RainEmitter" type="CPUParticles2D" parent="."]
+position = Vector2( 512, -128 )
 amount = 1024
 lifetime = 1.5
 randomness = 1.0
 texture = ExtResource( 1 )
 emission_shape = 2
-emission_rect_extents = Vector2( 768, 1 )
+emission_rect_extents = Vector2( 1024, 1 )
 direction = Vector2( 1, 1 )
 spread = 180.0
 gravity = Vector2( 400, 800 )
-damping = 100.0
-angle = 30.0
-scale_amount_random = 0.5
-script = ExtResource( 2 )
+angle = 20.0
