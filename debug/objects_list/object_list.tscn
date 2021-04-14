@@ -1,30 +1,32 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/debug/object_list.gd" type="Script" id=1]
 [ext_resource path="res://font/lemonmilk.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://font/planetk.tres" type="DynamicFont" id=3]
+[ext_resource path="res://sprites/ui/menu/main_theme.tres" type="Theme" id=4]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=1]
 size = 12
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFontData" id=1]
+[sub_resource type="DynamicFontData" id=2]
 antialiased = false
 font_path = "res://font/sillariumfont.ttf"
 
 [sub_resource type="DynamicFont" id=3]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
-font_data = SubResource( 1 )
+font_data = SubResource( 2 )
 
 [node name="ObjectsList" type="Panel"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -576.0
+theme = ExtResource( 4 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -47,11 +49,13 @@ align = 1
 valign = 1
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
-margin_top = 88.0
-margin_right = 576.0
-margin_bottom = 720.0
+margin_left = 16.0
+margin_top = 96.0
+margin_right = 560.0
+margin_bottom = 712.0
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 4 )
+theme = ExtResource( 4 )
+custom_fonts/font = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -60,13 +64,19 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 34.0
+margin_top = 24.0
 margin_right = -4.0
 margin_bottom = -4.0
+theme = ExtResource( 4 )
 
 [node name="BGList" type="ItemList" parent="VBoxContainer/TabContainer/BACKGROUNDS"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = 8.0
+margin_right = -12.0
+margin_bottom = -2.0
+theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -77,13 +87,19 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 34.0
 margin_right = -4.0
 margin_bottom = -4.0
+theme = ExtResource( 4 )
 
 [node name="MUSICList" type="ItemList" parent="VBoxContainer/TabContainer/MUSIC"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = 8.0
+margin_right = -12.0
+margin_bottom = -2.0
+theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -94,13 +110,19 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 34.0
 margin_right = -4.0
 margin_bottom = -4.0
+theme = ExtResource( 4 )
 
 [node name="OBJList" type="ItemList" parent="VBoxContainer/TabContainer/OBJECTS"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = 8.0
+margin_right = -12.0
+margin_bottom = -2.0
+theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -111,13 +133,19 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 34.0
 margin_right = -4.0
 margin_bottom = -4.0
+theme = ExtResource( 4 )
 
 [node name="PICKUPList" type="ItemList" parent="VBoxContainer/TabContainer/PICKUPS"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = 8.0
+margin_right = -12.0
+margin_bottom = -2.0
+theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -128,13 +156,19 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 34.0
 margin_right = -4.0
 margin_bottom = -4.0
+theme = ExtResource( 4 )
 
 [node name="SCENEList" type="ItemList" parent="VBoxContainer/TabContainer/SCENES"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = 8.0
+margin_right = -12.0
+margin_bottom = -2.0
+theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -145,13 +179,19 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 34.0
 margin_right = -4.0
 margin_bottom = -4.0
+theme = ExtResource( 4 )
 
 [node name="WEATHERList" type="ItemList" parent="VBoxContainer/TabContainer/WEATHER"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = 8.0
+margin_right = -12.0
+margin_bottom = -2.0
+theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
