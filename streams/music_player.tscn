@@ -4,3 +4,5 @@
 
 [node name="MusicPlayer" type="AudioStreamPlayer"]
 stream = ExtResource( 1 )
+mix_target = 1
+bus = "Music"

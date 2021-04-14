@@ -76,7 +76,7 @@ expand_margin_bottom = 1.0
 shadow_size = 1
 shadow_offset = Vector2( 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.262745, 0.262745, 0.294118, 0.501961 )
 border_width_left = 4
 border_width_top = 4
@@ -87,7 +87,7 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 shadow_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.156863, 0.156863, 0.388235, 1 )
 border_width_left = 4
 border_width_top = 4
@@ -407,8 +407,8 @@ TabContainer/icons/menu = null
 TabContainer/icons/menu_highlight = null
 TabContainer/styles/panel = ExtResource( 1 )
 TabContainer/styles/tab_bg = ExtResource( 3 )
-TabContainer/styles/tab_disabled = SubResource( 6 )
-TabContainer/styles/tab_fg = SubResource( 5 )
+TabContainer/styles/tab_disabled = SubResource( 5 )
+TabContainer/styles/tab_fg = SubResource( 6 )
 Tabs/colors/font_color_bg = Color( 1, 1, 1, 1 )
 Tabs/colors/font_color_disabled = Color( 0.501961, 0.501961, 0.501961, 1 )
 Tabs/colors/font_color_fg = Color( 1, 1, 1, 1 )

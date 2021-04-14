@@ -51,7 +51,7 @@ func spawn4Piece(sprite : Sprite):
 	fourPiece.flipH = sprite.flip_h
 	fourPiece.flipV = sprite.flip_v
 		
-	Objects.currentWorld.add_child(fourPiece)
+	Objects.currentWorld.call_deferred("add_child", fourPiece)
 	
 func fade(mode = "in", mask = preload("res://sprites/debug/test_transition.png")):
 	# esta función se encarga de spawnear la transición, solo si no hay ninguna transición actualmente.

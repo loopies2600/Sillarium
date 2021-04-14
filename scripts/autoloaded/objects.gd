@@ -31,6 +31,7 @@ func spawnPlayer(charID, pos, respawning := false, pSlot := "player"):
 			Globals.debugOverlay.vars[2][1] = Globals.playerTwo
 			Globals.debugOverlay.vars[4][1] = Globals.playerTwo
 			Globals.get(pSlot).inputSuffix = "_to"
+			Globals.get(pSlot).camera.queue_free()
 			
 	Globals.get(pSlot).global_position = pos
 	Globals.get(pSlot).connectSignals()

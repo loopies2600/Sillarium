@@ -5,6 +5,8 @@ onready var lists := [$VBoxContainer/TabContainer/BACKGROUNDS/BGList, $VBoxConta
 var targetJSON := [Renderer.BG, Audio.MUSIC, Objects.OBJ, Objects.PICKUP, Globals.SCENE, Renderer.WEATHER]
 var targetIcons := ["res://sprites/debug/object_list/bg.png", "res://sprites/debug/object_list/music.png", "res://sprites/debug/object_list/obj.png", "res://sprites/debug/object_list/pickup.png", "res://sprites/debug/object_list/scene.png", "res://sprites/debug/object_list/weather.png"]
 
+var holdingObject = null
+
 func _ready():
 	Objects.currentWorld = self
 	
@@ -13,7 +15,7 @@ func _ready():
 		
 		for j in range(Globals.getJSONSize(targetJSON[i])):
 			lists[i].add_item(str(Globals.getJSONEntryName(targetJSON[i], j)).to_upper(), load(targetIcons[i]))
-			
+	
 func _onBGListItemActivated(index):
 	Renderer.backgroundSetup(index)
 	

@@ -6,6 +6,9 @@ var targetAlpha := 0.0
 var vars = []
 
 func _ready():
+	for child in get_children():
+		child.modulate.a = 0.0
+		
 	add_var("music peak volume (left, right)", Audio, "getMusicPeakVolume", true)
 	add_var("player 1 position (X, Y)", Globals.player, "global_position", false)
 	add_var("player 2 position (X, Y)", Globals.playerTwo, "global_position", false)

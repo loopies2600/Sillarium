@@ -1,6 +1,7 @@
 extends KinematicBody2D
 class_name Kinematos
 
+# warning-ignore:unused_signal
 signal camera_shake_requested(mode, time, amp)
 
 func setCollisionBits(bitArray := [], booly := true):
