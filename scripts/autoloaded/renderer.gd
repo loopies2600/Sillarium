@@ -72,15 +72,21 @@ func weatherSetup(weatherID):
 	
 	if climates:
 		if (weatherID != null):
-			var weatherToLoad = load(Globals.LoadJSON(WEATHER, weatherID, "file"))
-			var weather = weatherToLoad.instance()
+			var weatherToLoad = Globals.LoadJSON(WEATHER, weatherID, "file")
+			var weather = load(weatherToLoad).instance()
 			
-			if currentWeather != weatherToLoad:
-				if currentWeather:
-					currentWeather.queue_free()
-				
+			if !currentWeather:
 				currentWeather = weather
 				add_child(currentWeather)
+				return false
+				
+			if currentWeather.filename == weatherToLoad:
+				return true
+			else:
+				currentWeather.queue_free()
+				currentWeather = weather
+				add_child(currentWeather)
+				return false
 	else:
 		if currentWeather != null:
 			currentWeather.queue_free()
@@ -91,15 +97,21 @@ func backgroundSetup(bgID):
 	# esta función se encarga de cargar y spawnear un fondo desde el JSON, solo si no hay ningun fondo actualmente. en caso contrario, lo reemplaza.
 	if backgrounds:
 		if (bgID != null):
-			var backgroundToLoad = load(Globals.LoadJSON(BG, bgID, "file"))
-			var background = backgroundToLoad.instance()
+			var backgroundToLoad = Globals.LoadJSON(BG, bgID, "file")
+			var background = load(backgroundToLoad).instance()
 			
-			if currentBackground != backgroundToLoad:
-				if currentBackground:
-					currentBackground.queue_free()
-					
+			if !currentBackground:
 				currentBackground = background
 				add_child(currentBackground)
+				return false
+				
+			if currentBackground.filename == backgroundToLoad:
+				return true
+			else:
+				currentBackground.queue_free()
+				currentBackground = background
+				add_child(currentBackground)
+				return false
 	else:
 		if currentBackground != null:
 			currentBackground.queue_free()

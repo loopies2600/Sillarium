@@ -48,8 +48,14 @@ func cubicBezier(p0: Vector2, p1: Vector2, p2: Vector2, p3: Vector2, time: float
 	
 func LoadScene(sceneID : int):
 	# con esta función cargamos escenas desde ese JSON.
+	var curScene = Objects.currentWorld.filename
 	var newScene = LoadJSON(SCENE, sceneID, "file")
-	return get_tree().change_scene(newScene)
+	
+	if newScene == curScene:
+		return true
+	else:
+		get_tree().change_scene(newScene)
+		return false
 	
 func LoadJSON(file : String, index : int, property : String):
 	# este es el grande, con esta función podemos leer archivos JSON :).

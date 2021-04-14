@@ -5,6 +5,8 @@ extends Node
 
 signal pump(beat)
 
+enum {MUSIC_STARTED_PLAYING, MUSIC_ALREADY_PLAYING}
+
 const MUSIC = "res://data/json/music.json"
 const COMPENSATE_FRAMES = 2
 const COMPENSATE_HZ = 60.0
@@ -41,17 +43,23 @@ func musicSetup(bgmID):
 				currentMusic.stream = musicToLoad
 				currentMusic.play()
 				add_child(currentMusic)
+				currentMusic.set_bus("Music")
+				currentID = bgmID
+				currentBPM = getMusicBPM(currentID)
+				return MUSIC_STARTED_PLAYING
 				
 			# si el reproductor existe, pero queremos cambiar de musica, paramos la musica anterior y empezamos a reproducir la nueva.
 			if currentMusic.stream != musicToLoad:
 				currentMusic.stop()
 				currentMusic.stream = load(Globals.LoadJSON(MUSIC, bgmID, "file"))
 				currentMusic.play()
-			
-			currentMusic.set_bus("Music")
-			currentID = bgmID
-			currentBPM = getMusicBPM(currentID)
-	else:	
+				currentMusic.set_bus("Music")
+				currentID = bgmID
+				currentBPM = getMusicBPM(currentID)
+				return MUSIC_STARTED_PLAYING
+			else:
+				return MUSIC_ALREADY_PLAYING
+	else:
 		if currentMusic != null:
 			set_process(false)
 			currentMusic.queue_free()

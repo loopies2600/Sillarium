@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/ui/menu/main_menu/main_menu.gd" type="Script" id=2]
@@ -25,13 +25,64 @@ shader_param/outline_color = null
 
 [sub_resource type="StyleBoxEmpty" id=6]
 
-[node name="MainMenu" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
+[sub_resource type="Animation" id=7]
+resource_name = "DanceLeft"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu/SillariumS:margin_left")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -128.0, 0.0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu/SillariumS:margin_top")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 16.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "DanceRight"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu/SillariumS:margin_left")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 128.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu/SillariumS:margin_top")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 16.0, 0.0 ]
+}
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource( 2 )
 backgroundID = 2
 musicID = 2
 
@@ -51,20 +102,20 @@ __meta__ = {
 
 [node name="SillariumS" type="TextureRect" parent="Menu"]
 material = SubResource( 1 )
-margin_right = 1205.0
+margin_right = 1120.0
 margin_bottom = 413.0
 texture = ExtResource( 3 )
-stretch_mode = 6
+stretch_mode = 4
 
 [node name="Buttons" type="HBoxContainer" parent="Menu"]
 margin_top = 541.0
-margin_right = 1205.0
-margin_bottom = 595.0
+margin_right = 1120.0
+margin_bottom = 589.0
 custom_constants/separation = 150
 
 [node name="Play" type="Button" parent="Menu/Buttons"]
-margin_right = 299.0
-margin_bottom = 54.0
+margin_right = 270.0
+margin_bottom = 48.0
 theme = ExtResource( 8 )
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 3 )
@@ -78,9 +129,9 @@ text = "MM_PLAYBT"
 script = ExtResource( 5 )
 
 [node name="Options" type="Button" parent="Menu/Buttons"]
-margin_left = 449.0
-margin_right = 828.0
-margin_bottom = 54.0
+margin_left = 420.0
+margin_right = 762.0
+margin_bottom = 48.0
 theme = ExtResource( 8 )
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 3 )
@@ -94,9 +145,9 @@ text = "MM_OPTIONSBT"
 script = ExtResource( 9 )
 
 [node name="Exit" type="Button" parent="Menu/Buttons"]
-margin_left = 978.0
-margin_right = 1205.0
-margin_bottom = 54.0
+margin_left = 912.0
+margin_right = 1116.0
+margin_bottom = 48.0
 theme = ExtResource( 8 )
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 3 )
@@ -118,3 +169,7 @@ text = "SILLARIUM INDEV"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+anims/DanceLeft = SubResource( 7 )
+anims/DanceRight = SubResource( 8 )

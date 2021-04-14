@@ -17,10 +17,20 @@ func _ready():
 			lists[i].add_item(str(Globals.getJSONEntryName(targetJSON[i], j)).to_upper(), load(targetIcons[i]))
 	
 func _onBGListItemActivated(index):
-	Renderer.backgroundSetup(index)
+	var sameBG = Renderer.backgroundSetup(index)
+	
+	if sameBG:
+		print("background index ", index, " is already in use. background wont change!")
+	else:
+		print("background index ", index, " loaded...")
 	
 func _onMUSICListItemActivated(index):
-	Audio.musicSetup(index)
+	var isPlaying = Audio.musicSetup(index)
+	
+	if isPlaying:
+		print("music index ", index, " is already playing. music wont change!")
+	else:
+		print("music index ", index, " starts playing...")
 	
 func _onOBJListItemActivated(index):
 	Objects.spawn(index)
@@ -30,7 +40,17 @@ func _onPICKUPListItemActivated(index):
 		Globals.player.pickUpWeapon(index)
 	
 func _onSCENEListItemActivated(index):
-	Globals.LoadScene(index)
+	var wereHere = Globals.LoadScene(index)
+	
+	if wereHere:
+		print("we're already on scene index ", index, ", what are you trying to do?")
+	else:
+		print("going to scene index ", index, "...")
 	
 func _onWEATHERListItemActivated(index):
-	Renderer.weatherSetup(index)
+	var sameWeather = Renderer.weatherSetup(index)
+	
+	if sameWeather:
+		print("weather index ", index, " is already in use. weather wont change!")
+	else:
+		print("weather index ", index, " loaded...")
