@@ -1,6 +1,9 @@
 shader_type canvas_item;
 render_mode blend_mix;
 
+uniform bool horizontal = true;
+uniform bool vertical = false;
+
 uniform float speed = 1.0;
 uniform float minStrength : hint_range(0.0, 1.0);
 uniform float maxStrength : hint_range(0.0, 1.0);
@@ -21,5 +24,16 @@ float getWind(vec2 vertex, vec2 uv, float timer){
 	}
 
 void vertex() {
-	VERTEX.x += getWind(VERTEX.xy, UV, TIME);
+	if (horizontal && vertical)
+	{
+		VERTEX.xy += getWind(VERTEX.xy, UV, TIME);
+	}
+	if (horizontal && !vertical)
+	{
+		VERTEX.x += getWind(VERTEX.xy, UV, TIME);
+	}
+	if (vertical && !horizontal)
+	{
+		VERTEX.y += getWind(VERTEX.xy, UV, TIME);
+	}
 }

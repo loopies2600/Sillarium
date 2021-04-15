@@ -7,7 +7,7 @@ const int EFFECT_TYPE_HEAT_WAVE_VERTICAL = 3;
 const int EFFECT_TYPE_FLAG = 4;
 
 uniform bool toScreen;
-uniform int effectType;
+uniform int effectType : hint_range(0, 4);
 
 uniform float uSpeed;
 uniform float uFrequency;
