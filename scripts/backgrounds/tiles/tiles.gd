@@ -1,11 +1,11 @@
 extends CanvasLayer
 
-onready var rect = $TextureRect
+onready var rects = [$Tiles0, $Tiles1]
 onready var flipTimer = $FlipTimer
 
 func _ready():
-	flipTimer.connect("timeout", self, "_flip")
+	Audio.connect("pump", self, "_flip")
 	
-func _flip():
-	flipTimer.wait_time = rand_range(1.0, 2.0)
-	rect.flip_h = !rect.flip_h
+func _flip(_beatNo):
+	for rect in rects:
+		rect.flip_h = !rect.flip_h
