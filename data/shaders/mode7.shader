@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 uniform vec2 DEPTH;
 uniform vec2 POSITION;
+uniform vec2 SCALE;
 uniform bool REPEAT_X;
 uniform bool REPEAT_Y;
 uniform bool FLIP;
@@ -9,8 +10,8 @@ uniform bool toScreen;
 
 void fragment() {
 	mat4 TRANSFORM = mat4(0.0);
-	TRANSFORM[0].x = 4.0;
-	TRANSFORM[1].y = 4.0;
+	TRANSFORM[0].x = SCALE.x;
+	TRANSFORM[1].y = SCALE.y;
 	TRANSFORM[3].x = POSITION.x;
 	TRANSFORM[3].y = POSITION.y;
 	mat4 mat = mat4(1.0);

@@ -17,6 +17,9 @@ var transition
 var currentBackground
 var currentWeather
 
+# esta variable guarda la textura de la pantalla, ojo con no actualizarla todo el tiempo!
+var curViewportTex
+
 func _ready():
 	toggleFS()
 	
@@ -53,15 +56,33 @@ func spawn4Piece(sprite : Sprite):
 		
 	Objects.currentWorld.call_deferred("add_child", fourPiece)
 	
-func fade(mode = "in", mask = preload("res://sprites/debug/test_transition.png")):
+func fade(mode := "in", mask = preload("res://sprites/debug/test_transition.png"), viewportFX := true):
 	# esta función se encarga de spawnear la transición, solo si no hay ninguna transición actualmente.
 	# los argumentos son: modo ("in" o "out") y mascara.
 	if transition == null:
-		var newFade = Objects.getObj(20)
-		transition = newFade
-		newFade.mode = mode
-		newFade.mask = mask
-		get_tree().get_root().call_deferred("add_child", newFade)
+		if viewportFX:
+			var newFade = Objects.getObj(26)
+			transition = newFade
+			newFade.mode = mode
+			
+			if mode == "in":
+				var tempImage = Image.new()
+				tempImage = get_viewport().get_texture().get_data()
+				tempImage.flip_y()
+				var tempTexture = ImageTexture.new()
+				tempTexture.create_from_image(tempImage)
+				
+				curViewportTex = tempTexture
+				
+			newFade.tex = curViewportTex
+				
+			get_tree().get_root().call_deferred("add_child", newFade)
+		else:
+			var newFade = Objects.getObj(20)
+			transition = newFade
+			newFade.mode = mode
+			newFade.mask = mask
+			get_tree().get_root().call_deferred("add_child", newFade)
 		
 	for transitionFunc in get_tree().get_nodes_in_group("TransitionFunc"):
 		transition.connect("fade_started", transitionFunc, "_fadeStart")

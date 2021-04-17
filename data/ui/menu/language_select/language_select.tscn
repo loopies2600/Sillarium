@@ -4,7 +4,7 @@
 [ext_resource path="res://sprites/ui/menu/main_theme.tres" type="Theme" id=3]
 [ext_resource path="res://scripts/ui/menu/language_select/language_select.gd" type="Script" id=4]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=1]
 loop = true
 
 [node name="LanguageSelect" type="Control"]
@@ -55,4 +55,4 @@ text = "PORTUGUES"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 playback_speed = 0.25
-anims/Idle = SubResource( 5 )
+anims/Idle = SubResource( 1 )
