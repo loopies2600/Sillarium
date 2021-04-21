@@ -25,6 +25,17 @@ var beat setget setBeat, getBeat
 var time
 var fading := false
 
+func loadOGG(bgmID):
+	var path = Globals.LoadJSON(MUSIC, bgmID, "file")
+	var oggFile = File.new()
+	oggFile.open(path, File.READ)
+	var bytes = oggFile.get_buffer(oggFile.get_len())
+	var stream = AudioStreamOGGVorbis.new()
+	stream.data = bytes
+	oggFile.close()
+	
+	return stream
+	
 func musicSetup(bgmID):
 	mute = Settings.getSetting("audio", "mute_audio")
 	# ! significa "NO", o sea que si mute esta desactivado, todo este pedazo de codigo se va a ejecutar.
@@ -35,23 +46,23 @@ func musicSetup(bgmID):
 		# si bgmID tiene algun numero dentro...
 		if (bgmID != null):
 			# se va a cargar el archivo de musica desde el JSON, según su ID.
-			var musicToLoad = load(Globals.LoadJSON(MUSIC, bgmID, "file"))
+			var musicToLoad = loadOGG(bgmID)
 			
 			# si no existe un reproductor de audio, creemos uno y que reproduzca la musica que le pasamos arriba.
 			if currentMusic == null:
 				currentMusic = AudioStreamPlayer.new()
 				currentMusic.stream = musicToLoad
 				currentMusic.play()
-				add_child(currentMusic)
 				currentMusic.set_bus("Music")
 				currentID = bgmID
 				currentBPM = getMusicBPM(currentID)
+				add_child(currentMusic)
 				return MUSIC_STARTED_PLAYING
 				
 			# si el reproductor existe, pero queremos cambiar de musica, paramos la musica anterior y empezamos a reproducir la nueva.
-			if currentMusic.stream != musicToLoad:
+			if currentID != bgmID:
 				currentMusic.stop()
-				currentMusic.stream = load(Globals.LoadJSON(MUSIC, bgmID, "file"))
+				currentMusic.stream = musicToLoad
 				currentMusic.play()
 				currentMusic.set_bus("Music")
 				currentID = bgmID

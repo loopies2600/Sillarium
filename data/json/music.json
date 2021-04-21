@@ -1,21 +1,21 @@
 {
 	"0": {
 		"name": "Astral Underground",
-		"file": "res://streams/music/bgm_caves.ogg",
+		"file": "streams/music/bgm_caves.ogg",
 		"tempo": "132.500",
 		"loop_offset": "0"
 		},
 		
 	"1": {
 		"name": "Tutorial / Data",
-		"file": "res://streams/music/bgm_tutorial.ogg",
+		"file": "streams/music/bgm_tutorial.ogg",
 		"tempo": "136",
 		"loop_offset": "0"
 		},
 		
 	"2": {
 		"name": "Character Select / Configuration",
-		"file": "res://streams/music/bgm_select.ogg",
+		"file": "streams/music/bgm_select.ogg",
 		"tempo": "90",
 		"loop_offset": "0"
 	}

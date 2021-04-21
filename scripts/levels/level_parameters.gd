@@ -3,9 +3,6 @@ extends Node2D
 signal level_initialized
 signal level_started
 
-onready var musicPlayer = preload("res://streams/music_player.tscn")
-onready var debugOverlay = preload("res://debug/debug_overlay.tscn").instance()
-
 export (NodePath) var startPosition
 export (int) var backgroundID
 export (int) var musicID
