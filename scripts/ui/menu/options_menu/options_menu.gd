@@ -16,7 +16,7 @@ func _init():
 func _ready():
 	optionsText.bbcode_text = "[wave amp=32]" + tr("OM_TITLE")
 	Renderer.fade("out")
-	Renderer.backgroundSetup(backgroundID)
+	Renderer.backgroundSetup(backgroundID, {"dontShowCones" : false})
 	Audio.musicSetup(musicID)
 	langButton.connect("pressed", self, "_langButtonPress")
 	_spawnButtons()

@@ -23,7 +23,7 @@ func _ready():
 	
 	Renderer.fade("out")
 	Renderer.backgroundSetup(backgroundID)
-	Renderer.weatherSetup(weatherID)
+	Renderer.weatherSetup(weatherID, {"grav" : Vector2(200, 800)})
 	Objects.spawn(22)
 	Objects.spawnPlayer(0, startPos)
 	

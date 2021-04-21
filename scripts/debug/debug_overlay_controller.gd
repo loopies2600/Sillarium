@@ -70,14 +70,15 @@ func _process(delta):
 	
 	$SystemInfo.text = system_text
 	
+	if Globals.debugMenuOpen:
+		targetAlpha = 1.0
+	else:
+		targetAlpha = 0.0
+	
 func _input(event):
 	if event.is_action_pressed("toggle_debug"):
-		Globals.debugMenuOpen = !Globals.debugMenuOpen
-		
-		if Globals.debugMenuOpen:
-			targetAlpha = 1.0
-		else:
-			targetAlpha = 0.0
+		if Globals.debug:
+			Globals.debugMenuOpen = !Globals.debugMenuOpen
 			
 func _getVideoDriverName(id : int) -> String:
 	match id:

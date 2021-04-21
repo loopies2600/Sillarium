@@ -11,7 +11,7 @@ var val
 var font
 
 func _ready():
-	Settings.connect("settings_changed", self, "updateText")
+	var _unused = Settings.connect("settings_changed", self, "updateText")
 	theme = preload("res://sprites/ui/menu/main_theme.tres")
 	updateText()
 	

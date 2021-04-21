@@ -13,7 +13,7 @@ func _init():
 func _ready():
 	TranslationServer.set_locale(language)
 	Renderer.fade("out")
-	Renderer.backgroundSetup(bgID)
+	Renderer.backgroundSetup(bgID, {"dontShowCones" : false})
 	
 	for button in buttons:
 		button.connect("pressed", self, "_on" + button.name + "Pressed")

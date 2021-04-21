@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/ui/menu/options_menu/options_menu.gd" type="Script" id=2]
 [ext_resource path="res://sprites/ui/menu/main_theme.tres" type="Theme" id=3]
 [ext_resource path="res://scripts/ui/menu/options_menu/exit_to_menu.gd" type="Script" id=4]
-[ext_resource path="res://scripts/ui/menu/options_menu/sound_test.gd" type="Script" id=5]
 [ext_resource path="res://scripts/ui/menu/options_menu/audio_slider.gd" type="Script" id=6]
 [ext_resource path="res://font/planetk.tres" type="DynamicFont" id=7]
 [ext_resource path="res://font/lmilk.tres" type="DynamicFont" id=8]
@@ -233,15 +232,6 @@ tick_count = 10
 ticks_on_borders = true
 script = ExtResource( 6 )
 targetAudioBus = "Sound"
-
-[node name="SoundTest" type="Button" parent="Items/Audio"]
-margin_top = 244.0
-margin_right = 464.0
-margin_bottom = 300.0
-theme = ExtResource( 3 )
-custom_fonts/font = ExtResource( 1 )
-text = "MM_SOUNDTEST"
-script = ExtResource( 5 )
 
 [node name="Exit" type="Button" parent="."]
 anchor_left = 1.0

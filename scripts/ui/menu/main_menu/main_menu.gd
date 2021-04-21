@@ -16,7 +16,7 @@ func _ready():
 	Renderer.fade("out")
 	randomize()
 	buildNumber.text = "SILLARIUM BUILD " + str(randi() % 32768)
-	Renderer.backgroundSetup(backgroundID)
+	Renderer.backgroundSetup(backgroundID,  {"dontShowCones" : true})
 	var _unused = Audio.connect("pump", self, "_onBeat")
 	Audio.musicSetup(musicID)
 	

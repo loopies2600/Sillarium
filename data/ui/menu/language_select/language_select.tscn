@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://font/planetk.tres" type="DynamicFont" id=1]
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://sprites/ui/menu/main_theme.tres" type="Theme" id=3]
 [ext_resource path="res://scripts/ui/menu/language_select/language_select.gd" type="Script" id=4]
@@ -11,6 +12,19 @@ loop = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsTitle" type="RichTextLabel" parent="."]
+anchor_left = 0.025
+anchor_top = 0.025
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[wave amp=32]LANGUAGE"
+text = "LANGUAGE"
 __meta__ = {
 "_edit_use_anchors_": false
 }

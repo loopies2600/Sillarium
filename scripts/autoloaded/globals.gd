@@ -20,11 +20,15 @@ onready var debugMenuOpen := false
 onready var debugOverlay = Objects.getObj(18)
 onready var debug = Settings.getSetting("general", "debug_mode")
 
-
 func _ready():
-	# aca iniciamos la interfaz debug si el modo debug esta activado.
+	var _unused = Settings.connect("settings_changed", self, "_onSetChanges")
+	
 	if debug:
 		add_child(debugOverlay)
+		
+func _onSetChanges():
+	debug = Settings.getSetting("general", "debug_mode")
+	debugMenuOpen = false
 	
 func quadBezier(p0: Vector2, p1: Vector2, p2: Vector2, time: float):
 	# para interpolar movimientos usando el algoritmo del bezier cuadrado

@@ -92,7 +92,7 @@ func fade(mode := "in", mask = preload("res://sprites/debug/test_transition.png"
 		transition.connect("fade_started", transitionFunc, "_fadeStart")
 		transition.connect("fade_finished", transitionFunc, "_fadeEnd")
 		
-func weatherSetup(weatherID):
+func weatherSetup(weatherID, cVars := {}):
 	climates = Settings.getSetting("renderer", "display_weather")
 	
 	if climates:
@@ -103,21 +103,34 @@ func weatherSetup(weatherID):
 			if !currentWeather:
 				currentWeather = weather
 				add_child(currentWeather)
+				if !cVars.empty():
+					for variable in cVars:
+						currentWeather.set(variable, cVars[variable])
 				return false
+			else:
+				if !cVars.empty():
+					for variable in cVars:
+						currentWeather.set(variable, cVars[variable])
 				
 			if currentWeather.filename == weatherToLoad:
+				if !cVars.empty():
+					for variable in cVars:
+						currentWeather.set(variable, cVars[variable])
 				return true
 			else:
 				currentWeather.queue_free()
 				currentWeather = weather
 				add_child(currentWeather)
+				if !cVars.empty():
+					for variable in cVars:
+						currentWeather.set(variable, cVars[variable])
 				return false
 	else:
 		if currentWeather != null:
 			currentWeather.queue_free()
 			currentWeather = null
 			
-func backgroundSetup(bgID):
+func backgroundSetup(bgID, cVars := {}):
 	backgrounds = Settings.getSetting("renderer", "display_backgrounds")
 	# esta función se encarga de cargar y spawnear un fondo desde el JSON, solo si no hay ningun fondo actualmente. en caso contrario, lo reemplaza.
 	if backgrounds:
@@ -128,14 +141,27 @@ func backgroundSetup(bgID):
 			if !currentBackground:
 				currentBackground = background
 				add_child(currentBackground)
+				if !cVars.empty():
+					for variable in cVars:
+						currentBackground.set(variable, cVars[variable])
 				return false
+			else:
+				if !cVars.empty():
+					for variable in cVars:
+						currentBackground.set(variable, cVars[variable])
 				
 			if currentBackground.filename == backgroundToLoad:
+				if !cVars.empty():
+					for variable in cVars:
+						currentBackground.set(variable, cVars[variable])
 				return true
 			else:
 				currentBackground.queue_free()
 				currentBackground = background
 				add_child(currentBackground)
+				if !cVars.empty():
+					for variable in cVars:
+						currentBackground.set(variable, cVars[variable])
 				return false
 	else:
 		if currentBackground != null:

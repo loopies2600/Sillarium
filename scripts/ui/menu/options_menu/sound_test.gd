@@ -1,8 +1,0 @@
-extends "res://scripts/ui/menu/button.gd"
-
-func buttonPress():
-	Renderer.fade("in")
-	Renderer.transition.connect("fade_finished", self, "_fadeEnd")
-	
-func _fadeEnd():
-	Globals.LoadScene(1)

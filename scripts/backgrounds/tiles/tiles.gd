@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+var dontShowCones := true setget _setCones
+
+onready var anim = $Animator
 onready var rects = [$Tiles0, $Tiles1]
 onready var flipTimer = $FlipTimer
 
@@ -9,3 +12,14 @@ func _ready():
 func _flip(_beatNo):
 	for rect in rects:
 		rect.flip_h = !rect.flip_h
+		
+func _setCones(booly : bool):
+	if dontShowCones != booly:
+		dontShowCones = booly
+		_setupAnim()
+	
+func _setupAnim():
+	if dontShowCones:
+		anim.play("out")
+	else:
+		anim.play("in")

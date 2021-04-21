@@ -9,7 +9,6 @@ export (int) var sizeMultiplier = 2
 
 func _ready():
 	rect_size = rect_size + (offsetLimit * sizeMultiplier)
-	print(offsetLimit)
 	
 func _process(_delta):
 	if moveHorizontally:

@@ -13,6 +13,11 @@ func _ready() -> void:
 func _process(_delta) -> void:
 	if Audio.mute:
 		value = 0.0
+		editable = false
+		scrollable = false
+	else:
+		editable = true
+		scrollable = true
 		
 func _onValueChanged(value: float) -> void:
 	Settings.setSetting("dont-autogenerate-buttons", _busName + "_volume", value)
