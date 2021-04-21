@@ -6,11 +6,10 @@
 [ext_resource path="res://sprites/background/tiles/cone.png" type="Texture" id=4]
 [ext_resource path="res://sprites/debug/radius.png" type="Texture" id=5]
 
-[sub_resource type="CanvasItemMaterial" id=3]
+[sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 2
 
-[sub_resource type="Animation" id=1]
-resource_name = "out"
+[sub_resource type="Animation" id=2]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Cones0:position")
@@ -49,8 +48,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.12549 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "out"
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Cones0:position")
@@ -119,11 +117,11 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
-speed = -1
+speed = -48
 
 [node name="Mask" type="TextureRect" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
-material = SubResource( 3 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 5 )
@@ -166,22 +164,6 @@ startingPos = Vector2( 0, 0 )
 moveVertically = false
 sizeMultiplier = 1
 
-[node name="Cones2" type="TextureRect" parent="Cones0"]
-modulate = Color( 1, 1, 1, 0.501961 )
-margin_left = 8.0
-margin_top = 36.0
-margin_right = 2056.0
-margin_bottom = 68.0
-texture = ExtResource( 4 )
-stretch_mode = 2
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-startingPos = Vector2( 0, 0 )
-moveVertically = false
-sizeMultiplier = 1
-
 [node name="Cones1" type="Node2D" parent="."]
 position = Vector2( -72, 860 )
 rotation = -0.0436332
@@ -212,26 +194,9 @@ __meta__ = {
 }
 startingPos = Vector2( -512, 0 )
 moveVertically = false
-speed = -1
-sizeMultiplier = 1
-
-[node name="Cones2" type="TextureRect" parent="Cones1"]
-modulate = Color( 1, 1, 1, 0.501961 )
-margin_left = -504.0
-margin_top = 28.0
-margin_right = 1544.0
-margin_bottom = 60.0
-texture = ExtResource( 4 )
-stretch_mode = 2
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-startingPos = Vector2( -512, 0 )
-moveVertically = false
-speed = -1
+speed = -48
 sizeMultiplier = 1
 
 [node name="Animator" type="AnimationPlayer" parent="."]
-anims/in = SubResource( 1 )
-anims/out = SubResource( 2 )
+anims/in = SubResource( 2 )
+anims/out = SubResource( 3 )

@@ -28,6 +28,9 @@ func buttonPress():
 				Renderer.toggleFS()
 			if key == "mute_audio":
 				Audio.musicSetup(Objects.currentWorld.musicID)
+			if key == "vsync":
+				Renderer.toggleVSync()
+				
 		INPUT:
 			Objects.currentWorld.toggleButtons(1)
 			var binder = preload("res://data/ui/menu/options_menu/key_binder.tscn")

@@ -14,7 +14,6 @@ signal player_killed()
 signal player_respawned()
 
 export(Resource) var character
-onready var dashTexture = character.dashTexture
 
 onready var health = character.health setget _setHealth
 onready var maxSpeed = character.maxSpeed

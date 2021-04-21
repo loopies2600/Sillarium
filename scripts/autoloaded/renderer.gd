@@ -12,6 +12,7 @@ onready var climates = Settings.getSetting("renderer", "display_weather")
 onready var backgrounds = Settings.getSetting("renderer", "display_backgrounds")
 onready var fullscreen = Settings.getSetting("renderer", "fullscreen")
 onready var frameFreezer = Settings.getSetting("renderer", "freeze_frame")
+onready var vsync = Settings.getSetting("renderer", "vsync")
 
 # estas dos variables se usan para guardar tanto la transición como el fondo actual.
 var transition
@@ -23,6 +24,7 @@ var curViewportTex
 
 func _ready():
 	toggleFS()
+	toggleVSync()
 	
 func _input(event):
 	if event.is_action_pressed("toggle_fullscreen"):
@@ -36,6 +38,10 @@ func _input(event):
 func toggleFS():
 	fullscreen = Settings.getSetting("renderer", "fullscreen")
 	OS.window_fullscreen = fullscreen
+	
+func toggleVSync():
+	vsync = Settings.getSetting("renderer", "vsync")
+	OS.vsync_enabled = vsync
 	
 func spawnTrail(fds : float, sprite : Sprite, mdt := Color.white):
 	# algunos sprites van a dejar un rastro, así que esta función se encarga de spawnear ese rastro.

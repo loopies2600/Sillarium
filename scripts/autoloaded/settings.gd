@@ -62,7 +62,8 @@ var _settings = {
 		"display_backgrounds": true,
 		"display_weather": true,
 		"fullscreen": false,
-		"freeze_frame": true
+		"freeze_frame": true,
+		"vsync" : false
 	},
 	"dont-autogenerate-buttons": {
 		"lang": "en",

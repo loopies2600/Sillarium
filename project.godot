@@ -89,6 +89,7 @@ _global_script_class_icons={
 config/name="Sillarium"
 config/description="Run and Gun chistoso"
 run/main_scene="res://data/ui/menu/language_select/language_select.tscn"
+boot_splash/image="res://sprites/debug/crappy_ass_load_screen.png"
 config/icon="res://sprites/sillarium_s.png"
 
 [autoload]
@@ -102,13 +103,15 @@ Data="*res://scripts/autoloaded/data.gd"
 
 [debug]
 
-settings/fps/force_fps=60
+settings/crash_handler/message="lol! XD!"
 
 [display]
 
 window/size/width=1280
 window/size/height=720
 window/size/resizable=false
+window/size/always_on_top=true
+window/vsync/use_vsync=false
 mouse_cursor/custom_image="res://sprites/silly_cursor.png"
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
@@ -291,14 +294,19 @@ file_logging/log_path="user://logs/sillarium.log"
 [rendering]
 
 quality/driver/driver_name="GLES2"
-quality/driver/fallback_to_gles2=true
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 2d/snapping/use_gpu_pixel_snap=true
 threads/thread_model=2
+vram_compression/import_etc2=false
+quality/shadows/filter_mode=0
+quality/reflections/texture_array_reflections=false
+quality/reflections/high_quality_ggx=false
 batching/options/single_rect_fallback=true
 gles2/compatibility/disable_half_float=true
+quality/lightmapping/use_bicubic_sampling=false
 environment/default_clear_color=Color( 0.0745098, 0.027451, 0.215686, 1 )
+quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"
 quality/2d/use_pixel_snap=true
 
