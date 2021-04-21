@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blue.png-ae9aab8f90556d0a1a1caa767cd8c9be.stex"
+path="res://.import/cone.png-24275bf9eb29ba4a5300b6449586f4ed.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/background/tiles/blue.png"
-dest_files=[ "res://.import/blue.png-ae9aab8f90556d0a1a1caa767cd8c9be.stex" ]
+source_file="res://sprites/background/tiles/cone.png"
+dest_files=[ "res://.import/cone.png-24275bf9eb29ba4a5300b6449586f4ed.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false

@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://sprites/test_tilemap.png" type="Texture" id=1]
 [ext_resource path="res://scripts/ui/transition/transition_viewport.gd" type="Script" id=2]
 [ext_resource path="res://data/shaders/mode7.shader" type="Shader" id=3]
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
 shader_param/DEPTH = Vector2( 0, 0 )
 shader_param/POSITION = Vector2( 0, 1 )
@@ -14,12 +14,39 @@ shader_param/REPEAT_Y = true
 shader_param/FLIP = true
 shader_param/toScreen = false
 
-[sub_resource type="Gradient" id=5]
-
-[sub_resource type="GradientTexture" id=6]
-gradient = SubResource( 5 )
+[sub_resource type="Animation" id=6]
+resource_name = "fadein"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("ViewportTexture:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=7]
+resource_name = "fadeout"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ViewportTexture:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
 resource_name = "mode7in"
 length = 0.5
 tracks/0/type = "value"
@@ -47,7 +74,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 resource_name = "mode7out"
 length = 0.5
 tracks/0/type = "value"
@@ -75,95 +102,24 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "zoomin"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("ViewportTexture:rect_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("ViewportTexture:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "zoomout"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("ViewportTexture:rect_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1.5, 1.5 ), Vector2( 2, 2 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("ViewportTexture:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-
 [node name="ViewportTransition" type="CanvasLayer"]
 script = ExtResource( 2 )
 
 [node name="ViewportTexture" type="TextureRect" parent="."]
-material = SubResource( 4 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_scale = Vector2( 1.5, 1.5 )
-rect_pivot_offset = Vector2( 640, 360 )
-texture = SubResource( 6 )
-expand = true
-stretch_mode = 1
+margin_top = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 1 )
+stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 1280, 720 )
-
-[node name="test_tilemap" type="Sprite" parent="Viewport"]
-position = Vector2( 200.379, 366.204 )
-texture = ExtResource( 1 )
-
-[node name="test_tilemap2" type="Sprite" parent="Viewport"]
-position = Vector2( 972.539, 352.061 )
-texture = ExtResource( 1 )
-
-[node name="test_tilemap3" type="Sprite" parent="Viewport"]
-position = Vector2( 715.152, 714.1 )
-texture = ExtResource( 1 )
-
 [node name="Animator" type="AnimationPlayer" parent="."]
-anims/mode7in = SubResource( 7 )
-anims/mode7out = SubResource( 8 )
-anims/zoomin = SubResource( 2 )
-anims/zoomout = SubResource( 3 )
+anims/fadein = SubResource( 6 )
+anims/fadeout = SubResource( 7 )
+anims/mode7in = SubResource( 4 )
+anims/mode7out = SubResource( 5 )

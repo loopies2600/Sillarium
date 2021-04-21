@@ -4,6 +4,7 @@
 
 extends Node
 
+signal settings_changed
 # dependiendo de si se haya podido leer el archivo o no, va a devolver alguno de estos dos. es muy obvio lo que hacen.
 enum {LOAD_SUCCESS, LOAD_ERROR_COULDNT_OPEN}
 
@@ -20,7 +21,9 @@ var _settings = {
 	},
 	"controls":
 		{
+			"take_screenshot": KEY_F12,
 			"toggle_debug": KEY_L,
+			"toggle_fullscreen": KEY_F11,
 			"pause": KEY_P
 	},
 	"player_one":
@@ -98,6 +101,8 @@ func bindKeys():
 			var newKey = InputEventKey.new()
 			newKey.set_scancode(value)
 			InputMap.action_add_event(key, newKey)
+			
+			emit_signal("settings_changed")
 		
 func saveSettings():
 	# primero tiene que ir en bucle por cada sección en el diccionario de las opciones, así las va guardando en el archivo CFG.
@@ -108,6 +113,7 @@ func saveSettings():
 	
 	_configFile.save(SAVE_PATH)
 	bindKeys()
+	emit_signal("settings_changed")
 	
 func loadSettings():
 	# se nota que esto es más complejo. tiene que leer la configuración desde SAVE_PATH, que es el hipotetico lugar donde se guarda nuestra configuraciṕóm.
@@ -129,6 +135,7 @@ func loadSettings():
 			
 	# y entonces le avisamos que es un positivo, además de imprimir cada clave en la consola.
 	bindKeys()
+	emit_signal("settings_changed")
 	return LOAD_SUCCESS
 	
 func getSetting(category, key):
@@ -138,3 +145,4 @@ func getSetting(category, key):
 func setSetting(category, key, value):
 	# y está para cambiar algún valor.
 	_settings[category][key] = value
+	emit_signal("settings_changed")

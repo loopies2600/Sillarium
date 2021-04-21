@@ -5,6 +5,7 @@ extends Node
 
 const BG = "res://data/json/backgrounds.json"
 const WEATHER = "res://data/json/climates.json"
+const SCREENSHOTS_PATH = "user://screenshots/"
 
 # otra variable que lee desde la configuración, esta es para decidir si deberiamos dibujar los fondos o no
 onready var climates = Settings.getSetting("renderer", "display_weather")
@@ -23,6 +24,15 @@ var curViewportTex
 func _ready():
 	toggleFS()
 	
+func _input(event):
+	if event.is_action_pressed("toggle_fullscreen"):
+		Settings.setSetting("renderer", "fullscreen", !fullscreen)
+		Settings.saveSettings()
+		toggleFS()
+		
+	if event.is_action_pressed("take_screenshot"):
+		takeScreenshot()
+		
 func toggleFS():
 	fullscreen = Settings.getSetting("renderer", "fullscreen")
 	OS.window_fullscreen = fullscreen
@@ -66,13 +76,7 @@ func fade(mode := "in", mask = preload("res://sprites/debug/test_transition.png"
 			newFade.mode = mode
 			
 			if mode == "in":
-				var tempImage = Image.new()
-				tempImage = get_viewport().get_texture().get_data()
-				tempImage.flip_y()
-				var tempTexture = ImageTexture.new()
-				tempTexture.create_from_image(tempImage)
-				
-				curViewportTex = tempTexture
+				curViewportTex = _generateScreenshot()
 				
 			newFade.tex = curViewportTex
 				
@@ -138,6 +142,39 @@ func backgroundSetup(bgID):
 			currentBackground.queue_free()
 			currentBackground = null
 			
+func _generateScreenshot(path := SCREENSHOTS_PATH) -> Texture:
+	var tempImage = Image.new()
+	tempImage = get_viewport().get_texture().get_data()
+	tempImage.flip_y()
+	var tempTexture = ImageTexture.new()
+	tempTexture.create_from_image(tempImage)
+	
+	if Globals.debug:
+		var vvpDir = Directory.new()
+		if !vvpDir.dir_exists(path):
+			vvpDir.make_dir_recursive(path)
+		
+		var vvpNumber = str(Data.getFileList(path, ["screenshot_"]).size())
+		var vvpName = "viewport_" + vvpNumber + ".png"
+		tempImage.save_png(path + vvpName)
+		
+	return tempTexture
+	
+func takeScreenshot(path := SCREENSHOTS_PATH):
+	var tempImage = Image.new()
+	tempImage = get_viewport().get_texture().get_data()
+	tempImage.flip_y()
+	
+	var scrDir = Directory.new()
+	if !scrDir.dir_exists(path):
+		scrDir.make_dir_recursive(path)
+		
+	var scrNumber = str(Data.getFileList(path, ["viewport_"]).size())
+	var scrName = "screenshot_" + scrNumber + ".png"
+	tempImage.save_png(path + scrName)
+	
+	print("'", scrName, "' saved!")
+	
 func freezeFrame(delay : int):
 	if not frameFreezer:
 		return

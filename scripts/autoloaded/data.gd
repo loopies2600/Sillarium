@@ -60,3 +60,23 @@ func getData(category, key):
 	
 func setData(category, key, value):
 	_data[category][key] = value
+	
+func getFileList(path := SAVE_PATH, exclude := []):
+	var files = []
+	var dir = Directory.new()
+	dir.open(path)
+	dir.list_dir_begin(true, true)
+	
+	while true:
+		var file = dir.get_next()
+		
+		if file == "":
+			break
+		elif not file.begins_with("."):
+			for prefix in exclude:
+				if not file.begins_with(prefix):
+					files.append(file)
+			
+	dir.list_dir_end()
+	
+	return files

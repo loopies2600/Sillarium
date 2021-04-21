@@ -54,7 +54,7 @@ func LoadScene(sceneID : int):
 	if newScene == curScene:
 		return true
 	else:
-		get_tree().change_scene(newScene)
+		var _unused = get_tree().change_scene(newScene)
 		return false
 	
 func LoadJSON(file : String, index : int, property : String):

@@ -14,10 +14,10 @@ func _ready():
 	add_var("player 2 position (X, Y)", Globals.playerTwo, "global_position", false)
 	add_var("player 1 velocity (X, Y)", Globals.player, "velocity", false)
 	add_var("player 2 velocity (X, Y)", Globals.playerTwo, "velocity", false)
-	add_var("object count", get_tree().get_root(), "get_child_count", true)
+	add_var("object count", Performance, "get_monitor", true, "", 10)
 	
-func add_var(var_name, object, var_ref, is_method, latter_word:String = ""):
-	vars.append([var_name, object, var_ref, is_method, latter_word])
+func add_var(var_name, object, var_ref, is_method, latter_word := "", argument = null):
+	vars.append([var_name, object, var_ref, is_method, latter_word, argument])
 
 func _process(delta):
 	for child in get_children():
@@ -33,10 +33,12 @@ func _process(delta):
 	
 	for v in vars:
 		var value = null
-		
 		if v[1] and weakref(v[1]).get_ref():
 			if v[3]:
-				value = v[1].call(v[2])
+				if v[5]:
+					value = v[1].call(v[2], v[5])
+				else:
+					value = v[1].call(v[2])
 			else:
 				value = v[1].get(v[2])
 			
@@ -51,7 +53,7 @@ func _process(delta):
 	$DebugInfo.text = debug_text
 	
 	#FPS
-	var fps = Engine.get_frames_per_second()
+	var fps = Performance.get_monitor(0)
 	system_text += str("framerate: ", fps, " fps\n").to_upper()
 	
 	#memoria dinamica utilizada

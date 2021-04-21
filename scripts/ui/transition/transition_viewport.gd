@@ -6,7 +6,7 @@ signal fade_finished(m)
 onready var rect = $ViewportTexture
 onready var animator = $Animator
 
-export (String) var type = "mode7"
+export (String) var type = "fade"
 
 var mode = "in"
 var tex
