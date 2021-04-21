@@ -76,7 +76,12 @@ func fade(mode := "in", mask = preload("res://sprites/debug/test_transition.png"
 			newFade.mode = mode
 			
 			if mode == "in":
-				curViewportTex = _generateScreenshot()
+				var tempImage = _generateScreenshot()
+				
+				var tempTexture = ImageTexture.new()
+				tempTexture.create_from_image(tempImage)
+				
+				curViewportTex = tempTexture
 				
 			newFade.tex = curViewportTex
 				
@@ -168,28 +173,15 @@ func backgroundSetup(bgID, cVars := {}):
 			currentBackground.queue_free()
 			currentBackground = null
 			
-func _generateScreenshot(path := SCREENSHOTS_PATH) -> Texture:
+func _generateScreenshot() -> Image:
 	var tempImage = Image.new()
 	tempImage = get_viewport().get_texture().get_data()
 	tempImage.flip_y()
-	var tempTexture = ImageTexture.new()
-	tempTexture.create_from_image(tempImage)
 	
-	if Globals.debug:
-		var vvpDir = Directory.new()
-		if !vvpDir.dir_exists(path):
-			vvpDir.make_dir_recursive(path)
-		
-		var vvpNumber = str(Data.getFileList(path, ["screenshot_"]).size())
-		var vvpName = "viewport_" + vvpNumber + ".png"
-		tempImage.save_png(path + vvpName)
-		
-	return tempTexture
+	return tempImage
 	
 func takeScreenshot(path := SCREENSHOTS_PATH):
-	var tempImage = Image.new()
-	tempImage = get_viewport().get_texture().get_data()
-	tempImage.flip_y()
+	var tempImage = _generateScreenshot()
 	
 	var scrDir = Directory.new()
 	if !scrDir.dir_exists(path):
