@@ -60,6 +60,7 @@ onready var graphics = $Graphics
 onready var animator = $Graphics/PlayerAnimator
 onready var graphicsAnimator = $GraphicsAnimator
 onready var armsPos = $ArmsPosition
+onready var feetPos = $FeetPosition
 onready var body = $Graphics/Body
 onready var head = $Graphics/Body/Head
 onready var legs = $Graphics/Body/Legs

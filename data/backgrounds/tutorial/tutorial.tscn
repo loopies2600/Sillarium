@@ -9,6 +9,7 @@
 shader = ExtResource( 2 )
 shader_param/DEPTH = Vector2( -0.011, 0.394 )
 shader_param/POSITION = Vector2( 0, 0 )
+shader_param/SCALE = null
 shader_param/REPEAT_X = true
 shader_param/REPEAT_Y = true
 shader_param/FLIP = false

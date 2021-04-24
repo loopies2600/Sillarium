@@ -290,3 +290,6 @@ one_shot = true
 [node name="ComboTimer" type="Timer" parent="Timers"]
 wait_time = 4.0
 one_shot = true
+
+[node name="FeetPosition" type="Position2D" parent="."]
+position = Vector2( 0, 80 )

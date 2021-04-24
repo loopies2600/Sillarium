@@ -1,6 +1,6 @@
 {
 	"0": {
 			"name": "Rain",
-			"file": "res://data/particles/weather/rain/rain_emitter.tscn"
+			"file": "res://data/particles/weather/rain/rain.tscn"
 		     }
 }

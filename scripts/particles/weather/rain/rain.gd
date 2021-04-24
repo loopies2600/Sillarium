@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 onready var emitter = $RainEmitter
+onready var mat = emitter.get_process_material()
 var grav := Vector2(400, 800) setget _setGravity
 
 func _ready():
@@ -8,5 +9,6 @@ func _ready():
 	
 func _setGravity(neoGrav : Vector2):
 	grav = neoGrav
-	emitter.gravity = grav
-	emitter.angle = -rad2deg(emitter.gravity.angle())
+	mat.gravity.x = grav.x
+	mat.gravity.y = grav.y
+	mat.angle = -rad2deg(grav.angle())
