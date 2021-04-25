@@ -16,7 +16,11 @@ func _ready():
 	Renderer.backgroundSetup(bgID, {"dontShowCones" : false})
 	
 	for button in buttons:
+		button.connect("mouse_entered", self, "_onMouseEnter")
 		button.connect("pressed", self, "_on" + button.name + "Pressed")
+	
+func _onMouseEnter():
+	Audio.playSound(8)
 	
 func _onEnglishPressed():
 	Settings.setSetting("dont-autogenerate-buttons", "lang", "en")
@@ -31,6 +35,8 @@ func _onPortuguesPressed():
 	_returnToScene()
 	
 func _returnToScene():
+	Audio.playSound(6)
+	
 	language = Settings.getSetting("dont-autogenerate-buttons", "lang")
 	TranslationServer.set_locale(language)
 	Settings.saveSettings()

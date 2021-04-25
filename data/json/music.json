@@ -3,6 +3,7 @@
 		"name": "Astral Underground",
 		"file": "streams/music/bgm_caves.ogg",
 		"tempo": "132.500",
+		"loop": true,
 		"loop_offset": "0"
 		},
 		
@@ -10,6 +11,7 @@
 		"name": "Tutorial / Data",
 		"file": "streams/music/bgm_tutorial.ogg",
 		"tempo": "136",
+		"loop": true,
 		"loop_offset": "0"
 		},
 		
@@ -17,6 +19,7 @@
 		"name": "Character Select / Configuration",
 		"file": "streams/music/bgm_select.ogg",
 		"tempo": "90",
+		"loop": true,
 		"loop_offset": "0"
 	}
 }

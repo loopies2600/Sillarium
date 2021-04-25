@@ -16,6 +16,7 @@ func _ready():
 	updateText()
 	
 func onMouseEnter():
+	Audio.playSound(8)
 	selectedButton = buttonID
 	var buttonDescTR = "OM_BT" + str(selectedButton)
 	Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
@@ -26,6 +27,8 @@ func onMouseExit():
 	Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
 	
 func buttonPress():
+	Audio.playSound(6)
+	
 	match type:
 		SWITCH:
 			val = !val
@@ -33,7 +36,7 @@ func buttonPress():
 			Settings.saveSettings()
 			
 			if key == "display_backgrounds":
-				Renderer.backgroundSetup(Objects.currentWorld.backgroundID)
+				Renderer.backgroundSetup(Objects.currentWorld.backgroundID, {"dontShowCones" : false})
 			if key == "fullscreen":
 				Renderer.toggleFS()
 			if key == "mute_audio":

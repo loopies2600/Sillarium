@@ -20,6 +20,8 @@ func _ready():
 	Renderer.backgroundSetup(backgroundID, {"dontShowCones" : false})
 	Audio.musicSetup(musicID)
 	langButton.connect("pressed", self, "_langButtonPress")
+	langButton.connect("mouse_entered", self, "_langMouseEnter")
+	langButton.connect("mouse_exited", self, "_langMouseExit")
 	_spawnButtons()
 	
 func _spawnButtons():
@@ -54,9 +56,20 @@ func _spawnButtons():
 			startingBID += 1
 	
 func _langButtonPress():
+	Audio.playSound(6)
+	
 	Objects.previousWorld = filename
 	Renderer.fade("in")
 	Renderer.transition.connect("fade_finished", self, "_fadeEnd")
+	
+func _langMouseEnter():
+	Audio.playSound(8)
+	var buttonDescTR = "OM_BT0"
+	Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
+	
+func _langMouseExit():
+	var buttonDescTR = "OM_BTNULL"
+	Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
 	
 func _fadeEnd(_mode):
 	Globals.LoadScene(7)
