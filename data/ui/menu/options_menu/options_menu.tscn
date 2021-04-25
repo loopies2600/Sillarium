@@ -233,6 +233,36 @@ ticks_on_borders = true
 script = ExtResource( 6 )
 targetAudioBus = "Sound"
 
+[node name="InfoContainer" type="VBoxContainer" parent="."]
+margin_left = 972.0
+margin_top = 256.0
+margin_right = 1488.0
+margin_bottom = 1024.0
+rect_scale = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="SelectionInfo" type="PanelContainer" parent="InfoContainer"]
+margin_right = 516.0
+margin_bottom = 56.0
+theme = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="InfoContainer/SelectionInfo"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 512.0
+margin_bottom = 52.0
+custom_fonts/font = ExtResource( 1 )
+text = "OM_BTNULL"
+align = 1
+valign = 1
+autowrap = true
+
 [node name="Exit" type="Button" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0

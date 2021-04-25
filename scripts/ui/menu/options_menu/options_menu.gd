@@ -7,6 +7,7 @@ onready var optionsText = $OptionsTitle
 onready var categories = [$Items/Renderer/General, $Items/Controls, $Items/Controls/WayTooBig/P1Controls, $Items/Controls/WayTooBig/P2Controls, $Items/Renderer, $Items/Audio]
 onready var langButton = $Items/Renderer/General/LanguageButton
 onready var exitButton = $Exit
+onready var buttonDesc = $InfoContainer/SelectionInfo/Description
 
 var multiplier = 0.1
 
@@ -22,6 +23,8 @@ func _ready():
 	_spawnButtons()
 	
 func _spawnButtons():
+	var startingBID = 1
+	
 	for section in Settings._settings.keys():
 		for key in Settings._settings[section].keys():
 			var val = Settings._configFile.get_value(section,key)
@@ -32,6 +35,7 @@ func _spawnButtons():
 			newButton.key = key
 			newButton.val = val
 			newButton.font = langButton.get_font("font")
+			newButton.buttonID = startingBID
 			
 			match section:
 				"general":
@@ -46,6 +50,8 @@ func _spawnButtons():
 					categories[4].add_child(newButton)
 				"audio":
 					categories[5].add_child(newButton)
+					
+			startingBID += 1
 	
 func _langButtonPress():
 	Objects.previousWorld = filename

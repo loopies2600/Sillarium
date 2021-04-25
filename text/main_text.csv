@@ -5,7 +5,7 @@ MUTE_AUDIO,mute_audio,silenciar_audio,mutar_audio
 PEAK_VOLUME,"peak volume (left, right)","volumen maximo (izquierda, derecha)","volume maximo (esquerda, direita)"
 GENERAL,general,general,geral
 DEBUG_MODE,debug_mode,modo_debug,modo_debug
-PLAYER_POSITION,"player position (X, Y)","posicion del jugador (X, Y)","posição do jogador"
+PLAYER_POSITION,"player position (X, Y)","posicion del jugador (X, Y)",posição do jogador
 OBJECT_COUNT,object count,cantidad de objetos,contador the objetos
 RENDERER,renderer,renderizador,renderizar
 DISPLAY_BACKGROUNDS,display_backgrounds,mostrar_fondos,mostrar_fundos
@@ -22,7 +22,7 @@ AIM_RIGHT,aim_right,mirar_derecha,mirar_direita
 SHOOT,shoot,disparar,atirar
 DASH,dash,lanzarse,correr
 INPUT_HOLD,input_hold,bloquear_controles,segurar_botão
-TOGGLE_DEBUG,toggle_debug,alternar_debug,alternar_debug
+TOGGLE_DEBUG,toggle_debug,menu_debug,menu_debug
 INTERACT,interact,interactuar,interagir
 PAUSE,pause,pausar,pausar
 CAMERA_EFFECTS,camera_effects,efectos_de_camara,efeitos_de_câmera
@@ -66,3 +66,43 @@ SHOOT_TO,shoot,disparar,atirar
 DASH_TO,dash,lanzarse,correr
 INPUT_HOLD_TO,input_hold,bloquear_controles,segurar_botao
 INTERACT_TO,interact,interactuar,interagir
+OM_BT0,Change the language. I just felt like coding multilingual support,"Para cambiar el idioma. Nunca viene mal traducir, no?",
+OM_BT1,Toggles the debug mode. Lots of useful developer stuff here,Para activar el modo debug. Son las herramientas y cositas que fui desarrollando con el tiempo para asegurarme que todo este como debe,
+OM_BT2,With this button you can take screenshots. Why would you do that? I don’t know…,Con este boton podes tomar capturas de pantalla. No es como si vayas a usarlo mucho…,
+OM_BT3,Toggles the debug screen visibility. If debug mode is disabled this renders unusable,Es para mostrar u ocultar el menu debug. Mantene el modo debug activado porque si no este boton es inutil xD,
+OM_BT4,Switches between windowed and fullscreen. Wonder if it works on mobile devices???,Es para cambiar entre modo ventana y pantalla completa. Servira en mobiles???,
+OM_BT5,We already know what this one does,Ya sabemos para que es este,
+OM_BT6,We use this one to move to the left,Este es para ir hacia la izquierda,
+OM_BT7,And this one to move to the right,Y este para ir hacia la derecha,
+OM_BT8,This one is used to jump,Este es para poder saltar,
+OM_BT9,With these ones we move the arms of the player. This one moves ‘em up,Con estos movemos los brazos del jugador. Con este los mueve hacia arriba,
+OM_BT10,This one moves ‘em down,Este los mueve hacia abajo,
+OM_BT11,This one moves ‘em to the left,Este los mueve hacia la izquierda,
+OM_BT12,This one moves ‘em to the right,Este los mueve hacia la derecha,
+OM_BT13,pew pew,piun piun,
+OM_BT14,"Use this one to give ya a boost in mid-air, and ONLY in mid-air","Usa este para impulsarte cuando estas en el aire, OJO que solo en el aire",
+OM_BT15,"This one should be used for crouching, but i didn’t even code that yet. Im kinda lazy ikr","Este se deberia usar para agacharte, pero ni programe eso. Soy re vago, lo se",
+OM_BT16,Generic button to do stuff,Boton generico para hacer cosas. Que cosas? Quien sabe,
+OM_BT17,We already know what this one does,Ya sabemos para que es este,
+OM_BT18,We use this one to move to the left,Este es para ir hacia la izquierda,
+OM_BT19,And this one to move to the right,Y este para ir hacia la derecha,
+OM_BT20,This one is used to jump,Este es para poder saltar,
+OM_BT21,With these ones we move the arms of the player. This one moves ‘em up,Con estos movemos los brazos del jugador. Con este los mueve hacia arriba,
+OM_BT22,This one moves ‘em down,Este los mueve hacia abajo,
+OM_BT22,This one moves ‘em to the left,Este los mueve hacia la izquierda,
+OM_BT23,This one moves ‘em to the right,Este los mueve hacia la derecha,
+OM_BT24,pew pew,piun piun,
+OM_BT25,"Use this one to give ya a boost in mid-air, and ONLY in mid-air","Usa este para impulsarte cuando estas en el aire, OJO que solo en el aire",
+OM_BT26,"This one should be used for crouching, but i didn’t even code that yet. Im kinda lazy ikr","Este se deberia usar para agacharte, pero ni programe eso. Soy re vago, lo se",
+OM_BT27,Generic button to do stuff,Boton generico para hacer cosas. Que cosas? Quien sabe,
+OM_BT28,To completely stop sound processing. It may help performance on toasters,Para dejar de procesar TODO el sonido. Puede ayudar al rendimiento en tostadoras,
+OM_BT29,Use this button to toggle some headache-inducing camera effects. But they look nice doe,Usa este boton para activar o desactivar unos efectos de camara medio flasheros. Pero se ven lindos,
+OM_BT32,Self explanatory.,Se explica solo.,
+OM_BT30,Enable or disable rendering of backgrounds. Might help performance a little bit but it’s mostly useless,Activar o desactivar los fondos. PODRIIIIIA ayudar al rendimiento pero la mayoria del tiempo es al pedo,
+OM_BT31,"Same as the button above, but for the weather. This one should give a big performance boost","Igual que el boton de arriba, pero para los efectos de climas. Desactivar estos si podria mejorar mucho el rendimiento",
+OM_BT33,"Frame freezing is a technique used by a lot of games, it pauses the game for some frames to simulate hard hits and stuff like that?",Frame freezing es una tecnica usada por un monton de juegos. Pausa el juego durante unos fotogramas para simular golpes fuertes y cosas de esa onda,
+OM_BT34,"Vsync, this one’s used to synchronise the game’s frame’s per second to the screen’s refresh rate and avoid screen tearing with some input delay as a consecuence","Vsync. Esta se usa para sincronizar los fotogramas por segundo del juego a la tasa de refresco de la pantalla y asi evitar que se corte la pantalla, causando algo de retraso en la entrada como consecuencia",
+OM_BTNULL,THIS SHOULD PRINT USEFUL STUFF Y'KNOW?,"ESTO TENDRIA QUE ESCRIBIR INFORMACION IMPORTANTE, SABES?",
+TAKE_SCREENSHOT,take_screenshot,captura_de_pantalla,
+TOGGLE_FULLSCREEN,toggle_fullscreen,pantalla_completa,tela_cheia
+DISPLAY_WEATHER,display_weather,mostrar_climas,

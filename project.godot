@@ -104,6 +104,7 @@ Data="*res://scripts/autoloaded/data.gd"
 [debug]
 
 settings/crash_handler/message="lol! XD!"
+settings/fps/force_fps=60
 
 [display]
 

@@ -8,8 +8,6 @@ var targetIcons := ["res://sprites/debug/object_list/bg.png", "res://sprites/deb
 var holdingObject = null
 
 func _ready():
-	Objects.currentWorld = self
-	
 	for i in range(lists.size()):
 		lists[i].connect("item_activated", self, "_on" + lists[i].name + "ItemActivated")
 		

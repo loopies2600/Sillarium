@@ -15,6 +15,16 @@ func _ready():
 	theme = preload("res://sprites/ui/menu/main_theme.tres")
 	updateText()
 	
+func onMouseEnter():
+	selectedButton = buttonID
+	var buttonDescTR = "OM_BT" + str(selectedButton)
+	Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
+	
+func onMouseExit():
+	selectedButton = null
+	var buttonDescTR = "OM_BTNULL"
+	Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
+	
 func buttonPress():
 	match type:
 		SWITCH:
