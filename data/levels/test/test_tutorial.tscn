@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://data/enemy/grabber/grabber.tscn" type="PackedScene" id=1]
 [ext_resource path="res://data/pickups/weapons/weapon.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scripts/tilemaps/tile.gd" type="Script" id=5]
 [ext_resource path="res://data/enemy/pinataman/pinata_man.tscn" type="PackedScene" id=6]
 [ext_resource path="res://data/generic/basic_entryway.tscn" type="PackedScene" id=7]
+[ext_resource path="res://data/enemy/lebipi/lebipi.tscn" type="PackedScene" id=8]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
@@ -62,3 +63,6 @@ weaponID = 1
 
 [node name="WeaponPickup2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -1890, -296 )
+
+[node name="Lebipi" parent="." instance=ExtResource( 8 )]
+position = Vector2( 142, -256 )

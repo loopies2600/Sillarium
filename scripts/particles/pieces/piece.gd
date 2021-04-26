@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export (float, 0, 1) var bounciness = 0.75
 
+onready var shadow = $Shadow
 onready var sprite = $Sprite
 onready var hitbox = $Hitbox
 onready var visibility = $VisibilityNotifier2D

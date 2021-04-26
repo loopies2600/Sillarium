@@ -22,27 +22,27 @@ shader = ExtResource( 13 )
 shader_param/flash_color = Color( 0.87451, 0.443137, 0.14902, 1 )
 shader_param/flash_modifier = 0.0
 
-[sub_resource type="Gradient" id=9]
+[sub_resource type="Gradient" id=2]
 
-[sub_resource type="GradientTexture" id=10]
-gradient = SubResource( 9 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 7 )
-region = Rect2( 118, 18, 38, 51 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 7 )
-region = Rect2( 307, 18, 84, 58 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 7 )
+region = Rect2( 118, 18, 38, 51 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 7 )
+region = Rect2( 307, 18, 84, 58 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 7 )
 region = Rect2( 19, 12, 55, 74 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 30, 64 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:position")
@@ -93,7 +93,7 @@ tracks/3/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=9]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:position")
@@ -156,7 +156,7 @@ tracks/4/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:position")
 tracks/0/interp = 1
@@ -225,7 +225,7 @@ light_mask = 2
 position = Vector2( 0, 100.25 )
 scale = Vector2( 1, 197.5 )
 z_as_relative = false
-texture = SubResource( 10 )
+texture = SubResource( 3 )
 
 [node name="Shadow" parent="." instance=ExtResource( 16 )]
 
@@ -235,17 +235,17 @@ position = Vector2( 0, -4 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
 use_parent_material = true
-texture = SubResource( 2 )
+texture = SubResource( 4 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 use_parent_material = true
-texture = SubResource( 3 )
+texture = SubResource( 5 )
 offset = Vector2( 0, -44 )
 
 [node name="Legs" type="Sprite" parent="Graphics/Body"]
 use_parent_material = true
 z_index = -1
-texture = SubResource( 4 )
+texture = SubResource( 6 )
 offset = Vector2( 6, 48 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
@@ -283,14 +283,14 @@ script = ExtResource( 11 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 16 )
-shape = SubResource( 5 )
+shape = SubResource( 7 )
 
 [node name="Camera" parent="." instance=ExtResource( 1 )]
 
 [node name="GraphicsAnimator" type="AnimationPlayer" parent="."]
-anims/bump = SubResource( 6 )
-anims/dash = SubResource( 7 )
-anims/default = SubResource( 8 )
+anims/bump = SubResource( 8 )
+anims/dash = SubResource( 9 )
+anims/default = SubResource( 10 )
 anims/hurt = ExtResource( 4 )
 
 [node name="Timers" type="Node" parent="."]

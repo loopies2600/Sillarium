@@ -38,7 +38,6 @@ var lastGoodPosition := Vector2()
 var isGrounded := true
 var jumpForce
 var snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
-var velocity := Vector2()
 
 var applyGravity := true setget _doGravity
 var canDash := true

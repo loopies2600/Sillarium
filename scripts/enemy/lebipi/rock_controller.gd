@@ -1,13 +1,12 @@
-extends KinematicBody2D
+extends Kinematos
 
 # Variables para velocidad de la caida
 export (float) var acceleration = 40
 export (float) var maxSpeed = 600
 export (float) var horDrag = 0.5
-export (float) var pushSpeed = 3
+export (float) var pushSpeed = 0.25
 
 # Variable de velocidad y si puede caer
-var velocity = Vector2()
 var canDrop = false
 
 func _ready():

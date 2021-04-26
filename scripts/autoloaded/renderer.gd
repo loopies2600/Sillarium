@@ -59,9 +59,10 @@ func spawnTrail(fds : float, sprite : Sprite, mdt := Color.white):
 	newTrail.offset = sprite.offset
 	Objects.currentWorld.add_child(newTrail)
 	
-func spawn4Piece(sprite : Sprite):
+func spawn4Piece(sprite : Sprite, shadowScale := Vector2.ONE / 2):
 	# basado en el codigo del fade, se nota
 	var fourPiece = Objects.getObj(23)
+	fourPiece.shadowScale = shadowScale
 	fourPiece.texture = sprite.texture
 	fourPiece.global_position = sprite.global_position
 	fourPiece.global_rotation = sprite.global_rotation

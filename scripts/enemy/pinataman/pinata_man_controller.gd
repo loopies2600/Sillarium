@@ -6,8 +6,6 @@ onready var collisionBox = $CollisionShape2D
 
 export (PackedScene) var particle
 
-var velocity = Vector2()
-
 func _ready():
 	hitbox = $Area2D
 	var _unused = connect("destroy_self", self, "OnDestruction")

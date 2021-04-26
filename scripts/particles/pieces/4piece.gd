@@ -1,7 +1,9 @@
 extends Node2D
 
+var pieceNeedsToBeThisBigToRenderAShadow := Vector2(32, 32)
 var flipH : bool
 var flipV : bool
+var shadowScale := Vector2.ONE
 var texture : Texture
 
 onready var pieces = [$Piece, $Piece2, $Piece3, $Piece4]
@@ -13,6 +15,7 @@ func _ready():
 	pieces[3].initialVel = Vector2(rand_range(128, 64), rand_range(-512, 256))
 	
 	for piece in pieces:
+		piece.shadow.scale = shadowScale
 		piece.velocity = piece.initialVel
 		piece.sprite.flip_h = flipH
 		piece.sprite.flip_v = flipV
@@ -30,7 +33,11 @@ func _ready():
 	pieces[1].sprite.region_rect = Rect2(pieceSize.x, 0.0, pieceSize.x, pieceSize.y)
 	pieces[2].sprite.region_rect = Rect2(0.0, pieceSize.y, pieceSize.x, pieceSize.y)
 	pieces[3].sprite.region_rect = Rect2(pieceSize.x, pieceSize.y, pieceSize.x, pieceSize.y)
-
+	
+	for piece in pieces:
+		if piece.sprite.region_rect.size <= pieceNeedsToBeThisBigToRenderAShadow:
+			piece.shadow.queue_free()
+			
 func _process(_delta):
 	if get_child_count() == 0:
 		queue_free()

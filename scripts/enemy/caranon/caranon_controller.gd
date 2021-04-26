@@ -13,7 +13,6 @@ export (float) var firingTime = 3
 export (float) var gravityStrength = 1000
 
 # Movement variables
-var velocity = Vector2()
 var moving = true
 var touchingSurface = false
 var sRotation = 0

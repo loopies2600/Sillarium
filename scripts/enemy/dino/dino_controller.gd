@@ -10,7 +10,6 @@ var JUMP_MAGNITUDE = 600
 const GRAVITY = 25
 const ACCELERATION = 25
 const FRICTION = 0.15
-var velocity = Vector2()
 var dir = 1
 var friction = false
 enum states {IDLE, WALK, JUMP, LAND}

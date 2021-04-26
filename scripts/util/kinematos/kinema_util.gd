@@ -1,9 +1,26 @@
 extends KinematicBody2D
 class_name Kinematos
 
+var velocity := Vector2()
 # warning-ignore:unused_signal
 signal camera_shake_requested(mode, time, amp)
 
+func checkPushables(vel = velocity.x):
+	var isOnEnvironment = false
+	var pushable
+	
+	for b in get_slide_count():
+		var body = get_slide_collision(b).collider
+		
+		if body:
+			if body.is_in_group("Pushable"):
+				pushable = body
+			elif body.is_in_group("Environment"):
+				isOnEnvironment = true
+			
+	if isOnEnvironment && pushable:
+		pushable.Push(vel)
+		
 func setCollisionBits(bitArray := [], booly := true):
 	for bit in bitArray:
 		set_collision_mask_bit(bit, booly)

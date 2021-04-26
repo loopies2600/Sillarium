@@ -17,7 +17,6 @@ export (Vector2) var initialDeathBump = Vector2(250, -500)
 export (Vector2) var deathFallSpeed = Vector2(0, 40)
 
 var hasBoomerang = true
-var velocity = Vector2()
 var dir = 1
 
 func _ready():
