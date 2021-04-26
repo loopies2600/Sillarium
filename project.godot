@@ -282,6 +282,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_6="Environment"
 2d_physics/layer_7="PlayerOnly"
 2d_physics/layer_8="Pickups"
+2d_physics/layer_9="Particles"
 
 [locale]
 
@@ -302,6 +303,9 @@ vram_compression/import_etc2=false
 quality/shadows/filter_mode=0
 quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false
+quality/shading/force_vertex_shading=true
+quality/shading/force_lambert_over_burley=true
+quality/shading/force_blinn_over_ggx=true
 batching/options/single_rect_fallback=true
 gles2/compatibility/disable_half_float=true
 quality/lightmapping/use_bicubic_sampling=false

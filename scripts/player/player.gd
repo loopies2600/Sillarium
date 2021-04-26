@@ -68,10 +68,12 @@ onready var hitbox = $CollisionShape2D
 onready var camera = $Camera
 onready var gracePeriod = $Timers/GracePeriodTimer
 onready var comboPeriod = $Timers/ComboTimer
+onready var shadow = $Shadow
 
 onready var bodyParts = [head, body, legs]
 
 func _ready():
+	shadow.set_as_toplevel(true)
 	weapon = Objects.getWeapon(0, armsPos, z_index + 1, self)
 	currentWeapon = weapon
 	add_child(currentWeapon)

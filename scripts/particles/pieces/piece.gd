@@ -25,7 +25,7 @@ func _physics_process(delta):
 		velocity *= bounciness
 		
 	if velocity.abs() <= Vector2(0.75, 0.75):
-		sprite.visible = !sprite.visible
+		visible = !visible
 	if velocity.abs() <= Vector2(0.1, 0.1):
 		_kill()
 		

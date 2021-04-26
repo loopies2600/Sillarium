@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://data/player/camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/player/states/air.gd" type="Script" id=2]
@@ -14,12 +14,18 @@
 [ext_resource path="res://data/shaders/flash.shader" type="Shader" id=13]
 [ext_resource path="res://scripts/player/states/idle.gd" type="Script" id=14]
 [ext_resource path="res://scripts/player/states/locked.gd" type="Script" id=15]
+[ext_resource path="res://data/generic/shadow.tscn" type="PackedScene" id=16]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 13 )
 shader_param/flash_color = Color( 0.87451, 0.443137, 0.14902, 1 )
 shader_param/flash_modifier = 0.0
+
+[sub_resource type="Gradient" id=9]
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 7 )
@@ -88,7 +94,6 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id=7]
-resource_name = "dash"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:position")
@@ -208,11 +213,21 @@ tracks/3/keys = {
 material = SubResource( 1 )
 z_index = 4000
 input_pickable = true
-collision_layer = 32
-collision_mask = 65
+collision_layer = 0
+collision_mask = 97
 collision/safe_margin = 1.0
 script = ExtResource( 6 )
 character = ExtResource( 12 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+light_mask = 2
+position = Vector2( 0, 100.25 )
+scale = Vector2( 1, 197.5 )
+z_as_relative = false
+texture = SubResource( 10 )
+
+[node name="Shadow" parent="." instance=ExtResource( 16 )]
 
 [node name="Graphics" type="Node2D" parent="."]
 use_parent_material = true
@@ -266,6 +281,7 @@ script = ExtResource( 15 )
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, 16 )
 shape = SubResource( 5 )
 

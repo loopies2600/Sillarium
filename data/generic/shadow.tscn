@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sprites/player/shadow.png" type="Texture" id=1]
+[ext_resource path="res://scripts/generic/shadow.gd" type="Script" id=2]
+
+[node name="Shadow" type="Light2D"]
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 1 )
+color = Color( 0, 0, 0, 1 )
+energy = 0.5
+mode = 2
+range_z_min = -4096
+range_z_max = 4096
+range_layer_min = -128
+range_layer_max = 128
+range_item_cull_mask = 2
+script = ExtResource( 2 )
