@@ -26,7 +26,7 @@ onready var timeJumpApex = character.timeJumpApex
 onready var fallMultiplier = character.fallMultiplier
 onready var dashStrength = character.dashStrength
 onready var dashDuration = character.dashDuration
-onready var bounceOff = character.bounceOff
+onready var bounciness = character.bounciness
 onready var graceTime = character.graceTime
 onready var comboTime = character.comboTime
 
@@ -190,7 +190,7 @@ func playRandomAnim(anims : Array):
 	animator.play(anims[animToPlay])
 	
 func move(speed := maxSpeed, direction := getInputDirection()):
-	velocity.x = clamp(velocity.x + (direction * speed), -speed, speed)
+	velocity.x = clamp(velocity.x + (acceleration * direction), -speed, speed)
 	
 func damp(damping := friction):
 	velocity.x *= damping

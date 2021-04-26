@@ -5,16 +5,16 @@
 [resource]
 script = ExtResource( 1 )
 health = 10
-maxSpeed = 200.0
-airMaxSpeed = 300.0
-acceleration = 75.0
+maxSpeed = 256.0
+airMaxSpeed = 320.0
+acceleration = 64.0
 friction = 0.69
 airFriction = 0.975
 jumpStrength = 150.0
 timeJumpApex = 0.4
 fallMultiplier = 1.5
-dashStrength = 1200.0
+dashStrength = 24.0
 dashDuration = 0.2
-bounceOff = 0.75
+bounciness = 0.75
 graceTime = 2.0
 comboTime = 4.0

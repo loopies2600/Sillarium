@@ -60,7 +60,6 @@ func loadWAV(sfxID):
 	return stream
 	
 func playSound(sfxID, emitter = self, volume := 1.0, pitch := 1.0):
-	assert (emitter != null)
 	var soundPlayer = AudioStreamPlayer.new()
 	
 	soundPlayer.set_bus("Sound")

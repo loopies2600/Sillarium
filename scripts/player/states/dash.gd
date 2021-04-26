@@ -21,7 +21,7 @@ func update(delta):
 		
 	dashTime -= delta
 	
-	owner.velocity.x += (owner.dashStrength * owner.getFacingDirection()) * delta
+	owner.velocity.x += (owner.dashStrength * owner.getFacingDirection())
 		
 	if dashTime < 0.0:
 		emit_signal("finished", "previous")

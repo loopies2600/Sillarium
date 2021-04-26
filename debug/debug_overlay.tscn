@@ -4,7 +4,7 @@
 [ext_resource path="res://font/lmilk.tres" type="DynamicFont" id=2]
 [ext_resource path="res://debug/objects_list/object_list.tscn" type="PackedScene" id=3]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="DebugOverlay" type="CanvasLayer"]
 layer = 128
 script = ExtResource( 1 )
 

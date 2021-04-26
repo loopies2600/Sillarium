@@ -10,9 +10,10 @@
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
-startPosition = NodePath("StartPosition")
 backgroundID = 2
 musicID = 1
+tiles = NodePath("TutorialTiles")
+startPosition = NodePath("StartPosition")
 
 [node name="TutorialTiles" type="TileMap" parent="." groups=[
 "Environment",

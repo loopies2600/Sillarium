@@ -3,12 +3,16 @@ extends Node2D
 signal level_initialized
 signal level_started
 
-export (NodePath) var startPosition
+export (bool) var hasWeather = false
 export (int) var backgroundID
 export (int) var musicID
 export (int) var weatherID
 
+export (NodePath) var tiles
+export (NodePath) var startPosition
+
 onready var startPos = get_node(startPosition).position
+onready var tileMap = get_node(tiles)
 
 func _init():
 	Objects.currentWorld = self
@@ -20,7 +24,10 @@ func _ready():
 	
 	Renderer.fade("out")
 	Renderer.backgroundSetup(backgroundID)
-	Renderer.weatherSetup(weatherID, {"grav" : Vector2(200, 800)})
+	
+	if hasWeather:
+		Renderer.weatherSetup(weatherID, {"grav" : Vector2(200, 800)})
+		
 	Objects.spawn(22)
 	Objects.spawnPlayer(0, startPos)
 	

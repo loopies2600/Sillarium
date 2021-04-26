@@ -21,6 +21,12 @@ func keepOnScreen(clampX := true, clampY := false, offset := Vector2()):
 	if clampY:
 		global_position.y = clamp(global_position.y, minPos.y + offset.y, maxPos.y - offset.y)
 
+func getStandingTile(feetPos, tileMap := Objects.currentWorld.tileMap):
+	var curTilePos = tileMap.world_to_map(feetPos)
+	var curTile = tileMap.get_cellv(Vector2(curTilePos.x, curTilePos.y + 1))
+	
+	return curTile
+	
 func getShaderParam(parameter : String):
 	var material = self.get_material()
 	return material.get_shader_param(parameter)
