@@ -1,8 +1,10 @@
 extends "../button.gd"
 
 func buttonPress():
-	Audio.playSound(7)
+	Objects.currentWorld.toggleButtons()
+	var snd = Audio.playSound(7)
 	
+	yield(snd, "finished")
 	Renderer.fade("in")
 	Renderer.transition.connect("fade_finished", self, "_fadeEnd")
 	

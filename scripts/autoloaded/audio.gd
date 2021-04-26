@@ -11,7 +11,7 @@ const MUSIC = "res://data/json/music.json"
 const SOUND = "res://data/json/sounds.json"
 const COMPENSATE_FRAMES = 2
 const COMPENSATE_HZ = 60.0
-const WAV_PADDING = 2600
+const WAV_PADDING = 128 # en bytes
 
 # lee desde el archivo de configuración si el juego deberia reproducir musica y el volumen.
 onready var mute = Settings.getSetting("audio", "mute_audio")
@@ -52,24 +52,26 @@ func loadWAV(sfxID):
 		
 	var stream = AudioStreamSample.new()
 	
-	stream.stereo = true
-	stream.mix_rate = 44100
-	stream.format = 1
+	stream.format = Globals.LoadJSON(SOUND, sfxID, "format")
+	stream.mix_rate = Globals.LoadJSON(SOUND, sfxID, "sample_rate")
+	stream.stereo = Globals.LoadJSON(SOUND, sfxID, "stereo")
 	stream.data = bytes
 	
 	return stream
 	
-func playSound(sfxID, emitter = self, volume := 1.0):
+func playSound(sfxID, emitter = self, volume := 1.0, pitch := 1.0):
 	assert (emitter != null)
 	var soundPlayer = AudioStreamPlayer.new()
 	
 	soundPlayer.set_bus("Sound")
 	soundPlayer.volume_db = linear2db(volume)
+	soundPlayer.pitch_scale = pitch
 	soundPlayer.stream = loadWAV(sfxID)
 	soundPlayer.connect("ready", soundPlayer, "play")
 	soundPlayer.connect("finished", soundPlayer, "queue_free")
 	
 	emitter.add_child(soundPlayer)
+	return soundPlayer
 	
 func musicSetup(bgmID):
 	mute = Settings.getSetting("audio", "mute_audio")

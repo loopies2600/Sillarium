@@ -173,6 +173,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SOUNDS" type="Tabs" parent="VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 48.0
+margin_bottom = 20.0
+theme = ExtResource( 4 )
+
+[node name="SOUNDList" type="ItemList" parent="VBoxContainer/TabContainer/SOUNDS"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = 8.0
+margin_right = -12.0
+margin_bottom = -2.0
+theme = ExtResource( 4 )
+custom_fonts/font = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="WEATHER" type="Tabs" parent="VBoxContainer/TabContainer"]
 visible = false
 anchor_right = 1.0

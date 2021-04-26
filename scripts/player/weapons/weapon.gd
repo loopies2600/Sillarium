@@ -96,6 +96,7 @@ func doRotation():
 	
 func fire():
 	if ammo > 0:
+		Audio.playSound(0)
 		play("Fire")
 		
 		if type.displayFlash:
@@ -107,7 +108,7 @@ func fire():
 		if type.hasCooldown:
 			_startCooldown()
 			
-		offset.x = 4
+		offset.x = -4
 		var newProjectile = type.projectile.instance()
 		newProjectile.add_to_group("PlayerProjectile")
 		newProjectile.global_position = global_position + type.projectileOffset[angleIndex]
@@ -115,12 +116,14 @@ func fire():
 		newProjectile.z_index = z_index - 16
 		newProjectile.papa = get_parent()
 		get_tree().get_root().add_child(newProjectile)
-		get_parent().attackSound.play()
 			
 		if type.recoil > 0.0:
 			get_parent().velocity -= Vector2(type.recoil, 0.0).rotated(global_rotation)
 		
 		self.ammo -= 1
+	else:
+		offset.x = 4
+		Audio.playSound(1, Audio, 1.0, 2.0)
 	
 func _startCooldown():
 	cooldownIsOver = false

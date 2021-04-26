@@ -8,6 +8,7 @@ onready var buttons = [$Menu/Buttons/Play, $Menu/Buttons/Options, $Menu/Buttons/
 onready var buildNumber = $Build
 
 var danced := false
+var targetScene = 0
 
 func _init():
 	Objects.currentWorld = self
@@ -20,6 +21,41 @@ func _ready():
 	var _unused = Audio.connect("pump", self, "_onBeat")
 	Audio.musicSetup(musicID)
 	
+	for button in buttons:
+		button.connect("mouse_entered", self, "_onButtonMouseEnter")
+		button.connect("pressed", self, "_on" + button.name + "Pressed")
+	
+func _onButtonMouseEnter():
+	for button in buttons:
+		if !button.disabled:
+			Audio.playSound(8)
+	
+func _onPlayPressed():
+	_prepareScene(3)
+	
+func _onOptionsPressed():
+	_prepareScene(2)
+	
+func _onExitPressed():
+	_prepareScene(null)
+	
+func _prepareScene(index):
+	for button in buttons:
+		button.disabled = true
+		
+	targetScene = index
+	var snd = Audio.playSound(6)
+	
+	yield(snd, "finished")
+	Renderer.fade("in")
+	Renderer.transition.connect("fade_finished", self, "_fadeEnd")
+	
+func _fadeEnd(_mode):
+	if targetScene:
+		Globals.LoadScene(targetScene)
+	else:
+		get_tree().quit()
+		
 func _onBeat(_beatNo):
 	if danced:
 		anim.play("DanceLeft")

@@ -12,7 +12,8 @@ func buttonPress():
 	pass
 	
 func onMouseEnter():
-	Audio.playSound(8)
+	if !disabled:
+		Audio.playSound(8)
 	
 func onMouseExit():
 	selectedButton = null

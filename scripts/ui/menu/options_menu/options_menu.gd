@@ -38,6 +38,7 @@ func _spawnButtons():
 			newButton.val = val
 			newButton.font = langButton.get_font("font")
 			newButton.buttonID = startingBID
+			newButton.add_to_group("Option")
 			
 			match section:
 				"general":
@@ -56,16 +57,20 @@ func _spawnButtons():
 			startingBID += 1
 	
 func _langButtonPress():
-	Audio.playSound(6)
+	toggleButtons()
+	var snd = Audio.playSound(6)
 	
 	Objects.previousWorld = filename
+	
+	yield(snd, "finished")
 	Renderer.fade("in")
 	Renderer.transition.connect("fade_finished", self, "_fadeEnd")
 	
 func _langMouseEnter():
-	Audio.playSound(8)
-	var buttonDescTR = "OM_BT0"
-	Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
+	if !langButton.disabled:
+		Audio.playSound(8)
+		var buttonDescTR = "OM_BT0"
+		Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
 	
 func _langMouseExit():
 	var buttonDescTR = "OM_BTNULL"
@@ -74,15 +79,15 @@ func _langMouseExit():
 func _fadeEnd(_mode):
 	Globals.LoadScene(7)
 		
-func toggleButtons(category):
-	for child in categories[category].get_children():
-		if child is Button:
-			child.disabled = !child.disabled
-			
-		for c in child.get_children():
-			if c is Button:
-				c.disabled = !c.disabled
+func toggleButtons():
+	for node in get_tree().get_nodes_in_group("Option"):
+		if node is Button:
+			if node.has_focus():
+				node.release_focus()
 				
-			for oc in c.get_children():
-				if oc is Button:
-					oc.disabled = !oc.disabled
+			node.disabled = !node.disabled
+		else:
+			if node.visible:
+				node.hide()
+			else:
+				node.show()

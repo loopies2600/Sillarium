@@ -1,42 +1,69 @@
 {
 	"0": {
 		"name": "A Silly Build Fire",
-		"file": "streams/sfx/player/asb_fire.wav"
+		"file": "streams/sfx/player/asb_fire.wav",
+		"format": 1,
+		"stereo": false,
+		"sample_rate": 44100 
 		},
 		
 	"1": {
 		"name": "Generic Fire",
-		"file": "streams/sfx/player/generic_fire.wav"
+		"file": "streams/sfx/player/generic_fire.wav",
+		"format": 1,
+		"stereo": true,
+		"sample_rate": 44100
 		},
 		
 	"2": {
 		"name": "Boomerang Loop",
-		"file": "streams/sfx/enemy/buma/boomerang.wav"
+		"file": "streams/sfx/enemy/buma/boomerang.wav",
+		"format": 1,
+		"stereo": false,
+		"sample_rate": 44100
 	},
 	"3": {
 		"name": "Cow Bell",
-		"file": "streams/sfx/cowbell.wav"
+		"file": "streams/sfx/cowbell.wav",
+		"format": 1,
+		"stereo": false,
+		"sample_rate": 44100
 		},
 		
 	"4": {
 		"name": "3, 2, 1, Let's Go!",
-		"file": "streams/sfx/letsgo.wav"
+		"file": "streams/sfx/letsgo.wav",
+		"format": 1,
+		"stereo": true,
+		"sample_rate": 44100
 		},
 		
 	"5": {
 		"name": "Test Vox",
-		"file": "streams/sfx/unknown_voice.wav"
+		"file": "streams/sfx/unknown_voice.wav",
+		"format": 1,
+		"stereo": false,
+		"sample_rate": 44100
 	},
 	"6": {
 		"name": "Generic Accept",
-		"file": "streams/sfx/ui/accept.wav"
+		"file": "streams/sfx/ui/accept.wav",
+		"format": 1,
+		"stereo": true,
+		"sample_rate": 44100
 		},
 	"7": {
 		"name": "Generic Cancel",
-		"file": "streams/sfx/ui/cancel.wav"
+		"file": "streams/sfx/ui/cancel.wav",
+		"format": 1,
+		"stereo": true,
+		"sample_rate": 44100
 		},
 	"8": {
 		"name": "Generic Select",
-		"file": "streams/sfx/ui/select.wav"
+		"file": "streams/sfx/ui/select.wav",
+		"format": 1,
+		"stereo": true,
+		"sample_rate": 44100
 		}
 }

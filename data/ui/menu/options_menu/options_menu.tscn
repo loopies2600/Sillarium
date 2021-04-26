@@ -73,7 +73,9 @@ margin_bottom = 80.0
 custom_fonts/font = SubResource( 1 )
 text = "OM_GENERAL"
 
-[node name="LanguageButton" type="Button" parent="Items/Renderer/General"]
+[node name="LanguageButton" type="Button" parent="Items/Renderer/General" groups=[
+"Option",
+]]
 margin_top = 84.0
 margin_right = 495.0
 margin_bottom = 140.0
@@ -164,7 +166,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MVPanel" type="PanelContainer" parent="Items/Audio"]
+[node name="MVPanel" type="PanelContainer" parent="Items/Audio" groups=[
+"Option",
+]]
 margin_top = 84.0
 margin_right = 464.0
 margin_bottom = 160.0
@@ -200,7 +204,9 @@ ticks_on_borders = true
 script = ExtResource( 6 )
 targetAudioBus = "Music"
 
-[node name="SVPanel" type="PanelContainer" parent="Items/Audio"]
+[node name="SVPanel" type="PanelContainer" parent="Items/Audio" groups=[
+"Option",
+]]
 margin_top = 164.0
 margin_right = 464.0
 margin_bottom = 240.0
@@ -244,7 +250,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SelectionInfo" type="PanelContainer" parent="InfoContainer"]
+[node name="SelectionInfo" type="PanelContainer" parent="InfoContainer" groups=[
+"Option",
+]]
 margin_right = 516.0
 margin_bottom = 56.0
 theme = ExtResource( 3 )
@@ -263,7 +271,9 @@ align = 1
 valign = 1
 autowrap = true
 
-[node name="Exit" type="Button" parent="."]
+[node name="Exit" type="Button" parent="." groups=[
+"Option",
+]]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0

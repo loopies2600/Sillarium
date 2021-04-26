@@ -1,9 +1,9 @@
 extends Panel
 
-onready var lists := [$VBoxContainer/TabContainer/BACKGROUNDS/BGList, $VBoxContainer/TabContainer/MUSIC/MUSICList, $VBoxContainer/TabContainer/OBJECTS/OBJList, $VBoxContainer/TabContainer/PICKUPS/PICKUPList, $VBoxContainer/TabContainer/SCENES/SCENEList, $VBoxContainer/TabContainer/WEATHER/WEATHERList]
+onready var lists := [$VBoxContainer/TabContainer/BACKGROUNDS/BGList, $VBoxContainer/TabContainer/MUSIC/MUSICList, $VBoxContainer/TabContainer/OBJECTS/OBJList, $VBoxContainer/TabContainer/PICKUPS/PICKUPList, $VBoxContainer/TabContainer/SCENES/SCENEList, $VBoxContainer/TabContainer/SOUNDS/SOUNDList,$VBoxContainer/TabContainer/WEATHER/WEATHERList]
 
-var targetJSON := [Renderer.BG, Audio.MUSIC, Objects.OBJ, Objects.PICKUP, Globals.SCENE, Renderer.WEATHER]
-var targetIcons := ["res://sprites/debug/object_list/bg.png", "res://sprites/debug/object_list/music.png", "res://sprites/debug/object_list/obj.png", "res://sprites/debug/object_list/pickup.png", "res://sprites/debug/object_list/scene.png", "res://sprites/debug/object_list/weather.png"]
+var targetJSON := [Renderer.BG, Audio.MUSIC, Objects.OBJ, Objects.PICKUP, Globals.SCENE, Audio.SOUND, Renderer.WEATHER]
+var targetIcons := ["res://sprites/debug/object_list/bg.png", "res://sprites/debug/object_list/music.png", "res://sprites/debug/object_list/obj.png", "res://sprites/debug/object_list/pickup.png", "res://sprites/debug/object_list/scene.png", "res://sprites/debug/object_list/sound.png","res://sprites/debug/object_list/weather.png"]
 
 var holdingObject = null
 
@@ -44,6 +44,9 @@ func _onSCENEListItemActivated(index):
 		print("we're already on scene index ", index, ", what are you trying to do?")
 	else:
 		print("going to scene index ", index, "...")
+	
+func _onSOUNDListItemActivated(index):
+	Audio.playSound(index)
 	
 func _onWEATHERListItemActivated(index):
 	var sameWeather = Renderer.weatherSetup(index)

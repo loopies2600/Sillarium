@@ -20,7 +20,9 @@ func _ready():
 		button.connect("pressed", self, "_on" + button.name + "Pressed")
 	
 func _onMouseEnter():
-	Audio.playSound(8)
+	for button in buttons:
+		if !button.disabled:
+			Audio.playSound(8)
 	
 func _onEnglishPressed():
 	Settings.setSetting("dont-autogenerate-buttons", "lang", "en")
@@ -35,11 +37,19 @@ func _onPortuguesPressed():
 	_returnToScene()
 	
 func _returnToScene():
-	Audio.playSound(6)
+	for button in buttons:
+		if button.has_focus():
+			button.release_focus()
+			
+		button.disabled = true
+		
+	var snd = Audio.playSound(6)
 	
 	language = Settings.getSetting("dont-autogenerate-buttons", "lang")
 	TranslationServer.set_locale(language)
 	Settings.saveSettings()
+	
+	yield(snd, "finished")
 	Renderer.fade("in")
 	_connectDaFade()
 	

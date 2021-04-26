@@ -66,7 +66,6 @@ onready var head = $Graphics/Body/Head
 onready var legs = $Graphics/Body/Legs
 onready var hitbox = $CollisionShape2D
 onready var camera = $Camera
-onready var attackSound = $FiringSound
 onready var gracePeriod = $Timers/GracePeriodTimer
 onready var comboPeriod = $Timers/ComboTimer
 

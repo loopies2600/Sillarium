@@ -19,6 +19,6 @@ func _input(event):
 		var value = event.scancode
 		Settings.setSetting(inputCategory, str(control).to_lower(), value)
 		Settings.saveSettings()
-		Objects.currentWorld.toggleButtons(1)
+		Objects.currentWorld.toggleButtons()
 		daddyButton.updateText()
 		queue_free()

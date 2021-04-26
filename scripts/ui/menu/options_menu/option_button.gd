@@ -16,10 +16,11 @@ func _ready():
 	updateText()
 	
 func onMouseEnter():
-	Audio.playSound(8)
-	selectedButton = buttonID
-	var buttonDescTR = "OM_BT" + str(selectedButton)
-	Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
+	if !disabled:
+		Audio.playSound(8)
+		selectedButton = buttonID
+		var buttonDescTR = "OM_BT" + str(selectedButton)
+		Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
 	
 func onMouseExit():
 	selectedButton = null
@@ -27,11 +28,15 @@ func onMouseExit():
 	Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
 	
 func buttonPress():
-	Audio.playSound(6)
-	
 	match type:
 		SWITCH:
 			val = !val
+			
+			if val:
+				Audio.playSound(6)
+			else:
+				Audio.playSound(7)
+				
 			Settings.setSetting(category, key, val)
 			Settings.saveSettings()
 			
@@ -45,7 +50,9 @@ func buttonPress():
 				Renderer.toggleVSync()
 				
 		INPUT:
-			Objects.currentWorld.toggleButtons(1)
+			Audio.playSound(6)
+			
+			Objects.currentWorld.toggleButtons()
 			var binder = preload("res://data/ui/menu/options_menu/key_binder.tscn")
 			var newBinder = binder.instance()
 			
