@@ -1,7 +1,8 @@
 extends Sprite
 
 onready var visibility = $VisibilityNotifier2D
-var fadeSpeed = 0.1
+var fadeSpeed := 0.1
+var life := 1.0
 var modulation := Color.white
 
 func _ready():
@@ -13,10 +14,11 @@ func _setColor(color : Color):
 	material.set_shader_param("flash_color", color)
 	
 func _process(_delta):
-	modulate.a -= fadeSpeed
-	modulate.b += fadeSpeed * 4
+	life -= fadeSpeed
 	
-	if (modulate.a <= 0):
+	if (life <= 0.75):
+		visible = Renderer.flicker
+	if (life <= 0):
 		_kill()
 		
 func _kill():

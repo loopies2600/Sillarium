@@ -64,10 +64,10 @@ func _physics_process(_delta):
 	velocity = move_and_slide(velocity)
 	
 func seek():
-	var processedPos = target.position + Vector2(0, -separation)
 	var steer = Vector2.ZERO
 	
 	if target:
+		var processedPos = target.position + Vector2(0, -separation)
 		var desired = (processedPos - position).normalized() * speed
 		steer = (desired - velocity).normalized() * steerStrength
 		

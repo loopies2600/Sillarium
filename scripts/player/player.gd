@@ -198,7 +198,7 @@ func damp(damping := friction):
 	
 func flashBehaviour():
 	if flashing:
-		visible = !visible
+		visible = Renderer.flicker
 		
 	if !doinCombo && combo > 0:
 		combo -= 1

@@ -55,7 +55,7 @@ func _setupVars(_health = "don't use this variable!"):
 	amolab.text = "AMMO= " + str(papa.weapon.ammo)
 	
 func _process(_delta):
-	bg.flip_v = !bg.flip_v
+	bg.visible = Renderer.flicker
 	
 func _fadeStart(mode):
 	if mode == "in":

@@ -21,10 +21,14 @@ var currentWeather
 
 # esta variable guarda la textura de la pantalla, ojo con no actualizarla todo el tiempo!
 var curViewportTex
+var flicker := false
 
 func _ready():
 	toggleFS()
 	toggleVSync()
+	
+func _process(_delta):
+	flicker = !flicker
 	
 func _input(event):
 	if event.is_action_pressed("toggle_fullscreen"):

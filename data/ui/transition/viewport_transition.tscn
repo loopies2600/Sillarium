@@ -3,7 +3,7 @@
 [ext_resource path="res://sprites/test_tilemap.png" type="Texture" id=1]
 [ext_resource path="res://scripts/ui/transition/transition_viewport.gd" type="Script" id=2]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "fadein"
 length = 0.2
 tracks/0/type = "value"
@@ -19,7 +19,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "fadeout"
 length = 0.5
 tracks/0/type = "value"
@@ -50,5 +50,5 @@ __meta__ = {
 }
 
 [node name="Animator" type="AnimationPlayer" parent="."]
-anims/fadein = SubResource( 2 )
-anims/fadeout = SubResource( 3 )
+anims/fadein = SubResource( 1 )
+anims/fadeout = SubResource( 2 )
