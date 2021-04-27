@@ -1,5 +1,6 @@
 extends Kinematos
 
+onready var collisionBox = $CollisionPolygon2D
 # Variables para velocidad de la caida
 export (float) var acceleration = 40
 export (float) var maxSpeed = 600
@@ -10,7 +11,7 @@ export (float) var pushSpeed = 0.25
 var canDrop = false
 
 func _ready():
-	pass
+	collisionBox.disabled = true
 
 func _physics_process(_delta):
 	# Detiene a la piedra horizontalmente
@@ -30,6 +31,7 @@ func Push(xVelocity):
 func Drop():
 	# Deja que la piedra caiga
 	canDrop = true
+	collisionBox.disabled = false
 
 func OnScreenExited():
 	# Si la piedra esta cayendo y esta fuera de la pantalla, se borra

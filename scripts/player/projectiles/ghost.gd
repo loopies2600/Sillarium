@@ -6,8 +6,8 @@ onready var lifeTime = $LifeTime
 onready var anim = $Animator
 
 export (int) var damage = 10
-export (int) var speed = 400
-export (int) var steerStrength = 75
+export (float) var speed = 400
+export (float) var steerStrength = 75
 
 var papa
 var target = null

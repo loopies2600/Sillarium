@@ -38,6 +38,17 @@ func keepOnScreen(clampX := true, clampY := false, offset := Vector2()):
 	if clampY:
 		global_position.y = clamp(global_position.y, minPos.y + offset.y, maxPos.y - offset.y)
 
+func placeOutOfScreen(side := -1, offset := 128):
+	var ctrans = get_canvas_transform()
+	
+	var minPos = -ctrans.get_origin() / ctrans.get_scale()
+	
+	var viewSize = get_viewport_rect().size / ctrans.get_scale()
+	
+	var maxPos = minPos + (viewSize / 2)
+	
+	global_position.x = (maxPos.x * side) + (offset * side)
+	
 func getStandingTile(feetPos, tileMap := Objects.currentWorld.tileMap):
 	var curTilePos = tileMap.world_to_map(feetPos)
 	var curTile = tileMap.get_cellv(Vector2(curTilePos.x, curTilePos.y + 1))

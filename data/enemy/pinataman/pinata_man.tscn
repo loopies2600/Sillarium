@@ -88,7 +88,7 @@ tracks/1/keys = {
 "CameraManipulator",
 "Enemy",
 ]]
-collision_layer = 2147483655
+collision_layer = 2147483654
 collision_mask = 2
 script = ExtResource( 4 )
 killsPlayer = false
