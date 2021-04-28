@@ -11,7 +11,7 @@ func _playerGrounded(isGrounded):
 		emit_signal("finished", "air")
 	
 func update(_delta):
-	if owner.is_on_floor():
+	if owner.isGrounded:
 			if owner.canInput:
 				if Input.is_action_pressed("jump" + owner.inputSuffix):
 					emit_signal("finished", "air", {isJump = true})
@@ -20,7 +20,7 @@ func update(_delta):
 	else:
 		if owner.canDash:
 			if owner.canInput:
-				if Input.is_action_just_pressed("dash" + owner.inputSuffix):
+				if Input.is_action_pressed("dash" + owner.inputSuffix):
 					emit_signal("finished", "dash")
 		
 func onDamage(bumpX, bumpY):

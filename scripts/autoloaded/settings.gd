@@ -85,25 +85,38 @@ func _ready():
 		saveSettings()
 		loadSettings()
 	
-func bindKeys():
-	for cat in ["controls", "player_one", "player_two"]:
-		for key in _configFile.get_section_keys(cat):
-			# luego guarda un valor en value, y así en bucle
-			var value = _configFile.get_value(cat, key)
-			
-			# tiene que encontrar la lista con el nombre de esa acción.
-			var actionList = InputMap.get_action_list(key)
-			
-			# si la lista no está vacia, va a borrar los eventos---
-			if !actionList.empty():
-				InputMap.action_erase_event(key, actionList[0])
+func bindKeys(clear := false):
+	if clear:
+		for cat in ["player_one", "player_two"]:
+			for key in _configFile.get_section_keys(cat):
+				# luego guarda un valor en value, y así en bucle
+				var value = _configFile.get_value(cat, key)
 				
-			# para luego reemplazarlos con el evento que está escrito en el archivo de configuración.
-			var newKey = InputEventKey.new()
-			newKey.set_scancode(value)
-			InputMap.action_add_event(key, newKey)
+				# tiene que encontrar la lista con el nombre de esa acción.
+				var actionList = InputMap.get_action_list(key)
+				
+				# si la lista no está vacia, va a borrar los eventos---
+				if !actionList.empty():
+					InputMap.action_erase_event(key, actionList[0])
+	else:
+		for cat in ["controls", "player_one", "player_two"]:
+			for key in _configFile.get_section_keys(cat):
+				# luego guarda un valor en value, y así en bucle
+				var value = _configFile.get_value(cat, key)
+				
+				# tiene que encontrar la lista con el nombre de esa acción.
+				var actionList = InputMap.get_action_list(key)
+				
+				# si la lista no está vacia, va a borrar los eventos---
+				if !actionList.empty():
+					InputMap.action_erase_event(key, actionList[0])
+				
+				# para luego reemplazarlos con el evento que está escrito en el archivo de configuración.
+				var newKey = InputEventKey.new()
+				newKey.set_scancode(value)
+				InputMap.action_add_event(key, newKey)
 			
-			emit_signal("settings_changed")
+	emit_signal("settings_changed")
 		
 func saveSettings():
 	# primero tiene que ir en bucle por cada sección en el diccionario de las opciones, así las va guardando en el archivo CFG.

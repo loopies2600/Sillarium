@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AutoPlayer",
+"language": "GDScript",
+"path": "res://scripts/util/autoplay.gd"
+}, {
 "base": "Kinematos",
 "class": "BasicEnemy",
 "language": "GDScript",
@@ -54,6 +59,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/player/weapons/weapon_ranged.gd"
 }, {
+"base": "Node",
+"class": "Recorder",
+"language": "GDScript",
+"path": "res://scripts/util/recorder.gd"
+}, {
+"base": "Resource",
+"class": "Replay",
+"language": "GDScript",
+"path": "res://scripts/util/replay.gd"
+}, {
 "base": "Resource",
 "class": "RideableStats",
 "language": "GDScript",
@@ -70,6 +85,7 @@ _global_script_classes=[ {
 "path": "res://scripts/util/state_machine/state_machine.gd"
 } ]
 _global_script_class_icons={
+"AutoPlayer": "",
 "BasicEnemy": "res://sprites/ui/menu/enemy.png",
 "CollisionLayers": "",
 "HoverShake2D": "",
@@ -79,6 +95,8 @@ _global_script_class_icons={
 "Player": "res://sprites/ui/menu/player.png",
 "PlayerStats": "",
 "RangedWeapon": "",
+"Recorder": "",
+"Replay": "",
 "RideableStats": "",
 "State": "",
 "StateMachine": ""

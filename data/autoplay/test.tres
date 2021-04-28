@@ -1,0 +1,268 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/util/replay.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+replayData = {
+0: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+1: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+2: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+3: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+4: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+5: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+6: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+7: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+8: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+9: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+10: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+11: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+12: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+13: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+14: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+15: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+16: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+17: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+18: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+19: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+20: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+21: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+22: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, true, false, true, false ]
+},
+23: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, true, false, true, false ]
+},
+24: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+25: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ true, false, false, true, false ]
+},
+26: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ true, false, false, true, false ]
+},
+27: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ true, false, false, true, false ]
+},
+28: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+29: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+30: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+31: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+32: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+33: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+34: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+35: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+36: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+37: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+38: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, true, false, true, false ]
+},
+39: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, true ]
+},
+40: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+41: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+42: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+43: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+44: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+45: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, true, false, true, false ]
+},
+46: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, true, false, true, false ]
+},
+47: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, true, false, true, false ]
+},
+48: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+49: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+50: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ true, false, false, true, false ]
+},
+51: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ true, false, false, true, false ]
+},
+52: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+53: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+54: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+55: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+56: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+57: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+58: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+59: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+60: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+61: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+62: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, true, false ]
+},
+63: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+},
+64: {
+"actions": [ "dash", "jump", "move_left", "move_right", "shoot" ],
+"pressed": [ false, false, false, false, false ]
+}
+}

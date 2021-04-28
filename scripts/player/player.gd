@@ -42,6 +42,7 @@ var snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
 var applyGravity := true setget _doGravity
 var canDash := true
 var canInput := false
+var demoMode := false setget _setDemoMode
 var dragging := false
 var doinCombo := false
 var flashing := false
@@ -72,6 +73,9 @@ onready var shadow = $Shadow
 onready var bodyParts = [head, body, legs]
 
 func _ready():
+	var rec = AutoPlayer.new()
+	add_child(rec)
+	
 	shadow.set_as_toplevel(true)
 	weapon = Objects.getWeapon(0, armsPos, z_index + 1, self)
 	currentWeapon = weapon
@@ -255,6 +259,17 @@ func _setHealth(value: int):
 		if health == 0:
 			kill()
 	
+func _setDemoMode(booly : bool):
+	if demoMode == booly:
+		return
+		
+	demoMode = booly
+	
+	if demoMode:
+		Settings.bindKeys(true)
+	else:
+		Settings.bindKeys()
+		
 func kill():
 	self.deaths += 1
 	self.lives -= 1
