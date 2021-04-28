@@ -84,34 +84,31 @@ func musicSetup(bgmID):
 			# se va a cargar el archivo de musica desde el JSON, según su ID.
 			var musicToLoad = loadOGG(bgmID)
 			
-			# si no existe un reproductor de audio, creemos uno y que reproduzca la musica que le pasamos arriba.
-			if currentMusic == null:
-				currentMusic = AudioStreamPlayer.new()
-				currentMusic.stream = musicToLoad
-				currentMusic.play()
-				currentMusic.set_bus("Music")
-				currentID = bgmID
-				currentBPM = getMusicBPM(currentID)
-				add_child(currentMusic)
-				return MUSIC_STARTED_PLAYING
-				
-			# si el reproductor existe, pero queremos cambiar de musica, paramos la musica anterior y empezamos a reproducir la nueva.
 			if currentID != bgmID:
-				currentMusic.stop()
-				currentMusic.stream = musicToLoad
-				currentMusic.play()
-				currentMusic.set_bus("Music")
-				currentID = bgmID
-				currentBPM = getMusicBPM(currentID)
+				_setupMusicPlayer(bgmID, musicToLoad)
 				return MUSIC_STARTED_PLAYING
 			else:
 				return MUSIC_ALREADY_PLAYING
+			
 	else:
 		if currentMusic != null:
 			set_process(false)
 			currentMusic.queue_free()
 			currentMusic = null
-			
+	
+func _setupMusicPlayer(bgmID, stream):
+	if !currentMusic:
+		currentMusic = AudioStreamPlayer.new()
+		add_child(currentMusic)
+		
+	if bgmID != currentID:
+		currentMusic.stop()
+		currentMusic.stream = stream
+		currentMusic.play()
+		currentMusic.set_bus("Music")
+		currentID = bgmID
+		currentBPM = getMusicBPM(currentID)
+	
 func _process(_delta):
 	if !currentMusic or !currentMusic.playing:
 		return

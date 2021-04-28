@@ -14,10 +14,8 @@ func enter(_msg := {}):
 	owner.velocity.y = 0
 	
 func update(delta):
-	var dashModulate = owner.getShaderParam("flash_color")
-	
 	for part in owner.bodyParts:
-		Renderer.spawnTrail(0.1, part, dashModulate)
+		Renderer.spawnTrail(0.1, part, "random")
 		
 	dashTime -= delta
 	

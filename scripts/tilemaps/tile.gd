@@ -8,6 +8,6 @@ func _draw():
 			draw_line(Vector2(i * Globals.CELL_SIZE.x, follow.y + size.y + 100), Vector2(i * Globals.CELL_SIZE.x, follow.y - size.y - 100), Color.red, 2)
 		for i in range(int((follow.y - size.y) / Globals.CELL_SIZE.y) - 1, int((size.y + follow.y) / Globals.CELL_SIZE.y) + 1):
 			draw_line(Vector2(follow.x + size.x + 100, i * Globals.CELL_SIZE.y), Vector2(follow.x - size.x - 100, i * Globals.CELL_SIZE.y), Color.red, 2)
-
+		
 func _process(_delta):
 	update()

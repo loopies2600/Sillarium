@@ -26,8 +26,9 @@ func _physics_process(delta):
 		velocity *= bounciness
 		
 	if velocity.abs() <= Vector2(0.75, 0.75):
-		visible = Renderer.flicker
-	if velocity.abs() <= Vector2(0.1, 0.1):
+		modulate.a *= 0.9
+		
+	if modulate.a <= 0.05:
 		_kill()
 		
 func _screenExit():

@@ -75,7 +75,7 @@ __meta__ = {
 }
 
 [node name="Background" type="TextureRect" parent="Container"]
-modulate = Color( 1, 0.596078, 0.262745, 1 )
+modulate = Color( 1, 0.596078, 0.262745, 0.501961 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 1 )

@@ -77,7 +77,6 @@ var _settings = {
 }
 
 func _ready():
-	saveSettings()
 	var didLoad = loadSettings()
 	
 	if didLoad != OK:
@@ -89,10 +88,6 @@ func bindKeys(clear := false):
 	if clear:
 		for cat in ["player_one", "player_two"]:
 			for key in _configFile.get_section_keys(cat):
-				# luego guarda un valor en value, y así en bucle
-				var value = _configFile.get_value(cat, key)
-				
-				# tiene que encontrar la lista con el nombre de esa acción.
 				var actionList = InputMap.get_action_list(key)
 				
 				# si la lista no está vacia, va a borrar los eventos---

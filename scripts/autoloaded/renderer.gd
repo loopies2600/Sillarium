@@ -47,33 +47,30 @@ func toggleVSync():
 	vsync = Settings.getSetting("renderer", "vsync")
 	OS.vsync_enabled = vsync
 	
-func spawnTrail(fds : float, sprite : Sprite, mdt := Color.white):
+func spawnTrail(fadeSpeed : float, sprite : Sprite, modulation = Color.white):
 	# algunos sprites van a dejar un rastro, así que esta función se encarga de spawnear ese rastro.
 	# los argumentos son en orden: tiempo de desvanecimiento, textura, posición, rotación, escala, y orden Z.
 	var newTrail = Objects.getObj(7)
-	newTrail.modulation = mdt
-	newTrail.fadeSpeed = fds
-	newTrail.texture = sprite.texture
-	newTrail.global_position = sprite.global_position
-	newTrail.global_rotation = sprite.global_rotation
-	newTrail.global_scale = sprite.global_scale
-	newTrail.z_index = sprite.z_index - 1
-	newTrail.flip_h = sprite.flip_h
-	newTrail.flip_v = sprite.flip_v
-	newTrail.offset = sprite.offset
+	
+	newTrail.fadeSpeed = fadeSpeed
+	
+	if modulation is String:
+		newTrail.randomColors = true
+	else:
+		newTrail.modulation = modulation
+	
+	for p in ["texture", "global_position", "global_rotation", "global_scale", "z_index", "flip_h", "flip_v", "offset"]:
+		newTrail.set(p, sprite.get(p))
+		
 	Objects.currentWorld.add_child(newTrail)
 	
 func spawn4Piece(sprite : Sprite, shadowScale := Vector2.ONE / 2):
 	# basado en el codigo del fade, se nota
 	var fourPiece = Objects.getObj(23)
 	fourPiece.shadowScale = shadowScale
-	fourPiece.texture = sprite.texture
-	fourPiece.global_position = sprite.global_position
-	fourPiece.global_rotation = sprite.global_rotation
-	fourPiece.global_scale = sprite.scale
-	fourPiece.z_index = sprite.z_index
-	fourPiece.flipH = sprite.flip_h
-	fourPiece.flipV = sprite.flip_v
+	
+	for p in ["texture", "global_position", "global_rotation", "global_scale", "z_index", "flip_h", "flip_v"]:
+		fourPiece.set(p, sprite.get(p))
 		
 	Objects.currentWorld.call_deferred("add_child", fourPiece)
 	
@@ -119,27 +116,19 @@ func weatherSetup(weatherID, cVars := {}):
 			if !currentWeather:
 				currentWeather = weather
 				add_child(currentWeather)
-				if !cVars.empty():
-					for variable in cVars:
-						currentWeather.set(variable, cVars[variable])
+				_setupCustomVars(currentWeather, cVars)
 				return false
 			else:
-				if !cVars.empty():
-					for variable in cVars:
-						currentWeather.set(variable, cVars[variable])
+				_setupCustomVars(currentWeather, cVars)
 				
 			if currentWeather.filename == weatherToLoad:
-				if !cVars.empty():
-					for variable in cVars:
-						currentWeather.set(variable, cVars[variable])
+				_setupCustomVars(currentWeather, cVars)
 				return true
 			else:
 				currentWeather.queue_free()
 				currentWeather = weather
 				add_child(currentWeather)
-				if !cVars.empty():
-					for variable in cVars:
-						currentWeather.set(variable, cVars[variable])
+				_setupCustomVars(currentWeather, cVars)
 				return false
 	else:
 		if currentWeather != null:
@@ -157,27 +146,18 @@ func backgroundSetup(bgID, cVars := {}):
 			if !currentBackground:
 				currentBackground = background
 				add_child(currentBackground)
-				if !cVars.empty():
-					for variable in cVars:
-						currentBackground.set(variable, cVars[variable])
+				_setupCustomVars(currentBackground, cVars)
 				return false
 			else:
-				if !cVars.empty():
-					for variable in cVars:
-						currentBackground.set(variable, cVars[variable])
+				_setupCustomVars(currentBackground, cVars)
 				
 			if currentBackground.filename == backgroundToLoad:
-				if !cVars.empty():
-					for variable in cVars:
-						currentBackground.set(variable, cVars[variable])
+				_setupCustomVars(currentBackground, cVars)
 				return true
 			else:
 				currentBackground.queue_free()
 				currentBackground = background
 				add_child(currentBackground)
-				if !cVars.empty():
-					for variable in cVars:
-						currentBackground.set(variable, cVars[variable])
 				return false
 	else:
 		if currentBackground != null:
@@ -190,6 +170,11 @@ func _generateScreenshot() -> Image:
 	tempImage.flip_y()
 	
 	return tempImage
+	
+func _setupCustomVars(object, cVars := {}):
+	if !cVars.empty():
+		for variable in cVars:
+			object.set(variable, cVars[variable])
 	
 func takeScreenshot(path := SCREENSHOTS_PATH):
 	var tempImage = _generateScreenshot()

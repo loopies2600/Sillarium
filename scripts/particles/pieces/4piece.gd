@@ -1,8 +1,8 @@
 extends Node2D
 
 var pieceNeedsToBeThisBigToRenderAShadow := Vector2(32, 32)
-var flipH : bool
-var flipV : bool
+var flip_h : bool
+var flip_v : bool
 var shadowScale := Vector2.ONE
 var texture : Texture
 
@@ -17,8 +17,8 @@ func _ready():
 	for piece in pieces:
 		piece.shadow.scale = shadowScale
 		piece.velocity = piece.initialVel
-		piece.sprite.flip_h = flipH
-		piece.sprite.flip_v = flipV
+		piece.sprite.flip_h = flip_h
+		piece.sprite.flip_v = flip_v
 		piece.sprite.texture = texture
 		piece.hitbox.rotation -= global_rotation
 		

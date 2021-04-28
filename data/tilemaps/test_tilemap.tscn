@@ -3,7 +3,6 @@
 [ext_resource path="res://sprites/test_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/tilemaps/tile.gd" type="Script" id=2]
 
-
 [node name="TileMap" type="TileMap"]
 tile_set = ExtResource( 1 )
 cell_quadrant_size = 64

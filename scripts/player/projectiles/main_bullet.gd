@@ -5,3 +5,6 @@ func _ready():
 	hitbox = $CollisionShape2D
 	
 	initialize()
+	
+func _process(_delta):
+	Renderer.spawnTrail(0.25, sprite, Color.yellow)
