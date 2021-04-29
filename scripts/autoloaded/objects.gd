@@ -66,10 +66,7 @@ func spawn(id, cVars = {}):
 	
 	var newObj = obj.instance()
 	
-	if !cVars.empty():
-		for variable in cVars:
-			newObj.set(variable, cVars[variable])
-			
+	setupCustomVars(newObj, cVars)
 	currentWorld.add_child(newObj)
 	
 	return newObj
@@ -90,3 +87,8 @@ func getObj(id):
 	var obj = load(Globals.LoadJSON(OBJ, id, "file"))
 	
 	return obj.instance()
+	
+func setupCustomVars(object, cVars := {}):
+	if !cVars.empty():
+		for variable in cVars:
+			object.set(variable, cVars[variable])

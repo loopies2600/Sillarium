@@ -10,10 +10,6 @@ onready var flipTimer = $FlipTimer
 func _ready():
 	var _unused = Audio.connect("pump", self, "_flip")
 	
-func _process(_delta):
-	rects[0].visible = Renderer.flicker
-	rects[1].visible = !Renderer.flicker
-		
 func _flip(_beatNo):
 	for rect in rects:
 		rect.flip_h = !rect.flip_h

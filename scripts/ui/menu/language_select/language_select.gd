@@ -65,5 +65,5 @@ func _fadeEnd(_mode):
 	if Objects.previousWorld:
 		return get_tree().change_scene(Objects.previousWorld)
 	else:
-		Globals.LoadScene(0)
+		Globals.LoadScene(0, {"activePrompt": true})
 

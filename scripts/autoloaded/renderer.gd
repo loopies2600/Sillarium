@@ -116,19 +116,19 @@ func weatherSetup(weatherID, cVars := {}):
 			if !currentWeather:
 				currentWeather = weather
 				add_child(currentWeather)
-				_setupCustomVars(currentWeather, cVars)
+				Objects.setupCustomVars(currentWeather, cVars)
 				return false
 			else:
-				_setupCustomVars(currentWeather, cVars)
+				Objects.setupCustomVars(currentWeather, cVars)
 				
 			if currentWeather.filename == weatherToLoad:
-				_setupCustomVars(currentWeather, cVars)
+				Objects.setupCustomVars(currentWeather, cVars)
 				return true
 			else:
 				currentWeather.queue_free()
 				currentWeather = weather
 				add_child(currentWeather)
-				_setupCustomVars(currentWeather, cVars)
+				Objects.setupCustomVars(currentWeather, cVars)
 				return false
 	else:
 		if currentWeather != null:
@@ -146,13 +146,13 @@ func backgroundSetup(bgID, cVars := {}):
 			if !currentBackground:
 				currentBackground = background
 				add_child(currentBackground)
-				_setupCustomVars(currentBackground, cVars)
+				Objects.setupCustomVars(currentBackground, cVars)
 				return false
 			else:
-				_setupCustomVars(currentBackground, cVars)
+				Objects.setupCustomVars(currentBackground, cVars)
 				
 			if currentBackground.filename == backgroundToLoad:
-				_setupCustomVars(currentBackground, cVars)
+				Objects.setupCustomVars(currentBackground, cVars)
 				return true
 			else:
 				currentBackground.queue_free()
@@ -170,11 +170,6 @@ func _generateScreenshot() -> Image:
 	tempImage.flip_y()
 	
 	return tempImage
-	
-func _setupCustomVars(object, cVars := {}):
-	if !cVars.empty():
-		for variable in cVars:
-			object.set(variable, cVars[variable])
 	
 func takeScreenshot(path := SCREENSHOTS_PATH):
 	var tempImage = _generateScreenshot()

@@ -4,9 +4,10 @@ export (int) var backgroundID = 0
 export (int) var musicID = 0
 
 onready var anim = $Animator
-onready var buttons = [$Menu/Buttons/Play, $Menu/Buttons/Options, $Menu/Buttons/Exit]
-onready var buildNumber = $Build
+onready var buttons = [$Buttons/Play, $Buttons/Options, $Buttons/Exit]
+onready var pak = $PressAnyKey
 
+var activePrompt := false
 var danced := false
 var targetScene = 0
 
@@ -14,9 +15,14 @@ func _init():
 	Objects.currentWorld = self
 	
 func _ready():
+	if activePrompt:
+		for button in buttons:
+			button.disabled = true
+			button.hide()
+	else:
+		pak.queue_free()
+		
 	Renderer.fade("out")
-	randomize()
-	buildNumber.text = "SILLARIUM BUILD " + str(randi() % 32768)
 	Renderer.backgroundSetup(backgroundID,  {"dontShowCones" : true})
 	var _unused = Audio.connect("pump", self, "_onBeat")
 	Audio.musicSetup(musicID)
@@ -25,6 +31,17 @@ func _ready():
 		button.connect("mouse_entered", self, "_onButtonMouseEnter")
 		button.connect("pressed", self, "_on" + button.name + "Pressed")
 	
+func _input(event):
+	if activePrompt:
+		if event is InputEventKey:
+			pak.queue_free()
+			
+			for button in buttons:
+				button.disabled = false
+				button.show()
+				
+			activePrompt = false
+		
 func _onButtonMouseEnter():
 	for button in buttons:
 		if !button.disabled:

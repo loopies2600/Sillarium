@@ -50,15 +50,27 @@ func cubicBezier(p0: Vector2, p1: Vector2, p2: Vector2, p3: Vector2, time: float
 	var r = r0.linear_interpolate(r1, time)
 	return r
 	
-func LoadScene(sceneID : int):
-	# con esta función cargamos escenas desde ese JSON.
-	var curScene = Objects.currentWorld.filename
-	var newScene = LoadJSON(SCENE, sceneID, "file")
+func LoadScene(sceneID : int, cVars := {}):
+	var curScene
 	
-	if newScene == curScene:
+	for i in range(getJSONSize(SCENE)):
+		for c in get_tree().get_root().get_children():
+			if c.filename == LoadJSON(SCENE, i, "file"):
+				curScene = c
+				
+	var curSceneName = curScene.filename
+	var newSceneName = LoadJSON(SCENE, sceneID, "file")
+	
+	if newSceneName == curSceneName:
 		return true
 	else:
-		var _unused = get_tree().change_scene(newScene)
+		get_tree().get_root().remove_child(curScene)
+		curScene.call_deferred("free")
+		
+		var newScene = load(newSceneName).instance()
+		Objects.setupCustomVars(newScene, cVars)
+		get_tree().get_root().call_deferred("add_child", newScene)
+		get_tree().call_deferred("set_current_scene", newScene)
 		return false
 	
 func LoadJSON(file : String, index : int, property : String):

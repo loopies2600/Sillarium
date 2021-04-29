@@ -92,6 +92,7 @@ layer = -100
 script = ExtResource( 3 )
 
 [node name="Tiles0" type="TextureRect" parent="."]
+self_modulate = Color( 1, 1, 1, 0.501961 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = 424.0
@@ -104,6 +105,7 @@ __meta__ = {
 }
 
 [node name="Tiles1" type="TextureRect" parent="."]
+self_modulate = Color( 1, 1, 1, 0.501961 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -512.0
