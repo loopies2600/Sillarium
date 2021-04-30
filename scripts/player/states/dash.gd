@@ -20,6 +20,9 @@ func update(delta):
 	dashTime -= delta
 	
 	owner.velocity.x += (owner.dashStrength * owner.getFacingDirection())
+	
+	if owner.get_slide_count() > 0:
+		owner.takeDamage(0, true)
 		
 	if dashTime < 0.0:
 		emit_signal("finished", "previous")

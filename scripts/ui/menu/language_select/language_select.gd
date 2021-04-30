@@ -7,9 +7,6 @@ onready var buttons = [$Languages/English, $Languages/Espanol, $Languages/Portug
 
 var toScreen := true
 
-func _init():
-	Objects.currentWorld = self
-	
 func _ready():
 	TranslationServer.set_locale(language)
 	Renderer.fade("out")
@@ -62,8 +59,8 @@ func _connectDaFade():
 		connection = Renderer.transition.connect("fade_finished", self, "_fadeEnd")
 		
 func _fadeEnd(_mode):
-	if Objects.previousWorld:
-		return get_tree().change_scene(Objects.previousWorld)
+	if Objects.previousScene:
+		return get_tree().change_scene(Objects.previousScene)
 	else:
 		Globals.LoadScene(0, {"activePrompt": true})
 

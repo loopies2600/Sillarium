@@ -11,19 +11,18 @@ var activePrompt := false
 var danced := false
 var targetScene = 0
 
-func _init():
-	Objects.currentWorld = self
-	
 func _ready():
 	if activePrompt:
+		Renderer.backgroundSetup(backgroundID,  {"dontShowCones" : false})
+		
 		for button in buttons:
 			button.disabled = true
 			button.hide()
 	else:
+		Renderer.backgroundSetup(backgroundID, {"dontShowCones" : true})
 		pak.queue_free()
 		
 	Renderer.fade("out")
-	Renderer.backgroundSetup(backgroundID,  {"dontShowCones" : true})
 	var _unused = Audio.connect("pump", self, "_onBeat")
 	Audio.musicSetup(musicID)
 	
@@ -34,6 +33,7 @@ func _ready():
 func _input(event):
 	if activePrompt:
 		if event is InputEventKey:
+			Renderer.backgroundSetup(backgroundID, {"dontShowCones" : true})
 			pak.queue_free()
 			
 			for button in buttons:

@@ -13,7 +13,7 @@ shader_param/stroke = 4.0
 shader_param/texSize = Vector2( 340, 413 )
 shader_param/outline_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 resource_name = "DanceLeft"
 length = 0.5
 tracks/0/type = "value"
@@ -41,7 +41,7 @@ tracks/1/keys = {
 "values": [ 0.0, 16.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 resource_name = "DanceRight"
 length = 0.5
 tracks/0/type = "value"
@@ -137,5 +137,5 @@ custom_colors/font_color_pressed = Color( 1, 0.698039, 0.231373, 1 )
 text = "MM_EXIT"
 
 [node name="Animator" type="AnimationPlayer" parent="."]
-anims/DanceLeft = SubResource( 7 )
-anims/DanceRight = SubResource( 8 )
+anims/DanceLeft = SubResource( 2 )
+anims/DanceRight = SubResource( 3 )

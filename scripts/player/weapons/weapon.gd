@@ -73,8 +73,8 @@ func _handleFiring():
 	
 func doRotation():
 	var direction = Vector2(
-		int(Input.is_action_pressed("aim_right" + get_parent().inputSuffix)) - int(Input.is_action_pressed("aim_left" + get_parent().inputSuffix)),
-		int(Input.is_action_pressed("aim_down" + get_parent().inputSuffix)) - int(Input.is_action_pressed("aim_up" + get_parent().inputSuffix)))
+		int(Input.get_action_strength("aim_right" + get_parent().inputSuffix)) - int(Input.get_action_strength("aim_left" + get_parent().inputSuffix)),
+		int(Input.get_action_strength("aim_down" + get_parent().inputSuffix)) - int(Input.get_action_strength("aim_up" + get_parent().inputSuffix)))
 		
 	var desiredRotation
 	

@@ -113,8 +113,8 @@ config/icon="res://sprites/sillarium_s.png"
 [autoload]
 
 Settings="*res://scripts/autoloaded/settings.gd"
-Globals="*res://scripts/autoloaded/globals.gd"
 Objects="*res://scripts/autoloaded/objects.gd"
+Globals="*res://scripts/autoloaded/globals.gd"
 Renderer="*res://scripts/autoloaded/renderer.gd"
 Audio="*res://scripts/autoloaded/audio.gd"
 Data="*res://scripts/autoloaded/data.gd"

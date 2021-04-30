@@ -5,7 +5,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "fadein"
-length = 0.2
+length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("ViewportTexture:modulate")
 tracks/0/interp = 1

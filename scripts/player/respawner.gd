@@ -10,4 +10,5 @@ func _ready():
 	
 func _respawnPlayer():
 	var player = Objects.spawnPlayer(0, respawnPos, true, playerSlot)
+	
 	queue_free()

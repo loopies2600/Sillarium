@@ -62,7 +62,7 @@ func spawnTrail(fadeSpeed : float, sprite : Sprite, modulation = Color.white):
 	for p in ["texture", "global_position", "global_rotation", "global_scale", "z_index", "flip_h", "flip_v", "offset"]:
 		newTrail.set(p, sprite.get(p))
 		
-	Objects.currentWorld.add_child(newTrail)
+	get_tree().get_current_scene().add_child(newTrail)
 	
 func spawn4Piece(sprite : Sprite, shadowScale := Vector2.ONE / 2):
 	# basado en el codigo del fade, se nota
@@ -72,7 +72,7 @@ func spawn4Piece(sprite : Sprite, shadowScale := Vector2.ONE / 2):
 	for p in ["texture", "global_position", "global_rotation", "global_scale", "z_index", "flip_h", "flip_v"]:
 		fourPiece.set(p, sprite.get(p))
 		
-	Objects.currentWorld.call_deferred("add_child", fourPiece)
+	get_tree().get_current_scene().add_child(fourPiece)
 	
 func fade(mode := "in", mask = preload("res://sprites/debug/test_transition.png"), viewportFX := true):
 	# esta función se encarga de spawnear la transición, solo si no hay ninguna transición actualmente.

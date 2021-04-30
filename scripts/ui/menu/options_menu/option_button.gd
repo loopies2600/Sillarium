@@ -20,12 +20,12 @@ func onMouseEnter():
 		Audio.playSound(8)
 		selectedButton = buttonID
 		var buttonDescTR = "OM_BT" + str(selectedButton)
-		Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
+		get_tree().get_current_scene().buttonDesc.text = tr(buttonDescTR).to_upper()
 	
 func onMouseExit():
 	selectedButton = null
 	var buttonDescTR = "OM_BTNULL"
-	Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
+	get_tree().get_current_scene().buttonDesc.text = tr(buttonDescTR).to_upper()
 	
 func buttonPress():
 	match type:
@@ -41,18 +41,18 @@ func buttonPress():
 			Settings.saveSettings()
 			
 			if key == "display_backgrounds":
-				Renderer.backgroundSetup(Objects.currentWorld.backgroundID, {"dontShowCones" : false})
+				Renderer.backgroundSetup(get_tree().get_current_scene().backgroundID, {"dontShowCones" : false})
 			if key == "fullscreen":
 				Renderer.toggleFS()
 			if key == "mute_audio":
-				Audio.musicSetup(Objects.currentWorld.musicID)
+				Audio.musicSetup(get_tree().get_current_scene().musicID)
 			if key == "vsync":
 				Renderer.toggleVSync()
 				
 		INPUT:
 			Audio.playSound(6)
 			
-			Objects.currentWorld.toggleButtons()
+			get_tree().get_current_scene().toggleButtons()
 			var binder = preload("res://data/ui/menu/options_menu/key_binder.tscn")
 			var newBinder = binder.instance()
 			

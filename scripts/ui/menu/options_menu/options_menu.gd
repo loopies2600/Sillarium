@@ -11,9 +11,6 @@ onready var buttonDesc = $InfoContainer/SelectionInfo/Description
 
 var multiplier = 0.1
 
-func _init():
-	Objects.currentWorld = self
-	
 func _ready():
 	optionsText.bbcode_text = "[wave amp=32]" + tr("OM_TITLE")
 	Renderer.fade("out")
@@ -60,7 +57,7 @@ func _langButtonPress():
 	toggleButtons()
 	var snd = Audio.playSound(6)
 	
-	Objects.previousWorld = filename
+	Objects.previousScene = filename
 	
 	yield(snd, "finished")
 	Renderer.fade("in")
@@ -70,11 +67,11 @@ func _langMouseEnter():
 	if !langButton.disabled:
 		Audio.playSound(8)
 		var buttonDescTR = "OM_BT0"
-		Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
+		get_tree().get_current_scene().buttonDesc.text = tr(buttonDescTR).to_upper()
 	
 func _langMouseExit():
 	var buttonDescTR = "OM_BTNULL"
-	Objects.currentWorld.buttonDesc.text = tr(buttonDescTR).to_upper()
+	get_tree().get_current_scene().buttonDesc.text = tr(buttonDescTR).to_upper()
 	
 func _fadeEnd(_mode):
 	Globals.LoadScene(7)

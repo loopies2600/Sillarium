@@ -8,9 +8,7 @@ signal player_back_in_action(slot)
 const OBJ = "res://data/json/objects.json"
 const PICKUP = "res://data/json/pickups.json"
 
-# world es la manera de la cual le decimo a las escenas que contienen niveles, y en esta variable registramos dichas escenas.
-var currentWorld
-var previousWorld
+var previousScene
 
 func spawnPlayer(charID, pos, respawning := false, pSlot := "player"):
 	var character = load(Globals.LoadJSON(OBJ, 10, str(charID)))
@@ -67,7 +65,7 @@ func spawn(id, cVars = {}):
 	var newObj = obj.instance()
 	
 	setupCustomVars(newObj, cVars)
-	currentWorld.add_child(newObj)
+	get_tree().get_current_scene().add_child(newObj)
 	
 	return newObj
 	

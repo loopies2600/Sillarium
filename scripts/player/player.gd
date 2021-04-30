@@ -73,14 +73,22 @@ onready var shadow = $Shadow
 onready var bodyParts = [head, body, legs]
 
 func _ready():
+	if slot == "player":
+		var otherCam = get_tree().get_root().get_node("Camera")
+		
+		if otherCam:
+			otherCam.queue_free()
+	else:
+		camera.queue_free()
+		
 	shadow.set_as_toplevel(true)
 	weapon = Objects.getWeapon(0, armsPos, z_index + 1, self)
 	currentWeapon = weapon
 	add_child(currentWeapon)
 	
 func connectSignals():
-	var _unused = Objects.currentWorld.connect("level_initialized", self, "_onLevelInit")
-	_unused = Objects.currentWorld.connect("level_started", self, "_onLevelStart")
+	var _unused = get_tree().get_current_scene().connect("level_initialized", self, "_onLevelInit")
+	_unused = get_tree().get_current_scene().connect("level_started", self, "_onLevelStart")
 	_unused = gracePeriod.connect("timeout", self, "_gracePeriodEnd")
 	_unused = comboPeriod.connect("timeout", self, "_comboEnd")
 	_unused = camera.connectToManipulators()
@@ -223,7 +231,11 @@ func handleInputProcessing():
 func flipGraphics(facing):
 	body.scale.x = facing
 	
-func takeDamage(damage, bumpX = (-maxSpeed * 2) * getFacingDirection(), bumpY = (-jumpStrength * 4)):
+func takeDamage(damage, bumpAnyways := false, bumpX = (-maxSpeed * 2) * getFacingDirection(), bumpY = (-jumpStrength * 4)):
+	if bumpAnyways:
+		emit_signal("camera_shake_requested")
+		emit_signal("player_damaged", bumpX, bumpY)
+		
 	if !flashing:
 		emit_signal("camera_shake_requested")
 		startGracePeriod()
@@ -272,15 +284,17 @@ func kill():
 	self.lives -= 1
 	
 	if lives > 0:
-		var respawner = Objects.spawn(24, {
+		Objects.spawn(24, {
 		"global_position" : global_position,
 		"respawnPos" : lastGoodPosition, 
 		"playerSlot" : slot}
 		)
 		
 		Globals.set(slot, null)
+		
+	if slot == "player":
 		remove_child(camera)
-		respawner.add_child(camera)
+		get_tree().get_root().add_child(camera)
 		
 	queue_free()
 	

@@ -51,26 +51,18 @@ func cubicBezier(p0: Vector2, p1: Vector2, p2: Vector2, p3: Vector2, time: float
 	return r
 	
 func LoadScene(sceneID : int, cVars := {}):
-	var curScene
+	var curScene = get_tree().get_current_scene()
+	var newScene = load(LoadJSON(SCENE, sceneID, "file")).instance()
 	
-	for i in range(getJSONSize(SCENE)):
-		for c in get_tree().get_root().get_children():
-			if c.filename == LoadJSON(SCENE, i, "file"):
-				curScene = c
-				
-	var curSceneName = curScene.filename
-	var newSceneName = LoadJSON(SCENE, sceneID, "file")
-	
-	if newSceneName == curSceneName:
+	if newScene.filename == curScene.filename:
 		return true
 	else:
 		get_tree().get_root().remove_child(curScene)
 		curScene.call_deferred("free")
 		
-		var newScene = load(newSceneName).instance()
+		newScene.connect("tree_entered", get_tree(), "set_current_scene", [newScene], CONNECT_ONESHOT)
 		Objects.setupCustomVars(newScene, cVars)
 		get_tree().get_root().call_deferred("add_child", newScene)
-		get_tree().call_deferred("set_current_scene", newScene)
 		return false
 	
 func LoadJSON(file : String, index : int, property : String):

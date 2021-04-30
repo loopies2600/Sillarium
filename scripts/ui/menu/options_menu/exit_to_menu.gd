@@ -1,7 +1,7 @@
 extends "../button.gd"
 
 func buttonPress():
-	Objects.currentWorld.toggleButtons()
+	get_tree().get_current_scene().toggleButtons()
 	var snd = Audio.playSound(7)
 	
 	yield(snd, "finished")

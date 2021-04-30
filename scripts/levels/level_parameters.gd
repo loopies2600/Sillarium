@@ -14,11 +14,6 @@ export (NodePath) var startPosition
 onready var startPos = get_node(startPosition).position
 onready var tileMap = get_node(tiles)
 
-func _init():
-	Objects.currentWorld = self
-	var startTimer = Objects.spawn(25)
-	startTimer.connect("level_start", self, "start")
-	
 func _ready():
 	Audio.fade()
 	
@@ -28,6 +23,8 @@ func _ready():
 	if hasWeather:
 		Renderer.weatherSetup(weatherID, {"grav" : Vector2(200, 800)})
 		
+	var startTimer = Objects.spawn(25)
+	startTimer.connect("level_start", self, "start")
 	Objects.spawn(22)
 	Objects.spawnPlayer(0, startPos)
 	
