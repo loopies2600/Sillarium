@@ -4,7 +4,7 @@ class_name NumberStuff
 static func isEven(value : int) -> bool:
 	return value % 2 == 0
 		
-static func dec2bin(var decimalValue : int) -> int:
+static func dec2bin(decimalValue : int) -> int:
 	var binaryString = "" 
 	var temp 
 	var count = 31
@@ -15,9 +15,10 @@ static func dec2bin(var decimalValue : int) -> int:
 		else:
 			binaryString = binaryString + "0"
 		count -= 1
+		
 	return int(binaryString)
 	
-static func bin2dec(var binaryValue : int) -> int:
+static func bin2dec(binaryValue : int) -> int:
 	var decimalValue = 0
 	var count = 0
 	var temp
@@ -27,3 +28,14 @@ static func bin2dec(var binaryValue : int) -> int:
 		decimalValue += temp * pow(2, count)
 		count += 1
 	return decimalValue
+	
+static func isBitEnabled(mask, index):
+	return mask & (1 << index) != 0
+	
+static func setBit(mask, index, enabled := true):
+	if enabled:
+		return mask | (1 << index)
+	else:
+		return mask & ~(1 << index)
+	
+	

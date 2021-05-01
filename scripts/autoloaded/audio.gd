@@ -25,7 +25,6 @@ var currentID
 var currentBPM
 var beat setget setBeat, getBeat
 var time
-var fading := false
 
 func loadOGG(bgmID):
 	var path = Globals.LoadJSON(MUSIC, bgmID, "file")
@@ -116,14 +115,6 @@ func _process(_delta):
 	time = currentMusic.get_playback_position() + AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency() + (1 / COMPENSATE_HZ) * COMPENSATE_FRAMES
 	self.beat = int(time * currentBPM / 60.0)
 	
-	if fading:
-		currentMusic.volume_db -= 1.0
-	
-		if currentMusic.volume_db <= -32.0:
-			currentMusic.volume_db = 0.0
-			currentMusic.stop()
-			fading = false
-	
 func setBeat(value):
 	var oldBeat = beat
 	
@@ -148,9 +139,6 @@ func getMusicPeakVolume():
 	var right = AudioServer.get_bus_peak_volume_right_db(0, 0)
 	
 	return Vector2(-left, right)
-	
-func fade():
-	fading = true
 	
 func setupVolume(bus : String):
 	set(bus.to_lower() + "Volume", Settings.getSetting("dont-autogenerate-buttons", bus.to_lower() + "_volume"))

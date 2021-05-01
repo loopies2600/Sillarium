@@ -10,6 +10,7 @@
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
+flags = 11
 backgroundID = 2
 musicID = 1
 tiles = NodePath("TutorialTiles")

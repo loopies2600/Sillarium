@@ -15,7 +15,7 @@ func _process(_delta):
 	if get_tree().paused:
 		music.volume_db = lerp(music.volume_db, -10.0, 0.0125)
 	else:
-		music.volume_db = -80.0
+		music.volume_db = -80
 		
 func _input(event):
 	if event.is_action_pressed("pause"):

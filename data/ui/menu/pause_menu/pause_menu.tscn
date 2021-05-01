@@ -54,6 +54,7 @@ __meta__ = {
 
 [node name="CoolPauseMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -80.0
 bus = "Music"
 
 [node name="Animator" type="AnimationPlayer" parent="."]
