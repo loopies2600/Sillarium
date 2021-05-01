@@ -8,6 +8,7 @@ export (int, FLAGS, "Background", "Music", "Weather", "Starting Level") var flag
 export (int) var backgroundID
 export (int) var musicID
 export (int) var weatherID
+export (int) var minsToBeat = 3
 
 export (NodePath) var tiles
 export (NodePath) var startPosition
@@ -45,5 +46,7 @@ func start(fromTimer : bool):
 		yield(get_tree().create_timer(0.5), "timeout")
 		emit_signal("level_started")
 		
+	Objects.spawn(27, {"minsLeft" : minsToBeat})
+	
 	if NumberStuff.isBitEnabled(flags, 1):
 		Audio.musicSetup(musicID)

@@ -128,5 +128,9 @@
 	"26": {
 			"name": "Viewport Transition",
 			"file": "res://data/ui/transition/viewport_transition.tscn"
+			},
+	"27": {
+			"name": "Level Time",
+			"file": "res://data/ui/hud/time.tscn"
 			}
 }

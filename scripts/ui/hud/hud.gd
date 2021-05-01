@@ -1,12 +1,8 @@
 extends CanvasLayer
 
-signal timeout
-
 var firstConnection := true
 var papaSlot = "player"
 var papa = Globals.get(papaSlot)
-var minsLeft = 3 setget _setMinsLeft
-var secsLeft = 0
 
 onready var anim = $Animator
 onready var bg = $Container/Background
@@ -17,35 +13,12 @@ onready var scolab = $Container/Stuff/ScoringStuff/Score
 onready var wpslab = $Container/Stuff/ScoringStuff/Weapon
 onready var amolab = $Container/Stuff/Ammo
 onready var comlab = $Container/Stuff/ComboStuff/Counter
-onready var timlab = $Time
 
 func _ready():
 	var _unused = Objects.connect("player_back_in_action", self, "_setupVars")
 	
 	if papa:
 		_setupVars()
-		
-	_startTimer()
-	
-func _startTimer():
-	if minsLeft >= 0:
-		timlab.text = "%02d:%02d" % [minsLeft, secsLeft]
-		yield(get_tree().create_timer(1), "timeout")
-		secsLeft -= 1
-		
-		if secsLeft < 0:
-			self.minsLeft -= 1
-			secsLeft = 59
-			
-		_startTimer()
-	else:
-		emit_signal("timeout")
-	
-func _setMinsLeft(value : int):
-	minsLeft = value
-	
-	if minsLeft == 0:
-		anim.play("blinkTimer")
 		
 func _connectStuff():
 	if !firstConnection:
