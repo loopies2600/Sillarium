@@ -7,4 +7,4 @@ func _ready():
 	initialize()
 	
 func _process(_delta):
-	Renderer.spawnTrail(0.25, sprite, Color.yellow)
+	Renderer.spawnTrail(0.3, sprite, Color.yellow)

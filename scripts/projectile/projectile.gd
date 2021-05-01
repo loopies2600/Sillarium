@@ -49,5 +49,5 @@ func kill():
 	var newDust = dust.instance()
 	newDust.modulate = color
 	newDust.position = position
-	get_tree().get_root().add_child(newDust)
+	get_tree().get_current_scene().add_child(newDust)
 	queue_free()

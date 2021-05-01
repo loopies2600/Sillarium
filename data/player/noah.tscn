@@ -208,6 +208,7 @@ tracks/3/keys = {
 
 [node name="Player" type="KinematicBody2D" groups=[
 "CameraManipulator",
+"LevelStateObserver",
 "Player",
 ]]
 material = SubResource( 1 )

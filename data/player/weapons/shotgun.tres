@@ -23,4 +23,4 @@ displayFlash = true
 aimWeight = 0.5
 cooldown = 0.25
 recoil = 0.0
-maxAmmo = 4294967296
+maxAmmo = 128

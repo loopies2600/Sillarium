@@ -15,7 +15,7 @@ func spawnPlayer(charID, pos, respawning := false, pSlot := "player"):
 	var currentChar = character.instance()
 	
 	if Globals.get(pSlot) == null:
-		get_tree().get_root().add_child(currentChar)
+		get_tree().get_root().call_deferred("add_child", currentChar)
 		Globals.set(pSlot, currentChar)
 		
 	Globals.get(pSlot).slot = pSlot
@@ -32,7 +32,6 @@ func spawnPlayer(charID, pos, respawning := false, pSlot := "player"):
 			Globals.get(pSlot).camera.queue_free()
 			
 	Globals.get(pSlot).global_position = pos
-	Globals.get(pSlot).connectSignals()
 	
 	if respawning:
 		emit_signal("player_back_in_action", pSlot)

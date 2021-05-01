@@ -73,6 +73,8 @@ onready var shadow = $Shadow
 onready var bodyParts = [head, body, legs]
 
 func _ready():
+	setupProperties(character, 8)
+	
 	if slot == "player":
 		var otherCam = get_tree().get_root().get_node("Camera")
 		
@@ -80,23 +82,19 @@ func _ready():
 			otherCam.queue_free()
 	else:
 		camera.queue_free()
-		
-	shadow.set_as_toplevel(true)
+	
 	weapon = Objects.getWeapon(0, armsPos, z_index + 1, self)
 	currentWeapon = weapon
 	add_child(currentWeapon)
 	
 func connectSignals():
-	var _unused = get_tree().get_current_scene().connect("level_initialized", self, "_onLevelInit")
-	_unused = get_tree().get_current_scene().connect("level_started", self, "_onLevelStart")
-	_unused = gracePeriod.connect("timeout", self, "_gracePeriodEnd")
+	var _unused = gracePeriod.connect("timeout", self, "_gracePeriodEnd")
 	_unused = comboPeriod.connect("timeout", self, "_comboEnd")
 	_unused = camera.connectToManipulators()
 	_unused = connect("player_respawned", self, "_onRespawn")
 	
-	stateMachine.connectSignals()
-	
-func _onLevelInit():
+func _onLevelReady():
+	connectSignals()
 	canInput = false
 	
 func _onLevelStart():

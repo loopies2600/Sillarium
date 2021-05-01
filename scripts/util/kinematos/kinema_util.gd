@@ -58,3 +58,11 @@ func getStandingTile(feetPos, tileMap := Objects.currentWorld.tileMap):
 func getShaderParam(parameter : String):
 	var material = self.get_material()
 	return material.get_shader_param(parameter)
+	
+func setupProperties(res : Resource, pStart := 8, pEnd := 0):
+	var resPCount = res.get_property_list().size()
+	
+	for v in range(pStart, resPCount if pEnd == 0 else pEnd):
+		var curP = res.get_property_list()[v].name
+		
+		set(curP, res.get(curP))

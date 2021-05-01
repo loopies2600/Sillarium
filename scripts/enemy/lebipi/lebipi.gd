@@ -30,9 +30,7 @@ func _ready():
 	for s in ["entered", "exited"]:
 		var _unused = visibility.connect("screen_" + s, self, "_screen" + s)
 		
-	var _unused = get_tree().get_current_scene().connect("level_initialized", self, "_onLevelInit")
-	_unused = get_tree().get_current_scene().connect("level_started", self, "_onLevelStart")
-	_unused = connect("destroy_self", self, "_onDestruction")
+	var _unused = connect("destroy_self", self, "_onDestruction")
 	
 	placeOutOfScreen(direction)
 	hitbox = $Area2D

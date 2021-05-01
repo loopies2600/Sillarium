@@ -115,7 +115,7 @@ func fire():
 		newProjectile.global_rotation = global_rotation
 		newProjectile.z_index = z_index - 16
 		newProjectile.papa = get_parent()
-		get_tree().get_root().add_child(newProjectile)
+		get_tree().get_current_scene().add_child(newProjectile)
 			
 		if type.recoil > 0.0:
 			get_parent().velocity -= Vector2(type.recoil, 0.0).rotated(global_rotation)

@@ -14,37 +14,15 @@ var _active = false setget set_active
 var firstConnection := true
 
 func _ready():
-	connectSignals()
-	
-func connectSignals():
-	if !firstConnection:
-		_disconnectEverything()
-		
-	var _unused = get_tree().get_current_scene().connect("level_started", self, "_levelStarted")
-	_unused = get_tree().get_current_scene().connect("level_initialized", self, "_levelInitialized")
-		
-	if owner is Player:
-		_unused = owner.connect("player_respawned", self, "_levelStarted")
+	add_to_group("LevelStateObserver")
 	
 	for child in get_children():
 		child.connect("finished", self, "_change_state")
 		
-	firstConnection = false
-		
-func _disconnectEverything():
-	get_tree().get_current_scene().disconnect("level_started", self, "_levelStarted")
-	get_tree().get_current_scene().disconnect("level_initialized", self, "_levelInitialized")
-		
-	if owner is Player:
-		owner.disconnect("player_respawned", self, "_levelStarted")
-	
-	for child in get_children():
-		child.disconnect("finished", self, "_change_state")
-		
-func _levelInitialized():
+func _onLevelReady():
 	set_active(false)
 	
-func _levelStarted():
+func _onLevelStart():
 	initialize(START_STATE)
 	
 func initialize(start_state, msg := {} ):

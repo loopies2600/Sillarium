@@ -1,6 +1,6 @@
 extends Node2D
 
-signal level_initialized
+signal level_ready
 signal level_started
 
 export (bool) var hasWeather = false
@@ -28,7 +28,13 @@ func _ready():
 	Objects.spawn(22)
 	Objects.spawnPlayer(0, startPos)
 	
-	emit_signal("level_initialized")
+	yield(get_tree().create_timer(0.1), "timeout")
+	
+	for node in get_tree().get_nodes_in_group("LevelStateObserver"):
+		var _unused = connect("level_ready", node, "_onLevelReady")
+		_unused = connect("level_started", node, "_onLevelStart")
+		
+	emit_signal("level_ready")
 
 func start():
 	emit_signal("level_started")
