@@ -3,6 +3,8 @@
 
 extends Node
 
+const FLICKER_RATE := 0.025
+
 const BG = "res://data/json/backgrounds.json"
 const WEATHER = "res://data/json/climates.json"
 const SCREENSHOTS_PATH = "user://screenshots/"
@@ -27,8 +29,12 @@ func _ready():
 	toggleFS()
 	toggleVSync()
 	
-func _process(_delta):
+	_flicker()
+	
+func _flicker():
 	flicker = !flicker
+	yield(get_tree().create_timer(FLICKER_RATE), "timeout")
+	_flicker()
 	
 func _input(event):
 	if event.is_action_pressed("toggle_fullscreen"):

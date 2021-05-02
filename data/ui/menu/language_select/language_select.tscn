@@ -16,15 +16,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionsTitle" type="RichTextLabel" parent="."]
+[node name="LanguageTitle" type="RichTextLabel" parent="."]
 anchor_left = 0.025
 anchor_top = 0.025
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
-bbcode_text = "[wave amp=32]LANGUAGE"
-text = "LANGUAGE"
+bbcode_text = "[wave amp=32]LM_LANGUAGE"
+text = "LM_LANGUAGE"
 __meta__ = {
 "_edit_use_anchors_": false
 }

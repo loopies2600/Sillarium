@@ -14,6 +14,9 @@ var papa
 var velocity = Vector2()
 
 func initialize():
+	var visibility = VisibilityNotifier2D.new()
+	visibility.connect("screen_exited", self, "kill")
+	
 	var _unused = connect("area_entered", self, "onAreaEntered")
 	_unused = connect("body_entered", self, "onBodyEntered")
 	_unused = connect("area_exited", self, "onAreaExited")
@@ -23,6 +26,7 @@ func initialize():
 	# warning-ignore:integer_division
 	# por qué esto es una alerta? no es como si rompiera el juego o algo...
 	hitbox.shape.extents = Vector2(sprite.texture.get_width() / 2, sprite.texture.get_height() / 2)
+	visibility.rect = Rect2(hitbox.shape.extents.x / -2, hitbox.shape.extents.y / -2, hitbox.shape.extents.x * 2, hitbox.shape.extents.y * 2)
 	
 	velocity = speed.rotated(rotation)
 	

@@ -3,11 +3,14 @@ extends Control
 export (int) var bgID = 4
 onready var language = Settings.getSetting("dont-autogenerate-buttons", "lang")
 
+onready var languageText = $LanguageTitle
 onready var buttons = [$Languages/English, $Languages/Espanol, $Languages/Portugues]
 
 var toScreen := true
 
 func _ready():
+	languageText.bbcode_text = "[wave amp=32]" + tr("LM_LANGUAGE")
+	
 	TranslationServer.set_locale(language)
 	Renderer.fade("out")
 	Renderer.backgroundSetup(bgID, {"dontShowCones" : false})
