@@ -21,7 +21,7 @@ func _ready():
 	hitbox = $Area2D
 	animator.play("SpitFire")
 	var _unused = $FlameTimer.connect("timeout", self, "throw_flame")
-	_unused = connect("destroy_self", self, "OnDestruction")
+	_unused = connect("destroyed", self, "OnDestruction")
 	
 func _physics_process(_delta):
 	velocity.y += GRAVITY

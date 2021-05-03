@@ -14,7 +14,7 @@ var currentBody = null
 
 func _ready():
 	add_to_group("Enemy")
-	var _unused = connect("destroy_self", self, "OnDestruction")
+	var _unused = connect("destroyed", self, "OnDestruction")
 	_unused = tongueTip.connect("body_entered", self, "_grab")
 	_unused = tongueTip.connect("body_exited", self, "_drop")
 	

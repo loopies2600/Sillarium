@@ -17,7 +17,7 @@ func _ready():
 func _physics_process(delta):
 	hitbox.shape.extents = sprite.region_rect.size / 2
 	
-	velocity.y += Globals.GRAVITY * delta
+	velocity.y += Globals.GRAVITY
 	var collision = move_and_collide(velocity * delta)
 	sprite.rotation_degrees += (initialVel.x * velocity.x) * rotationMultiplier
 	

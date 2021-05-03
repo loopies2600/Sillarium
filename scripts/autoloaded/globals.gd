@@ -9,7 +9,7 @@ const UP = Vector2.UP
 const MAX_FLOOR_ANGLE = 60
 const UNIT_SIZE = 64
 const CELL_SIZE = Vector2(64, 32)
-const GRAVITY = 980
+const GRAVITY = 9.80665 * 2
 
 # se usa para registrar los jugadores.
 var player
@@ -90,3 +90,9 @@ func getJSONSize(file : String):
 	jsonFile.close()
 	
 	return parsed.size()
+	
+func toVec2(value) -> Vector2:
+	return Vector2(value, value)
+	
+func toVec3(value) -> Vector3:
+	return Vector3(value, value, value)

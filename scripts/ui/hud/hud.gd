@@ -15,7 +15,7 @@ onready var amolab = $Container/Stuff/Ammo
 onready var comlab = $Container/Stuff/ComboStuff/Counter
 
 func _ready():
-	var _unused = Objects.connect("player_back_in_action", self, "_setupVars")
+	var _unused = papa.connect("player_respawned", self, "_setupVars")
 	
 	if papa:
 		_setupVars()

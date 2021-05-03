@@ -6,6 +6,8 @@
 rotating = true
 current = true
 process_mode = 0
+limit_top = 0
+limit_bottom = 720
 limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true

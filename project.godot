@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/util/collision_layers.gd"
 }, {
+"base": "Kinematos",
+"class": "Hazard",
+"language": "GDScript",
+"path": "res://scripts/hazards/hazard.gd"
+}, {
 "base": "Reference",
 "class": "HoverShake2D",
 "language": "GDScript",
@@ -88,6 +93,7 @@ _global_script_class_icons={
 "AutoPlayer": "",
 "BasicEnemy": "res://sprites/ui/menu/enemy.png",
 "CollisionLayers": "",
+"Hazard": "",
 "HoverShake2D": "",
 "Kinematos": "",
 "NumberStuff": "",
@@ -316,6 +322,7 @@ file_logging/log_path="user://logs/sillarium.log"
 quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
+2d/snapping/use_gpu_pixel_snap=true
 threads/thread_model=2
 vram_compression/import_etc2=false
 quality/shadows/filter_mode=0
@@ -330,7 +337,7 @@ quality/lightmapping/use_bicubic_sampling=false
 environment/default_clear_color=Color( 0.0745098, 0.027451, 0.215686, 1 )
 quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"
-quality/2d/use_pixel_snap=false
+quality/2d/use_pixel_snap=true
 
 [world]
 

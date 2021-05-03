@@ -23,7 +23,7 @@ func _ready():
 	add_to_group("Enemy")
 	hitbox = $Area2D
 	var _unused = throwTimer.connect("timeout", self, "OnThrowTimerTimeout")
-	_unused = connect("destroy_self", self, "OnDestruction")
+	_unused = connect("destroyed", self, "OnDestruction")
 	
 	# Empieza el timer
 	throwTimer.wait_time = throwTime

@@ -8,15 +8,15 @@ export (PackedScene) var particle
 
 func _ready():
 	hitbox = $Area2D
-	var _unused = connect("destroy_self", self, "OnDestruction")
+	var _unused = connect("destroyed", self, "OnDestruction")
 	animPlayer.play("Swinging")
 	
 func disableCollision():
 	collisionBox.disabled = true
 
 func OnDestruction():
-	emit_signal("camera_shake_requested")
 	call_deferred("disableCollision")
+	emit_signal("camera_shake_requested")
 	Renderer.spawn4Piece(sprite)
 	animPlayer.play("Exploding")
 

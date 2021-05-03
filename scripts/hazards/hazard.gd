@@ -1,16 +1,12 @@
 extends Kinematos
-class_name BasicEnemy, "res://sprites/ui/menu/enemy.png"
+class_name Hazard
 
 # warning-ignore:unused_signal
 signal destroyed
-signal took_damage
 
 onready var hitbox : Area2D
 
-export (int) var health = 5
 export (int) var damage = 2
-export (int) var score = 50
-export (bool) var killsPlayer = true
 
 func _ready():
 	yield(get_parent(), "ready")
@@ -19,24 +15,13 @@ func _ready():
 	_unused = hitbox.connect("area_exited", self, "onAreaExited")
 	_unused = hitbox.connect("body_exited", self, "onBodyExited")
 	
-func onAreaEntered(area):
-	if area.is_in_group("PlayerProjectile"):
-		_takeDamage(area.damage, area.papa)
-		
+func onAreaEntered(_area):
+	pass
+	
 func onBodyEntered(body):
-	if body is Player and killsPlayer:
+	if body is Player:
 		body.takeDamage(damage)
 	
-func _takeDamage(eDamage : int, dealer = null):
-	health -= eDamage
-	
-	if health <= 0:
-		dealer.score += score
-		dealer.combo += score
-		emit_signal("destroyed")
-	else:
-		emit_signal("took_damage")
-		
 func onAreaExited(_area):
 	pass
 	
