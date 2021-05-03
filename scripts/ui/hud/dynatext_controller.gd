@@ -4,9 +4,8 @@ var dynachar = preload("res://data/ui/hud/dynachar.tscn")
 export (String) var stringu
 
 var charPos = Vector2()
-var charWidth = 64
-var charHeight = 64
-var line = 0
+var xPadding = 64
+var yPadding = 64
 
 func _ready():
 	_renderText()
@@ -14,15 +13,15 @@ func _ready():
 func _renderText():
 	
 	for c in len(stringu):
-		_spawnCharacter(stringu[c], "Wave1", charPos, 0.1 * c)
+		_spawnCharacter(stringu[c], "Jump", charPos, 0.1 * c)
 			
-		charPos.x += charWidth
+		charPos.x += xPadding
 			
 		if (stringu[c]) == "_":
 			charPos.x = 0
-			charPos.y += charHeight
+			charPos.y += yPadding
 	
-func _unhandled_key_input(event):
+func _unhandled_key_input(_event):
 	_restart()
 	
 func _spawnCharacter(c, anim, pos, delay):
@@ -30,7 +29,7 @@ func _spawnCharacter(c, anim, pos, delay):
 	newChar.anim = anim
 	newChar.animation = c
 	newChar.delay = delay
-	newChar.toPos = pos
+	newChar.position = pos
 	add_child(newChar)
 	
 func _restart():
