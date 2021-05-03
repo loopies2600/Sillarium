@@ -1,7 +1,7 @@
 extends State
 
-func _ready():
-	var _unused = owner.connect("player_damaged", self, "onDamage")
+func enter(_msg := {}):
+	var _unused = owner.connect("player_damaged", get_parent().current_state, "onDamage")
 	_unused = owner.connect("player_grounded_updated", self, "_playerGrounded")
 	
 func _playerGrounded(isGrounded):
@@ -23,5 +23,9 @@ func update(_delta):
 				if Input.is_action_just_pressed("dash" + owner.inputSuffix):
 					emit_signal("finished", "dash")
 		
-func onDamage(bumpX, bumpY):
-	emit_signal("finished", "hurt", {x = bumpX, y = bumpY})
+func onDamage(bumpX, bumpY, deadly := false):
+	emit_signal("finished", "hurt", {"x" : bumpX, "y" : bumpY, "isDeadly" : deadly})
+	
+func exit():
+	owner.disconnect("player_damaged", get_parent().current_state, "onDamage")
+	owner.disconnect("player_grounded_updated", get_parent().current_state, "_playerGrounded")

@@ -29,6 +29,7 @@ onready var dashDuration = character.dashDuration
 onready var bounciness = character.bounciness
 onready var graceTime = character.graceTime
 onready var comboTime = character.comboTime
+onready var respawnTime = character.respawnTime
 
 var playerID := 0
 var slot := "player"
@@ -42,7 +43,7 @@ var snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
 var applyGravity := true setget _doGravity
 var canDash := true
 var canInput := false
-var demoMode := false setget _setDemoMode
+var trackInput := true setget _setTrackInput
 var dragging := false
 var doinCombo := false
 var flashing := false
@@ -75,14 +76,6 @@ onready var bodyParts = [head, body, legs]
 func _ready():
 	setupProperties(character, 8)
 	
-	if slot == "player":
-		var otherCam = get_tree().get_root().get_node("Camera")
-		
-		if otherCam:
-			otherCam.queue_free()
-	else:
-		camera.queue_free()
-	
 	weapon = Objects.getWeapon(0, armsPos, z_index + 1, self)
 	currentWeapon = weapon
 	add_child(currentWeapon)
@@ -91,7 +84,6 @@ func connectSignals():
 	var _unused = gracePeriod.connect("timeout", self, "_gracePeriodEnd")
 	_unused = comboPeriod.connect("timeout", self, "_comboEnd")
 	_unused = camera.connectToManipulators()
-	_unused = connect("player_respawned", self, "_onRespawn")
 	
 func _onLevelReady():
 	connectSignals()
@@ -101,12 +93,6 @@ func _onLevelStart():
 	Objects.spawn(16)
 	startGracePeriod()
 	canInput = true
-	
-func _onRespawn():
-	startGracePeriod()
-	canInput = true
-	velocity = Vector2.ZERO
-	velocity.y -= jumpStrength / 4
 	
 func _process(_delta):
 	if dragging:
@@ -232,14 +218,14 @@ func flipGraphics(facing):
 func takeDamage(damage, bumpAnyways := false, bumpX = (-maxSpeed * 2) * getFacingDirection(), bumpY = (-jumpStrength * 4)):
 	if bumpAnyways:
 		emit_signal("camera_shake_requested")
-		emit_signal("player_damaged", bumpX, bumpY)
+		emit_signal("player_damaged", bumpX, bumpY, false)
 		
 	if !flashing:
 		emit_signal("camera_shake_requested")
 		startGracePeriod()
 		animateGraphics("hurt")
 		self.health -= damage
-		emit_signal("player_damaged", bumpX, bumpY)
+		emit_signal("player_damaged", bumpX, bumpY, true if health <= 0 else false)
 	
 func disableCollisionBox():
 	hitbox.set_deferred("disabled", true)
@@ -263,38 +249,35 @@ func _setHealth(value: int):
 	if health != prevHealth:
 		emit_signal("player_health_updated", health)
 		
-		if health == 0:
+		if health < 0:
 			kill()
 	
-func _setDemoMode(booly : bool):
-	if demoMode == booly:
+func _setTrackInput(booly : bool):
+	if trackInput == booly:
 		return
 		
-	demoMode = booly
+	trackInput = booly
 	
-	if demoMode:
-		Settings.bindKeys(true)
-	else:
-		Settings.bindKeys()
+	Settings.bindKeys(!trackInput)
 		
 func kill():
-	self.deaths += 1
-	self.lives -= 1
+	self.trackInput = false
+	
+	setCollisionBits([CollisionLayers.ENEMY, CollisionLayers.ENEMY_PROJECTILE], false)
 	
 	if lives > 0:
-		Objects.spawn(24, {
-		"global_position" : global_position,
-		"respawnPos" : lastGoodPosition, 
-		"playerSlot" : slot}
-		)
-		
-		Globals.set(slot, null)
-		
-	if slot == "player":
-		remove_child(camera)
-		get_tree().get_root().add_child(camera)
-		
-	queue_free()
+		_respawn()
+	
+func _respawn():
+	yield(get_tree().create_timer(respawnTime), "timeout")
+	self.health = character.health
+	setCollisionBits([CollisionLayers.ENEMY, CollisionLayers.ENEMY_PROJECTILE], true)
+	self.deaths += 1
+	self.lives -= 1
+	position = lastGoodPosition
+	self.trackInput = true
+	emit_signal("player_respawned")
+	startGracePeriod()
 	
 func _gracePeriodEnd():
 	visible = true

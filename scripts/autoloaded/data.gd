@@ -8,14 +8,14 @@ const SAVE_PATH = "user://save/"
 var _data := {
 	"player": {
 		"character" : 0,
-		"lives" : 4,
+		"lives" : 5,
 		"deaths" : 0,
 		"total_score" : 0,
 		"weapon" : 0
 	},
 	"playerTwo": {
 		"character" : 0,
-		"lives" : 4,
+		"lives" : 5,
 		"deaths" : 0,
 		"total_score" : 0,
 		"weapon" : 0

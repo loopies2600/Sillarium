@@ -3,14 +3,12 @@
 
 extends Node
 
-signal player_back_in_action(slot)
-
 const OBJ = "res://data/json/objects.json"
 const PICKUP = "res://data/json/pickups.json"
 
 var previousScene
 
-func spawnPlayer(charID, pos, respawning := false, pSlot := "player"):
+func spawnPlayer(charID, pos, pSlot := "player"):
 	var character = load(Globals.LoadJSON(OBJ, 10, str(charID)))
 	var currentChar = character.instance()
 	
@@ -32,10 +30,6 @@ func spawnPlayer(charID, pos, respawning := false, pSlot := "player"):
 			Globals.get(pSlot).camera.queue_free()
 			
 	Globals.get(pSlot).global_position = pos
-	
-	if respawning:
-		emit_signal("player_back_in_action", pSlot)
-		Globals.get(pSlot).emit_signal("player_respawned")
 	
 	return Globals.get(pSlot)
 	

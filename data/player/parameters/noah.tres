@@ -18,3 +18,4 @@ dashDuration = 0.2
 bounciness = 0.75
 graceTime = 2.0
 comboTime = 4.0
+respawnTime = 2.0
