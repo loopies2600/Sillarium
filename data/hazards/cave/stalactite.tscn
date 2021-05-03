@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/hazards/cave/stalactite.gd" type="Script" id=1]
 [ext_resource path="res://sprites/hazard/cave/stalactite.png" type="Texture" id=2]
+[ext_resource path="res://data/generic/shadow.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 48 )
@@ -30,3 +31,5 @@ shape = SubResource( 1 )
 
 [node name="Boundaries" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 2 )
+
+[node name="Shadow" parent="." instance=ExtResource( 3 )]

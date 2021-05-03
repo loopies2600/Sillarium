@@ -12,6 +12,7 @@ func _process(_delta):
 	var result = spaceState.intersect_ray(papa.global_position, get_parent().global_position + Vector2(0, detectionLength), [papa], papa.collision_mask)
 	
 	if result:
+		visible = true
 		rotation = result.normal.angle()
 		global_position = result.position
 	else:
