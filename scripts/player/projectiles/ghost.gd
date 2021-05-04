@@ -1,4 +1,4 @@
-extends Area2D
+extends Projectile
 
 onready var ghost = $Ghost
 onready var hitbox = $CollisionShape2D

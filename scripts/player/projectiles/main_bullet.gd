@@ -1,4 +1,4 @@
-extends "res://scripts/projectile/projectile.gd"
+extends Projectile
 
 func _ready():
 	sprite = $Sprite

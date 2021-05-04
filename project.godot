@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/player/parameters/parameters.gd"
 }, {
+"base": "Kinematos",
+"class": "Projectile",
+"language": "GDScript",
+"path": "res://scripts/projectile/projectile.gd"
+}, {
 "base": "Resource",
 "class": "RangedWeapon",
 "language": "GDScript",
@@ -100,6 +105,7 @@ _global_script_class_icons={
 "Pickup": "",
 "Player": "res://sprites/ui/menu/player.png",
 "PlayerStats": "",
+"Projectile": "",
 "RangedWeapon": "",
 "Recorder": "",
 "Replay": "",
