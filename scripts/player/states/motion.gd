@@ -2,7 +2,7 @@ extends State
 
 func enter(_msg := {}):
 	var _unused = owner.connect("player_damaged", get_parent().current_state, "onDamage")
-	_unused = owner.connect("player_grounded_updated", self, "_playerGrounded")
+	_unused = owner.connect("grounded_updated", self, "_playerGrounded")
 	
 func _playerGrounded(isGrounded):
 	if isGrounded:

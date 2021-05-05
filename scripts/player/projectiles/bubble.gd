@@ -16,7 +16,7 @@ func setupSpeed():
 	velocity.y -= initialJump
 	rotation = 0
 	
-func move(delta):
+func mainMotion(delta):
 	var collision = move_and_collide(velocity * delta)
 	
 	if collision:

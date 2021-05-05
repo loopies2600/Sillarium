@@ -1,10 +1,8 @@
 extends Kinematos
 class_name Player, "res://sprites/ui/menu/player.png"
 
-signal player_grounded_updated(isGrounded)
 signal player_damaged(x, y)
 signal player_combo_updated()
-signal player_gravity_updated(doinGravity)
 signal player_health_updated(health)
 signal player_lives_updated()
 signal player_score_updated()
@@ -16,14 +14,8 @@ signal player_respawned()
 export(Resource) var character
 
 onready var health = character.health setget _setHealth
-onready var maxSpeed = character.maxSpeed
 onready var airMaxSpeed = character.airMaxSpeed
-onready var acceleration = character.acceleration
-onready var friction = character.friction
 onready var airFriction = character.airFriction
-onready var jumpStrength = character.jumpStrength
-onready var timeJumpApex = character.timeJumpApex
-onready var fallMultiplier = character.fallMultiplier
 onready var dashStrength = character.dashStrength
 onready var dashDuration = character.dashDuration
 onready var bounciness = character.bounciness
@@ -33,18 +25,9 @@ onready var respawnTime = character.respawnTime
 
 var playerID := 0
 var slot := "player"
-var inputSuffix := ""
-var lastGoodPosition := Vector2()
 
-var isGrounded := true
-var jumpForce
-var snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
-
-var applyGravity := true setget _doGravity
 var canDash := true
-var canInput := false
 var trackInput := true setget _setTrackInput
-var dragging := false
 var doinCombo := false
 var flashing := false
 
@@ -58,7 +41,6 @@ var weapon
 
 onready var stateMachine = $StateMachine
 onready var graphics = $Graphics
-onready var animator = $Graphics/PlayerAnimator
 onready var graphicsAnimator = $GraphicsAnimator
 onready var armsPos = $ArmsPosition
 onready var feetPos = $FeetPosition
@@ -74,6 +56,8 @@ onready var shadow = $Shadow
 onready var bodyParts = [head, body, legs]
 
 func _ready():
+	animator = $Graphics/PlayerAnimator
+	mainSprite = body
 	setupProperties(character, 8)
 	
 	weapon = Objects.getWeapon(0, armsPos, z_index + 1, self)
@@ -95,36 +79,10 @@ func _onLevelStart():
 	canInput = true
 	
 func _process(_delta):
-	if dragging:
-		snapVector = Vector2.ZERO
-		var newPos = get_global_mouse_position()
-		velocity = (newPos - position) * 4
-	else:
-		keepOnScreen(true, false, Vector2(hitbox.shape.extents.x * 2, 0))
-		
-	if getInputDirection():
-		flipGraphics(getInputDirection())
-		
+	keepOnScreen(true, false, Vector2(hitbox.shape.extents.x * 2, 0))
+	
 	handleInputProcessing()
 	flashBehaviour()
-	
-func _physics_process(delta):
-	groundCheck()
-	
-	var gravity
-	gravity = (2 * jumpStrength) / pow(timeJumpApex, 2)
-	
-	jumpForce = gravity * timeJumpApex
-	
-	if applyGravity:
-		if !dragging:
-			velocity.y += gravity * delta * (fallMultiplier if velocity.y > 0 else 1)
-	
-	velocity.y = move_and_slide_with_snap(velocity, snapVector, Globals.UP, true).y
-	
-func _doGravity(booly : bool) -> void:
-	applyGravity = booly
-	emit_signal("player_gravity_updated", applyGravity)
 	
 func _setScore(value : int) -> void:
 	Data.setData(slot, "total_score", value)
@@ -150,14 +108,6 @@ func _setCombo(value : int) -> void:
 		
 	emit_signal("player_combo_updated")
 	
-func groundCheck():
-	var wasGrounded = isGrounded
-	isGrounded = is_on_floor()
-	
-	if wasGrounded == null || isGrounded != wasGrounded:
-		emit_signal("player_grounded_updated", isGrounded)
-		lastGoodPosition = position
-		
 func pickUpWeapon(id):
 	emit_signal("player_weapon_updated", id)
 	if currentWeapon != null:
@@ -172,23 +122,6 @@ func animateGraphics(anim : String):
 	graphicsAnimator.play(anim)
 	graphicsAnimator.queue("default")
 	
-func animspeedAsVelocity():
-	if getInputDirection():
-		animator.playback_speed = velocity.x / maxSpeed
-	else:
-		animator.playback_speed = 1
-	
-func playRandomAnim(anims : Array):
-	randomize()
-	var animToPlay = randi() % anims.size()
-	animator.play(anims[animToPlay])
-	
-func move(speed := maxSpeed, direction := getInputDirection()):
-	velocity.x = clamp(velocity.x + (acceleration * direction), -speed, speed)
-	
-func damp(damping := friction):
-	velocity.x *= damping
-	
 func flashBehaviour():
 	if flashing:
 		visible = Renderer.flicker
@@ -198,22 +131,9 @@ func flashBehaviour():
 		emit_signal("player_combo_updated")
 		self.score += 1
 	
-func getInputDirection() -> int:
-	if canInput:
-		var inputDirection = Input.get_action_strength("move_right" + inputSuffix) - Input.get_action_strength("move_left" + inputSuffix)
-		return inputDirection
-	else: return 0
-	
-func getFacingDirection():
-	var facingDirection = body.scale.x
-	return facingDirection
-	
 func handleInputProcessing():
 	currentWeapon.set_process(canInput)
 	currentWeapon.set_process_input(canInput)
-
-func flipGraphics(facing):
-	body.scale.x = facing
 	
 func takeDamage(damage, bumpAnyways := false, bumpX = (-maxSpeed * 2) * getFacingDirection(), bumpY = (-jumpStrength * 4)):
 	if bumpAnyways:
@@ -287,13 +207,3 @@ func _gracePeriodEnd():
 	
 func _comboEnd():
 	doinCombo = false
-	
-func _input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			dragging = event.pressed
-			
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and not event.pressed:
-			dragging = false

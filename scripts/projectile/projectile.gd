@@ -32,19 +32,15 @@ func initialize():
 	
 	setupSpeed()
 	
-func _physics_process(delta):
-	applyGravity()
-	move(delta)
-	
 func setupSpeed():
 	velocity = speed.rotated(rotation)
 	velocity.y -= initialJump
 	
-func applyGravity():
+func doGravity(_delta):
 	if hasGravity:
 		velocity.y += Globals.GRAVITY
 		
-func move(_delta):
+func travel(_delta):
 	move_and_slide(velocity)
 	
 	rotation = velocity.angle()

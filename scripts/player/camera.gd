@@ -22,7 +22,7 @@ var facing = 0
 
 func _ready():
 	if owner is Player:
-		var _unused = owner.connect("player_grounded_updated", self, "_playerGrounded")
+		var _unused = owner.connect("grounded_updated", self, "_playerGrounded")
 	
 	randomize()
 	set_process(false)
