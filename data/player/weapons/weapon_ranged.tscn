@@ -1,14 +1,26 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://data/player/weapons/flamethrower.tres" type="Resource" id=1]
 [ext_resource path="res://scripts/player/weapons/weapon.gd" type="Script" id=2]
-[ext_resource path="res://sprites/player/noah/shotgun/anim/aim_right.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://sprites/player/noah/noah_0s.png" type="Texture" id=3]
 
-[node name="RangedWeapon" type="AnimatedSprite"]
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 560, 10, 97, 42 )
+
+[node name="RangedWeapon" type="Sprite"]
 use_parent_material = true
-frames = ExtResource( 3 )
-animation = "Idle"
+z_index = 258
+z_as_relative = false
+texture = SubResource( 1 )
+offset = Vector2( 42, 0 )
 script = ExtResource( 2 )
 type = ExtResource( 1 )
 
 [node name="Cooldown" type="Timer" parent="."]
+
+[node name="MainHand" type="Position2D" parent="."]
+position = Vector2( 8, 8 )
+
+[node name="SecHand" type="Position2D" parent="."]
+position = Vector2( 48, 10 )

@@ -1,15 +1,12 @@
-extends AnimatedSprite
+extends Sprite
 
 signal weapon_ammo_updated()
 
 export(Resource) var type
 
-var armsPos
-
 onready var ammo = type.maxAmmo setget _setAmmo
-onready var flipXDown = type.projectileOffset[2].x
-onready var flipXUp = type.projectileOffset[6].x
 onready var cooldownTimer = $Cooldown
+onready var hands = [$MainHand, $SecHand]
 
 var rotationTimer = 5.0
 var cooldownIsOver = false
@@ -26,37 +23,26 @@ func _ready():
 		cooldownIsOver = true
 	
 	modulate = get_parent().graphics.modulate
-	play("Idle")
 	var _unused = connect("animation_finished", self, "_animEnd")
 	cooldownTimer.connect("timeout", self, "_cooldownTimeout")
 	
 func ChangeSprite(flip):
 	flip_v = false
-
+	
 	# Consigue el indice del angulo
 	var angleStep = stepify(global_rotation, anglePerDirection)
 	angleStep = fposmod(angleStep, TAU)
 	angleIndex = int(angleStep / anglePerDirection)
-
-	frames = type.aimGraphics[angleIndex]
 	
 	if angleIndex == 2 or angleIndex == 6:
 		if flip == -1:
 			flip_v = true
-	
-	type.projectileOffset[2].x = -flipXDown if flip else flipXDown
-	type.projectileOffset[6].x = -flipXUp if flip else flipXUp
 	
 func _setAmmo(value : int) -> void:
 	ammo = value
 	emit_signal("weapon_ammo_updated")
 	
 func _process(delta):
-	if armsPos != null:
-		global_position = armsPos.global_position
-		
-	offset.x = lerp(offset.x, 0, delta * 8)
-	
 	if type.canRotate:
 		doRotation()
 		
@@ -97,21 +83,23 @@ func doRotation():
 func fire():
 	if ammo > 0:
 		Audio.playSound(0)
-		play("Fire")
 		
 		if type.displayFlash:
 			var newFlash = muzzleFlash.instance()
-			newFlash.position = position + type.projectileOffset[angleIndex]
+			newFlash.position = position + type.projectileOffset.rotated(rotation)
 			newFlash.global_rotation = global_rotation
 			get_parent().add_child(newFlash)
 			
 		if type.hasCooldown:
 			_startCooldown()
 			
-		offset.x = -4
 		var newProjectile = type.projectile.instance()
 		newProjectile.add_to_group("PlayerProjectile")
-		newProjectile.global_position = global_position + type.projectileOffset[angleIndex]
+		
+		for c in newProjectile.get_children():
+			c.add_to_group("PlayerProjectile")
+			
+		newProjectile.global_position = global_position + type.projectileOffset.rotated(rotation)
 		newProjectile.global_rotation = global_rotation
 		newProjectile.z_index = z_index - 16
 		newProjectile.papa = get_parent()
@@ -122,7 +110,6 @@ func fire():
 		
 		self.ammo -= 1
 	else:
-		offset.x = 4
 		Audio.playSound(1, Audio, 1.0, 2.0)
 	
 func _startCooldown():

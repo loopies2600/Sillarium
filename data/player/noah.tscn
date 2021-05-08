@@ -208,7 +208,7 @@ tracks/3/keys = {
 ]]
 material = SubResource( 1 )
 position = Vector2( 1, 1 )
-z_index = 4000
+z_index = 256
 input_pickable = true
 collision_mask = 96
 collision/safe_margin = 1.0
@@ -223,6 +223,13 @@ position = Vector2( 0, -4 )
 use_parent_material = true
 texture = SubResource( 2 )
 
+[node name="LeftArm" type="Position2D" parent="Graphics/Body"]
+position = Vector2( 15, -9 )
+z_index = -1
+
+[node name="RightArm" type="Position2D" parent="Graphics/Body"]
+position = Vector2( -19, -13 )
+
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 use_parent_material = true
 texture = SubResource( 3 )
@@ -235,11 +242,6 @@ texture = SubResource( 4 )
 offset = Vector2( 6, 48 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
-
-[node name="ArmsPosition" type="Position2D" parent="."]
-__meta__ = {
-"_gizmo_extents_": 32.0
-}
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 3 )
@@ -267,10 +269,12 @@ script = ExtResource( 15 )
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, 16 )
 shape = SubResource( 5 )
 
 [node name="Camera" parent="." instance=ExtResource( 1 )]
+visible = false
 
 [node name="GraphicsAnimator" type="AnimationPlayer" parent="."]
 anims/bump = SubResource( 6 )

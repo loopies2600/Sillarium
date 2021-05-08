@@ -21,7 +21,8 @@ func _ready():
 	
 func onAreaEntered(area):
 	if area.is_in_group("PlayerProjectile"):
-		_takeDamage(area.damage, area.papa)
+		var projectile = area.get_parent()
+		_takeDamage(projectile.damage, projectile.papa)
 		
 func onBodyEntered(body):
 	if body is Player and killsPlayer:

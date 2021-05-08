@@ -62,13 +62,12 @@ func spawn(id, cVars = {}):
 	
 	return newObj
 	
-func getWeapon(id, pos, z, _ammo = 0):
+func getWeapon(id, z, _ammo = 0):
 	# este es muy parecido al que spawnea objetos, pero tiene parametros extra especificos para las armas.
 	var wpsType = load(Globals.LoadJSON(PICKUP, id, "file"))
 	var wps = load(Globals.LoadJSON(PICKUP, id, "type"))
 	
 	var weapon = wps.instance()
-	weapon.armsPos = pos
 	weapon.z_index = z
 	weapon.type = wpsType
 	return weapon

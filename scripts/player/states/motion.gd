@@ -28,4 +28,4 @@ func onDamage(bumpX, bumpY, deadly := false):
 	
 func exit():
 	owner.disconnect("player_damaged", get_parent().current_state, "onDamage")
-	owner.disconnect("player_grounded_updated", get_parent().current_state, "_playerGrounded")
+	owner.disconnect("grounded_updated", get_parent().current_state, "_playerGrounded")

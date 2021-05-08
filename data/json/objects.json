@@ -132,5 +132,9 @@
 	"27": {
 			"name": "Level Time",
 			"file": "res://data/ui/hud/time.tscn"
+			},
+	"28": {
+			"name": "Stretchable Sprite",
+			"file": "res://data/util/stretchable_sprite.tscn"
 			}
 }

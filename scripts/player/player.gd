@@ -13,6 +13,7 @@ signal player_respawned()
 
 export(Resource) var character
 
+onready var armsTextures = character.armsTextures
 onready var health = character.health setget _setHealth
 onready var airMaxSpeed = character.airMaxSpeed
 onready var airFriction = character.airFriction
@@ -42,7 +43,6 @@ var weapon
 onready var stateMachine = $StateMachine
 onready var graphics = $Graphics
 onready var graphicsAnimator = $GraphicsAnimator
-onready var armsPos = $ArmsPosition
 onready var feetPos = $FeetPosition
 onready var body = $Graphics/Body
 onready var head = $Graphics/Body/Head
@@ -53,16 +53,28 @@ onready var gracePeriod = $Timers/GracePeriodTimer
 onready var comboPeriod = $Timers/ComboTimer
 onready var shadow = $Shadow
 
+onready var arms = [$Graphics/Body/RightArm, $Graphics/Body/LeftArm]
 onready var bodyParts = [head, body, legs]
+
+var stretchableArms := []
 
 func _ready():
 	animator = $Graphics/PlayerAnimator
 	mainSprite = body
 	setupProperties(character, 8)
 	
-	weapon = Objects.getWeapon(0, armsPos, z_index + 1, self)
+	weapon = Objects.getWeapon(0, z_index + 1, self)
 	currentWeapon = weapon
 	add_child(currentWeapon)
+	
+	for a in arms.size():
+		var targetZ = [257, 0]
+		var newArm = Objects.spawn(28, 
+		{"startPos" : arms[a].global_position,
+		 "sprite" : armsTextures[a],
+		 "z_index" : targetZ[a]})
+		newArm.set_as_toplevel(true)
+		stretchableArms.append(newArm)
 	
 func connectSignals():
 	var _unused = gracePeriod.connect("timeout", self, "_gracePeriodEnd")
@@ -79,10 +91,16 @@ func _onLevelStart():
 	canInput = true
 	
 func _process(_delta):
+	_repositionArms()
 	keepOnScreen(true, false, Vector2(hitbox.shape.extents.x * 2, 0))
 	
 	handleInputProcessing()
 	flashBehaviour()
+	
+func _repositionArms():
+	for a in stretchableArms.size():
+		stretchableArms[a].startPos = arms[a].global_position
+		stretchableArms[a].endPos = weapon.hands[a].global_position
 	
 func _setScore(value : int) -> void:
 	Data.setData(slot, "total_score", value)
@@ -113,7 +131,7 @@ func pickUpWeapon(id):
 	if currentWeapon != null:
 		currentWeapon.queue_free()
 		
-	weapon = Objects.getWeapon(id, armsPos, z_index + 1)
+	weapon = Objects.getWeapon(id, arms[0].global_position, z_index + 1)
 	currentWeapon = weapon
 	add_child(currentWeapon)
 	

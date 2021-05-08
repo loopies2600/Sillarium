@@ -16,3 +16,5 @@ export (float, 0, 1) var bounciness = 0.75
 export (float) var graceTime = 2.0
 export (float) var comboTime = 4.0
 export (float) var respawnTime = 2.0
+
+export (Array, Texture) var armsTextures

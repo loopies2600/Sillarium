@@ -2,7 +2,7 @@ extends TileMap
 
 func _draw():
 	if Globals.debugMenuOpen:
-		var size = get_viewport_rect().size * Globals.player.camera.zoom
+		var size = get_viewport_rect().size
 		var follow = Globals.player.position
 		for i in range(int((follow.x - size.x) / Globals.CELL_SIZE.x) - 1, int((size.x + follow.x) / Globals.CELL_SIZE.x) + 1):
 			draw_line(Vector2(i * Globals.CELL_SIZE.x, follow.y + size.y + 100), Vector2(i * Globals.CELL_SIZE.x, follow.y - size.y - 100), Color.red, 2)

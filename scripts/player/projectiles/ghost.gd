@@ -1,21 +1,18 @@
 extends Projectile
 
 onready var ghost = $Ghost
-onready var hitbox = $CollisionShape2D
 onready var lifeTime = $LifeTime
 onready var anim = $Animator
 
-export (int) var damage = 10
-export (float) var speed = 400
 export (float) var steerStrength = 75
 
-var papa
 var target = null
 
 var velocity := Vector2.ZERO
 var acceleration := Vector2.ZERO
 
 func _ready():
+	hitbox = $CollisionShape2D
 	velocity = transform.x * speed
 	
 	var _unused = connect("body_entered", self, "_bodyEnter")
