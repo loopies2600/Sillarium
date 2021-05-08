@@ -52,7 +52,6 @@ onready var camera = $Camera
 onready var gracePeriod = $Timers/GracePeriodTimer
 onready var comboPeriod = $Timers/ComboTimer
 onready var shadow = $Shadow
-
 onready var arms = [$Graphics/Body/RightArm, $Graphics/Body/LeftArm]
 onready var bodyParts = [head, body, legs]
 
@@ -63,18 +62,19 @@ func _ready():
 	mainSprite = body
 	setupProperties(character, 8)
 	
-	weapon = Objects.getWeapon(0, z_index + 1, self)
+	weapon = Objects.getWeapon(0, self, z_index + 1)
 	currentWeapon = weapon
 	add_child(currentWeapon)
 	
 	for a in arms.size():
-		var targetZ = [257, 0]
-		var newArm = Objects.spawn(28, 
-		{"startPos" : arms[a].global_position,
-		 "sprite" : armsTextures[a],
-		 "z_index" : targetZ[a]})
+		var targetZ = [256, 0]
+		var newArm = Objects.getObj(28)
+		newArm.startPos = arms[a].global_position
+		newArm.sprite = armsTextures[a]
+		newArm.z_index =  targetZ[a]
 		newArm.set_as_toplevel(true)
 		stretchableArms.append(newArm)
+		arms[a].add_child(newArm)
 	
 func connectSignals():
 	var _unused = gracePeriod.connect("timeout", self, "_gracePeriodEnd")
@@ -101,7 +101,7 @@ func _repositionArms():
 	for a in stretchableArms.size():
 		stretchableArms[a].startPos = arms[a].global_position
 		stretchableArms[a].endPos = weapon.hands[a].global_position
-	
+		
 func _setScore(value : int) -> void:
 	Data.setData(slot, "total_score", value)
 	score = Data.getData(slot, "total_score")
@@ -131,7 +131,7 @@ func pickUpWeapon(id):
 	if currentWeapon != null:
 		currentWeapon.queue_free()
 		
-	weapon = Objects.getWeapon(id, arms[0].global_position, z_index + 1)
+	weapon = Objects.getWeapon(id, self, z_index + 1)
 	currentWeapon = weapon
 	add_child(currentWeapon)
 	
@@ -142,6 +142,9 @@ func animateGraphics(anim : String):
 	
 func flashBehaviour():
 	if flashing:
+		for arm in stretchableArms:
+			arm.visible = Renderer.flicker
+			
 		visible = Renderer.flicker
 		
 	if !doinCombo && combo > 0:
@@ -218,6 +221,9 @@ func _respawn():
 	startGracePeriod()
 	
 func _gracePeriodEnd():
+	for arm in stretchableArms:
+		arm.visible = true
+		
 	visible = true
 	flashing = false
 	

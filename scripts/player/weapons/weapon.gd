@@ -14,6 +14,8 @@ var cooldownIsOver = false
 var anglePerDirection = TAU / 8
 var angleIndex = 0
 
+var currentPlayer
+
 onready var muzzleFlash = preload("res://data/player/projectiles/muzzle_flash.tscn")
 
 func _ready():
@@ -22,63 +24,56 @@ func _ready():
 	else:
 		cooldownIsOver = true
 	
-	modulate = get_parent().graphics.modulate
-	var _unused = connect("animation_finished", self, "_animEnd")
+	modulate = currentPlayer.graphics.modulate
 	cooldownTimer.connect("timeout", self, "_cooldownTimeout")
 	
 func ChangeSprite(flip):
-	flip_v = false
-	
-	# Consigue el indice del angulo
 	var angleStep = stepify(global_rotation, anglePerDirection)
 	angleStep = fposmod(angleStep, TAU)
 	angleIndex = int(angleStep / anglePerDirection)
 	
-	if angleIndex == 2 or angleIndex == 6:
-		if flip == -1:
-			flip_v = true
+	scale.y = flip
 	
 func _setAmmo(value : int) -> void:
 	ammo = value
 	emit_signal("weapon_ammo_updated")
 	
-func _process(delta):
+func _process(_delta):
 	if type.canRotate:
 		doRotation()
 		
 	_handleFiring()
-		
+	
 func _handleFiring():
 	match type.fireType:
 		0:
-			if Input.is_action_just_pressed("shoot" + get_parent().inputSuffix) and cooldownIsOver:
+			if Input.is_action_just_pressed("shoot" + currentPlayer.inputSuffix) and cooldownIsOver:
 				fire()
 		1:
-			if Input.is_action_pressed("shoot" + get_parent().inputSuffix) and cooldownIsOver:
+			if Input.is_action_pressed("shoot" + currentPlayer.inputSuffix) and cooldownIsOver:
 				fire()
 	
 func doRotation():
 	var direction = Vector2(
-		int(Input.get_action_strength("aim_right" + get_parent().inputSuffix)) - int(Input.get_action_strength("aim_left" + get_parent().inputSuffix)),
-		int(Input.get_action_strength("aim_down" + get_parent().inputSuffix)) - int(Input.get_action_strength("aim_up" + get_parent().inputSuffix)))
+		int(Input.get_action_strength("aim_right" + currentPlayer.inputSuffix)) - int(Input.get_action_strength("aim_left" + currentPlayer.inputSuffix)),
+		int(Input.get_action_strength("aim_down" + currentPlayer.inputSuffix)) - int(Input.get_action_strength("aim_up" + currentPlayer.inputSuffix)))
 		
 	var desiredRotation
 	
-	if get_parent().isGrounded:
+	if currentPlayer.isGrounded:
 		if direction.y == 1:
 			direction.y = 0
 		
 	if direction != Vector2.ZERO:
 		desiredRotation = direction.angle()
-		
 	else:
-		if get_parent().getFacingDirection() == -1:
-			desiredRotation = PI
-		else:
+		if currentPlayer.getFacingDirection() == 1:
 			desiredRotation = 0
-			
+		else:
+			desiredRotation = PI
+		
 	rotation = lerp_angle(rotation, desiredRotation, type.aimWeight)
-	ChangeSprite(get_parent().getFacingDirection())
+	ChangeSprite(currentPlayer.getFacingDirection())
 	
 func fire():
 	if ammo > 0:
@@ -88,7 +83,7 @@ func fire():
 			var newFlash = muzzleFlash.instance()
 			newFlash.position = position + type.projectileOffset.rotated(rotation)
 			newFlash.global_rotation = global_rotation
-			get_parent().add_child(newFlash)
+			currentPlayer.add_child(newFlash)
 			
 		if type.hasCooldown:
 			_startCooldown()
@@ -102,11 +97,11 @@ func fire():
 		newProjectile.global_position = global_position + type.projectileOffset.rotated(rotation)
 		newProjectile.global_rotation = global_rotation
 		newProjectile.z_index = z_index - 16
-		newProjectile.papa = get_parent()
+		newProjectile.papa = currentPlayer
 		get_tree().get_current_scene().add_child(newProjectile)
 			
 		if type.recoil > 0.0:
-			get_parent().velocity -= Vector2(type.recoil, 0.0).rotated(global_rotation)
+			currentPlayer.velocity -= Vector2(type.recoil, 0.0).rotated(global_rotation)
 		
 		self.ammo -= 1
 	else:
@@ -119,6 +114,3 @@ func _startCooldown():
 	
 func _cooldownTimeout():
 	cooldownIsOver = true
-	
-func _animEnd():
-	pass

@@ -41,14 +41,14 @@ func doGravity(_delta):
 		velocity.y += Globals.GRAVITY
 		
 func travel(_delta):
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity)
 	
 	rotation = velocity.angle()
 	
-func onAreaEntered(area):
+func onAreaEntered(_area):
 	kill()
 	
-func onBodyEntered(body):
+func onBodyEntered(_body):
 	kill()
 	
 func onAreaExited(_area):

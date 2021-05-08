@@ -3,7 +3,7 @@ extends Line2D
 var startPos := Vector2(0, 0) setget _sPos
 var endPos := Vector2(128, 0) setget _ePos
 
-export (Texture) var sprite setget _spRite
+var sprite = ImageTexture.new() setget _spRite
 var texMode := 2 setget _stMode
 
 func _ready():
@@ -25,7 +25,7 @@ func _ePos(value : Vector2):
 func _spRite(value : Texture):
 	sprite = value
 	texture = sprite
-	width = sprite.get_size().x
+	width = sprite.get_size().y
 	
 func _stMode(value : int):
 	texMode = value

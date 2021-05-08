@@ -153,7 +153,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=8]
 tracks/0/type = "value"
-tracks/0/path = NodePath("Graphics:position")
+tracks/0/path = NodePath("Graphics:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -162,10 +162,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, -4 ) ]
+"values": [ 0.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Graphics:rotation_degrees")
+tracks/1/path = NodePath("Graphics:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -174,27 +174,15 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Graphics:scale")
+tracks/2/path = NodePath(".:material:shader_param/flash_modifier")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath(".:material:shader_param/flash_modifier")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -217,18 +205,17 @@ character = ExtResource( 12 )
 
 [node name="Graphics" type="Node2D" parent="."]
 use_parent_material = true
-position = Vector2( 0, -4 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
 use_parent_material = true
 texture = SubResource( 2 )
 
 [node name="LeftArm" type="Position2D" parent="Graphics/Body"]
-position = Vector2( 15, -9 )
+position = Vector2( 16, -16 )
 z_index = -1
 
 [node name="RightArm" type="Position2D" parent="Graphics/Body"]
-position = Vector2( -19, -13 )
+position = Vector2( -16, -16 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 use_parent_material = true
@@ -270,7 +257,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 0, 16 )
+position = Vector2( 3, 21 )
 shape = SubResource( 5 )
 
 [node name="Camera" parent="." instance=ExtResource( 1 )]
@@ -293,6 +280,6 @@ wait_time = 4.0
 one_shot = true
 
 [node name="FeetPosition" type="Position2D" parent="."]
-position = Vector2( 0, 80 )
+position = Vector2( 0, 85 )
 
 [node name="Shadow" parent="." instance=ExtResource( 16 )]
