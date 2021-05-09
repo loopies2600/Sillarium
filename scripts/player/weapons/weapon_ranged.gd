@@ -6,7 +6,7 @@ enum fireTypes {PRESS, HOLD}
 export (fireTypes) var fireType = fireTypes.PRESS
 export (PackedScene) var projectile
 
-export (Vector2) var projectileOffset
+export (Array, Vector2) var weaponPositions
 
 export (bool) var canRotate = true
 export (bool) var hasCooldown = true

@@ -5,13 +5,13 @@ signal weapon_ammo_updated()
 export(Resource) var type
 
 onready var ammo = type.maxAmmo setget _setAmmo
+onready var barrel = $Barrel
 onready var cooldownTimer = $Cooldown
 onready var hands = [$MainHand, $SecHand]
 
 var rotationTimer = 5.0
 var cooldownIsOver = false
 
-var anglePerDirection = TAU / 8
 var angleIndex = 0
 
 var currentPlayer
@@ -27,12 +27,11 @@ func _ready():
 	modulate = currentPlayer.graphics.modulate
 	cooldownTimer.connect("timeout", self, "_cooldownTimeout")
 	
-func ChangeSprite(flip):
-	var angleStep = stepify(global_rotation, anglePerDirection)
+func _calculateAngleIndex(radians, anglePerDirection = TAU / 8):
+	var angleStep = stepify(radians, anglePerDirection)
 	angleStep = fposmod(angleStep, TAU)
-	angleIndex = int(angleStep / anglePerDirection)
 	
-	scale.y = flip
+	return int(angleStep / anglePerDirection)
 	
 func _setAmmo(value : int) -> void:
 	ammo = value
@@ -43,6 +42,13 @@ func _process(_delta):
 		doRotation()
 		
 	_handleFiring()
+	
+func _repositionWeapon(pressedInputs):
+	angleIndex = _calculateAngleIndex(rotation)
+	var inputAngle = _calculateAngleIndex(pressedInputs.angle())
+	
+	position.x = lerp(position.x, type.weaponPositions[inputAngle].x * currentPlayer.getFacingDirection(), type.aimWeight)
+	position.y = lerp(position.y, type.weaponPositions[inputAngle].y, type.aimWeight)
 	
 func _handleFiring():
 	match type.fireType:
@@ -60,9 +66,9 @@ func doRotation():
 		
 	var desiredRotation
 	
-	if currentPlayer.isGrounded:
-		if direction.y == 1:
-			direction.y = 0
+	#if currentPlayer.isGrounded:
+	#	if direction.y == 1:
+	#		direction.y = 0
 		
 	if direction != Vector2.ZERO:
 		desiredRotation = direction.angle()
@@ -73,7 +79,10 @@ func doRotation():
 			desiredRotation = PI
 		
 	rotation = lerp_angle(rotation, desiredRotation, type.aimWeight)
-	ChangeSprite(currentPlayer.getFacingDirection())
+	
+	scale.y = currentPlayer.getFacingDirection()
+	
+	_repositionWeapon(direction)
 	
 func fire():
 	if ammo > 0:
@@ -81,9 +90,9 @@ func fire():
 		
 		if type.displayFlash:
 			var newFlash = muzzleFlash.instance()
-			newFlash.position = position + type.projectileOffset.rotated(rotation)
+			newFlash.global_position = barrel.global_position
 			newFlash.global_rotation = global_rotation
-			currentPlayer.add_child(newFlash)
+			get_tree().get_current_scene().add_child(newFlash)
 			
 		if type.hasCooldown:
 			_startCooldown()
@@ -94,7 +103,7 @@ func fire():
 		for c in newProjectile.get_children():
 			c.add_to_group("PlayerProjectile")
 			
-		newProjectile.global_position = global_position + type.projectileOffset.rotated(rotation)
+		newProjectile.global_position = barrel.global_position
 		newProjectile.global_rotation = global_rotation
 		newProjectile.z_index = z_index - 16
 		newProjectile.papa = currentPlayer

@@ -7,7 +7,7 @@
 script = ExtResource( 1 )
 fireType = 0
 projectile = ExtResource( 2 )
-projectileOffset = Vector2( 0, 0 )
+weaponPositions = [ Vector2( 24, 8 ), Vector2( 32, 24 ), Vector2( -8, 48 ), Vector2( 32, 24 ), Vector2( 24, 8 ), Vector2( 32, -16 ), Vector2( -4, -96 ), Vector2( 32, -16 ) ]
 canRotate = true
 hasCooldown = false
 displayFlash = true
