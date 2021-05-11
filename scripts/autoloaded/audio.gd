@@ -26,45 +26,13 @@ var currentBPM
 var beat setget setBeat, getBeat
 var time
 
-func loadOGG(bgmID):
-	var path = Globals.LoadJSON(MUSIC, bgmID, "file")
-	var oggFile = File.new()
-	oggFile.open(path, File.READ)
-	var bytes = oggFile.get_buffer(oggFile.get_len())
-	var stream = AudioStreamOGGVorbis.new()
-	stream.data = bytes
-	stream.loop = Globals.LoadJSON(MUSIC, bgmID, "loop")
-	stream.loop_offset = float(Globals.LoadJSON(MUSIC, bgmID, "loop_offset"))
-	oggFile.close()
-	
-	return stream
-	
-func loadWAV(sfxID):
-	var path = Globals.LoadJSON(SOUND, sfxID, "file")
-	var wavFile = File.new()
-	wavFile.open(path, File.READ)
-	var bytes = wavFile.get_buffer(wavFile.get_len() - WAV_PADDING)
-	wavFile.close()
-	
-	for i in range(WAV_PADDING):
-		bytes[i] = 0
-		
-	var stream = AudioStreamSample.new()
-	
-	stream.format = Globals.LoadJSON(SOUND, sfxID, "format")
-	stream.mix_rate = Globals.LoadJSON(SOUND, sfxID, "sample_rate")
-	stream.stereo = Globals.LoadJSON(SOUND, sfxID, "stereo")
-	stream.data = bytes
-	
-	return stream
-	
 func playSound(sfxID, emitter = self, volume := 1.0, pitch := 1.0):
 	var soundPlayer = AudioStreamPlayer.new()
 	
 	soundPlayer.set_bus("Sound")
 	soundPlayer.volume_db = linear2db(volume)
 	soundPlayer.pitch_scale = pitch
-	soundPlayer.stream = loadWAV(sfxID)
+	soundPlayer.stream = Loader.getWAV(sfxID)
 	soundPlayer.connect("ready", soundPlayer, "play")
 	soundPlayer.connect("finished", soundPlayer, "queue_free")
 	
@@ -81,7 +49,7 @@ func musicSetup(bgmID):
 		# si bgmID tiene algun numero dentro...
 		if (bgmID != null):
 			# se va a cargar el archivo de musica desde el JSON, según su ID.
-			var musicToLoad = loadOGG(bgmID)
+			var musicToLoad = Loader.getOGG(bgmID)
 			
 			if currentID != bgmID:
 				_setupMusicPlayer(bgmID, musicToLoad)

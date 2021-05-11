@@ -6,8 +6,12 @@ extends Node
 const OBJ = "res://data/json/objects.json"
 const PICKUP = "res://data/json/pickups.json"
 
+var nodes := []
 var previousScene
 
+func _ready():
+	Globals.connect("scene_changed", self, "registerEveryNode")
+	
 func spawnPlayer(charID, pos, pSlot := "player"):
 	var character = load(Globals.LoadJSON(OBJ, 10, str(charID)))
 	var currentChar = character.instance()
@@ -31,6 +35,7 @@ func spawnPlayer(charID, pos, pSlot := "player"):
 			
 	Globals.get(pSlot).global_position = pos
 	
+	registerEveryNode()
 	return Globals.get(pSlot)
 	
 func getClosestOrFurthest(caller : Object, groupName : String, getClosest := true) -> Object:
@@ -60,6 +65,7 @@ func spawn(id, cVars = {}):
 	setupCustomVars(newObj, cVars)
 	get_tree().get_current_scene().add_child(newObj)
 	
+	registerEveryNode()
 	return newObj
 	
 func getWeapon(id, curPlayer, z, _ammo = 0):
@@ -83,3 +89,18 @@ func setupCustomVars(object, cVars := {}):
 	if !cVars.empty():
 		for variable in cVars:
 			object.set(variable, cVars[variable])
+	
+func getAllNodes(root = get_tree().get_root()):
+	for n in root.get_children():
+		
+		if n.get_child_count() > 0:
+			nodes.append(n)
+			getAllNodes(n)
+			
+		else:
+			nodes.append(n)
+	
+func registerEveryNode(_newScene = "who cares???"):
+	nodes.clear()
+	
+	getAllNodes()

@@ -21,10 +21,10 @@ func _ready():
 	
 	Objects.spawnPlayer(0, startPos)
 	
-	if NumberStuff.isBitEnabled(flags, 0):
+	if Math.isBitEnabled(flags, 0):
 		Renderer.backgroundSetup(backgroundID)
 	
-	if NumberStuff.isBitEnabled(flags, 3):
+	if Math.isBitEnabled(flags, 3):
 		var startTimer = Objects.spawn(25)
 		startTimer.connect("level_start", self, "start")
 	else:
@@ -48,5 +48,5 @@ func start(fromTimer : bool):
 		
 	Objects.spawn(27, {"minsLeft" : minsToBeat})
 	
-	if NumberStuff.isBitEnabled(flags, 1):
+	if Math.isBitEnabled(flags, 1):
 		Audio.musicSetup(musicID)

@@ -1,9 +1,9 @@
 extends Object
-class_name NumberStuff
+class_name Math
 
 static func isEven(value : int) -> bool:
 	return value % 2 == 0
-		
+	
 static func dec2bin(decimalValue : int) -> int:
 	var binaryString = "" 
 	var temp 
@@ -38,4 +38,11 @@ static func setBit(mask, index, enabled := true):
 	else:
 		return mask & ~(1 << index)
 	
+static func remapToRange(value : float, iStart : float, iStop : float, oStart : float, oStop : float) -> float:
+	return oStart + (oStop - oStart) * ((value - iStart) / (iStop - iStart))
 	
+static func toVec2(value) -> Vector2:
+	return Vector2(value, value)
+	
+static func toVec3(value) -> Vector3:
+	return Vector3(value, value, value)

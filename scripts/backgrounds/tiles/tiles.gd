@@ -18,7 +18,7 @@ func _setCones(booly : bool):
 	if dontShowCones != booly:
 		dontShowCones = booly
 		_setupAnim()
-	
+		
 func _setupAnim():
 	if dontShowCones:
 		anim.play("out")

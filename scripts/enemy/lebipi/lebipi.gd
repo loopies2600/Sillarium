@@ -17,7 +17,6 @@ export (float) var speed = 386
 export (float) var speedRandomness = 64
 export (float) var steerStrength = 128
 
-var acceleration := Vector2.ZERO
 var detectionLength = 512
 var hasRock = true
 var onScreen = false

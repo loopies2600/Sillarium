@@ -2,8 +2,6 @@ extends Kinematos
 
 onready var collisionBox = $CollisionPolygon2D
 # Variables para velocidad de la caida
-export (float) var acceleration = 40
-export (float) var maxSpeed = 600
 export (float) var horDrag = 0.5
 export (float) var pushSpeed = 0.25
 

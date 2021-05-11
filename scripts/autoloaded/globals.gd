@@ -2,6 +2,7 @@
 
 extends Node
 
+signal scene_changed(newScene)
 # se usan globalmente, bueno, como todo singleton.
 const SCENE = "res://data/json/scenes.json"
 
@@ -63,6 +64,8 @@ func LoadScene(sceneID : int, cVars := {}):
 		newScene.connect("tree_entered", get_tree(), "set_current_scene", [newScene], CONNECT_ONESHOT)
 		Objects.setupCustomVars(newScene, cVars)
 		get_tree().get_root().call_deferred("add_child", newScene)
+		
+		emit_signal("scene_changed", newScene)
 		return false
 	
 func LoadJSON(file : String, index : int, property : String):
@@ -90,9 +93,3 @@ func getJSONSize(file : String):
 	jsonFile.close()
 	
 	return parsed.size()
-	
-func toVec2(value) -> Vector2:
-	return Vector2(value, value)
-	
-func toVec3(value) -> Vector3:
-	return Vector3(value, value, value)

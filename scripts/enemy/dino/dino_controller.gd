@@ -1,7 +1,6 @@
 extends "../behaviour/basic_enemy_controller.gd"
 
 onready var parentSprite = $Body
-onready var animator = $AnimationPlayer
 
 export (PackedScene) var flames
 
@@ -11,13 +10,13 @@ const GRAVITY = 25
 const ACCELERATION = 25
 const FRICTION = 0.15
 var dir = 1
-var friction = false
 enum states {IDLE, WALK, JUMP, LAND}
 var state = states.IDLE
 var stateTimer = 50
 
 func _ready():
 	add_to_group("Enemy")
+	animator = $AnimationPlayer
 	hitbox = $Area2D
 	animator.play("SpitFire")
 	var _unused = $FlameTimer.connect("timeout", self, "throw_flame")

@@ -9,6 +9,8 @@ onready var buttons = [$Languages/English, $Languages/Espanol, $Languages/Portug
 var toScreen := true
 
 func _ready():
+	Objects.registerEveryNode()
+	
 	languageText.bbcode_text = "[wave amp=32]" + tr("LM_LANGUAGE")
 	
 	TranslationServer.set_locale(language)

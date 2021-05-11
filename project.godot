@@ -40,9 +40,14 @@ _global_script_classes=[ {
 "path": "res://scripts/util/kinematos/kinema_util.gd"
 }, {
 "base": "Object",
-"class": "NumberStuff",
+"class": "Loader",
 "language": "GDScript",
-"path": "res://scripts/util/number_stuff.gd"
+"path": "res://scripts/util/loader.gd"
+}, {
+"base": "Object",
+"class": "Math",
+"language": "GDScript",
+"path": "res://scripts/util/math.gd"
 }, {
 "base": "Area2D",
 "class": "Pickup",
@@ -93,6 +98,11 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://scripts/util/state_machine/state_machine.gd"
+}, {
+"base": "Object",
+"class": "TextureSetter",
+"language": "GDScript",
+"path": "res://scripts/util/texture/setter.gd"
 } ]
 _global_script_class_icons={
 "AutoPlayer": "",
@@ -101,7 +111,8 @@ _global_script_class_icons={
 "Hazard": "",
 "HoverShake2D": "",
 "Kinematos": "",
-"NumberStuff": "",
+"Loader": "",
+"Math": "",
 "Pickup": "",
 "Player": "res://sprites/ui/menu/player.png",
 "PlayerStats": "",
@@ -111,7 +122,8 @@ _global_script_class_icons={
 "Replay": "",
 "RideableStats": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"TextureSetter": ""
 }
 
 [application]
