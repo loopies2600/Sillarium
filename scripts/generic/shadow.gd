@@ -4,7 +4,12 @@ onready var papa = get_parent()
 
 export (int) var detectionLength = 512
 
+onready var shadows = Settings.getSetting("renderer", "shadows")
+
 func _ready():
+	if !shadows:
+		queue_free()
+		
 	set_as_toplevel(true)
 	
 func _process(_delta):

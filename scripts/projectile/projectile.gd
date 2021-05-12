@@ -1,7 +1,7 @@
 extends Kinematos
 class_name Projectile
 
-onready var dust = preload("res://data/player/projectiles/dust.tscn")
+onready var particles = Settings.getSetting("renderer", "particles")
 
 export (int) var damage = 5
 export (bool) var hasGravity = false
@@ -58,8 +58,12 @@ func onBodyExited(_body):
 	pass
 	
 func kill():
-	var newDust = dust.instance()
-	newDust.modulate = color
-	newDust.position = position
-	get_tree().get_current_scene().add_child(newDust)
+	_spawnDust()
 	queue_free()
+	
+func _spawnDust(dustPath = "res://data/player/projectiles/dust.tscn"):
+	if particles:
+		var dust = load(dustPath).instance()
+		dust.modulate = color
+		dust.position = position
+		get_tree().get_current_scene().add_child(dust)

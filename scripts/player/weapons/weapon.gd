@@ -17,6 +17,7 @@ var angleIndex = 0
 var currentPlayer
 
 onready var muzzleFlash = preload("res://data/player/projectiles/muzzle_flash.tscn")
+onready var particles = Settings.getSetting("renderer", "particles")
 
 func _ready():
 	if type.hasCooldown:
@@ -66,9 +67,9 @@ func doRotation():
 		
 	var desiredRotation
 	
-	#if currentPlayer.isGrounded:
-	#	if direction.y == 1:
-	#		direction.y = 0
+	if currentPlayer.isGrounded:
+		if direction.y == 1:
+			direction.y = 0
 		
 	if direction != Vector2.ZERO:
 		desiredRotation = direction.angle()
@@ -87,39 +88,40 @@ func doRotation():
 func fire():
 	if ammo > 0:
 		Audio.playSound(0)
-		
-		if type.displayFlash:
-			var newFlash = muzzleFlash.instance()
-			newFlash.global_position = barrel.global_position
-			newFlash.global_rotation = global_rotation
-			get_tree().get_current_scene().add_child(newFlash)
-			
-		if type.hasCooldown:
-			_startCooldown()
-			
-		var newProjectile = type.projectile.instance()
-		newProjectile.add_to_group("PlayerProjectile")
-		
-		for c in newProjectile.get_children():
-			c.add_to_group("PlayerProjectile")
-			
-		newProjectile.global_position = barrel.global_position
-		newProjectile.global_rotation = global_rotation
-		newProjectile.z_index = z_index - 16
-		newProjectile.papa = currentPlayer
-		get_tree().get_current_scene().add_child(newProjectile)
-			
-		if type.recoil > 0.0:
-			currentPlayer.velocity -= Vector2(type.recoil, 0.0).rotated(global_rotation)
-		
+		_spawnMuzzleFlash()
+		_startCooldown()
+		_spawnProjectile()
+		currentPlayer.velocity -= Vector2(type.recoil, 0.0).rotated(global_rotation)
 		self.ammo -= 1
 	else:
 		Audio.playSound(1, Audio, 1.0, 2.0)
 	
+func _spawnMuzzleFlash(flashPath = "res://data/player/projectiles/muzzle_flash.tscn"):
+	if particles:
+		if type.displayFlash:
+			var muzzleFlash = load(flashPath).instance()
+			muzzleFlash.global_position = barrel.global_position
+			muzzleFlash.global_rotation = global_rotation
+			get_tree().get_current_scene().add_child(muzzleFlash)
+	
+func _spawnProjectile():
+	var newProjectile = type.projectile.instance()
+	newProjectile.add_to_group("PlayerProjectile")
+	
+	for c in newProjectile.get_children():
+		c.add_to_group("PlayerProjectile")
+		
+	newProjectile.global_position = barrel.global_position
+	newProjectile.global_rotation = global_rotation
+	newProjectile.z_index = z_index - 16
+	newProjectile.papa = currentPlayer
+	get_tree().get_current_scene().add_child(newProjectile)
+	
 func _startCooldown():
-	cooldownIsOver = false
-	cooldownTimer.wait_time = type.cooldown
-	cooldownTimer.start()
+	if type.hasCooldown:
+		cooldownIsOver = false
+		cooldownTimer.wait_time = type.cooldown
+		cooldownTimer.start()
 	
 func _cooldownTimeout():
 	cooldownIsOver = true

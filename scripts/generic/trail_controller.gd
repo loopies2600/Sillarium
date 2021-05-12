@@ -1,12 +1,17 @@
 extends Sprite
 
 onready var visibility = $VisibilityNotifier2D
+var particles = Settings.getSetting("renderer", "particles")
 
 var fadeSpeed := 0.1
 var life := 1.0
 var modulation := Color.white
 var randomColors := false
 
+func _init():
+	if !particles:
+		queue_free()
+		
 func _ready():
 	set_material(material.duplicate())
 	visibility.connect("screen_exited", self, "_kill")

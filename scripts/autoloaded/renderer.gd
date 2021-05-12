@@ -5,8 +5,8 @@ extends Node
 
 const FLICKER_RATE := 0.025
 
-const BG = "res://data/json/backgrounds.json"
-const WEATHER = "res://data/json/climates.json"
+const BG = "res://data/database/backgrounds.json"
+const WEATHER = "res://data/database/climates.json"
 const SCREENSHOTS_PATH = "user://screenshots/"
 
 # otra variable que lee desde la configuración, esta es para decidir si deberiamos dibujar los fondos o no

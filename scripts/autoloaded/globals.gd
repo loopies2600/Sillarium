@@ -4,7 +4,7 @@ extends Node
 
 signal scene_changed(newScene)
 # se usan globalmente, bueno, como todo singleton.
-const SCENE = "res://data/json/scenes.json"
+const SCENE = "res://data/database/scenes.json"
 
 const UP = Vector2.UP
 const MAX_FLOOR_ANGLE = 60

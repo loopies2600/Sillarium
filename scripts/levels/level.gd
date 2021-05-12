@@ -50,3 +50,5 @@ func start(fromTimer : bool):
 	
 	if Math.isBitEnabled(flags, 1):
 		Audio.musicSetup(musicID)
+	else:
+		Audio.stop()

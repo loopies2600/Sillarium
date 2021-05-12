@@ -7,8 +7,8 @@ signal pump(beat)
 
 enum {MUSIC_STARTED_PLAYING, MUSIC_ALREADY_PLAYING}
 
-const MUSIC = "res://data/json/music.json"
-const SOUND = "res://data/json/sounds.json"
+const MUSIC = "res://data/database/music.json"
+const SOUND = "res://data/database/sounds.json"
 const COMPENSATE_FRAMES = 2
 const COMPENSATE_HZ = 60.0
 const WAV_PADDING = 128 # en bytes
@@ -62,7 +62,11 @@ func musicSetup(bgmID):
 			set_process(false)
 			currentMusic.queue_free()
 			currentMusic = null
-	
+func stop():
+	if currentMusic.playing:
+		currentMusic.stop()
+		currentID = null
+		
 func _setupMusicPlayer(bgmID, stream):
 	if !currentMusic:
 		currentMusic = AudioStreamPlayer.new()

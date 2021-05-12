@@ -3,11 +3,16 @@ extends Node2D
 var pieceNeedsToBeThisBigToRenderAShadow := Vector2(32, 32)
 var flip_h : bool
 var flip_v : bool
+var particles = Settings.getSetting("renderer", "particles")
 var shadowScale := Vector2.ONE
 var texture : Texture
 
 onready var pieces = [$Piece, $Piece2, $Piece3, $Piece4]
 
+func _init():
+	if !particles:
+		queue_free()
+		
 func _ready():
 	pieces[0].initialVel = Vector2(rand_range(-128, -64), rand_range(-512, 256))
 	pieces[1].initialVel = Vector2(rand_range(128, 64), rand_range(-512, 256))

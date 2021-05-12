@@ -3,8 +3,8 @@
 
 extends Node
 
-const OBJ = "res://data/json/objects.json"
-const PICKUP = "res://data/json/pickups.json"
+const OBJ = "res://data/database/objects.json"
+const PICKUP = "res://data/database/pickups.json"
 
 var nodes := []
 var previousScene

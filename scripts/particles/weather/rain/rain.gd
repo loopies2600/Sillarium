@@ -1,9 +1,14 @@
 extends CanvasLayer
 
 onready var emitter = $RainEmitter
-var grav := Vector2(400, 800) setget _setGravity
 
-func _ready():
+var grav := Vector2(400, 800) setget _setGravity
+var particles = Settings.getSetting("renderer", "particles")
+
+func _init():
+	if !particles:
+		queue_free()
+		
 	_setGravity(grav)
 	
 func _setGravity(neoGrav : Vector2):

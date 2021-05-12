@@ -63,6 +63,8 @@ var _settings = {
 		"display_weather": true,
 		"fullscreen": false,
 		"freeze_frame": true,
+		"particles": true,
+		"shadows": true,
 		"vsync" : false
 	},
 	"dont-autogenerate-buttons": {
@@ -80,7 +82,7 @@ func _ready():
 	var didLoad = loadSettings()
 	
 	if didLoad != OK:
-		print("Settings file doesn't exist, creating one...")
+		print("Can't load settings file, creating a new one...")
 		saveSettings()
 		loadSettings()
 	

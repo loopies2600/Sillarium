@@ -1,4 +1,4 @@
-extends SpriteLoader
+extends Sprite
 
 export (float) var eyeRadius = 8
 

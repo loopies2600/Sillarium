@@ -2,18 +2,16 @@
 
 [ext_resource path="res://data/enemy/grabber/grabber.tscn" type="PackedScene" id=1]
 [ext_resource path="res://data/pickups/weapons/weapon.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scripts/levels/level_parameters.gd" type="Script" id=3]
+[ext_resource path="res://scripts/levels/level.gd" type="Script" id=3]
 [ext_resource path="res://data/tilemaps/tutorial.tres" type="TileSet" id=4]
 [ext_resource path="res://scripts/tilemaps/tile.gd" type="Script" id=5]
 [ext_resource path="res://data/enemy/pinataman/pinata_man.tscn" type="PackedScene" id=6]
 [ext_resource path="res://data/generic/basic_entryway.tscn" type="PackedScene" id=7]
 [ext_resource path="res://data/hazards/cave/stalactite.tscn" type="PackedScene" id=8]
 
-[node name="World" type="Node2D"]
+[node name="TestTutorial" type="Node2D"]
 script = ExtResource( 3 )
-flags = 11
-backgroundID = 1
-musicID = 1
+flags = 9
 tiles = NodePath("TutorialTiles")
 startPosition = NodePath("StartPosition")
 
