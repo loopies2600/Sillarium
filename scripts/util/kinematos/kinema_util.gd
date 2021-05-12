@@ -25,6 +25,13 @@ export (float) var timeJumpApex = 1.0
 onready var mainSprite : Sprite
 onready var animator : AnimationPlayer
 
+func setProcessing(booly : bool):
+	set_process(booly)
+	set_physics_process(booly)
+	set_process_input(booly)
+	set_process_unhandled_input(booly)
+	set_process_unhandled_key_input(booly)
+	
 func _physics_process(delta):
 	groundCheck()
 	doGravity(delta)

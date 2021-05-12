@@ -156,7 +156,11 @@ func handleInputProcessing():
 	currentWeapon.set_process(canInput)
 	currentWeapon.set_process_input(canInput)
 	
-func takeDamage(damage, bumpAnyways := false, bumpX = (-maxSpeed * 2) * getFacingDirection(), bumpY = (-jumpStrength * 4)):
+func takeDamage(damage, bumpAnyways := false, bumpX = (-maxSpeed * 2) * getFacingDirection(), bumpY = (-jumpStrength * 4), stunTime := 0.075):
+	setProcessing(false)
+	yield(get_tree().create_timer(stunTime), "timeout")
+	setProcessing(true)
+	
 	if bumpAnyways:
 		emit_signal("camera_shake_requested")
 		emit_signal("player_damaged", bumpX, bumpY, false)
