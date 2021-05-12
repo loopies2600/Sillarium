@@ -4,8 +4,7 @@ var dontShowCones := true setget _setCones
 
 onready var anim = $Animator
 onready var mask = $Mask
-onready var rects = [$Tiles0, $Tiles1]
-onready var flipTimer = $FlipTimer
+onready var rects = [$Rects/Parallax/Layer0/Tiles0, $Rects/Parallax/Layer1/Tiles1]
 
 func _ready():
 	var _unused = Audio.connect("pump", self, "_flip")

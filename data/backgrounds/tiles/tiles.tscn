@@ -1,15 +1,38 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://sprites/background/tiles/blue.png" type="Texture" id=1]
 [ext_resource path="res://scripts/backgrounds/wrap_background.gd" type="Script" id=2]
 [ext_resource path="res://scripts/backgrounds/tiles/tiles.gd" type="Script" id=3]
 [ext_resource path="res://sprites/background/tiles/cone.png" type="Texture" id=4]
 [ext_resource path="res://sprites/debug/radius.png" type="Texture" id=5]
+[ext_resource path="res://data/shaders/mode7.shader" type="Shader" id=6]
+[ext_resource path="res://scripts/backgrounds/tiles/wrap.gd" type="Script" id=7]
 
-[sub_resource type="CanvasItemMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 6 )
+shader_param/DEPTH = Vector2( 0, 4 )
+shader_param/POSITION = Vector2( 0, 0 )
+shader_param/SCALE = Vector2( 2, 4 )
+shader_param/REPEAT_X = true
+shader_param/REPEAT_Y = true
+shader_param/FLIP = true
+shader_param/toScreen = false
+
+[sub_resource type="ViewportTexture" id=5]
+viewport_path = NodePath("Rects")
+
+[sub_resource type="CanvasItemMaterial" id=2]
 blend_mode = 2
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0.0927152, 0.410596, 0.86755 )
+colors = PoolColorArray( 0.0941176, 0.0941176, 0.0941176, 0, 0.0784314, 0.113725, 0.188235, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+width = 720
+
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Cones0:position")
@@ -48,7 +71,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.12549 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Cones0:position")
@@ -91,37 +114,60 @@ tracks/2/keys = {
 layer = -100
 script = ExtResource( 3 )
 
-[node name="Tiles0" type="TextureRect" parent="."]
+[node name="Rects" type="Viewport" parent="."]
+size = Vector2( 1280, 720 )
+
+[node name="Parallax" type="ParallaxBackground" parent="Rects"]
+follow_viewport_enable = true
+
+[node name="Layer0" type="ParallaxLayer" parent="Rects/Parallax"]
+motion_mirroring = Vector2( 1280, 720 )
+script = ExtResource( 7 )
+
+[node name="Tiles0" type="TextureRect" parent="Rects/Parallax/Layer0"]
 self_modulate = Color( 1, 1, 1, 0.501961 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 424.0
+margin_right = 1280.0
+margin_bottom = 720.0
 texture = ExtResource( 1 )
 stretch_mode = 2
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Tiles1" type="TextureRect" parent="."]
+[node name="Layer1" type="ParallaxLayer" parent="Rects/Parallax"]
+motion_mirroring = Vector2( 1280, 720 )
+script = ExtResource( 7 )
+scrollFactor = Vector2( -1, -1 )
+
+[node name="Tiles1" type="TextureRect" parent="Rects/Parallax/Layer1"]
 self_modulate = Color( 1, 1, 1, 0.501961 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -512.0
-margin_top = -424.0
+margin_right = 1280.0
+margin_bottom = 720.0
 texture = ExtResource( 1 )
 stretch_mode = 2
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
-speed = -48
+
+[node name="RectsView" type="TextureRect" parent="."]
+material = SubResource( 6 )
+margin_right = 1280.0
+margin_bottom = 720.0
+rect_pivot_offset = Vector2( -479, 109 )
+texture = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Mask" type="TextureRect" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
-material = SubResource( 1 )
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 5 )
@@ -131,8 +177,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FlipTimer" type="Timer" parent="."]
-autostart = true
+[node name="Gradient" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1280.0
+margin_right = 720.0
+margin_bottom = 560.0
+rect_rotation = 90.0
+texture = SubResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Cones0" type="Node2D" parent="."]
 position = Vector2( -56, -100 )
@@ -151,9 +207,9 @@ __meta__ = {
 }
 
 [node name="Cones" type="TextureRect" parent="Cones0"]
-margin_top = 32.0
-margin_right = 2048.0
-margin_bottom = 64.0
+margin_left = -51.8471
+margin_right = 1996.15
+margin_bottom = 32.0
 texture = ExtResource( 4 )
 stretch_mode = 2
 script = ExtResource( 2 )
@@ -182,10 +238,9 @@ __meta__ = {
 }
 
 [node name="Cones" type="TextureRect" parent="Cones1"]
-margin_left = -512.0
-margin_top = 32.0
-margin_right = 1536.0
-margin_bottom = 64.0
+margin_left = -122.978
+margin_right = 1925.02
+margin_bottom = 32.0
 texture = ExtResource( 4 )
 stretch_mode = 2
 script = ExtResource( 2 )
@@ -198,5 +253,5 @@ speed = -48
 sizeMultiplier = 1
 
 [node name="Animator" type="AnimationPlayer" parent="."]
-anims/in = SubResource( 2 )
-anims/out = SubResource( 3 )
+anims/in = SubResource( 3 )
+anims/out = SubResource( 4 )
