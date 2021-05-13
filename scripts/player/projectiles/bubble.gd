@@ -21,6 +21,7 @@ func mainMotion(delta):
 	
 	if collision:
 		velocity = velocity.bounce(collision.normal)
+		velocity *= bounciness
 		self.bounces += 1
 		
 func _setBounces(value : int):

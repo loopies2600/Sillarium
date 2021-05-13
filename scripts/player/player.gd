@@ -19,7 +19,6 @@ onready var airMaxSpeed = character.airMaxSpeed
 onready var airFriction = character.airFriction
 onready var dashStrength = character.dashStrength
 onready var dashDuration = character.dashDuration
-onready var bounciness = character.bounciness
 onready var graceTime = character.graceTime
 onready var comboTime = character.comboTime
 onready var respawnTime = character.respawnTime

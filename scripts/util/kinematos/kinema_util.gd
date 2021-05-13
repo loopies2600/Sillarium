@@ -19,8 +19,9 @@ export (float) var maxSpeed
 var velocity := Vector2()
 export (float) var fallMultiplier = 1.0
 export (float) var friction = 1.0
-var snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
+export (Vector2) var snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
 export (float) var timeJumpApex = 1.0
+export (float) var bounciness = 0.9
 
 onready var mainSprite : Sprite
 onready var animator : AnimationPlayer

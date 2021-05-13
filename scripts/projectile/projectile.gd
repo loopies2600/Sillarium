@@ -39,11 +39,6 @@ func setupSpeed():
 func doGravity(_delta):
 	if hasGravity:
 		velocity.y += Globals.GRAVITY
-		
-func travel(_delta):
-	velocity = move_and_slide(velocity)
-	
-	rotation = velocity.angle()
 	
 func onAreaEntered(_area):
 	kill()

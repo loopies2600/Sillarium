@@ -16,7 +16,6 @@ var angleIndex = 0
 
 var currentPlayer
 
-onready var muzzleFlash = preload("res://data/player/projectiles/muzzle_flash.tscn")
 onready var particles = Settings.getSetting("renderer", "particles")
 
 func _ready():

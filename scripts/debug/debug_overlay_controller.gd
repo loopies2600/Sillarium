@@ -6,6 +6,9 @@ var targetAlpha := 0.0
 var vars = []
 
 func _ready():
+	if !OS.is_debug_build():
+		queue_free()
+		
 	for child in get_children():
 		child.modulate.a = 0.0
 		
