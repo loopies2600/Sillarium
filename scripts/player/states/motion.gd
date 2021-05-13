@@ -2,7 +2,7 @@ extends State
 
 func enter(_msg := {}):
 	var _unused = owner.connect("player_damaged", get_parent().current_state, "onDamage")
-	_unused = owner.connect("grounded_updated", self, "_playerGrounded")
+	_unused = owner.connect("grounded_updated", get_parent().current_state, "_playerGrounded")
 	
 func _playerGrounded(isGrounded):
 	if isGrounded:
@@ -24,7 +24,7 @@ func update(_delta):
 					emit_signal("finished", "dash")
 		
 func onDamage(bumpX, bumpY, deadly := false):
-	emit_signal("finished", "hurt", {"x" : bumpX, "y" : bumpY, "isDeadly" : deadly})
+	emit_signal("finished", "bump", {"x" : bumpX, "y" : bumpY, "isDeadly" : deadly})
 	
 func exit():
 	owner.disconnect("player_damaged", get_parent().current_state, "onDamage")

@@ -104,14 +104,7 @@ func getMusicBPM(bgmID):
 	var tempo = Globals.LoadJSON(MUSIC, bgmID, "tempo")
 	
 	return float(tempo)
-	
-func getMusicPeakVolume():
-	# el volumen de cada lado del parlante del servidor de audio, se lo pasamos con un Vector2 para manipularlo más fácil.
-	var left = AudioServer.get_bus_peak_volume_left_db(0, 0)
-	var right = AudioServer.get_bus_peak_volume_right_db(0, 0)
-	
-	return Vector2(-left, right)
-	
+		
 func setupVolume(bus : String):
 	set(bus.to_lower() + "Volume", Settings.getSetting("dont-autogenerate-buttons", bus.to_lower() + "_volume"))
 	

@@ -6,7 +6,7 @@ func _ready():
 		"walk": $Walk,
 		"air": $Air,
 		"hold": $Hold,
-		"hurt": $Hurt,
+		"bump": $Bump,
 		"locked": $Locked,
 		"dash": $Dash
 	}
@@ -14,6 +14,6 @@ func _ready():
 func _change_state(state_name, msg := {} ):
 	if not _active:
 		return
-	if state_name in ["hold", "hurt", "locked", "dash"]:
+	if state_name in ["hold", "bump", "locked", "dash"]:
 		states_stack.push_front(states_map[state_name])
 	._change_state(state_name, msg)

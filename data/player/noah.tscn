@@ -222,7 +222,7 @@ script = ExtResource( 2 )
 [node name="Hold" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
 
-[node name="Hurt" type="Node" parent="StateMachine"]
+[node name="Bump" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
 
 [node name="Locked" type="Node" parent="StateMachine"]

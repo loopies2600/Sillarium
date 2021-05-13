@@ -12,11 +12,6 @@ func _ready():
 	for child in get_children():
 		child.modulate.a = 0.0
 		
-	add_var("music peak volume (left, right)", Audio, "getMusicPeakVolume", true)
-	add_var("player 1 position (X, Y)", Globals.player, "global_position", false)
-	add_var("player 2 position (X, Y)", Globals.playerTwo, "global_position", false)
-	add_var("player 1 velocity (X, Y)", Globals.player, "velocity", false)
-	add_var("player 2 velocity (X, Y)", Globals.playerTwo, "velocity", false)
 	add_var("object count", Performance, "get_monitor", true, "", 10)
 	
 func add_var(var_name, object, var_ref, is_method, latter_word := "", argument = null):
@@ -31,7 +26,6 @@ func _process(delta):
 	else:
 		objList.show()
 	
-	var system_text = "SYSTEM VARIABLES\n"
 	var debug_text = "SILLARIUM VARIABLES\n"
 	
 	for v in vars:
@@ -55,24 +49,6 @@ func _process(delta):
 		
 	$DebugInfo.text = debug_text
 	
-	#FPS
-	var fps = Performance.get_monitor(0)
-	system_text += str("framerate: ", fps, " fps\n").to_upper()
-	
-	#memoria dinamica utilizada
-	var dmem = OS.get_dynamic_memory_usage()
-	system_text += str("dynamic memory: ", String.humanize_size(dmem), "\n").to_upper()
-	
-	#memoria estatica utilizada
-	var smem = OS.get_static_memory_usage()
-	system_text += str("static memory: ", String.humanize_size(smem), "\n").to_upper()
-	
-	#driver de video
-	var video = OS.get_current_video_driver()
-	system_text += str("video mode: ", _getVideoDriverName(video), "\n").to_upper()
-	
-	$SystemInfo.text = system_text
-	
 	if Globals.debugMenuOpen:
 		targetAlpha = 1.0
 	else:
@@ -83,11 +59,3 @@ func _input(event):
 		if Globals.debug:
 			Globals.debugMenuOpen = !Globals.debugMenuOpen
 			
-func _getVideoDriverName(id : int) -> String:
-	match id:
-		0:
-			return "GLES3"
-		1:
-			return "GLES2"
-			
-	return "UNKNOWN"

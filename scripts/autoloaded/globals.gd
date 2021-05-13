@@ -16,21 +16,6 @@ const GRAVITY = 9.80665 * 2
 var player
 var playerTwo
 
-# aca registramos la interfaz debug, y checkeamos si deberiamos activarlo.
-onready var debugMenuOpen := false
-onready var debugOverlay = Objects.getObj(18)
-onready var debug = Settings.getSetting("general", "debug_mode")
-
-func _ready():
-	var _unused = Settings.connect("settings_changed", self, "_onSetChanges")
-	
-	if debug:
-		add_child(debugOverlay)
-		
-func _onSetChanges():
-	debug = Settings.getSetting("general", "debug_mode")
-	debugMenuOpen = false
-	
 func quadBezier(p0: Vector2, p1: Vector2, p2: Vector2, time: float):
 	# para interpolar movimientos usando el algoritmo del bezier cuadrado
 	var q0 = p0.linear_interpolate(p1, time)

@@ -47,11 +47,11 @@ func _input(event):
 		
 func toggleFS():
 	fullscreen = Settings.getSetting("renderer", "fullscreen")
-	OS.window_fullscreen = fullscreen
+	OS.set_window_fullscreen(fullscreen)
 	
 func toggleVSync():
 	vsync = Settings.getSetting("renderer", "vsync")
-	OS.vsync_enabled = vsync
+	OS.set_use_vsync(vsync)
 	
 func spawnTrail(fadeSpeed : float, sprite : Sprite, modulation = Color.white):
 	# algunos sprites van a dejar un rastro, así que esta función se encarga de spawnear ese rastro.

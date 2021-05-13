@@ -6,7 +6,8 @@ signal camera_shake_requested(mode, time, amp)
 signal grounded_updated(isGrounded)
 signal gravity_updated(doinGravity)
 
-var canInput := false
+var canInput := false setget _setInput
+var displayTrails := false
 var applyGravity := true setget _doGravity
 var isGrounded := true
 
@@ -157,3 +158,11 @@ func move(speed := maxSpeed, direction := getInputDirection()):
 	
 func damp(damping := friction):
 	velocity.x *= damping
+	
+func trails(sprites = [mainSprite], color = "random"):
+	if displayTrails:
+		for spr in sprites:
+			Renderer.spawnTrail(0.1, spr, color)
+			
+func _setInput(booly : bool):
+	canInput = booly

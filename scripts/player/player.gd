@@ -29,7 +29,7 @@ var slot := "player"
 var canDash := true
 var trackInput := true setget _setTrackInput
 var doinCombo := false
-var flashing := false
+var flashing := false setget _setFlashing
 
 var combo := 0 setget _setCombo
 var deaths : int = Data.getData(slot, "deaths") setget _setDeaths
@@ -76,7 +76,7 @@ func _ready():
 		arms[a].add_child(newArm)
 	
 func connectSignals():
-	var _unused = gracePeriod.connect("timeout", self, "_gracePeriodEnd")
+	var _unused = gracePeriod.connect("timeout", self, "_endGracePeriod")
 	_unused = comboPeriod.connect("timeout", self, "_comboEnd")
 	_unused = camera.connectToManipulators()
 	
@@ -89,12 +89,11 @@ func _onLevelStart():
 	startGracePeriod()
 	canInput = true
 	
-func _process(_delta):
-	_repositionArms()
+func _physics_process(_delta):
+	_comboLoop()
 	keepOnScreen(true, false, Vector2(hitbox.shape.extents.x * 2, 0))
-	
-	handleInputProcessing()
-	flashBehaviour()
+	_repositionArms()
+	trails(bodyParts)
 	
 func _repositionArms():
 	for a in stretchableArms.size():
@@ -139,19 +138,28 @@ func animateGraphics(anim : String):
 	graphicsAnimator.play(anim)
 	graphicsAnimator.queue("default")
 	
-func flashBehaviour():
+func _setFlashing(booly : bool):
+	flashing = booly
+	
 	if flashing:
 		for arm in stretchableArms:
 			arm.visible = Renderer.flicker
 			
 		visible = Renderer.flicker
+	else:
+		for arm in stretchableArms:
+			arm.visible = true
+			
+		visible = true
 		
+func _comboLoop():
 	if !doinCombo && combo > 0:
 		combo -= 1
 		emit_signal("player_combo_updated")
 		self.score += 1
 	
-func handleInputProcessing():
+func _setInput(booly : bool):
+	canInput = booly
 	currentWeapon.set_process(canInput)
 	currentWeapon.set_process_input(canInput)
 	
@@ -166,7 +174,10 @@ func takeDamage(damage, bumpAnyways := false, bumpX = (-maxSpeed * 2) * getFacin
 		
 	if !flashing:
 		emit_signal("camera_shake_requested")
-		startGracePeriod()
+		
+		if !bumpAnyways:
+			startGracePeriod()
+			
 		animateGraphics("hurt")
 		self.health -= damage
 		emit_signal("player_damaged", bumpX, bumpY, true if health <= 0 else false)
@@ -177,7 +188,7 @@ func disableCollisionBox():
 func startGracePeriod():
 	gracePeriod.wait_time = character.graceTime
 	gracePeriod.start()
-	flashing = true
+	self.flashing = true
 	
 	setCollisionBits([CollisionLayers.ENEMY, CollisionLayers.ENEMY_PROJECTILE], false)
 	
@@ -223,12 +234,8 @@ func _respawn():
 	emit_signal("player_respawned")
 	startGracePeriod()
 	
-func _gracePeriodEnd():
-	for arm in stretchableArms:
-		arm.visible = true
-		
-	visible = true
-	flashing = false
+func _endGracePeriod():
+	self.flashing = false
 	
 	setCollisionBits([CollisionLayers.ENEMY, CollisionLayers.ENEMY_PROJECTILE], true)
 	

@@ -20,4 +20,5 @@ func physics_update(_delta):
 		emit_signal("finished", "idle")
 		
 func exit():
+	owner.displayTrails = false
 	owner.snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
