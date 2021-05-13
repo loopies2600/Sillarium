@@ -16,12 +16,12 @@ func enter(_msg := {}):
 	_dashTimer()
 	
 func physics_update(delta):
-	owner.velocity.x += (owner.dashStrength * -owner.getFacingDirection())
+	owner.velocity.x += ((owner.dashStrength / 32) * -owner.getFacingDirection())
 	
 func _dashTimer():
 	yield(get_tree().create_timer(dashTime), "timeout")
 	owner.displayTrails = true
-	owner.takeDamage(0, true, (owner.maxSpeed * 4) * owner.getFacingDirection(), -owner.jumpStrength * 2)
+	owner.takeDamage(0, true, owner.dashStrength * owner.getFacingDirection(), -owner.dashStrength / 2)
 	
 func exit():
 	owner.disconnect("player_damaged", get_parent().current_state, "onDamage")

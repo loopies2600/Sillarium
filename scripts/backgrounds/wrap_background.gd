@@ -10,7 +10,7 @@ export (int) var sizeMultiplier = 2
 func _ready():
 	rect_size = rect_size + (offsetLimit * sizeMultiplier)
 	
-func _process(delta):
+func _physics_process(delta):
 	if moveHorizontally:
 		rect_position.x -= speed * delta
 	

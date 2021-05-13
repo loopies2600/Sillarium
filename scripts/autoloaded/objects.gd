@@ -20,6 +20,8 @@ func spawnPlayer(charID, pos, pSlot := "player"):
 		get_tree().get_root().call_deferred("add_child", currentChar)
 		Globals.set(pSlot, currentChar)
 		
+	Globals.get(pSlot).charID = charID
+	Globals.get(pSlot).global_position = pos
 	Globals.get(pSlot).slot = pSlot
 	
 	match pSlot:
@@ -28,8 +30,6 @@ func spawnPlayer(charID, pos, pSlot := "player"):
 		"playerTwo":
 			Globals.get(pSlot).inputSuffix = "_to"
 			Globals.get(pSlot).camera.queue_free()
-	
-	Globals.get(pSlot).global_position = pos
 	
 	registerEveryNode()
 	return Globals.get(pSlot)

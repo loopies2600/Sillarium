@@ -23,6 +23,7 @@ onready var graceTime = character.graceTime
 onready var comboTime = character.comboTime
 onready var respawnTime = character.respawnTime
 
+var charID := 0
 var playerID := 0
 var slot := "player"
 
@@ -90,10 +91,10 @@ func _onLevelStart():
 	canInput = true
 	
 func _physics_process(_delta):
+	_repositionArms()
 	_comboLoop()
 	keepOnScreen(true, false, Vector2(hitbox.shape.extents.x * 2, 0))
-	_repositionArms()
-	trails(bodyParts)
+	trails(bodyParts, Settings.getSetting("dont-autogenerate-buttons", "accent_color_" + str(charID)))
 	
 func _repositionArms():
 	for a in stretchableArms.size():
