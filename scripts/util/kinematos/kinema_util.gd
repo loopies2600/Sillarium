@@ -8,6 +8,7 @@ signal gravity_updated(doinGravity)
 
 var canInput := false setget _setInput
 var displayTrails := false
+var flashing := false
 var applyGravity := true setget _doGravity
 var isGrounded := true
 
@@ -35,9 +36,16 @@ func setProcessing(booly : bool):
 	set_process_unhandled_key_input(booly)
 	
 func _physics_process(delta):
+	loop()
 	groundCheck()
 	doGravity(delta)
 	mainMotion(delta)
+	
+func loop():
+	if flashing:
+		visible = Renderer.flicker
+	else:
+		visible = true
 	
 func mainMotion(_delta):
 	velocity.y = move_and_slide_with_snap(velocity, snapVector, Globals.UP, true).y

@@ -23,8 +23,8 @@ func update(_delta):
 				if Input.is_action_just_pressed("dash" + owner.inputSuffix):
 					emit_signal("finished", "dash")
 		
-func onDamage(bumpX, bumpY, deadly := false):
-	emit_signal("finished", "bump", {"x" : bumpX, "y" : bumpY, "isDeadly" : deadly})
+func onDamage(bump, deadly := false):
+	emit_signal("finished", "bump", {"bump" : bump, "isDeadly" : deadly})
 	
 func exit():
 	owner.disconnect("player_damaged", get_parent().current_state, "onDamage")

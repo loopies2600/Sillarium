@@ -62,10 +62,12 @@ func musicSetup(bgmID):
 			set_process(false)
 			currentMusic.queue_free()
 			currentMusic = null
+			
 func stop():
-	if currentMusic.playing:
-		currentMusic.stop()
-		currentID = null
+	if currentMusic:
+		if currentMusic.playing:
+			currentMusic.stop()
+			currentID = null
 		
 func _setupMusicPlayer(bgmID, stream):
 	if !currentMusic:

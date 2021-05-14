@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://data/player/camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/player/states/air.gd" type="Script" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://scripts/player/states/walk.gd" type="Script" id=5]
 [ext_resource path="res://scripts/player/player.gd" type="Script" id=6]
 [ext_resource path="res://sprites/player/noah/noah_0s.png" type="Texture" id=7]
-[ext_resource path="res://scripts/player/states/hurt.gd" type="Script" id=9]
+[ext_resource path="res://sprites/player/noah/noah_leftarm.png" type="Texture" id=8]
+[ext_resource path="res://scripts/player/states/bump.gd" type="Script" id=9]
 [ext_resource path="res://scripts/player/states/hold.gd" type="Script" id=10]
 [ext_resource path="res://scripts/player/states/dash.gd" type="Script" id=11]
 [ext_resource path="res://data/player/parameters/noah.tres" type="Resource" id=12]
@@ -15,6 +16,7 @@
 [ext_resource path="res://scripts/player/states/idle.gd" type="Script" id=14]
 [ext_resource path="res://scripts/player/states/locked.gd" type="Script" id=15]
 [ext_resource path="res://data/generic/shadow.tscn" type="PackedScene" id=16]
+[ext_resource path="res://sprites/player/noah/noah_rightarm.png" type="Texture" id=17]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -186,12 +188,16 @@ use_parent_material = true
 use_parent_material = true
 texture = SubResource( 2 )
 
-[node name="LeftArm" type="Position2D" parent="Graphics/Body"]
+[node name="LeftArm" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 16, -16 )
 z_index = -1
+texture = ExtResource( 8 )
+centered = false
 
-[node name="RightArm" type="Position2D" parent="Graphics/Body"]
+[node name="RightArm" type="Sprite" parent="Graphics/Body"]
 position = Vector2( -16, -16 )
+texture = ExtResource( 17 )
+centered = false
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 use_parent_material = true

@@ -1,7 +1,7 @@
 extends Kinematos
 class_name Player, "res://sprites/ui/menu/player.png"
 
-signal player_damaged(x, y)
+signal player_damaged(bump, letal)
 signal player_combo_updated()
 signal player_health_updated(health)
 signal player_lives_updated()
@@ -30,7 +30,6 @@ var slot := "player"
 var canDash := true
 var trackInput := true setget _setTrackInput
 var doinCombo := false
-var flashing := false setget _setFlashing
 
 var combo := 0 setget _setCombo
 var deaths : int = Data.getData(slot, "deaths") setget _setDeaths
@@ -52,10 +51,7 @@ onready var camera = $Camera
 onready var gracePeriod = $Timers/GracePeriodTimer
 onready var comboPeriod = $Timers/ComboTimer
 onready var shadow = $Shadow
-onready var arms = [$Graphics/Body/RightArm, $Graphics/Body/LeftArm]
 onready var bodyParts = [head, body, legs]
-
-var stretchableArms := []
 
 func _ready():
 	animator = $Graphics/PlayerAnimator
@@ -65,16 +61,6 @@ func _ready():
 	weapon = Objects.getWeapon(0, self, z_index + 1)
 	currentWeapon = weapon
 	add_child(currentWeapon)
-	
-	for a in arms.size():
-		var targetZ = [256, 0]
-		var newArm = Objects.getObj(28)
-		newArm.startPos = arms[a].global_position
-		newArm.sprite = armsTextures[a]
-		newArm.z_index =  targetZ[a]
-		newArm.set_as_toplevel(true)
-		stretchableArms.append(newArm)
-		arms[a].add_child(newArm)
 	
 func connectSignals():
 	var _unused = gracePeriod.connect("timeout", self, "_endGracePeriod")
@@ -91,16 +77,9 @@ func _onLevelStart():
 	canInput = true
 	
 func _physics_process(_delta):
-	_repositionArms()
-	_comboLoop()
 	keepOnScreen(true, false, Vector2(hitbox.shape.extents.x * 2, 0))
 	trails(bodyParts, Settings.getSetting("dont-autogenerate-buttons", "accent_color_" + str(charID)))
 	
-func _repositionArms():
-	for a in stretchableArms.size():
-		stretchableArms[a].startPos = arms[a].global_position
-		stretchableArms[a].endPos = weapon.hands[a].global_position
-		
 func _setScore(value : int) -> void:
 	Data.setData(slot, "total_score", value)
 	score = Data.getData(slot, "total_score")
@@ -139,39 +118,30 @@ func animateGraphics(anim : String):
 	graphicsAnimator.play(anim)
 	graphicsAnimator.queue("default")
 	
-func _setFlashing(booly : bool):
-	flashing = booly
-	
+func loop():
 	if flashing:
-		for arm in stretchableArms:
-			arm.visible = Renderer.flicker
-			
 		visible = Renderer.flicker
 	else:
-		for arm in stretchableArms:
-			arm.visible = true
-			
 		visible = true
 		
-func _comboLoop():
 	if !doinCombo && combo > 0:
-		combo -= 1
-		emit_signal("player_combo_updated")
-		self.score += 1
+			combo -= 1
+			emit_signal("player_combo_updated")
+			self.score += 1
 	
 func _setInput(booly : bool):
 	canInput = booly
 	currentWeapon.set_process(canInput)
 	currentWeapon.set_process_input(canInput)
 	
-func takeDamage(damage, bumpAnyways := false, bumpX = (-maxSpeed * 2) * getFacingDirection(), bumpY = (-jumpStrength * 4), stunTime := 0.075):
+func takeDamage(damage, bumpAnyways := false, bump = Vector2((-maxSpeed * 2) * getFacingDirection(), (-jumpStrength * 4)), stunTime := 0.075):
 	setProcessing(false)
 	yield(get_tree().create_timer(stunTime), "timeout")
 	setProcessing(true)
 	
 	if bumpAnyways:
 		emit_signal("camera_shake_requested")
-		emit_signal("player_damaged", bumpX, bumpY, false)
+		emit_signal("player_damaged", bump, false)
 		
 	if !flashing:
 		emit_signal("camera_shake_requested")
@@ -181,7 +151,7 @@ func takeDamage(damage, bumpAnyways := false, bumpX = (-maxSpeed * 2) * getFacin
 			
 		animateGraphics("hurt")
 		self.health -= damage
-		emit_signal("player_damaged", bumpX, bumpY, true if health <= 0 else false)
+		emit_signal("player_damaged", bump, true if health <= 0 else false)
 	
 func disableCollisionBox():
 	hitbox.set_deferred("disabled", true)
