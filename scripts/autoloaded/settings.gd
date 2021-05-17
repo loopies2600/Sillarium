@@ -79,12 +79,8 @@ var _settings = {
 }
 
 func _ready():
-	var didLoad = loadSettings()
-	
-	if didLoad != OK:
-		print("Can't load settings file, creating a new one...")
-		saveSettings()
-		loadSettings()
+	saveSettings()
+	loadSettings()
 	
 func bindKeys(clear := false):
 	if clear:
