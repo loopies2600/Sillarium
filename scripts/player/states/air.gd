@@ -12,7 +12,10 @@ func physics_update(_delta):
 	
 	if !owner.is_on_floor():
 		if owner.getInputDirection():
-			owner.move(owner.airMaxSpeed)
+			if Input.is_action_pressed("dash"):
+				owner.move(owner.airMaxSpeed * 2)
+			else:
+				owner.move(owner.airMaxSpeed)
 		else:
 			owner.damp(owner.airFriction)
 	else:
