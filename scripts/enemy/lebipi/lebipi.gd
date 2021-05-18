@@ -18,6 +18,7 @@ export (float) var speedRandomness = 64
 export (float) var steerStrength = 128
 
 var detectionLength = 512
+var dirAccel := Vector2()
 var hasRock = true
 var onScreen = false
 var target = null

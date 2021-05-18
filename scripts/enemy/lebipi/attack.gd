@@ -4,8 +4,8 @@ func enter(_msg := {}):
 	owner.anim.play("Jittering")
 
 func physics_update(delta):
-	owner.acceleration += owner.seek()
-	owner.velocity += owner.acceleration * delta
+	owner.dirAccel += owner.seek()
+	owner.velocity += owner.dirAccel * delta
 	owner.velocity = owner.velocity.clamped(owner.speed)
 	owner.target = Globals.player
 	var didHit = owner.raycastPlayer()

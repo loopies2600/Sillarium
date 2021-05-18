@@ -46,7 +46,6 @@ onready var feetPos = $FeetPosition
 onready var body = $Graphics/Body
 onready var head = $Graphics/Body/Head
 onready var legs = $Graphics/Body/Legs
-onready var hitbox = $CollisionShape2D
 onready var camera = $Camera
 onready var gracePeriod = $Timers/GracePeriodTimer
 onready var comboPeriod = $Timers/ComboTimer
@@ -55,12 +54,11 @@ onready var bodyParts = [head, body, legs]
 
 func _ready():
 	animator = $Graphics/PlayerAnimator
+	collisionBox = $CollisionShape2D
 	mainSprite = body
-	setupProperties(character, 8)
 	
-	weapon = Objects.getWeapon(0, self, z_index + 1)
-	currentWeapon = weapon
-	add_child(currentWeapon)
+	setupProperties(character, 8)
+	pickUpWeapon(0)
 	
 func connectSignals():
 	var _unused = gracePeriod.connect("timeout", self, "_endGracePeriod")
@@ -69,15 +67,15 @@ func connectSignals():
 	
 func _onLevelReady():
 	connectSignals()
-	canInput = false
+	self.canInput = false
 	
 func _onLevelStart():
 	Objects.spawn(16)
 	startGracePeriod()
-	canInput = true
+	self.canInput = true
 	
 func _physics_process(_delta):
-	keepOnScreen(true, false, Vector2(hitbox.shape.extents.x * 2, 0))
+	keepOnScreen(true, false, Vector2(collisionBox.shape.extents.x * 2, 0))
 	trails(bodyParts, Settings.getSetting("dont-autogenerate-buttons", "accent_color_" + str(charID)))
 	
 func _setScore(value : int) -> void:
@@ -96,7 +94,7 @@ func _setLives(value : int) -> void:
 	emit_signal("player_lives_updated")
 	
 func _setCombo(value : int) -> void:
-# warning-ignore:narrowing_conversion
+	# warning-ignore:narrowing_conversion
 	if doinCombo:
 		combo = clamp(value, 0, 1000000)
 	else:
@@ -134,27 +132,17 @@ func _setInput(booly : bool):
 	currentWeapon.set_process(canInput)
 	currentWeapon.set_process_input(canInput)
 	
-func takeDamage(damage, bumpAnyways := false, bump = Vector2((-maxSpeed * 2) * getFacingDirection(), (-jumpStrength * 4)), stunTime := 0.075):
+func takeDamage(damage, bump = Vector2((-maxSpeed * 2) * getFacingDirection(), (-jumpStrength * 4)), stunTime := 0.075):
 	setProcessing(false)
 	yield(get_tree().create_timer(stunTime), "timeout")
 	setProcessing(true)
 	
-	if bumpAnyways:
-		emit_signal("camera_shake_requested")
-		emit_signal("player_damaged", bump, false)
-		
 	if !flashing:
 		emit_signal("camera_shake_requested")
-		
-		if !bumpAnyways:
-			startGracePeriod()
-			
+		startGracePeriod()
 		animateGraphics("hurt")
 		self.health -= damage
 		emit_signal("player_damaged", bump, true if health <= 0 else false)
-	
-func disableCollisionBox():
-	hitbox.set_deferred("disabled", true)
 	
 func startGracePeriod():
 	gracePeriod.wait_time = character.graceTime

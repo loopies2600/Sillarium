@@ -6,7 +6,7 @@ signal camera_shake_requested(mode, time, amp)
 signal grounded_updated(isGrounded)
 signal gravity_updated(doinGravity)
 
-var canInput := false setget _setInput
+var canInput := true setget _setInput
 var displayTrails := false
 var flashing := false
 var applyGravity := true setget _doGravity
@@ -25,8 +25,9 @@ export (Vector2) var snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
 export (float) var timeJumpApex = 1.0
 export (float) var bounciness = 0.9
 
-onready var mainSprite : Sprite
 onready var animator : AnimationPlayer
+onready var collisionBox : CollisionShape2D
+onready var mainSprite : Sprite
 
 func setProcessing(booly : bool):
 	set_process(booly)
@@ -174,3 +175,6 @@ func trails(sprites = [mainSprite], color = "random"):
 			
 func _setInput(booly : bool):
 	canInput = booly
+	
+func disableCollisionBox():
+	collisionBox.set_deferred("disabled", true)

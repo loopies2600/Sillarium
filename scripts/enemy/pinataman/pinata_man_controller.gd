@@ -2,12 +2,13 @@ extends "../behaviour/basic_enemy_controller.gd"
 
 onready var sprite = $Sprite
 onready var animPlayer = $AnimationPlayer
-onready var collisionBox = $CollisionShape2D
 
 export (PackedScene) var particle
 
 func _ready():
+	collisionBox = $CollisionShape2D
 	hitbox = $Area2D
+	
 	var _unused = connect("destroyed", self, "OnDestruction")
 	animPlayer.play("Swinging")
 	
