@@ -19,7 +19,14 @@ func _process(_delta):
 		
 func _input(event):
 	if event.is_action_pressed("pause"):
-		get_tree().paused = !get_tree().paused
-		anim.play("Slip")
-		BG.visible = !BG.visible
-		label.visible = !label.visible
+		if !get_tree().paused:
+			get_tree().paused = !get_tree().paused
+			anim.play("In")
+			BG.visible = !BG.visible
+			label.visible = !label.visible
+		else:
+			get_tree().paused = !get_tree().paused
+			anim.play("Out")
+			yield(anim, "animation_finished")
+			BG.visible = !BG.visible
+			label.visible = !label.visible

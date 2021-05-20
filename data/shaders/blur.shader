@@ -1,0 +1,10 @@
+shader_type canvas_item;
+
+uniform float amount : hint_range(0, 5);
+uniform vec4 tint : hint_color = vec4(1.0);
+uniform float tintAmount : hint_range(0, 1);
+
+void fragment() {
+	COLOR.rgb = textureLod(SCREEN_TEXTURE, SCREEN_UV, amount).rgb;
+	COLOR.rgb = mix(COLOR.rgb, tint.rgb, tintAmount);
+}
