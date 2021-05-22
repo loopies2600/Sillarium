@@ -17,7 +17,7 @@ func physics_update(_delta):
 			else:
 				owner.move(owner.airMaxSpeed)
 		else:
-			owner.damp(owner.airFriction)
+			owner.decelerate(owner.airDeceleration)
 	else:
 		owner.canInput = true
 		emit_signal("finished", "idle")

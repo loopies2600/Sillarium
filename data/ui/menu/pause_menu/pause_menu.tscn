@@ -5,13 +5,13 @@
 [ext_resource path="res://streams/music/bgm_select.ogg" type="AudioStream" id=3]
 [ext_resource path="res://data/shaders/blur.shader" type="Shader" id=5]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
 shader_param/amount = 2.5
 shader_param/tint = Color( 0.0313726, 0.054902, 0.14902, 1 )
 shader_param/tintAmount = 0.75
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "In"
 length = 0.1
 tracks/0/type = "value"
@@ -39,7 +39,7 @@ tracks/1/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "Out"
 length = 0.1
 tracks/0/type = "value"
@@ -74,11 +74,10 @@ script = ExtResource( 2 )
 
 [node name="ColorBG" type="ColorRect" parent="."]
 visible = false
-material = SubResource( 2 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -106,5 +105,5 @@ volume_db = -80.0
 bus = "Music"
 
 [node name="Animator" type="AnimationPlayer" parent="."]
-anims/In = SubResource( 3 )
-anims/Out = SubResource( 4 )
+anims/In = SubResource( 2 )
+anims/Out = SubResource( 3 )

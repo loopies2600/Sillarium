@@ -9,5 +9,10 @@ func physics_update(_delta):
 	else:
 		owner.move()
 	
-	if not owner.getInputDirection():
+	if !owner.getInputDirection():
 		emit_signal("finished", "idle")
+	else:
+		if sign(owner.velocity.x) != owner.getInputDirection() && abs(owner.velocity.x) > owner.maxSpeed:
+			owner.graphics.rotation = 0.1 * -sign(owner.velocity.x)
+		else:
+			owner.graphics.rotation = 0

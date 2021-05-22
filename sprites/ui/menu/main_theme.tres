@@ -1,8 +1,4 @@
-[gd_resource type="Theme" load_steps=13 format=2]
-
-[ext_resource path="res://sprites/ui/menu/main_button_style.tres" type="StyleBox" id=1]
-[ext_resource path="res://sprites/ui/menu/grabber_style.tres" type="StyleBox" id=2]
-[ext_resource path="res://sprites/ui/menu/main_tab_style.tres" type="StyleBox" id=3]
+[gd_resource type="Theme" load_steps=10 format=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.164706, 0.164706, 0.176471, 0.501961 )
@@ -140,9 +136,9 @@ Button/colors/font_color_pressed = Color( 1, 0.721569, 0.333333, 1 )
 Button/constants/hseparation = 0
 Button/fonts/font = null
 Button/styles/disabled = SubResource( 1 )
-Button/styles/focus = ExtResource( 1 )
+Button/styles/focus = null
 Button/styles/hover = SubResource( 2 )
-Button/styles/normal = ExtResource( 1 )
+Button/styles/normal = null
 Button/styles/pressed = SubResource( 3 )
 CheckBox/colors/font_color = Color( 0, 0, 0, 1 )
 CheckBox/colors/font_color_disabled = Color( 0, 0, 0, 1 )
@@ -266,8 +262,8 @@ HSlider/icons/grabber = null
 HSlider/icons/grabber_disabled = null
 HSlider/icons/grabber_highlight = null
 HSlider/icons/tick = null
-HSlider/styles/grabber_area = ExtResource( 2 )
-HSlider/styles/grabber_area_highlight = ExtResource( 2 )
+HSlider/styles/grabber_area = null
+HSlider/styles/grabber_area_highlight = null
 HSlider/styles/slider = SubResource( 4 )
 HSplitContainer/constants/autohide = 1
 HSplitContainer/constants/separation = 12
@@ -282,7 +278,7 @@ ItemList/constants/icon_margin = 4
 ItemList/constants/line_separation = 4
 ItemList/constants/vseparation = 4
 ItemList/fonts/font = null
-ItemList/styles/bg = ExtResource( 1 )
+ItemList/styles/bg = null
 ItemList/styles/bg_focus = null
 ItemList/styles/cursor = null
 ItemList/styles/cursor_unfocused = null
@@ -344,8 +340,8 @@ OptionButton/styles/focus = null
 OptionButton/styles/hover = null
 OptionButton/styles/normal = null
 OptionButton/styles/pressed = null
-Panel/styles/panel = ExtResource( 1 )
-PanelContainer/styles/panel = ExtResource( 1 )
+Panel/styles/panel = null
+PanelContainer/styles/panel = null
 PopupDialog/styles/panel = null
 PopupMenu/colors/font_color = Color( 0, 0, 0, 1 )
 PopupMenu/colors/font_color_accel = Color( 0, 0, 0, 1 )
@@ -405,8 +401,8 @@ TabContainer/icons/increment = null
 TabContainer/icons/increment_highlight = null
 TabContainer/icons/menu = null
 TabContainer/icons/menu_highlight = null
-TabContainer/styles/panel = ExtResource( 1 )
-TabContainer/styles/tab_bg = ExtResource( 3 )
+TabContainer/styles/panel = null
+TabContainer/styles/tab_bg = null
 TabContainer/styles/tab_disabled = SubResource( 5 )
 TabContainer/styles/tab_fg = SubResource( 6 )
 Tabs/colors/font_color_bg = Color( 1, 1, 1, 1 )

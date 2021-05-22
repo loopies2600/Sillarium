@@ -4,7 +4,6 @@ onready var anim = $Graphics/AnimationPlayer
 onready var rock = $LebipiRock
 onready var renderer = $Graphics/Body
 onready var rotor = $Graphics/Body/Rotor
-onready var collisionBox = $Hitbox
 onready var visibility = $Visibility
 
 export (float) var idleTime = 0.5
@@ -24,6 +23,7 @@ var onScreen = false
 var target = null
 
 func _ready():
+	collisionBox = $Hitbox
 	speed += rand_range(-speedRandomness, speedRandomness)
 	separation += rand_range(-separationRandomness, separationRandomness)
 	

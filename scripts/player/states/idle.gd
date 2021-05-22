@@ -1,7 +1,7 @@
 extends "motion.gd"
 
 func physics_update(_delta):
-	owner.damp()
+	owner.decelerate()
 	owner.animspeedAsVelocity()
 	
 	if owner.getInputDirection():

@@ -16,7 +16,7 @@ export(Resource) var character
 onready var armsTextures = character.armsTextures
 onready var health = character.health setget _setHealth
 onready var airMaxSpeed = character.airMaxSpeed
-onready var airFriction = character.airFriction
+onready var airDeceleration = character.airDeceleration
 onready var dashStrength = character.dashStrength
 onready var dashDuration = character.dashDuration
 onready var graceTime = character.graceTime

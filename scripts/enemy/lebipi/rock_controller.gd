@@ -1,6 +1,5 @@
 extends Kinematos
 
-onready var collisionBox = $CollisionPolygon2D
 # Variables para velocidad de la caida
 export (float) var horDrag = 0.5
 export (float) var pushSpeed = 0.25
@@ -9,6 +8,7 @@ export (float) var pushSpeed = 0.25
 var canDrop = false
 
 func _ready():
+	collisionBox = $CollisionPolygon2D
 	collisionBox.disabled = true
 
 func _physics_process(_delta):

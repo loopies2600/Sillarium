@@ -12,7 +12,7 @@ var font
 
 func _ready():
 	var _unused = Settings.connect("settings_changed", self, "updateText")
-	theme = preload("res://sprites/ui/menu/main_theme.tres")
+	theme = preload("res://themes/main_theme.tres")
 	updateText()
 	
 func onMouseEnter():

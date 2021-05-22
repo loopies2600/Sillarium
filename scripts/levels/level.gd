@@ -36,7 +36,6 @@ func _ready():
 		var _unused = connect("level_ready", node, "_onLevelReady")
 		_unused = connect("level_started", node, "_onLevelStart")
 	
-	Objects.spawn(22)
 	emit_signal("level_ready")
 
 func start(fromTimer : bool):
@@ -52,3 +51,5 @@ func start(fromTimer : bool):
 		Audio.musicSetup(musicID)
 	else:
 		Audio.stop()
+		
+	Objects.spawn(22)

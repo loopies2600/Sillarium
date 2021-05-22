@@ -6,27 +6,30 @@ signal camera_shake_requested(mode, time, amp)
 signal grounded_updated(isGrounded)
 signal gravity_updated(doinGravity)
 
+var inputSuffix := ""
+
 var canInput := true setget _setInput
 var displayTrails := false
 var flashing := false
 var applyGravity := true setget _doGravity
 var isGrounded := true
 
-var inputSuffix := ""
 export (float) var acceleration
+export (float) var deceleration
 export (float) var jumpForce
 export (float) var jumpStrength
-var lastGoodPosition := Vector2()
 export (float) var maxSpeed
-var velocity := Vector2()
 export (float) var fallMultiplier = 1.0
 export (float) var friction = 1.0
 export (Vector2) var snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
 export (float) var timeJumpApex = 1.0
 export (float) var bounciness = 0.9
 
+var lastGoodPosition := Vector2()
+var velocity := Vector2()
+
 onready var animator : AnimationPlayer
-onready var collisionBox : CollisionShape2D
+onready var collisionBox
 onready var mainSprite : Sprite
 
 func setProcessing(booly : bool):
@@ -165,8 +168,8 @@ func flipGraphics(facing, spr := mainSprite):
 func move(speed := maxSpeed, direction := getInputDirection()):
 	velocity.x = clamp(velocity.x + (acceleration * direction), -speed, speed)
 	
-func damp(damping := friction):
-	velocity.x *= damping
+func decelerate(dec := deceleration):
+	velocity.x -= dec * sign(velocity.x)
 	
 func trails(sprites = [mainSprite], color = "random"):
 	if displayTrails:
