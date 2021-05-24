@@ -145,7 +145,18 @@ func getInputDirection(suffix := inputSuffix) -> int:
 			flipGraphics(inputDirection)
 		
 		return inputDirection
-	else: return 0
+		
+	return 0
+	
+func getInputAngle(suffix := inputSuffix) -> Vector2:
+	if canInput:
+		var direction = Vector2(
+			int(Input.get_action_strength("aim_right" + suffix)) - int(Input.get_action_strength("aim_left" + suffix)),
+			int(Input.get_action_strength("aim_down" + suffix)) - int(Input.get_action_strength("aim_up" + suffix)))
+			
+		return direction
+		
+	return Vector2.ZERO
 	
 func getFacingDirection(spr := mainSprite):
 	var facingDirection = spr.scale.x

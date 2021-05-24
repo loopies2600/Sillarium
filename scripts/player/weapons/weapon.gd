@@ -27,12 +27,6 @@ func _ready():
 	modulate = currentPlayer.graphics.modulate
 	cooldownTimer.connect("timeout", self, "_cooldownTimeout")
 	
-func _calculateAngleIndex(radians, anglePerDirection = TAU / 8):
-	var angleStep = stepify(radians, anglePerDirection)
-	angleStep = fposmod(angleStep, TAU)
-	
-	return int(angleStep / anglePerDirection)
-	
 func _setAmmo(value : int) -> void:
 	ammo = value
 	emit_signal("weapon_ammo_updated")
@@ -44,8 +38,8 @@ func _process(_delta):
 	_handleFiring()
 	
 func _repositionWeapon(pressedInputs):
-	angleIndex = _calculateAngleIndex(rotation)
-	var inputAngle = _calculateAngleIndex(pressedInputs.angle())
+	angleIndex = Math.calculateAngleIndex(rotation)
+	var inputAngle = Math.calculateAngleIndex(pressedInputs.angle())
 	
 	position.x = lerp(position.x, type.weaponPositions[inputAngle].x * currentPlayer.getFacingDirection(), type.aimWeight)
 	position.y = lerp(position.y, type.weaponPositions[inputAngle].y, type.aimWeight)
@@ -60,10 +54,7 @@ func _handleFiring():
 				fire()
 	
 func doRotation():
-	var direction = Vector2(
-		int(Input.get_action_strength("aim_right" + currentPlayer.inputSuffix)) - int(Input.get_action_strength("aim_left" + currentPlayer.inputSuffix)),
-		int(Input.get_action_strength("aim_down" + currentPlayer.inputSuffix)) - int(Input.get_action_strength("aim_up" + currentPlayer.inputSuffix)))
-		
+	var direction = currentPlayer.getInputAngle()
 	var desiredRotation
 	
 	if currentPlayer.isGrounded:

@@ -46,3 +46,9 @@ static func toVec2(value) -> Vector2:
 	
 static func toVec3(value) -> Vector3:
 	return Vector3(value, value, value)
+
+static func calculateAngleIndex(radians, anglePerDirection = TAU / 8):
+	var angleStep = stepify(radians, anglePerDirection)
+	angleStep = fposmod(angleStep, TAU)
+	
+	return int(angleStep / anglePerDirection)

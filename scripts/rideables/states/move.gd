@@ -1,4 +1,4 @@
-extends "res://data/player/states/motion.gd"
+extends "res://scripts/player/states/motion.gd"
 
 func enter():
 	owner.animator.play("Running")
