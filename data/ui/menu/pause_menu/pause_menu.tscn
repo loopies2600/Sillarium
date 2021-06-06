@@ -1,15 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://font/sillrium_dynafont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/ui/menu/pause_menu/pause_menu.gd" type="Script" id=2]
 [ext_resource path="res://streams/music/bgm_select.ogg" type="AudioStream" id=3]
-[ext_resource path="res://data/shaders/blur.shader" type="Shader" id=5]
-
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 5 )
-shader_param/amount = 2.5
-shader_param/tint = Color( 0.0313726, 0.054902, 0.14902, 1 )
-shader_param/tintAmount = 0.75
 
 [sub_resource type="Animation" id=2]
 resource_name = "In"
@@ -24,7 +17,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+"values": [ Color( 0.0313726, 0.054902, 0.14902, 0 ), Color( 0.0313726, 0.054902, 0.14902, 0.501961 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("PauseText:percent_visible")
@@ -52,7 +45,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+"values": [ Color( 0.0313726, 0.054902, 0.14902, 0.501961 ), Color( 0.0313726, 0.054902, 0.14902, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("PauseText:percent_visible")
@@ -74,10 +67,10 @@ script = ExtResource( 2 )
 
 [node name="ColorBG" type="ColorRect" parent="."]
 visible = false
-material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+color = Color( 0.0313726, 0.054902, 0.14902, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -94,6 +87,8 @@ mouse_filter = 2
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[wave]PAUSED"
+visible_characters = 0
+percent_visible = 0.0
 text = "PAUSED"
 __meta__ = {
 "_edit_use_anchors_": false

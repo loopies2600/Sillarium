@@ -10,8 +10,9 @@ const WEATHER = "res://data/database/climates.json"
 const SCREENSHOTS_PATH = "user://screenshots/"
 
 # otra variable que lee desde la configuración, esta es para decidir si deberiamos dibujar los fondos o no
-onready var climates = Settings.getSetting("renderer", "display_weather")
 onready var backgrounds = Settings.getSetting("renderer", "display_backgrounds")
+onready var climates = Settings.getSetting("renderer", "display_weather")
+onready var directRendering = Settings.getSetting("renderer", "direct_rendering")
 onready var fullscreen = Settings.getSetting("renderer", "fullscreen")
 onready var frameFreezer = Settings.getSetting("renderer", "freeze_frame")
 onready var vsync = Settings.getSetting("renderer", "vsync")
@@ -38,13 +39,15 @@ func _flicker():
 	
 func _input(event):
 	if event.is_action_pressed("toggle_fullscreen"):
-		Settings.setSetting("renderer", "fullscreen", !fullscreen)
-		Settings.saveSettings()
 		toggleFS()
 		
 	if event.is_action_pressed("take_screenshot"):
 		takeScreenshot()
-		
+	
+func toggleDirectRendering():
+	directRendering = Settings.getSetting("renderer", "direct_rendering")
+	VisualServer.viewport_set_render_direct_to_screen(get_viewport().get_viewport_rid(), directRendering)
+	
 func toggleFS():
 	fullscreen = Settings.getSetting("renderer", "fullscreen")
 	OS.set_window_fullscreen(fullscreen)
@@ -80,7 +83,7 @@ func spawn4Piece(sprite : Sprite, shadowScale := Vector2.ONE / 2):
 		
 	get_tree().get_current_scene().call_deferred("add_child", fourPiece)
 	
-func fade(mode := "in", mask = preload("res://sprites/debug/test_transition.png"), viewportFX := true):
+func fade(mode := "in", mask = preload("res://sprites/debug/test_transition.png"), viewportFX := false):
 	# esta función se encarga de spawnear la transición, solo si no hay ninguna transición actualmente.
 	# los argumentos son: modo ("in" o "out") y mascara.
 	if transition == null:

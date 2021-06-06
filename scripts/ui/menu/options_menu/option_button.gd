@@ -40,6 +40,8 @@ func buttonPress():
 			Settings.setSetting(category, key, val)
 			Settings.saveSettings()
 			
+			if key == "direct_rendering":
+				Renderer.toggleDirectRendering()
 			if key == "display_backgrounds":
 				Renderer.backgroundSetup(get_tree().get_current_scene().backgroundID, {"dontShowCones" : false})
 			if key == "fullscreen":

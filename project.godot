@@ -327,8 +327,13 @@ translations=PoolStringArray( "res://text/main_text.en.translation", "res://text
 file_logging/enable_file_logging=true
 file_logging/log_path="user://logs/sillarium.log"
 
+[physics]
+
+common/physics_jitter_fix=0.0
+
 [rendering]
 
+quality/driver/driver_name="GLES2"
 2d/snapping/use_gpu_pixel_snap=true
 quality/shadows/filter_mode=0
 quality/reflections/texture_array_reflections=false
