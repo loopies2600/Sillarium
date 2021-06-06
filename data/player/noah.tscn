@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://data/player/camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/player/states/air.gd" type="Script" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://data/generic/shadow.tscn" type="PackedScene" id=16]
 [ext_resource path="res://sprites/player/noah/noah_rightarm.png" type="Texture" id=17]
 [ext_resource path="res://scripts/player/states/run.gd" type="Script" id=18]
+[ext_resource path="res://data/shaders/brightness_n_glowing.shader" type="Shader" id=19]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -25,22 +26,46 @@ shader = ExtResource( 13 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 7 )
-region = Rect2( 118, 18, 38, 51 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 19 )
+shader_param/glowing_color = Color( 1, 1, 1, 1 )
+shader_param/secondary_glowing_color = Color( 1, 1, 1, 1 )
+shader_param/brightness = 0.0
+shader_param/glowing_intensity = 1.0
+shader_param/precision = 0.1
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 7 )
+region = Rect2( 118, 18, 38, 51 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 19 )
+shader_param/glowing_color = Color( 0.913725, 0.443137, 0.129412, 1 )
+shader_param/secondary_glowing_color = Color( 0.996078, 0.901961, 0.137255, 1 )
+shader_param/brightness = 0.0
+shader_param/glowing_intensity = 1.0
+shader_param/precision = 0.1
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 7 )
 region = Rect2( 307, 18, 84, 58 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 19 )
+shader_param/glowing_color = Color( 0.913725, 0.443137, 0.129412, 1 )
+shader_param/secondary_glowing_color = Color( 1, 1, 1, 1 )
+shader_param/brightness = 0.0
+shader_param/glowing_intensity = 1.0
+shader_param/precision = 0.1
+
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 7 )
 region = Rect2( 19, 12, 55, 74 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 30, 64 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=9]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:rotation_degrees")
@@ -79,7 +104,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=10]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:rotation_degrees")
@@ -130,7 +155,7 @@ tracks/3/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=11]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:rotation_degrees")
 tracks/0/interp = 1
@@ -186,29 +211,31 @@ character = ExtResource( 12 )
 use_parent_material = true
 
 [node name="Body" type="Sprite" parent="Graphics"]
-use_parent_material = true
-texture = SubResource( 2 )
+material = SubResource( 2 )
+texture = SubResource( 3 )
 
 [node name="LeftArm" type="Sprite" parent="Graphics/Body"]
+material = SubResource( 2 )
 position = Vector2( 16, -16 )
 z_index = -1
 texture = ExtResource( 8 )
 centered = false
 
 [node name="RightArm" type="Sprite" parent="Graphics/Body"]
+material = SubResource( 2 )
 position = Vector2( -16, -16 )
 texture = ExtResource( 17 )
 centered = false
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
-use_parent_material = true
-texture = SubResource( 3 )
+material = SubResource( 4 )
+texture = SubResource( 5 )
 offset = Vector2( 0, -44 )
 
 [node name="Legs" type="Sprite" parent="Graphics/Body"]
-use_parent_material = true
+material = SubResource( 6 )
 z_index = -1
-texture = SubResource( 4 )
+texture = SubResource( 7 )
 offset = Vector2( 6, 48 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
@@ -242,16 +269,17 @@ script = ExtResource( 15 )
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 3, 21 )
-shape = SubResource( 5 )
+shape = SubResource( 8 )
 
 [node name="Camera" parent="." instance=ExtResource( 1 )]
 visible = false
 
 [node name="GraphicsAnimator" type="AnimationPlayer" parent="."]
-anims/bump = SubResource( 6 )
-anims/dash = SubResource( 7 )
-anims/default = SubResource( 8 )
+anims/bump = SubResource( 9 )
+anims/dash = SubResource( 10 )
+anims/default = SubResource( 11 )
 anims/hurt = ExtResource( 4 )
 
 [node name="Timers" type="Node" parent="."]
