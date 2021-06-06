@@ -31,11 +31,17 @@ func _ready():
 	toggleVSync()
 	
 	_flicker()
+	_printFPS(1)
 	
 func _flicker():
 	flicker = !flicker
 	yield(get_tree().create_timer(FLICKER_RATE), "timeout")
 	_flicker()
+	
+func _printFPS(rate := 1):
+	print("%s FPS, direct rendering: %s" % [Engine.get_frames_per_second(), directRendering])
+	yield(get_tree().create_timer(rate), "timeout")
+	_printFPS(rate)
 	
 func _input(event):
 	if event.is_action_pressed("toggle_fullscreen"):

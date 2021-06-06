@@ -40,10 +40,10 @@ func setProcessing(booly : bool):
 	set_process_unhandled_key_input(booly)
 	
 func _physics_process(delta):
-	loop()
 	groundCheck()
 	doGravity(delta)
 	mainMotion(delta)
+	loop()
 	
 func loop():
 	if flashing:

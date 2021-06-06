@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://data/player/camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/player/states/air.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://scripts/player/states/locked.gd" type="Script" id=15]
 [ext_resource path="res://data/generic/shadow.tscn" type="PackedScene" id=16]
 [ext_resource path="res://sprites/player/noah/noah_rightarm.png" type="Texture" id=17]
+[ext_resource path="res://scripts/player/states/run.gd" type="Script" id=18]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -221,6 +222,9 @@ script = ExtResource( 14 )
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource( 18 )
 
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource( 2 )

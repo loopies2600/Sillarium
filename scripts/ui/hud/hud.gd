@@ -47,12 +47,12 @@ func _setupVars(_health = "don't use this variable!"):
 	
 	if papa:
 		comlab.text = str(papa.combo)
-		hplab.text = "HEALTH= " + str(papa.health)
+		hplab.text = "HEALTH: %02d" % papa.health
 	
-	livlab.text = "LIVES= " + str(curData.lives)
-	scolab.text = "SCORE= " + str(curData.total_score)
-	wpslab.text = "WEAPON= " + Globals.getJSONEntryName(Objects.PICKUP, curData.weapon).to_upper()
-	amolab.text = "AMMO= " + str(papa.weapon.ammo)
+	livlab.text = "LIVES: %02d" % curData.lives
+	scolab.text = "SCORE: %07d" % curData.total_score
+	wpslab.text = "WEAPON: " + Globals.getJSONEntryName(Objects.PICKUP, curData.weapon).to_upper()
+	amolab.text = "AMMO: %03d" % papa.weapon.ammo
 	
 func _process(_delta):
 	bg.flip_v = Renderer.flicker

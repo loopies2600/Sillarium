@@ -74,10 +74,6 @@ func _onLevelStart():
 	startGracePeriod()
 	self.canInput = true
 	
-func _physics_process(_delta):
-	keepOnScreen(true, false, Vector2(collisionBox.shape.extents.x * 2, 0))
-	trails(bodyParts, Settings.getSetting("dont-autogenerate-buttons", "accent_color_" + str(charID)))
-	
 func _setScore(value : int) -> void:
 	Data.setData(slot, "total_score", value)
 	score = Data.getData(slot, "total_score")
@@ -126,6 +122,9 @@ func loop():
 			combo -= 1
 			emit_signal("player_combo_updated")
 			self.score += 1
+		
+	trails(bodyParts, Settings.getSetting("dont-autogenerate-buttons", "accent_color_" + str(charID)))
+	keepOnScreen(true, false, Vector2(collisionBox.shape.extents.x * 2, 0))
 	
 func _setInput(booly : bool):
 	canInput = booly
