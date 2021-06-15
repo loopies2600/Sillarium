@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://data/enemy/stalacmight/stalacmight.tscn" type="PackedScene" id=1]
+
+[node name="StalacmightSquare" type="Node2D"]
+
+[node name="Stalacmight" parent="." instance=ExtResource( 1 )]
+position = Vector2( 128, 128 )
+
+[node name="Stalacmight2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 256, 128 )
+animTestName = "Falling"
+
+[node name="Stalacmight3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 384, 128 )
+animTestName = "Landing"
