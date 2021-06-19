@@ -46,13 +46,14 @@ func _onLevelInit():
 	target = Globals.player
 	
 func raycastPlayer():
-	var spaceState = get_world_2d().direct_space_state
-	var result = spaceState.intersect_ray(position, position + Vector2(0, detectionLength), [self], collision_mask)
-	
-	if result:
-		if result.collider.is_in_group("Player") and hasRock:
-			return true
-			
+	if hasRock:
+		var spaceState = get_world_2d().direct_space_state
+		var result = spaceState.intersect_ray(position, position + Vector2(0, detectionLength), [self], collision_mask)
+		
+		if result:
+			if result.collider.is_in_group("Player"):
+				return true
+		
 	return false
 		
 func _process(_delta):

@@ -43,19 +43,17 @@ onready var stateMachine = $StateMachine
 onready var graphics = $Graphics
 onready var graphicsAnimator = $GraphicsAnimator
 onready var feetPos = $FeetPosition
-onready var body = $Graphics/Body
-onready var head = $Graphics/Body/Head
-onready var legs = $Graphics/Body/Legs
 onready var camera = $Camera
 onready var gracePeriod = $Timers/GracePeriodTimer
 onready var comboPeriod = $Timers/ComboTimer
 onready var shadow = $Shadow
-onready var bodyParts = [head, body, legs]
+onready var bodyParts = [$Graphics/Body/Head, $Graphics/Body, $Graphics/Body/Legs]
+onready var arms = [$Graphics/Body/LeftArm, $Graphics/Body/RightArm]
 
 func _ready():
 	animator = $Graphics/PlayerAnimator
 	collisionBox = $CollisionShape2D
-	mainSprite = body
+	mainSprite = bodyParts[1]
 	
 	setupProperties(character, 8)
 	pickUpWeapon(0)

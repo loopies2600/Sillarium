@@ -44,6 +44,9 @@ func _repositionWeapon(pressedInputs):
 	position.x = lerp(position.x, type.weaponPositions[inputAngle].x * currentPlayer.getFacingDirection(), type.aimWeight)
 	position.y = lerp(position.y, type.weaponPositions[inputAngle].y, type.aimWeight)
 	
+	for arm in currentPlayer.arms:
+		arm.curDefinition = angleIndex
+	
 func _handleFiring():
 	match type.fireType:
 		0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://data/player/camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/player/states/air.gd" type="Script" id=2]
@@ -16,9 +16,17 @@
 [ext_resource path="res://scripts/player/states/idle.gd" type="Script" id=14]
 [ext_resource path="res://scripts/player/states/locked.gd" type="Script" id=15]
 [ext_resource path="res://data/generic/shadow.tscn" type="PackedScene" id=16]
-[ext_resource path="res://sprites/player/noah/noah_rightarm.png" type="Texture" id=17]
+[ext_resource path="res://scripts/player/arms/right/pose_5.tres" type="Resource" id=17]
 [ext_resource path="res://scripts/player/states/run.gd" type="Script" id=18]
 [ext_resource path="res://data/shaders/brightness_n_glowing.shader" type="Shader" id=19]
+[ext_resource path="res://scripts/player/arms/right/pose_0.tres" type="Resource" id=20]
+[ext_resource path="res://scripts/player/arms/right/pose_4.tres" type="Resource" id=21]
+[ext_resource path="res://scripts/player/arms/right/pose_6.tres" type="Resource" id=22]
+[ext_resource path="res://scripts/player/arms/right/pose_7.tres" type="Resource" id=23]
+[ext_resource path="res://scripts/player/arms/right/pose_3.tres" type="Resource" id=24]
+[ext_resource path="res://scripts/player/arms/right/pose_2.tres" type="Resource" id=25]
+[ext_resource path="res://scripts/player/arms/right/pose_1.tres" type="Resource" id=26]
+[ext_resource path="res://data/generic/entity/arm.tscn" type="PackedScene" id=27]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -30,7 +38,7 @@ shader_param/flash_modifier = 0.0
 shader = ExtResource( 19 )
 shader_param/glowing_color = Color( 1, 1, 1, 1 )
 shader_param/secondary_glowing_color = Color( 1, 1, 1, 1 )
-shader_param/brightness = 0.0
+shader_param/brightness = 1.0
 shader_param/glowing_intensity = 1.0
 shader_param/precision = 0.1
 
@@ -42,7 +50,7 @@ region = Rect2( 118, 18, 38, 51 )
 shader = ExtResource( 19 )
 shader_param/glowing_color = Color( 0.913725, 0.443137, 0.129412, 1 )
 shader_param/secondary_glowing_color = Color( 0.996078, 0.901961, 0.137255, 1 )
-shader_param/brightness = 0.0
+shader_param/brightness = 1.0
 shader_param/glowing_intensity = 1.0
 shader_param/precision = 0.1
 
@@ -54,7 +62,7 @@ region = Rect2( 307, 18, 84, 58 )
 shader = ExtResource( 19 )
 shader_param/glowing_color = Color( 0.913725, 0.443137, 0.129412, 1 )
 shader_param/secondary_glowing_color = Color( 1, 1, 1, 1 )
-shader_param/brightness = 0.0
+shader_param/brightness = 1.0
 shader_param/glowing_intensity = 1.0
 shader_param/precision = 0.1
 
@@ -214,18 +222,11 @@ use_parent_material = true
 material = SubResource( 2 )
 texture = SubResource( 3 )
 
-[node name="LeftArm" type="Sprite" parent="Graphics/Body"]
-material = SubResource( 2 )
-position = Vector2( 16, -16 )
-z_index = -1
-texture = ExtResource( 8 )
-centered = false
+[node name="LeftArm" parent="Graphics/Body" instance=ExtResource( 27 )]
 
-[node name="RightArm" type="Sprite" parent="Graphics/Body"]
-material = SubResource( 2 )
-position = Vector2( -16, -16 )
-texture = ExtResource( 17 )
-centered = false
+[node name="RightArm" parent="Graphics/Body" instance=ExtResource( 27 )]
+texture = ExtResource( 8 )
+definitions = [ ExtResource( 20 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 21 ), ExtResource( 17 ), ExtResource( 22 ), ExtResource( 23 ) ]
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 material = SubResource( 4 )

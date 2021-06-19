@@ -98,6 +98,11 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://scripts/util/state_machine/state_machine.gd"
+}, {
+"base": "Resource",
+"class": "TransformStore",
+"language": "GDScript",
+"path": "res://scripts/util/transform_store.gd"
 } ]
 _global_script_class_icons={
 "AutoPlayer": "",
@@ -117,7 +122,8 @@ _global_script_class_icons={
 "Replay": "",
 "RideableStats": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"TransformStore": ""
 }
 
 [application]

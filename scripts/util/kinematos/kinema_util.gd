@@ -16,7 +16,6 @@ var isGrounded := true
 
 export (float) var acceleration
 export (float) var deceleration
-export (float) var jumpForce
 export (float) var jumpStrength
 export (float) var maxSpeed
 export (float) var fallMultiplier = 1.0
@@ -25,6 +24,7 @@ export (Vector2) var snapVector = Vector2(0.0, Globals.MAX_FLOOR_ANGLE)
 export (float) var timeJumpApex = 1.0
 export (float) var bounciness = 0.9
 
+var jumpForce := 0.0
 var lastGoodPosition := Vector2()
 var velocity := Vector2()
 
