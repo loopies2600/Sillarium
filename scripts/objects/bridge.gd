@@ -23,7 +23,7 @@ func _ready():
 		
 	detector.shape.extents.x = (segmentTexture.get_width() / 2) * segmentAmount
 	detector.position.x = (segmentTexture.get_width() / 2) * (segmentAmount - 1)
-	detector.position.y = -segmentTexture.get_height() * 1.5
+	detector.position.y = -segmentTexture.get_height() * 0.75
 	
 func _physics_process(_delta):
 	var maxDepression
@@ -50,13 +50,13 @@ func _physics_process(_delta):
 		segments[i].targetY = floor(maxDepression * sin(deg2rad(90 * segmentDistance))) * multiplier
 	
 func _entityEnter(body):
-	if entityStood:
+	if entityStood or body.is_in_group("Environment"):
 		return
 		
 	entityStood = body
 	
-func _entityExit(_body):
-	if !entityStood:
+func _entityExit(body):
+	if !entityStood or body.is_in_group("Environment"):
 		return
 		
 	entityStood = null

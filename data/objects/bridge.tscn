@@ -1,13 +1,17 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/objects/bridge.gd" type="Script" id=1]
-[ext_resource path="res://sprites/debug/smallball.png" type="Texture" id=2]
+[ext_resource path="res://sprites/debug/target.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+extents = Vector2( 32, 8 )
 
-[node name="Bridge" type="Area2D"]
+[node name="Bridge" type="Area2D" groups=[
+"Environment",
+]]
 position = Vector2( 312, 168 )
+collision_layer = 288
+collision_mask = 294
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
