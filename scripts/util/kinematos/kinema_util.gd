@@ -14,6 +14,10 @@ var flashing := false
 var applyGravity := true setget _doGravity
 var isGrounded := true
 
+export (NodePath) var nAnimator
+export (NodePath) var nCollisionBox
+export (NodePath) var nMainSprite
+
 export (float) var acceleration
 export (float) var deceleration
 export (float) var jumpStrength
@@ -28,9 +32,9 @@ var jumpForce := 0.0
 var lastGoodPosition := Vector2()
 var velocity := Vector2()
 
-onready var animator : AnimationPlayer
-onready var collisionBox
-onready var mainSprite : Sprite
+onready var animator = get_node(nAnimator)
+onready var collisionBox = get_node(nCollisionBox)
+onready var mainSprite = get_node(nMainSprite)
 
 func setProcessing(booly : bool):
 	set_process(booly)
@@ -179,13 +183,18 @@ func flipGraphics(facing, spr := mainSprite):
 func move(speed := maxSpeed, direction := getInputDirection()):
 	velocity.x = clamp(velocity.x + (acceleration * direction), -speed, speed)
 	
-func decelerate(dec := deceleration):
-	velocity.x -= dec * sign(velocity.x)
+func decelerate(dec := deceleration, snap := 32):
+	if abs(velocity.x) > snap:
+		velocity.x -= dec * sign(velocity.x)
+	else:
+		velocity = Vector2.ZERO
 	
 func trails(sprites = [mainSprite], color = "random"):
 	if displayTrails:
 		for spr in sprites:
 			Renderer.spawnTrail(0.1, spr, color)
+	else:
+		return
 			
 func _setInput(booly : bool):
 	canInput = booly

@@ -47,16 +47,11 @@ onready var camera = $Camera
 onready var gracePeriod = $Timers/GracePeriodTimer
 onready var comboPeriod = $Timers/ComboTimer
 onready var coyotePeriod = $Timers/CoyoteTimer
-onready var jumpBuffer = $Timers/JumpBuffer
 onready var shadow = $Shadow
 onready var bodyParts = [$Graphics/Body/Head, $Graphics/Body, $Graphics/Body/Legs]
 onready var arms = [$Graphics/Body/LeftArm, $Graphics/Body/RightArm]
 
 func _ready():
-	animator = $Graphics/PlayerAnimator
-	collisionBox = $CollisionShape2D
-	mainSprite = bodyParts[1]
-	
 	setupProperties(character, 8)
 	pickUpWeapon(0)
 	
@@ -136,18 +131,12 @@ func mainMotion(_delta):
 	if !is_on_floor() && wasGrounded && !doinJump:
 		coyotePeriod.start()
 		
-	if is_on_floor() && !jumpBuffer.is_stopped():
-		jumpBuffer.stop()
-		stateMachine._change_state("air", {isJump = true})
-	
 func _input(event):
 	if canInput:
 		if event.is_action_pressed("jump" + inputSuffix):
 			if is_on_floor() || !coyotePeriod.is_stopped():
 				coyotePeriod.stop()
 				stateMachine._change_state("air", {isJump = true})
-			else:
-				jumpBuffer.start()
 				
 		if event.is_action_pressed("input_hold" + inputSuffix):
 			stateMachine._change_state("hold")

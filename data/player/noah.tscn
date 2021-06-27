@@ -213,6 +213,9 @@ input_pickable = true
 collision_mask = 96
 collision/safe_margin = 1.0
 script = ExtResource( 6 )
+nAnimator = NodePath("Graphics/PlayerAnimator")
+nCollisionBox = NodePath("CollisionShape2D")
+nMainSprite = NodePath("Graphics/Body")
 character = ExtResource( 12 )
 
 [node name="Graphics" type="Node2D" parent="."]
@@ -296,9 +299,6 @@ one_shot = true
 [node name="CoyoteTimer" type="Timer" parent="Timers"]
 wait_time = 0.25
 one_shot = true
-
-[node name="JumpBuffer" type="Timer" parent="Timers"]
-wait_time = 0.1
 
 [node name="FeetPosition" type="Position2D" parent="."]
 position = Vector2( 0, 85 )
