@@ -11,6 +11,8 @@ var activePrompt := false
 var danced := false
 var targetScene = 0
 
+var tick := 0 setget _setTick
+
 func _ready():
 	if activePrompt:
 		Renderer.backgroundSetup(backgroundID,  {"dontShowCones" : false})
@@ -23,7 +25,7 @@ func _ready():
 		pak.queue_free()
 		
 	Renderer.fade("out")
-	var _unused = Audio.connect("pump", self, "_onBeat")
+	var _unused = Audio.connect("tick", self, "_onBeat")
 	Audio.musicSetup(musicID)
 	
 	for button in buttons:
@@ -42,6 +44,9 @@ func _input(event):
 				
 			activePrompt = false
 		
+func _process(_delta):
+	self.tick = Audio.customTick(30.0)
+	
 func _onButtonMouseEnter():
 	for button in buttons:
 		if !button.disabled:
@@ -73,10 +78,15 @@ func _fadeEnd(_mode):
 	else:
 		get_tree().quit()
 		
-func _onBeat(_beatNo):
-	if danced:
-		anim.play("DanceLeft")
+func _setTick(value):
+	if value == tick:
+		return
 	else:
-		anim.play("DanceRight")
+		if danced:
+			anim.play("DanceLeft")
+		else:
+			anim.play("DanceRight")
+			
+		danced = !danced
 		
-	danced = !danced
+		tick = value

@@ -23,7 +23,7 @@ onready var soundVolume = Settings.getSetting("dont-autogenerate-buttons", "soun
 var currentMusic : AudioStreamPlayer
 var currentID
 var currentBPM
-var beat setget setBeat, getBeat
+var beat setget _setBeat
 var time
 
 func playSound(sfxID, emitter = self, volume := 1.0, pitch := 1.0):
@@ -89,17 +89,15 @@ func _process(_delta):
 	time = currentMusic.get_playback_position() + AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency() + (1 / COMPENSATE_HZ) * COMPENSATE_FRAMES
 	self.beat = int(time * currentBPM / 60.0)
 	
-func setBeat(value):
-	var oldBeat = beat
-	
-	if value == oldBeat:
+func _setBeat(value):
+	if value == beat:
 		return
 	else:
 		beat = value
 		emit_signal("pump", beat)
 	
-func getBeat():
-	return beat
+func customTick(rate := 60.0) -> int:
+	return int(time * currentBPM / rate)
 	
 func getMusicBPM(bgmID):
 	# el tempo de la musica es un valor que se lee desde el JSON. necesitamos pasarle el ID del tema el cual queremos conseguir su tempo.
