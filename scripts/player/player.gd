@@ -30,6 +30,7 @@ var slot := "player"
 var canDash := true
 var trackInput := true setget _setTrackInput
 var doinCombo := false
+var doinJump := false
 
 var combo := 0 setget _setCombo
 var deaths : int = Data.getData(slot, "deaths") setget _setDeaths
@@ -46,6 +47,8 @@ onready var feetPos = $FeetPosition
 onready var camera = $Camera
 onready var gracePeriod = $Timers/GracePeriodTimer
 onready var comboPeriod = $Timers/ComboTimer
+onready var coyotePeriod = $Timers/CoyoteTimer
+onready var jumpBuffer = $Timers/JumpBuffer
 onready var shadow = $Shadow
 onready var bodyParts = [$Graphics/Body/Head, $Graphics/Body, $Graphics/Body/Legs]
 onready var arms = [$Graphics/Body/LeftArm, $Graphics/Body/RightArm]
@@ -124,6 +127,38 @@ func loop():
 	trails(bodyParts, Settings.getSetting("dont-autogenerate-buttons", "accent_color_" + str(charID)))
 	keepOnScreen(true, false, Vector2(collisionBox.shape.extents.x * 2, 0))
 	
+func mainMotion(_delta):
+	canDash = !is_on_floor()
+	var wasGrounded = is_on_floor()
+	velocity.y = move_and_slide_with_snap(velocity, snapVector, Globals.UP, true).y
+	
+	if !is_on_floor() && wasGrounded && !doinJump:
+		coyotePeriod.start()
+		
+	if jumpBuffer.time_left != 0: print(jumpBuffer.time_left)
+	if coyotePeriod.time_left != 0: print(coyotePeriod.time_left)
+	
+	if is_on_floor() && !jumpBuffer.is_stopped():
+		jumpBuffer.stop()
+		stateMachine._change_state("air", {isJump = true})
+		
+	if !is_on_floor(): stateMachine._change_state("air")
+	
+func _input(event):
+	if canInput:
+		if event.is_action_pressed("jump" + inputSuffix):
+			if is_on_floor() || !coyotePeriod.is_stopped():
+				coyotePeriod.stop()
+				stateMachine._change_state("air", {isJump = true})
+			else:
+				jumpBuffer.start()
+				
+		if event.is_action_pressed("input_hold" + inputSuffix):
+			stateMachine._change_state("hold")
+		if canDash:
+			if event.is_action_pressed("dash" + inputSuffix):
+				stateMachine._change_state("dash")
+		
 func _setInput(booly : bool):
 	canInput = booly
 	currentWeapon.set_process(canInput)
@@ -135,11 +170,13 @@ func takeDamage(damage, bump = Vector2((-maxSpeed * 2) * getFacingDirection(), (
 	setProcessing(true)
 	
 	if !flashing:
+		var deadly = damage >= health
 		emit_signal("camera_shake_requested")
 		startGracePeriod()
 		animateGraphics("hurt")
 		self.health -= damage
-		emit_signal("player_damaged", bump, true if health <= 0 else false)
+		stateMachine._change_state("bump", {"bump" : bump, "isDeadly" : deadly})
+		emit_signal("player_damaged")
 	
 func startGracePeriod():
 	gracePeriod.wait_time = character.graceTime

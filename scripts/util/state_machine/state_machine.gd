@@ -58,6 +58,10 @@ func _physics_process(delta):
 func _change_state(state_name : String, msg := {} ) -> void:
 	if not _active:
 		return
+		
+	if state_name == current_state.name.to_lower() && !msg:
+		return
+		
 	current_state.exit()
 	
 	if state_name == "previous":

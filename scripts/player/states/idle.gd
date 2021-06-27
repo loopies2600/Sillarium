@@ -1,4 +1,4 @@
-extends "motion.gd"
+extends State
 
 func physics_update(_delta):
 	owner.decelerate()

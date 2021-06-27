@@ -1,4 +1,4 @@
-extends "motion.gd"
+extends State
 
 var dashTime
 var desiredDirection
@@ -27,7 +27,6 @@ func _dashTimer():
 	owner.velocity.y -= owner.dashStrength / 4
 	
 	emit_signal("finished", "air")
-	
 	
 func exit():
 	owner.applyGravity = true

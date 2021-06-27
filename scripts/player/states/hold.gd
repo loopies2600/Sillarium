@@ -1,4 +1,4 @@
-extends "motion.gd"
+extends State
 
 func enter(_msg := {}):
 	pass

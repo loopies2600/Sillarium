@@ -1,4 +1,4 @@
-extends "motion.gd"
+extends State
 
 func enter(msg := {}):
 	owner.canInput = false

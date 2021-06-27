@@ -1,2 +1,2 @@
-extends "motion.gd"
+extends State
 
