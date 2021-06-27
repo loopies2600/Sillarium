@@ -298,8 +298,7 @@ wait_time = 0.25
 one_shot = true
 
 [node name="JumpBuffer" type="Timer" parent="Timers"]
-wait_time = 0.25
-one_shot = true
+wait_time = 0.1
 
 [node name="FeetPosition" type="Position2D" parent="."]
 position = Vector2( 0, 85 )

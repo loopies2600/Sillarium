@@ -25,7 +25,6 @@ func _ready():
 		pak.queue_free()
 		
 	Renderer.fade("out")
-	var _unused = Audio.connect("tick", self, "_onBeat")
 	Audio.musicSetup(musicID)
 	
 	for button in buttons:

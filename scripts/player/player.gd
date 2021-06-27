@@ -8,7 +8,6 @@ signal player_lives_updated()
 signal player_score_updated()
 signal player_weapon_updated(wpsID)
 signal player_killed()
-# warning-ignore:unused_signal
 signal player_respawned()
 
 export(Resource) var character
@@ -76,18 +75,18 @@ func _onLevelStart():
 	self.canInput = true
 	
 func _setScore(value : int) -> void:
-	Data.setData(slot, "total_score", value)
-	score = Data.getData(slot, "total_score")
+	score = value
+	Data.setData(slot, "total_score", score)
 	emit_signal("player_score_updated")
 	
 func _setDeaths(value : int) -> void:
-	Data.setData(slot, "deaths", value)
-	deaths = Data.getData(slot, "deaths")
+	deaths = value
+	Data.setData(slot, "deaths", deaths)
 	emit_signal("player_killed")
 	
 func _setLives(value : int) -> void:
-	Data.setData(slot, "lives", value)
-	lives = Data.getData(slot, "lives")
+	lives = value
+	Data.setData(slot, "lives", lives)
 	emit_signal("player_lives_updated")
 	
 func _setCombo(value : int) -> void:
@@ -128,6 +127,8 @@ func loop():
 	keepOnScreen(true, false, Vector2(collisionBox.shape.extents.x * 2, 0))
 	
 func mainMotion(_delta):
+	if !is_on_floor(): stateMachine._change_state("air")
+	
 	canDash = !is_on_floor()
 	var wasGrounded = is_on_floor()
 	velocity.y = move_and_slide_with_snap(velocity, snapVector, Globals.UP, true).y
@@ -135,14 +136,9 @@ func mainMotion(_delta):
 	if !is_on_floor() && wasGrounded && !doinJump:
 		coyotePeriod.start()
 		
-	if jumpBuffer.time_left != 0: print(jumpBuffer.time_left)
-	if coyotePeriod.time_left != 0: print(coyotePeriod.time_left)
-	
 	if is_on_floor() && !jumpBuffer.is_stopped():
 		jumpBuffer.stop()
 		stateMachine._change_state("air", {isJump = true})
-		
-	if !is_on_floor(): stateMachine._change_state("air")
 	
 func _input(event):
 	if canInput:
