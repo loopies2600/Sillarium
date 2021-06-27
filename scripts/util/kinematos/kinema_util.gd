@@ -187,7 +187,7 @@ func decelerate(dec := deceleration, snap := 32):
 	if abs(velocity.x) > snap:
 		velocity.x -= dec * sign(velocity.x)
 	else:
-		velocity = Vector2.ZERO
+		velocity.x = 0
 	
 func trails(sprites = [mainSprite], color = "random"):
 	if displayTrails:
