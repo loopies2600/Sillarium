@@ -20,12 +20,12 @@ func onMouseEnter():
 		Audio.playSound(8)
 		selectedButton = buttonID
 		var buttonDescTR = "OM_BT" + str(selectedButton)
-		get_tree().get_current_scene().buttonDesc.text = tr(buttonDescTR).to_upper()
+		#get_tree().get_current_scene().buttonDesc.text = tr(buttonDescTR).to_upper()
 	
 func onMouseExit():
 	selectedButton = null
 	var buttonDescTR = "OM_BTNULL"
-	get_tree().get_current_scene().buttonDesc.text = tr(buttonDescTR).to_upper()
+	#get_tree().get_current_scene().buttonDesc.text = tr(buttonDescTR).to_upper()
 	
 func buttonPress():
 	match type:

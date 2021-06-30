@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/12248_Bird_v1_L2.obj-09abdf9e5b6a26446c56121cb544a2ec.mesh"
+
+[deps]
+
+files=[ "res://.import/12248_Bird_v1_L2.obj-09abdf9e5b6a26446c56121cb544a2ec.mesh" ]
+
+source_file="res://data/ui/menu/options_menu/model/12248_Bird_v1_L2.obj"
+dest_files=[ "res://.import/12248_Bird_v1_L2.obj-09abdf9e5b6a26446c56121cb544a2ec.mesh", "res://.import/12248_Bird_v1_L2.obj-09abdf9e5b6a26446c56121cb544a2ec.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

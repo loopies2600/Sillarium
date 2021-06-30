@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sprites/ui/menu/options/normal/op_general-c.png" type="Texture" id=1]
+[ext_resource path="res://scripts/ui/menu/options_menu/options_category.gd" type="Script" id=2]
+
+[node name="OptionsCategory" type="TextureButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1024.0
+margin_bottom = -464.0
+texture_normal = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
