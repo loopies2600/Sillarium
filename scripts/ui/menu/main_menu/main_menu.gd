@@ -55,7 +55,7 @@ func _onPlayPressed():
 	_prepareScene(3)
 	
 func _onOptionsPressed():
-	_prepareScene(2)
+	_prepareScene(1)
 	
 func _onExitPressed():
 	_prepareScene(null)

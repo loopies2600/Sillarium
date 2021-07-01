@@ -71,7 +71,6 @@ tracks/1/keys = {
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource( 2 )
 backgroundID = 4
-musicID = 2
 
 [node name="SillariumS" type="TextureRect" parent="."]
 material = SubResource( 1 )

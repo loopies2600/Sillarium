@@ -155,7 +155,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 backgroundID = 4
-musicID = 2
 
 [node name="ModelView" type="TextureRect" parent="."]
 anchor_right = 1.0

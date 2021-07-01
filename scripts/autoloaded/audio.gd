@@ -7,8 +7,8 @@ signal pump(beat)
 
 enum {MUSIC_STARTED_PLAYING, MUSIC_ALREADY_PLAYING}
 
-const MUSIC = "res://data/database/music.json"
-const SOUND = "res://data/database/sounds.json"
+const MUSIC = "res://data/database/music/"
+const SOUND = "res://data/database/sounds/"
 const COMPENSATE_FRAMES = 2
 const COMPENSATE_HZ = 60.0
 const WAV_PADDING = 128 # en bytes
@@ -101,7 +101,7 @@ func customTick(rate := 60.0) -> int:
 	
 func getMusicBPM(bgmID):
 	# el tempo de la musica es un valor que se lee desde el JSON. necesitamos pasarle el ID del tema el cual queremos conseguir su tempo.
-	var tempo = Globals.LoadJSON(MUSIC, bgmID, "tempo")
+	var tempo = load(MUSIC + "%s.tres" % bgmID).bpm
 	
 	return float(tempo)
 		

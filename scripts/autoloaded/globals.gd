@@ -4,7 +4,7 @@ extends Node
 
 signal scene_changed(newScene)
 # se usan globalmente, bueno, como todo singleton.
-const SCENE = "res://data/database/scenes.json"
+const SCENE = "res://data/database/scenes/"
 
 const UP = Vector2.UP
 const MAX_FLOOR_ANGLE = 60
@@ -38,8 +38,8 @@ func cubicBezier(p0: Vector2, p1: Vector2, p2: Vector2, p3: Vector2, time: float
 	
 func LoadScene(sceneID : int, cVars := {}):
 	var curScene = get_tree().get_current_scene()
-	var newScene = load(LoadJSON(SCENE, sceneID, "file")).instance()
-	
+	var newScene = load(SCENE + "%s.tres" % sceneID).scenes[0].instance()
+	print(newScene.filename)
 	if newScene.filename == curScene.filename:
 		return true
 	else:
@@ -64,10 +64,8 @@ func LoadJSON(file : String, index : int, property : String):
 	
 	return parsed[str(index)][property]
 	
-func getJSONEntryName(jsonFile, id):
-	var tempName = Globals.LoadJSON(jsonFile, id, "name")
-	
-	return tempName
+func getResourceName(path, id):
+	return load(path + "%s.tres" % id).name
 	
 func getJSONSize(file : String):
 	var jsonFile = File.new()

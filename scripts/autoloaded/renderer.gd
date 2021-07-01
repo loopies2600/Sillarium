@@ -5,8 +5,8 @@ extends Node
 
 const FLICKER_RATE := 0.025
 
-const BG = "res://data/database/backgrounds.json"
-const WEATHER = "res://data/database/climates.json"
+const BG = "res://data/database/backgrounds/"
+const WEATHER = "res://data/database/climates/"
 const SCREENSHOTS_PATH = "user://screenshots/"
 
 # otra variable que lee desde la configuración, esta es para decidir si deberiamos dibujar los fondos o no
@@ -120,13 +120,15 @@ func fade(mode := "in", mask = preload("res://sprites/debug/test_transition.png"
 		transition.connect("fade_started", transitionFunc, "_fadeStart")
 		transition.connect("fade_finished", transitionFunc, "_fadeEnd")
 		
-func weatherSetup(weatherID, cVars := {}):
+func weatherSetup(weatherID, cVars := {}, subWeather := 0):
 	climates = Settings.getSetting("renderer", "display_weather")
 	
 	if climates:
+		var resource = load(WEATHER + "%s.tres" % weatherID)
+		
 		if (weatherID != null):
-			var weatherToLoad = Globals.LoadJSON(WEATHER, weatherID, "file")
-			var weather = load(weatherToLoad).instance()
+			var weatherToLoad = resource.scenes[subWeather]
+			var weather = weatherToLoad.instance()
 			
 			if !currentWeather:
 				currentWeather = weather
@@ -136,7 +138,7 @@ func weatherSetup(weatherID, cVars := {}):
 			else:
 				Objects.setupCustomVars(currentWeather, cVars)
 				
-			if currentWeather.filename == weatherToLoad:
+			if currentWeather.filename == weatherToLoad.get_path():
 				Objects.setupCustomVars(currentWeather, cVars)
 				return true
 			else:
@@ -150,13 +152,15 @@ func weatherSetup(weatherID, cVars := {}):
 			currentWeather.queue_free()
 			currentWeather = null
 			
-func backgroundSetup(bgID, cVars := {}):
+func backgroundSetup(bgID, cVars := {}, subBG := 0):
 	backgrounds = Settings.getSetting("renderer", "display_backgrounds")
 	# esta función se encarga de cargar y spawnear un fondo desde el JSON, solo si no hay ningun fondo actualmente. en caso contrario, lo reemplaza.
 	if backgrounds:
+		var resource = load(BG + "%s.tres" % bgID)
+		
 		if (bgID != null):
-			var backgroundToLoad = Globals.LoadJSON(BG, bgID, "file")
-			var background = load(backgroundToLoad).instance()
+			var backgroundToLoad = resource.scenes[subBG]
+			var background = backgroundToLoad.instance()
 			
 			if !currentBackground:
 				currentBackground = background
@@ -166,7 +170,7 @@ func backgroundSetup(bgID, cVars := {}):
 			else:
 				Objects.setupCustomVars(currentBackground, cVars)
 				
-			if currentBackground.filename == backgroundToLoad:
+			if currentBackground.filename == backgroundToLoad.get_path():
 				Objects.setupCustomVars(currentBackground, cVars)
 				return true
 			else:

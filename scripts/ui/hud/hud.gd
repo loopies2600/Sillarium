@@ -51,7 +51,7 @@ func _setupVars(_health = "don't use this variable!"):
 	
 	livlab.text = "LIVES: %02d" % curData.lives
 	scolab.text = "SCORE: %07d" % curData.total_score
-	wpslab.text = "WEAPON: " + Globals.getJSONEntryName(Objects.PICKUP, curData.weapon).to_upper()
+	wpslab.text = "WEAPON: " + Globals.getResourceName(Objects.PICKUP, curData.weapon).to_upper()
 	amolab.text = "AMMO: %03d" % papa.weapon.ammo
 	
 func _process(_delta):

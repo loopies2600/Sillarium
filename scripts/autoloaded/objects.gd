@@ -4,7 +4,7 @@
 extends Node
 
 const OBJ = "res://data/database/objects.json"
-const PICKUP = "res://data/database/pickups.json"
+const PICKUP = "res://data/database/pickups/"
 
 var nodes := []
 var previousScene
@@ -65,9 +65,9 @@ func spawn(id, cVars = {}):
 	return newObj
 	
 func getWeapon(id, curPlayer, z, _ammo = 0):
-	# este es muy parecido al que spawnea objetos, pero tiene parametros extra especificos para las armas.
-	var wpsType = load(Globals.LoadJSON(PICKUP, id, "file"))
-	var wps = load(Globals.LoadJSON(PICKUP, id, "type"))
+	var resource = load(PICKUP + "%s.tres" % id)
+	var wpsType = resource.resource
+	var wps = resource.scene
 	
 	var weapon = wps.instance()
 	weapon.z_index = z

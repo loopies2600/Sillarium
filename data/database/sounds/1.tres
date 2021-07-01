@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/util/data/stream.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Generic Fire"
+file = "res://streams/sfx/player/generic_fire.wav"
+bpm = 0.0
+loop = true
+loopOffset = 0.0
+format = 1
+stereo = true
+sampleRate = 44100

@@ -22,23 +22,23 @@ static func getTexture(path, flags := 0):
 	
 	return texture
 	
-static func getOGG(bgmID, json = Audio.MUSIC):
-	var path = Globals.LoadJSON(json, bgmID, "file")
+static func getOGG(bgmID, path = Audio.MUSIC):
+	var resource = load(path + "%s.tres" % bgmID)
 	var oggFile = File.new()
-	oggFile.open(path, File.READ)
+	oggFile.open(resource.file, File.READ)
 	var bytes = oggFile.get_buffer(oggFile.get_len())
 	var stream = AudioStreamOGGVorbis.new()
 	stream.data = bytes
-	stream.loop = Globals.LoadJSON(json, bgmID, "loop")
-	stream.loop_offset = float(Globals.LoadJSON(json, bgmID, "loop_offset"))
+	stream.loop = resource.loop
+	stream.loop_offset = resource.loopOffset
 	oggFile.close()
 	
 	return stream
 	
-static func getWAV(sfxID, json = Audio.SOUND):
-	var path = Globals.LoadJSON(json, sfxID, "file")
+static func getWAV(sfxID, path = Audio.SOUND):
+	var resource = load(path + "%s.tres" % sfxID)
 	var wavFile = File.new()
-	wavFile.open(path, File.READ)
+	wavFile.open(resource.file, File.READ)
 	var bytes = wavFile.get_buffer(wavFile.get_len() - Audio.WAV_PADDING)
 	wavFile.close()
 	
@@ -47,9 +47,9 @@ static func getWAV(sfxID, json = Audio.SOUND):
 		
 	var stream = AudioStreamSample.new()
 	
-	stream.format = Globals.LoadJSON(json, sfxID, "format")
-	stream.mix_rate = Globals.LoadJSON(json, sfxID, "sample_rate")
-	stream.stereo = Globals.LoadJSON(json, sfxID, "stereo")
+	stream.format = resource.format
+	stream.mix_rate = resource.sampleRate
+	stream.stereo = resource.stereo
 	stream.data = bytes
 	
 	return stream
