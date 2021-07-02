@@ -12,6 +12,9 @@ func physics_update(_delta):
 	owner.applyGravity = owner.coyotePeriod.is_stopped()
 	owner.animspeedAsVelocity()
 	
+	if owner.doinJump && Input.is_action_just_released("jump" + owner.inputSuffix) && sign(owner.velocity.y) == -1:
+		owner.velocity.y = -owner.jumpCut
+		
 	if !owner.is_on_floor():
 		if owner.getInputDirection():
 			if Input.is_action_pressed("dash"):

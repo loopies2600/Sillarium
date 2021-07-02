@@ -17,6 +17,7 @@ onready var health = character.health setget _setHealth
 onready var airMaxSpeed = character.airMaxSpeed
 onready var airDeceleration = character.airDeceleration
 onready var dashStrength = character.dashStrength
+onready var jumpCut = character.jumpCut
 onready var dashDuration = character.dashDuration
 onready var graceTime = character.graceTime
 onready var comboTime = character.comboTime
