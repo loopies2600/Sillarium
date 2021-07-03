@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[sub_resource type="GDScript" id=2]
-script/source = "extends Node2D
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
 
 var amount = 15000
 var shaky = preload(\"res://debug/shaky_ball.tscn\")
@@ -11,5 +11,5 @@ func _ready():
 		add_child(shaky.instance())
 "
 
-[node name="StressTest" type="Node2D"]
-script = SubResource( 2 )
+[node name="StressTest" type="Node"]
+script = SubResource( 1 )

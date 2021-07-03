@@ -1,6 +1,5 @@
 extends Sprite
 
-onready var visibility = $VisibilityNotifier2D
 var particles = Settings.getSetting("renderer", "particles")
 
 var fadeSpeed := 0.1
@@ -14,7 +13,6 @@ func _init():
 		
 func _ready():
 	set_material(material.duplicate())
-	visibility.connect("screen_exited", self, "_kill")
 	
 	if randomColors:
 		_setColor(Color(rand_range(0, 1), rand_range(0, 1), rand_range(0, 1), 1.0))
@@ -22,18 +20,14 @@ func _ready():
 		_setColor(modulation)
 	
 func _setColor(color : Color):
-	var material = self.get_material()
-	material.set_shader_param("flash_color", color)
+	get_material().set_shader_param("flash_color", color)
 	
 func _process(_delta):
 	if randomColors:
 		_setColor(Color(rand_range(0, 1), rand_range(0, 1), rand_range(0, 1), 1.0))
 	
-	modulate.a = life
 	life -= fadeSpeed
+	get_material().set_shader_param("opacity", life)
 	
 	if (life <= 0):
-		_kill()
-		
-func _kill():
-	queue_free()
+		queue_free()

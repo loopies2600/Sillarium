@@ -1,10 +1,15 @@
 shader_type canvas_item;
 
-uniform vec4 flash_color : hint_color = vec4(1.0);
-uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+uniform vec4 glowing_color : hint_color = vec4(1.0);
+uniform vec4 secondary_glowing_color : hint_color = vec4(1.0);
+uniform float brightness : hint_range(0, 8) = 1;
+uniform float glowing_intensity : hint_range(0, 1) = 1;
+uniform float precision : hint_range(0, 1) = 0.1;
 uniform float opacity : hint_range(0, 1) = 1.0;
 
-void fragment() {
+void fragment(){
+	COLOR = texture(TEXTURE,UV);
+	
 	int x = int(FRAGCOORD.x) % 4;
 	int y = int(FRAGCOORD.y) % 4;
 	
@@ -33,7 +38,12 @@ void fragment() {
 	if (opacity < limit)
 	    discard;
 	
-	vec4 color = texture(TEXTURE, UV);
-	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
-	COLOR = color;
+	if (distance(COLOR.rgba, glowing_color) >= precision && distance(COLOR.rgba, secondary_glowing_color) >= precision)
+	{
+		COLOR.rgb *= brightness;
+	}
+	else
+	{
+		COLOR.rgb *= glowing_intensity;
+	}
 }

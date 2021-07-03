@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://sprites/debug/glowing_ball.png" type="Texture" id=1]
-[ext_resource path="res://data/shaders/brightness_n_glowing.shader" type="Shader" id=2]
+[ext_resource path="res://data/shaders/general.shader" type="Shader" id=2]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -10,9 +10,16 @@ shader_param/secondary_glowing_color = Color( 1, 1, 1, 1 )
 shader_param/brightness = 1.0
 shader_param/glowing_intensity = 1.0
 shader_param/precision = 0.1
+shader_param/opacity = 1.0
 
-[sub_resource type="Animation" id=2]
-resource_name = "Glowing"
+[sub_resource type="GDScript" id=2]
+script/source = "extends Sprite
+
+func _process(_delta):
+	get_material().set_shader_param()
+"
+
+[sub_resource type="Animation" id=3]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -32,7 +39,8 @@ tracks/0/keys = {
 material = SubResource( 1 )
 position = Vector2( 168, 98 )
 texture = ExtResource( 1 )
+script = SubResource( 2 )
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 autoplay = "Glowing"
-anims/Glowing = SubResource( 2 )
+anims/Glowing = SubResource( 3 )

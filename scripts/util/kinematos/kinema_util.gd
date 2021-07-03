@@ -190,12 +190,12 @@ func decelerate(dec := deceleration, snap := 32):
 		velocity.x = 0
 	
 func trails(sprites = [mainSprite], color = "random"):
-	if displayTrails:
-		for spr in sprites:
-			Renderer.spawnTrail(0.1, spr, color)
-	else:
+	if !displayTrails:
 		return
-			
+	
+	for spr in sprites:
+		Renderer.spawnTrail(0.1, spr, color)
+		
 func _setInput(booly : bool):
 	canInput = booly
 	

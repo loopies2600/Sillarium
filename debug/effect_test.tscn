@@ -306,6 +306,7 @@ tracks/1/keys = {
 shader = ExtResource( 4 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
+shader_param/opacity = 1.0
 
 [sub_resource type="Animation" id=13]
 resource_name = "Idle"
@@ -339,6 +340,7 @@ tracks/1/keys = {
 shader = ExtResource( 5 )
 shader_param/DEPTH = Vector2( 2, 0 )
 shader_param/POSITION = Vector2( -0.5, 0 )
+shader_param/SCALE = null
 shader_param/REPEAT_X = false
 shader_param/REPEAT_Y = false
 shader_param/FLIP = false
