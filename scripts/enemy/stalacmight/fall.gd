@@ -1,7 +1,6 @@
 extends State
 
 func enter(_msg := {}):
-	print("come on")
 	owner.animator.play("Falling")
 	owner.fell = true
 	owner.applyGravity = true

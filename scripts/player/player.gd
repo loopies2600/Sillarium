@@ -123,9 +123,9 @@ func loop():
 	keepOnScreen(true, false, Vector2(collisionBox.shape.extents.x * 2, 0))
 	
 func mainMotion(_delta):
+	canDash = !is_on_floor()
 	if !is_on_floor(): stateMachine._change_state("air")
 	
-	canDash = !is_on_floor()
 	var wasGrounded = is_on_floor()
 	velocity.y = move_and_slide_with_snap(velocity, snapVector, Globals.UP, true).y
 	
@@ -139,8 +139,6 @@ func _input(event):
 				coyotePeriod.stop()
 				stateMachine._change_state("air", {isJump = true})
 				
-		if event.is_action_pressed("input_hold" + inputSuffix):
-			stateMachine._change_state("hold")
 		if canDash:
 			if event.is_action_pressed("dash" + inputSuffix):
 				stateMachine._change_state("dash")

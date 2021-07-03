@@ -7,6 +7,13 @@ var particles = Settings.getSetting("renderer", "particles")
 var shadowScale := Vector2.ONE
 var texture : Texture
 
+var initialVelocities := [
+	Vector2(rand_range(-128, -64), rand_range(-512, 256)),
+	Vector2(rand_range(128, 64), rand_range(-512, 256)),
+	Vector2(rand_range(-128, -64), rand_range(-512, 256)),
+	Vector2(rand_range(128, 64), rand_range(-512, 256))
+]
+
 onready var pieces = [$Piece, $Piece2, $Piece3, $Piece4]
 
 func _init():
@@ -14,18 +21,14 @@ func _init():
 		queue_free()
 		
 func _ready():
-	pieces[0].initialVel = Vector2(rand_range(-128, -64), rand_range(-512, 256))
-	pieces[1].initialVel = Vector2(rand_range(128, 64), rand_range(-512, 256))
-	pieces[2].initialVel = Vector2(rand_range(-128, -64), rand_range(-512, 256))
-	pieces[3].initialVel = Vector2(rand_range(128, 64), rand_range(-512, 256))
-	
-	for piece in pieces:
-		piece.shadow.scale = shadowScale
-		piece.velocity = piece.initialVel
-		piece.sprite.flip_h = flip_h
-		piece.sprite.flip_v = flip_v
-		piece.sprite.texture = texture
-		piece.hitbox.rotation -= global_rotation
+	for i in range(4):
+		pieces[i].initialVel = initialVelocities[i]
+		pieces[i].shadow.scale = shadowScale
+		pieces[i].velocity = pieces[i].initialVel
+		pieces[i].sprite.flip_h = flip_h
+		pieces[i].sprite.flip_v = flip_v
+		pieces[i].sprite.texture = texture
+		pieces[i].hitbox.rotation -= global_rotation
 		
 	var pieceSize = pieces[0].sprite.texture.get_size() / 2
 	
