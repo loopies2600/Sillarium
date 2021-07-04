@@ -93,6 +93,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( 920, 720 ), Vector2( 920, 720 ), Vector2( 920, 432 ), Vector2( 920, 432 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("ModelView:rect_position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -720 ), Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "Out"
@@ -145,6 +157,18 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 920, 432 ), Vector2( 920, 432 ), Vector2( 920, 432 ), Vector2( 920, 720 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ModelView:rect_position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -720 ) ]
 }
 
 [node name="OptionsMenu" type="Control"]

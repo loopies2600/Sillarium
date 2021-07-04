@@ -15,6 +15,16 @@ func _ready():
 	theme = preload("res://themes/main_theme.tres")
 	updateText()
 	
+	yield(get_tree().create_timer(0.1 * buttonID), "timeout")
+	moveTowards = true
+	
+func _onCategorySwitch(isOpen):
+	if !isOpen:
+		yield(get_tree().create_timer(0.05 * buttonID), "timeout")
+		targetPos = Vector2(-720, rect_position.y)
+		yield(get_tree().create_timer(1), "timeout")
+		queue_free()
+		
 func onMouseEnter():
 	if !disabled:
 		Audio.playSound(8)
