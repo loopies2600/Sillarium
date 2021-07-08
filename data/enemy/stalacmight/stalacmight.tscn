@@ -321,6 +321,7 @@ nAnimator = NodePath("Animator")
 nCollisionBox = NodePath("TopCollision")
 nMainSprite = NodePath("Graphics/MainSprite")
 jumpStrength = 512.0
+nHitbox = NodePath("TipHitbox")
 health = 1
 damage = 10
 score = 250

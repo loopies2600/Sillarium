@@ -92,6 +92,10 @@ tracks/1/keys = {
 collision_layer = 2147483650
 collision_mask = 34
 script = ExtResource( 4 )
+nAnimator = NodePath("AnimationPlayer")
+nCollisionBox = NodePath("CollisionShape2D")
+nMainSprite = NodePath("Sprite")
+nHitbox = NodePath("Area2D")
 killsPlayer = false
 particle = ExtResource( 5 )
 

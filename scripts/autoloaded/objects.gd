@@ -3,7 +3,7 @@
 
 extends Node
 
-const OBJ = "res://data/database/objects.json"
+const OBJ = "res://data/database/objects/"
 const PICKUP = "res://data/database/pickups/"
 
 var nodes := []
@@ -13,8 +13,7 @@ func _ready():
 	Globals.connect("scene_changed", self, "registerEveryNode")
 	
 func spawnPlayer(charID, pos, pSlot := "player"):
-	var character = load(Globals.LoadJSON(OBJ, 10, str(charID)))
-	var currentChar = character.instance()
+	var currentChar = load(OBJ + "10.tres").scenes[charID].instance()
 	
 	if Globals.get(pSlot) == null:
 		get_tree().get_root().call_deferred("add_child", currentChar)
@@ -51,10 +50,8 @@ func getClosestOrFurthest(caller : Object, groupName : String, getClosest := tru
 			
 	return returnObject
 	
-func spawn(id, cVars = {}):
-	# esta función primero lee el nombre y archivo del objeto desde el JSON, luego lo instancia. ah, no te olvides de pasarle una posición, si queres.
-	var _objName = Globals.LoadJSON(OBJ, id, "name")
-	var obj = load(Globals.LoadJSON(OBJ, id, "file"))
+func spawn(id, cVars = {}, subScene := 0):
+	var obj = load(OBJ + "%s.tres" % id).scenes[subScene]
 	
 	var newObj = obj.instance()
 	
@@ -75,11 +72,8 @@ func getWeapon(id, curPlayer, z, _ammo = 0):
 	weapon.type = wpsType
 	return weapon
 	
-func getObj(id):
-	# este es como el que spawnea objetos, pero solo lee el archivo de objeto desde el JSON, el resto lo podes hacer vos mismo...
-	var obj = load(Globals.LoadJSON(OBJ, id, "file"))
-	
-	return obj.instance()
+func getObj(id, subScene := 0):
+	return load(OBJ + "%s.tres" % id).scenes[subScene].instance()
 	
 func setupCustomVars(object, cVars := {}):
 	if !cVars.empty():

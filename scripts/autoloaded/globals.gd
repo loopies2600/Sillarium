@@ -53,26 +53,5 @@ func LoadScene(sceneID : int, cVars := {}):
 		emit_signal("scene_changed", newScene)
 		return false
 	
-func LoadJSON(file : String, index : int, property : String):
-	# este es el grande, con esta función podemos leer archivos JSON :).
-	var jsonFile = File.new()
-	jsonFile.open(file, File.READ)
-	
-	var jsonString = jsonFile.get_as_text()
-	var parsed : Dictionary = parse_json(jsonString)
-	jsonFile.close()
-	
-	return parsed[str(index)][property]
-	
 func getResourceName(path, id):
 	return load(path + "%s.tres" % id).name
-	
-func getJSONSize(file : String):
-	var jsonFile = File.new()
-	jsonFile.open(file, File.READ)
-	
-	var jsonString = jsonFile.get_as_text()
-	var parsed : Dictionary = parse_json(jsonString)
-	jsonFile.close()
-	
-	return parsed.size()

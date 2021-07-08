@@ -5,12 +5,14 @@ class_name BasicEnemy, "res://sprites/ui/menu/enemy.png"
 signal destroyed
 signal took_damage
 
-onready var hitbox : Area2D
+export (NodePath) var nHitbox
 
 export (int) var health = 5
 export (int) var damage = 2
 export (int) var score = 50
 export (bool) var killsPlayer = true
+
+onready var hitbox = get_node(nHitbox)
 
 func _ready():
 	yield(get_parent(), "ready")

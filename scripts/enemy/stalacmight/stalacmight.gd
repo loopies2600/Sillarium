@@ -6,8 +6,6 @@ export (float) var idleTime = 1
 var fell := false
 
 func _ready():
-	hitbox = $TipHitbox
-	animator = $Animator
 	applyGravity = false
 	
 	var _unused = connect("destroyed", self, "onDestruction")

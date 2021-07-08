@@ -101,6 +101,10 @@ extents = Vector2( 64, 4 )
 collision_layer = 7
 collision_mask = 2
 script = ExtResource( 2 )
+nAnimator = NodePath("Graphics/AnimationPlayer")
+nCollisionBox = NodePath("CollisionShape2D")
+nMainSprite = NodePath("Graphics/Body")
+nHitbox = NodePath("Area2D")
 health = 10
 
 [node name="Graphics" type="Node2D" parent="."]

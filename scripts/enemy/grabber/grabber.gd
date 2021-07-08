@@ -1,11 +1,9 @@
 extends "../behaviour/basic_enemy_controller.gd"
 
 onready var renderer = $Graphics
-onready var sprite = $Graphics/Body
 onready var tongue = $Graphics/Tongue
 onready var tongueTipPos = $Graphics/Tongue/TipPos
 onready var tongueTip = $Graphics/TongueArea
-onready var anim = $Graphics/AnimationPlayer
 
 export (int) var tongueSpeed = 8
 
@@ -17,8 +15,6 @@ func _ready():
 	var _unused = connect("destroyed", self, "OnDestruction")
 	_unused = tongueTip.connect("body_entered", self, "_grab")
 	_unused = tongueTip.connect("body_exited", self, "_drop")
-	
-	hitbox = $Area2D
 	
 func _process(_delta):
 	tongueTipPos.position.y = -1 * tongue.scale.y
@@ -48,5 +44,5 @@ func OnBodyExited(body):
 		
 func OnDestruction():
 	emit_signal("camera_shake_requested")
-	Renderer.spawn4Piece(sprite)
+	Renderer.spawn4Piece(mainSprite)
 	queue_free()

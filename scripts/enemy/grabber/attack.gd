@@ -1,8 +1,8 @@
 extends State
 
 func enter(_msg := {}):
-	owner.anim.play("Attack")
-	yield(owner.anim, "animation_finished")
+	owner.animator.play("Attack")
+	yield(owner.animator, "animation_finished")
 	emit_signal("finished", "idle")
 	
 func update(_delta):

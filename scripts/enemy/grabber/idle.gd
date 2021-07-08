@@ -5,7 +5,7 @@ export (int) var idleTimer = 5.0
 var idleTime = idleTimer
 
 func enter(_msg := {}):
-	owner.anim.play("Idle")
+	owner.animator.play("Idle")
 	idleTime = idleTimer
 	
 func update(delta):
