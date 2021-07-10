@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://sprites/player/noah/noah_rightarm.png" type="Texture" id=1]
+[ext_resource path="res://sprites/player/noah/rarm0.png" type="Texture" id=1]
 [ext_resource path="res://scripts/generic/entity/arm.gd" type="Script" id=2]
 [ext_resource path="res://scripts/player/arms/left/pose_0.tres" type="Resource" id=3]
 [ext_resource path="res://scripts/player/arms/left/pose_6.tres" type="Resource" id=6]
@@ -13,7 +13,5 @@
 
 [node name="Arm" type="Sprite"]
 texture = ExtResource( 1 )
-centered = false
-offset = Vector2( -4, -4 )
 script = ExtResource( 2 )
 definitions = [ ExtResource( 3 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 12 ) ]

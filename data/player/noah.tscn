@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://data/player/camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/player/states/air.gd" type="Script" id=2]
@@ -6,15 +6,18 @@
 [ext_resource path="res://data/anim/hurt.tres" type="Animation" id=4]
 [ext_resource path="res://scripts/player/states/walk.gd" type="Script" id=5]
 [ext_resource path="res://scripts/player/player.gd" type="Script" id=6]
-[ext_resource path="res://sprites/player/noah/noah_0s.png" type="Texture" id=7]
-[ext_resource path="res://sprites/player/noah/noah_leftarm.png" type="Texture" id=8]
+[ext_resource path="res://sprites/player/noah/head0.png" type="Texture" id=7]
+[ext_resource path="res://sprites/player/noah/body0.png" type="Texture" id=8]
 [ext_resource path="res://scripts/player/states/bump.gd" type="Script" id=9]
+[ext_resource path="res://sprites/player/noah/legs0.png" type="Texture" id=10]
 [ext_resource path="res://scripts/player/states/dash.gd" type="Script" id=11]
 [ext_resource path="res://data/player/parameters/noah.tres" type="Resource" id=12]
 [ext_resource path="res://data/shaders/flash.shader" type="Shader" id=13]
 [ext_resource path="res://scripts/player/states/idle.gd" type="Script" id=14]
+[ext_resource path="res://sprites/player/noah/larm0.png" type="Texture" id=15]
 [ext_resource path="res://data/generic/shadow.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scripts/player/arms/right/pose_5.tres" type="Resource" id=17]
+[ext_resource path="res://sprites/player/noah/rbracelet0.png" type="Texture" id=18]
 [ext_resource path="res://data/shaders/general.shader" type="Shader" id=19]
 [ext_resource path="res://scripts/player/arms/right/pose_0.tres" type="Resource" id=20]
 [ext_resource path="res://scripts/player/arms/right/pose_4.tres" type="Resource" id=21]
@@ -24,6 +27,9 @@
 [ext_resource path="res://scripts/player/arms/right/pose_2.tres" type="Resource" id=25]
 [ext_resource path="res://scripts/player/arms/right/pose_1.tres" type="Resource" id=26]
 [ext_resource path="res://data/generic/entity/arm.tscn" type="PackedScene" id=27]
+[ext_resource path="res://sprites/player/noah/rhand0.png" type="Texture" id=28]
+[ext_resource path="res://sprites/player/noah/lbracelet0.png" type="Texture" id=29]
+[ext_resource path="res://sprites/player/noah/lhand0.png" type="Texture" id=30]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -41,11 +47,7 @@ shader_param/glowing_intensity = 1.0
 shader_param/precision = 0.1
 shader_param/opacity = 1.0
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 7 )
-region = Rect2( 118, 18, 38, 51 )
-
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 19 )
 shader_param/glowing_color = Color( 0.913725, 0.443137, 0.129412, 1 )
 shader_param/secondary_glowing_color = Color( 0.996078, 0.901961, 0.137255, 1 )
@@ -54,11 +56,7 @@ shader_param/glowing_intensity = 1.0
 shader_param/precision = 0.1
 shader_param/opacity = 1.0
 
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 7 )
-region = Rect2( 307, 18, 84, 58 )
-
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 19 )
 shader_param/glowing_color = Color( 0.913725, 0.443137, 0.129412, 1 )
 shader_param/secondary_glowing_color = Color( 1, 1, 1, 1 )
@@ -67,11 +65,7 @@ shader_param/glowing_intensity = 1.0
 shader_param/precision = 0.1
 shader_param/opacity = 1.0
 
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 7 )
-region = Rect2( 19, 12, 55, 74 )
-
-[sub_resource type="GDScript" id=8]
+[sub_resource type="GDScript" id=5]
 script/source = "extends State
 
 func enter(_msg := {}):
@@ -86,15 +80,15 @@ func handle_input(event):
 		emit_signal(\"finished\", \"idle\")
 "
 
-[sub_resource type="GDScript" id=9]
+[sub_resource type="GDScript" id=6]
 script/source = "extends State
 
 "
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 30, 64 )
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=8]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:rotation_degrees")
@@ -133,7 +127,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=9]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:rotation_degrees")
@@ -184,7 +178,7 @@ tracks/3/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics:rotation_degrees")
 tracks/0/interp = 1
@@ -243,24 +237,46 @@ use_parent_material = true
 
 [node name="Body" type="Sprite" parent="Graphics"]
 material = SubResource( 2 )
-texture = SubResource( 3 )
+texture = ExtResource( 8 )
 
 [node name="LeftArm" parent="Graphics/Body" instance=ExtResource( 27 )]
+texture = ExtResource( 15 )
+offset = Vector2( 16, -8 )
+
+[node name="LeftHand" parent="Graphics/Body" instance=ExtResource( 27 )]
+position = Vector2( 62, 12 )
+texture = ExtResource( 30 )
+definitions = [ ExtResource( 20 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 21 ), ExtResource( 17 ), ExtResource( 22 ), ExtResource( 23 ) ]
+
+[node name="LeftBracelet" parent="Graphics/Body" instance=ExtResource( 27 )]
+position = Vector2( 32, 8 )
+texture = ExtResource( 29 )
+definitions = [ ExtResource( 20 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 21 ), ExtResource( 17 ), ExtResource( 22 ), ExtResource( 23 ) ]
 
 [node name="RightArm" parent="Graphics/Body" instance=ExtResource( 27 )]
-texture = ExtResource( 8 )
+position = Vector2( -12, -8 )
+definitions = [ ExtResource( 20 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 21 ), ExtResource( 17 ), ExtResource( 22 ), ExtResource( 23 ) ]
+
+[node name="RightHand" parent="Graphics/Body" instance=ExtResource( 27 )]
+position = Vector2( 20, 20 )
+texture = ExtResource( 28 )
+definitions = [ ExtResource( 20 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 21 ), ExtResource( 17 ), ExtResource( 22 ), ExtResource( 23 ) ]
+
+[node name="RightBracelet" parent="Graphics/Body" instance=ExtResource( 27 )]
+position = Vector2( -4, 12 )
+texture = ExtResource( 18 )
 definitions = [ ExtResource( 20 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 21 ), ExtResource( 17 ), ExtResource( 22 ), ExtResource( 23 ) ]
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
-material = SubResource( 4 )
-texture = SubResource( 5 )
-offset = Vector2( 0, -44 )
+material = SubResource( 3 )
+position = Vector2( 8, -44 )
+texture = ExtResource( 7 )
 
 [node name="Legs" type="Sprite" parent="Graphics/Body"]
-material = SubResource( 6 )
+material = SubResource( 4 )
+position = Vector2( 8, 52 )
 z_index = -1
-texture = SubResource( 7 )
-offset = Vector2( 6, 48 )
+texture = ExtResource( 10 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="Graphics"]
 
@@ -278,29 +294,29 @@ script = ExtResource( 5 )
 script = ExtResource( 2 )
 
 [node name="Hold" type="Node" parent="StateMachine"]
-script = SubResource( 8 )
+script = SubResource( 5 )
 
 [node name="Bump" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
 
 [node name="Locked" type="Node" parent="StateMachine"]
-script = SubResource( 9 )
+script = SubResource( 6 )
 
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 3, 21 )
-shape = SubResource( 10 )
+position = Vector2( 4, 16 )
+shape = SubResource( 7 )
 
 [node name="Camera" parent="." instance=ExtResource( 1 )]
 visible = false
 
 [node name="GraphicsAnimator" type="AnimationPlayer" parent="."]
-anims/bump = SubResource( 11 )
-anims/dash = SubResource( 12 )
-anims/default = SubResource( 13 )
+anims/bump = SubResource( 8 )
+anims/dash = SubResource( 9 )
+anims/default = SubResource( 10 )
 anims/hurt = ExtResource( 4 )
 
 [node name="Timers" type="Node" parent="."]

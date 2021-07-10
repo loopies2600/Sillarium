@@ -178,6 +178,18 @@ window/stretch/aspect="keep"
 
 enabled=PoolStringArray(  )
 
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
+texture_3d={
+"flags/filter": false
+}
+texture_array={
+"flags/filter": false
+}
+
 [input]
 
 ui_accept={

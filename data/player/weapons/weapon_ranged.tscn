@@ -1,20 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://data/player/weapons/shotgun.tres" type="Resource" id=1]
 [ext_resource path="res://scripts/player/weapons/weapon.gd" type="Script" id=2]
-[ext_resource path="res://sprites/player/noah/noah_0s.png" type="Texture" id=3]
+[ext_resource path="res://sprites/player/noah/shotgun/shotgun.png" type="Texture" id=3]
 [ext_resource path="res://data/generic/shadow.tscn" type="PackedScene" id=4]
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 3 )
-region = Rect2( 560, 10, 97, 42 )
 
 [node name="RangedWeapon" type="Sprite"]
 use_parent_material = true
 position = Vector2( 24, 8 )
 z_index = 258
 z_as_relative = false
-texture = SubResource( 1 )
+texture = ExtResource( 3 )
 script = ExtResource( 2 )
 type = ExtResource( 1 )
 
