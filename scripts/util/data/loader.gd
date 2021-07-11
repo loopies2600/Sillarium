@@ -24,32 +24,39 @@ static func getTexture(path, flags := 0):
 	
 static func getOGG(bgmID, path = Audio.MUSIC):
 	var resource = load(path + "%s.tres" % bgmID)
-	var oggFile = File.new()
-	oggFile.open(resource.file, File.READ)
-	var bytes = oggFile.get_buffer(oggFile.get_len())
 	var stream = AudioStreamOGGVorbis.new()
-	stream.data = bytes
-	stream.loop = resource.loop
-	stream.loop_offset = resource.loopOffset
-	oggFile.close()
+	
+	if OS.get_name() == "HTML5":
+		stream = load(resource.file)
+	else:
+		var oggFile = File.new()
+		oggFile.open(resource.file, File.READ)
+		var bytes = oggFile.get_buffer(oggFile.get_len())
+		stream.data = bytes
+		stream.loop = resource.loop
+		stream.loop_offset = resource.loopOffset
+		oggFile.close()
 	
 	return stream
 	
 static func getWAV(sfxID, path = Audio.SOUND):
 	var resource = load(path + "%s.tres" % sfxID)
-	var wavFile = File.new()
-	wavFile.open(resource.file, File.READ)
-	var bytes = wavFile.get_buffer(wavFile.get_len() - Audio.WAV_PADDING)
-	wavFile.close()
-	
-	for i in range(Audio.WAV_PADDING):
-		bytes[i] = 0
-		
 	var stream = AudioStreamSample.new()
 	
-	stream.format = resource.format
-	stream.mix_rate = resource.sampleRate
-	stream.stereo = resource.stereo
-	stream.data = bytes
+	if OS.get_name() == "HTML5":
+		stream = load(resource.file)
+	else:
+		var wavFile = File.new()
+		wavFile.open(resource.file, File.READ)
+		var bytes = wavFile.get_buffer(wavFile.get_len() - Audio.WAV_PADDING)
+		wavFile.close()
+		
+		for i in range(Audio.WAV_PADDING):
+			bytes[i] = 0
+		
+		stream.format = resource.format
+		stream.mix_rate = resource.sampleRate
+		stream.stereo = resource.stereo
+		stream.data = bytes
 	
 	return stream
