@@ -152,6 +152,11 @@ run/main_scene="res://data/ui/menu/language_select/language_select.tscn"
 boot_splash/image="res://sprites/debug/crappy_ass_load_screen.png"
 config/icon="res://sprites/sillarium_s.png"
 
+[audio]
+
+output_latency=10
+output_latency.web=10
+
 [autoload]
 
 Settings="*res://scripts/autoloaded/settings.gd"
