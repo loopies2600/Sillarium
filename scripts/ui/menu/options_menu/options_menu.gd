@@ -5,12 +5,16 @@ signal category_switched(isOpen)
 export (int) var backgroundID = 0
 export (int) var musicID = 0
 
+onready var notice = load("res://sprites/debug/itcantfitlol.png")
+
 onready var anim = $Animator
 onready var buttons = [$General, $Renderer, $Controls, $Audio]
 onready var exitButton = $Exit
 onready var optionsText = $OptionsTitle
 
 var categoryOpen := false setget _setCatOpen
+var startingBID = 1
+var sectionScrolls := false
 
 func _ready():
 	var _unused = connect("category_switched", exitButton, "_onCategorySwitch")
@@ -23,6 +27,10 @@ func _ready():
 	for bt in buttons:
 		_unused = bt.connect("pressed", self, "_on" + bt.name + "Pressed")
 		
+func _draw():
+	if sectionScrolls:
+		draw_texture(notice, Vector2(896, 128))
+	
 func _onGeneralPressed():
 	_doButtonStuff("General")
 	
@@ -47,28 +55,39 @@ func _setCatOpen(booly : bool):
 		anim.play("Out")
 	else:
 		anim.play("In")
+		sectionScrolls = false
+		
+	startingBID = 1
+	update()
 	
 func _spawnButtons(section := "renderer"):
-	var startingBID = 1
-	
+	if section == "controls":
+		sectionScrolls = true
+		for key in Settings._settings["player_one"].keys():
+			_addButton("player_one", key, sectionScrolls)
+			
 	for key in Settings._settings[section].keys():
-		var val = Settings._configFile.get_value(section,key)
+		_addButton(section, key, sectionScrolls)
 		
-		var newButton = Button.new()
-		newButton.set_script(preload("option_button.gd"))
-		newButton.category = section
-		newButton.key = key
-		newButton.val = val
-		newButton.font = exitButton.get_font("font")
-		newButton.buttonID = startingBID
-		newButton.add_to_group("Option")
-		newButton.rect_position = Vector2(-1280, 32 + (64 * startingBID))
-		newButton.targetPos = Vector2(32 + (32 * startingBID), 32 + (64 * startingBID))
-		var _unused = connect("category_switched", newButton, "_onCategorySwitch")
+func _addButton(sect, k, scrollable := false):
+	var val = Settings._configFile.get_value(sect,k)
 		
-		add_child(newButton)
-		startingBID += 1
+	var newButton = Button.new()
+	newButton.set_script(preload("option_button.gd"))
+	newButton.category = sect
+	newButton.key = k
+	newButton.val = val
+	newButton.font = exitButton.get_font("font")
+	newButton.buttonID = startingBID
+	newButton.scrollable = scrollable
+	newButton.add_to_group("Option")
+	newButton.rect_position = Vector2(-1280, 32 + (64 * startingBID))
+	newButton.targetPos = Vector2(32 + (32 * startingBID), 32 + (64 * startingBID))
+	var _unused = connect("category_switched", newButton, "_onCategorySwitch")
 		
+	add_child(newButton)
+	startingBID += 1
+	
 func toggleButtons():
 	for node in get_tree().get_nodes_in_group("Option"):
 		if node is Button:

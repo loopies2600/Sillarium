@@ -3,11 +3,9 @@ extends "res://scripts/ui/menu/button.gd"
 enum {SWITCH, INPUT, VALUE}
 
 var type = VALUE
-
 var category
 var key
 var val
-
 var font
 
 func _ready():
