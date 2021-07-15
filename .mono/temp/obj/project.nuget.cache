@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "+lGWoZJv/uj4LiIL71ZZSHX0VuYNAK/GzHp8/kagkEBVbELZAFdJjKpqomA2rh9IAL/laZ9R1qOkvQhuLEgmZA==",
+  "success": true,
+  "projectFilePath": "/home/loopies/Documentos/GitHub/Sillarium/Sillarium.csproj",
+  "expectedPackageFiles": [
+    "/home/loopies/.nuget/packages/microsoft.netframework.referenceassemblies/1.0.0/microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
+    "/home/loopies/.nuget/packages/microsoft.netframework.referenceassemblies.net472/1.0.0/microsoft.netframework.referenceassemblies.net472.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

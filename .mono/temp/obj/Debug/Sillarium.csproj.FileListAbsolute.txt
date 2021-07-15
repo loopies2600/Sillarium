@@ -1,0 +1,8 @@
+/home/loopies/Documentos/GitHub/Sillarium/.mono/temp/obj/Debug/Sillarium.csproj.AssemblyReference.cache
+/home/loopies/Documentos/GitHub/Sillarium/.mono/temp/obj/Debug/Sillarium.AssemblyInfoInputs.cache
+/home/loopies/Documentos/GitHub/Sillarium/.mono/temp/obj/Debug/Sillarium.AssemblyInfo.cs
+/home/loopies/Documentos/GitHub/Sillarium/.mono/temp/obj/Debug/Sillarium.csproj.CoreCompileInputs.cache
+/home/loopies/Documentos/GitHub/Sillarium/.mono/temp/bin/Debug/Sillarium.dll
+/home/loopies/Documentos/GitHub/Sillarium/.mono/temp/bin/Debug/Sillarium.pdb
+/home/loopies/Documentos/GitHub/Sillarium/.mono/temp/obj/Debug/Sillarium.dll
+/home/loopies/Documentos/GitHub/Sillarium/.mono/temp/obj/Debug/Sillarium.pdb
