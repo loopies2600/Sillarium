@@ -1,5 +1,6 @@
 shader_type canvas_item;
 
+uniform bool invertColors = false;
 uniform vec4 glowing_color : hint_color = vec4(1.0);
 uniform vec4 secondary_glowing_color : hint_color = vec4(1.0);
 uniform float brightness : hint_range(0, 8) = 1;
@@ -45,5 +46,10 @@ void fragment(){
 	else
 	{
 		COLOR.rgb *= glowing_intensity;
+	}
+	
+	if (invertColors)
+	{
+		COLOR.rgb = vec3(1) - COLOR.rgb;
 	}
 }
