@@ -59,7 +59,7 @@ var _settings = {
 	},
 	"renderer": {
 		"camera_effects": true,
-		"direct_rendering": true,
+		"direct_rendering": false,
 		"display_backgrounds": true,
 		"display_weather": true,
 		"fullscreen": false,

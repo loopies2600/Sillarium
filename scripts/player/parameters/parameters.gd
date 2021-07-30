@@ -12,7 +12,6 @@ export (float) var timeJumpApex = 0.4
 export (float) var fallMultiplier = 1.5
 export (float) var dashStrength = 960.0
 export (float) var jumpCut = 256.0
-export (float) var dashDuration = 0.2
 export (float, 0, 1) var bounciness = 0.75
 export (float) var graceTime = 2.0
 export (float) var comboTime = 4.0

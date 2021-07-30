@@ -18,7 +18,6 @@ onready var airMaxSpeed = character.airMaxSpeed
 onready var airDeceleration = character.airDeceleration
 onready var dashStrength = character.dashStrength
 onready var jumpCut = character.jumpCut
-onready var dashDuration = character.dashDuration
 onready var graceTime = character.graceTime
 onready var comboTime = character.comboTime
 onready var respawnTime = character.respawnTime
@@ -26,6 +25,7 @@ onready var respawnTime = character.respawnTime
 var charID := 0
 var playerID := 0
 var slot := "player"
+var children := []
 
 var canDash := true
 var trackInput := true setget _setTrackInput
@@ -127,11 +127,14 @@ func mainMotion(_delta):
 	if !is_on_floor(): stateMachine._change_state("air")
 	
 	var wasGrounded = is_on_floor()
-	velocity.y = move_and_slide_with_snap(velocity, snapVector, Globals.UP, true).y
+	velocity.y = move_and_slide_with_snap(velocity, snapVector, Globals.UP).y
 	
 	if !is_on_floor() && wasGrounded && !doinJump:
 		coyotePeriod.start()
-		
+	
+func move(speed := maxSpeed, direction := getInputDirection()):
+	velocity.x = speed * direction
+	
 func _input(event):
 	if canInput:
 		if event.is_action_pressed("jump" + inputSuffix):

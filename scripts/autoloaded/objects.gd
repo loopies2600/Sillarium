@@ -81,14 +81,16 @@ func setupCustomVars(object, cVars := {}):
 			object.set(variable, cVars[variable])
 	
 func getAllNodes(root = get_tree().get_root()):
+	var cachedNodes := []
+	
 	for n in root.get_children():
 		
 		if n.get_child_count() > 0:
-			nodes.append(n)
-			getAllNodes(n)
-			
+			cachedNodes.append_array(getAllNodes(n))
 		else:
-			nodes.append(n)
+			cachedNodes.append(n)
+		
+	return cachedNodes
 	
 func registerEveryNode(_newScene = "who cares???"):
 	nodes.clear()

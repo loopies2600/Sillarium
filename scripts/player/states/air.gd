@@ -9,6 +9,9 @@ func enter(msg := {}):
 		owner.velocity.y -= owner.jumpForce
 		
 func physics_update(_delta):
+	if !owner.coyotePeriod.is_stopped():
+		owner.velocity.y = 0.0
+		
 	owner.applyGravity = owner.coyotePeriod.is_stopped()
 	owner.animspeedAsVelocity()
 	

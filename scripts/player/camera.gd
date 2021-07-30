@@ -1,6 +1,6 @@
 extends Camera2D
 
-const AHEAD_FACTOR = 0.275
+const AHEAD_FACTOR = 0.35
 const SHIFT_TRANS = Tween.TRANS_SINE
 const SHIFT_EASE = Tween.EASE_OUT
 const SHIFT_DURATION = 1.0

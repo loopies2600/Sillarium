@@ -40,6 +40,7 @@ shader_param/opacity = 1.0
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 19 )
+shader_param/invertColors = false
 shader_param/glowing_color = Color( 1, 1, 1, 1 )
 shader_param/secondary_glowing_color = Color( 1, 1, 1, 1 )
 shader_param/brightness = 1.0
@@ -49,6 +50,7 @@ shader_param/opacity = 1.0
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 19 )
+shader_param/invertColors = false
 shader_param/glowing_color = Color( 0.913725, 0.443137, 0.129412, 1 )
 shader_param/secondary_glowing_color = Color( 0.996078, 0.901961, 0.137255, 1 )
 shader_param/brightness = 1.0
@@ -58,6 +60,7 @@ shader_param/opacity = 1.0
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 19 )
+shader_param/invertColors = false
 shader_param/glowing_color = Color( 0.913725, 0.443137, 0.129412, 1 )
 shader_param/secondary_glowing_color = Color( 1, 1, 1, 1 )
 shader_param/brightness = 1.0
@@ -306,12 +309,10 @@ script = SubResource( 6 )
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 4, 16 )
 shape = SubResource( 7 )
 
 [node name="Camera" parent="." instance=ExtResource( 1 )]
-visible = false
 
 [node name="GraphicsAnimator" type="AnimationPlayer" parent="."]
 anims/bump = SubResource( 8 )
