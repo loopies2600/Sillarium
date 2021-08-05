@@ -1,12 +1,17 @@
-extends Light2D
+extends Node2D
 
 onready var papa = get_parent()
 
 export (int) var detectionLength = 512
+export (Vector2) var positionOffset = Vector2(-24, 8)
+export (Vector2) var shearing = Vector2(0.25, -0.125)
+export (int) var angleOffset = 90
 
 onready var shadows = Settings.getSetting("renderer", "shadows")
 
 func _ready():
+	transform.y = shearing
+	
 	if !shadows:
 		queue_free()
 		
@@ -18,9 +23,6 @@ func _process(_delta):
 	
 	if result:
 		visible = true
-		rotation = result.normal.angle()
-		global_position = result.position
+		transform.origin = result.position + positionOffset
 	else:
 		visible = false
-		
-	texture_scale = Math.remapToRange(papa.global_position.y, 96, global_position.y, 0, 1)

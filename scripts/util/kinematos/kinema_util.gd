@@ -203,3 +203,13 @@ func _setInput(booly : bool):
 	
 func disableCollisionBox():
 	collisionBox.set_deferred("disabled", true)
+	
+func renderShadow(node = self, shadow = get_node("Shadow")):
+	var shadowSprites = Renderer.generateShadows(node)
+	
+	for sprite in shadowSprites:
+		var newShadow = Sprite.new()
+		newShadow.set_script(preload("res://scripts/util/sprite_sync.gd"))
+		newShadow.target = sprite
+		newShadow.use_parent_material = true
+		shadow.add_child(newShadow)

@@ -55,6 +55,7 @@ onready var arms = [$Graphics/Body/LeftArm, $Graphics/Body/RightArm]
 func _ready():
 	setupProperties(character, 8)
 	pickUpWeapon(0)
+	renderShadow(self)
 	
 func connectSignals():
 	var _unused = gracePeriod.connect("timeout", self, "_endGracePeriod")

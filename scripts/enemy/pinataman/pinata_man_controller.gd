@@ -5,6 +5,7 @@ export (PackedScene) var particle
 func _ready():
 	var _unused = connect("destroyed", self, "OnDestruction")
 	animator.play("Swinging")
+	renderShadow(self)
 	
 func disableCollision():
 	collisionBox.disabled = true
@@ -19,4 +20,3 @@ func EmitParticles():
 	newParticles.emitting = true
 	get_tree().get_root().add_child(newParticles)
 	newParticles.global_position = global_position
-	Renderer.spawn4Piece(mainSprite)

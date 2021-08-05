@@ -1,17 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://sprites/debug/shadow.png" type="Texture" id=1]
 [ext_resource path="res://scripts/generic/shadow.gd" type="Script" id=2]
+[ext_resource path="res://data/shaders/general.shader" type="Shader" id=5]
 
-[node name="Shadow" type="Light2D"]
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 5 )
+shader_param/canGlow = false
+shader_param/invertColors = false
+shader_param/glowing_color = Color( 1, 1, 1, 1 )
+shader_param/secondary_glowing_color = Color( 1, 1, 1, 1 )
+shader_param/brightness = 0.0
+shader_param/glowing_intensity = 1.0
+shader_param/precision = 0.1
+shader_param/opacity = 0.5
+
+[node name="Shadow" type="Node2D"]
+material = SubResource( 1 )
 z_index = 1
 z_as_relative = false
-texture = ExtResource( 1 )
-color = Color( 0.501961, 0.501961, 0.501961, 1 )
-mode = 2
-range_z_min = -4096
-range_z_max = 4096
-range_layer_min = -128
-range_layer_max = 128
-range_item_cull_mask = 2
 script = ExtResource( 2 )

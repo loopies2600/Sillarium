@@ -10,6 +10,8 @@ func _ready():
 	
 	var _unused = connect("destroyed", self, "onDestruction")
 	
+	renderShadow()
+	
 func raycast(length := detectionLength, group := "Player"):
 	var spaceState = get_world_2d().direct_space_state
 	var result = spaceState.intersect_ray(position, position + Vector2(0, length), [self], collision_mask)
@@ -28,5 +30,4 @@ func onBodyEntered(body):
 	
 func onDestruction():
 	emit_signal("camera_shake_requested")
-	Renderer.spawn4Piece(mainSprite)
 	queue_free()

@@ -82,9 +82,5 @@ func disableCollision():
 	$CollisionShape2D.disabled = true
 
 func OnDestruction():
-	for sprite in renderer.get_children():
-		if sprite is Sprite:
-			Renderer.spawn4Piece(sprite)
-	
 	emit_signal("camera_shake_requested")
 	queue_free()

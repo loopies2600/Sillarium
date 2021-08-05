@@ -10,6 +10,7 @@ func _ready():
 	sprite = $Bubbly
 	
 	initialize()
+	renderShadow(self)
 	
 func setupSpeed():
 	velocity = speed.rotated(rotation)

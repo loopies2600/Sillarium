@@ -87,11 +87,4 @@ func throw_flame():
 	
 func OnDestruction():
 	emit_signal("camera_shake_requested")
-	
-	Renderer.spawn4Piece(parentSprite)
-	
-	for sprite in parentSprite.get_children():
-		if sprite is Sprite:
-			Renderer.spawn4Piece(sprite)
-			
 	queue_free()

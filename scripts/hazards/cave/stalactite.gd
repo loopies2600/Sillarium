@@ -21,5 +21,4 @@ func mainMotion(delta):
 func _destroy():
 	emit_signal("camera_shake_requested")
 	emit_signal("destroyed")
-	Renderer.spawn4Piece(sprite, Math.toVec2(0.75))
 	queue_free()
